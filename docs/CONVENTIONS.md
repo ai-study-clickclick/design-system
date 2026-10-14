@@ -11,6 +11,7 @@ repo/
 ├─ README.md              # 사람용 첫 안내
 ├─ AGENTS.md              # AI 작업 지시 (CLAUDE.md가 불러옴)
 ├─ CLAUDE.md              # Claude Code 진입점
+├─ .gitignore             # 올리지 않을 파일(.env 비밀 값, node_modules 등)
 ├─ PROGRESS.md            # 현재 상태 (CLAUDE.md가 불러옴)
 ├─ DESIGN.md              # 기본 토큰 + 테마 프리셋(YAML) + 시각 규칙
 ├─ docs/
@@ -65,7 +66,7 @@ repo/
 
 | 대상 | 규칙 | 예시 |
 |---|---|---|
-| 브랜치 | `type/step-topic` | `docs/1-2-design-md` |
+| 브랜치 | `type/step-topic`. 앞의 `docs/`·`feat/`는 작업 종류 표시일 뿐 폴더가 아니다. 파일 위치는 위 "파일 위치"를 따른다(예: `docs/1-3-ux-md` 브랜치에서도 파일은 `docs/UX.md`) | `docs/1-2-design-md` |
 | 하위 브랜치 | `type/step-topic-detail`. 태스크 브랜치로 PR한다 | `docs/1-2-design-md-color` |
 | 태스크 외 브랜치 | `chore/topic` | `chore/remove-test-md` |
 | 화면 작업 브랜치 | `screen/YYMMDD-topic` | `screen/261014-login` |
