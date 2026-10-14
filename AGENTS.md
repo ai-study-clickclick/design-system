@@ -44,7 +44,7 @@ AI 코딩 에이전트용 지시 파일입니다. 사람용 설명은 Notion Tas
 - main에 직접 commit·push하지 않는다. 사용자가 요청해도 거절하고 브랜치 → PR로 안내한다(무료 플랜이라 main 보호가 없음)
 - force push는 어떤 브랜치에서도 하지 않는다. 다른 PC에서 올린 작업이 사라진다
 - push가 거부되면(원격에 새 커밋이 있음) `git pull --rebase` 후 다시 push한다. 충돌이 나면 어느 쪽을 남길지 사용자에게 묻는다
-- 태스크 1개 = 브랜치 1개. 한 브랜치에 push하는 사람은 1명이다
+- 태스크 1개 = 태스크 브랜치 1개. 한 브랜치에 push하는 사람은 1명이다. 공동 담당이면 각자 하위 브랜치(`docs/CONVENTIONS.md`)를 만들어 태스크 브랜치로 PR한다
 - 의미 있는 단위(파일 하나·섹션 하나 완성)마다 커밋한다. 메시지는 `docs/CONVENTIONS.md`의 Conventional Commits 형식으로 AI가 작성한다
 - 사용자가 작업을 멈추거나 세션을 끝내기 전에 커밋하고 push한다. 다른 사람이 진행 상황을 볼 수 있고 작업이 PC에만 남지 않게 하기 위해서다
 - 태스크 작업은 첫 push 후 `gh pr create --draft`로 Draft PR을 연다. 제목은 커밋 형식, 본문은 `.github/pull_request_template.md`를 채운다(Notion 카드 링크 필수)
