@@ -40,19 +40,21 @@ repo/
 
 | 대상 | 규칙 | 예시 |
 |---|---|---|
-| 기본 토큰(Primitive) | `category.name.step` | `color.gray.100`, `space.4` |
-| 의미 토큰(Semantic) | `category.role.state`. 화면·컴포넌트에는 의미 토큰만 쓴다 | `color.bg.default`, `color.text.danger` |
-| 토큰 참조 | 중괄호로 다른 토큰을 가리킨다(W3C DTCG 방식) | `{color.gray.100}` |
-| 피그마 Variables | 토큰 이름의 `.`을 `/`로 바꾼다 | `color/bg/default` |
+| 1단 기본 색표(Primitive) | `palette.<색>-<단계>`. 실제 색 값 | `palette.orange-600`, `palette.gray-1000` |
+| 2단 쓰임새 이름(Semantic) | `<쓰임새>.<이름>`. 1단 색을 가리킨다. 화면·컴포넌트에는 쓰임새 이름만 쓴다 | `bg.brand-solid`, `bg.neutral`, `fg.neutral`, `stroke.neutral` |
+| 색 외 토큰 | `<종류>.<단계>` | `space.4`, `radius.md`, `font.size.16` |
+| 토큰 참조 | 중괄호로 다른 토큰을 가리킨다(W3C DTCG 방식) | `{palette.orange-600}` |
+| 피그마 Variables | 토큰 이름의 `.`을 `/`로 바꾼다 | `bg/brand-solid` |
 | 테마 프리셋 | `theme.<name>`. 대표 컬러 1개(`brand.primary`)와 라운드 기준값(`radius.base`)만 정한다. 기본 토큰은 바꾸지 않는다 | `theme.ocean` |
-| 브랜드 색 단계 | `brand.primary`에서 `brand.50` ~ `brand.900` 단계를 자동 생성한다(OKLCH 명도 단계). 의미 토큰(`color.bg.brand` 등)은 이 단계를 참조하므로 대표 컬러만 바꿔도 함께 바뀐다 | `{brand.100}` |
+| 브랜드 색 단계 | `brand.primary`에서 `palette.brand-50` ~ `palette.brand-900` 단계를 자동 생성한다(OKLCH 명도 단계). 쓰임새 이름(`bg.brand-solid` 등)은 이 단계를 가리키므로 대표 컬러만 바꿔도 함께 바뀐다 | `{palette.brand-600}` |
 | 라운드 단계 | `radius.base`에서 `radius.sm` · `radius.md` · `radius.lg`를 비율로 계산한다 | `radius.md` |
 
 ## 코드·피그마
 
 | 대상 | 규칙 | 예시 |
 |---|---|---|
-| 컴포넌트 이름 | PascalCase | `Button` |
+| 컴포넌트 이름 | PascalCase. 이름·속성은 shadcn/ui · 당근 · 토스를 비교해 정한다 | `Button` |
+| 아이콘 | Lucide 아이콘 이름 그대로 | `ChevronRight` |
 | 컴포넌트 파일 | kebab-case | `button.tsx` |
 | 피그마 컴포넌트 | 코드와 같은 이름. Variant 속성명·값도 코드 props와 같게 | `Button` → `variant=primary, size=md` |
 | 브리프·평가 파일 | `YYMMDD-topic.md` | `261014-login.md` |
