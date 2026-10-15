@@ -1,0 +1,12 @@
+# 비밀 값 (Figma 토큰 등). 예시 파일만 올린다
+.env*
+!.env.example
+
+# 설치·빌드 결과물
+node_modules/
+.next/
+.vercel/
+
+# OS·개인 설정
+.DS_Store
+.claude/settings.local.json
