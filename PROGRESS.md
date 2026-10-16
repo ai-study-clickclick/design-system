@@ -21,6 +21,6 @@
 
 ## 주의 사항
 
-- main에 직접 push하지 않습니다. 저장소 공개 전환·main 보호 설정은 예은 담당(2차 미팅 액션 아이템)이며, 설정 전에도 같은 규칙입니다
+- main에 직접 push하지 않습니다. 저장소는 organization(`ai-study-clickclick/design-system`)으로 이전해 공개 전환했고, main 보호 설정(PR 필수 · 승인 2명 · Squash merge만)이 완료됐습니다
 - 2차 미팅(2026-10-14)에서 MVP 범위·참고 라이브러리·레인 담당·GitHub 운영을 정했습니다. 요약은 `AGENTS.md` "확정된 기준", 원문은 Notion Meeting "2차 미팅"(https://app.notion.com/p/3f1b2380e7d780fdbba4f8c4191a8ec3)
-- PR은 리뷰어 1~2명 승인 후 올린 사람이 머지합니다. 규칙 문서 PR(#4)은 2명이 먼저 승인하면 머지합니다
+- PR은 승인 2명을 받은 뒤 올린 사람이 Squash merge합니다
