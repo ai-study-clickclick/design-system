@@ -6,5 +6,4 @@
 - 지금 상태: [`PROGRESS.md`](PROGRESS.md)
 - AI용 규칙: [`AGENTS.md`](AGENTS.md) · [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md) (사람은 Notion 설명을 보면 됩니다)
 
-
-![Uploading cefc5924dcb9512e571bd38ea2ac8708.jpg…]()
+![열심히 했으니까….](.github/assets/readme-cheer.jpg)
