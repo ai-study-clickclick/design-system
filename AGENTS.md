@@ -16,7 +16,7 @@ AI 코딩 에이전트용 지시 파일입니다. 사람용 설명은 Notion Tas
 
 2차 미팅(2026-10-14) 결정. 해당 규칙 문서(`DESIGN.md` · `docs/UX.md` · `docs/WRITING.md`)가 생기면 그 문서가 기준이다.
 
-- **MVP 범위**: 라이트 모드 + 컴포넌트 19개(Button · Input · Select · Checkbox · Switch · Card · Modal · Toast · Textarea · Radio · Badge · Avatar · Tabs · List item · Top bar · Bottom sheet · Spinner · Skeleton · Banner). 다크모드는 나중에. Spinner · Skeleton · Banner는 `UX.md` 검토(PR #5)에서 추가
+- **MVP 범위**: 라이트 모드 + 컴포넌트 19개(Button · Input · Select · Checkbox · Switch · Card · Modal · Toast · Textarea · Radio · Badge · Avatar · Tabs · List item · Top bar · Bottom sheet · Spinner · Skeleton · Banner). 다크모드는 나중에. Spinner · Skeleton · Banner는 `docs/UX.md` 검토(PR #5)에서 추가
 - **없는 UI는 만들지 않는다**: 19개(및 `DESIGN.md`에 정의된 것)에 없는 컴포넌트·패턴이 필요하면 누구의 작업이든 임의로 만들지 않고 멈춰서 사용자에게 묻는다
 - **참고 라이브러리**: 한 라이브러리를 그대로 쓰지 않는다. 부품 뼈대(코드)는 shadcn/ui, 색·글자 규칙은 당근 SEED + 토스 TDS, 문구·화면 규칙은 토스 TDS(규칙만 참고하고 문장은 새로 씀. 토스 자료는 복사 금지), AI 활용 방식은 당근 SEED, 색 단계별 용도·모서리·그림자는 Vercel Geist를 참고한다. shadcn/ui에 없는 앱 부품(Top bar · Bottom sheet · 하단 고정 버튼)은 당근·토스를 참고해 새로 만든다
 - **만드는 화면**: 앱 화면(모바일). 기준 화면 폭은 `DESIGN.md`(1-2)에서 정한다

@@ -6,7 +6,9 @@
 - 태스크 1개 = 태스크 브랜치 1개. 한 브랜치에 push하는 사람은 1명이다. 공동 담당이면 각자 하위 브랜치(`docs/CONVENTIONS.md`)를 만들어 태스크 브랜치로 PR한다
 - 의미 있는 단위(파일 하나·섹션 하나 완성)마다 커밋한다. 메시지는 `docs/CONVENTIONS.md`의 Conventional Commits 형식으로 AI가 작성한다
 - 사용자가 작업을 멈추거나 세션을 끝내기 전에 커밋하고 push한다. 다른 사람이 진행 상황을 볼 수 있고 작업이 PC에만 남지 않게 하기 위해서다
-- PR은 하나씩 순서대로 올린다(2차 미팅 결정). 태스크 작업은 첫 push 후 `gh pr list`로 열린 PR을 확인한다. 열린 PR이 없으면 `gh pr create --draft`로 Draft PR을 연다. 있으면 push까지만 하고, 그 PR이 머지된 뒤 최신 main을 받아 충돌을 해결하고 연다
+- 태스크 작업은 하나씩 순서대로 한다(2차 미팅 결정: 앞 PR 머지 → 최신 main 받기 → 작업 → PR). 열린 PR이 있으면 새 태스크 작업을 시작하지 않고 사용자에게 알린다. 그 PR이 머지되면 `git switch main && git pull` 후 시작한다
+- 시작할 때 main에 머지된 규칙 문서와 겹치거나 어긋나는 내용이 없는지 확인한다
+- 첫 push 후 `gh pr create --draft`로 Draft PR을 연다
 - PR 제목은 커밋 형식, 본문은 `.github/pull_request_template.md`를 채운다(Notion 카드 링크 필수)
 - 같은 PR에서 `PROGRESS.md`를 갱신한다
 - 작업이 끝나면 `gh pr ready`로 리뷰를 요청하고 리뷰어 2명 이상을 지정한다(승인 2명이 있어야 머지된다): 같은 레인의 다른 사람 우선, 없으면 다른 레인
