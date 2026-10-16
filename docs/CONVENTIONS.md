@@ -30,12 +30,28 @@ repo/
 │     ├─ docs/           # 라이브러리: 기본 테마 토큰·컴포넌트 갤러리 (시스템 관리자)
 │     └─ prototypes/     # 화면별 프로토타입. 폴더 하나 = 화면 하나 = 링크 하나 (화면 작업자)
 ├─ .github/
-│  └─ pull_request_template.md
+│  ├─ pull_request_template.md
+│  └─ assets/            # README 등 문서에 쓰는 이미지
 └─ .claude/
+   ├─ settings.json      # 팀 공유 차단 설정(main 직접 commit·push, force push 막기)
+   ├─ hooks/             # 차단 설정이 실행하는 스크립트
+   ├─ rules/             # AGENTS.md에서 나눈 상세 규칙. Claude Code가 자동으로 읽음(일부는 `paths`로 해당 파일을 다룰 때만)
    └─ skills/            # sync, pull, audit, brief, generate-screen, theme, ui-review
 ```
 
 - "자동 생성" 파일은 직접 고치지 않는다. 원본을 고치고 `/sync`로 다시 만든다
+
+## 공통 이름 규칙
+
+아래 표에 따로 정한 것이 없으면 이 규칙을 따른다.
+
+| 대상 | 규칙 | 예시 |
+|---|---|---|
+| 폴더·파일·브랜치 | 소문자 + 대시(kebab-case). 띄어쓰기·언더바(`_`)·대문자를 쓰지 않는다 | `src/components/ui/`, `bottom-sheet.tsx` |
+| 예외: 규칙 문서 | 대문자 이름 + `.md` | `AGENTS.md`, `docs/UX.md` |
+| 예외: 컴포넌트·아이콘 이름 | PascalCase (아래 "코드·피그마") | `BottomSheet` |
+| `.claude/` 안의 규칙·훅·스킬 | kebab-case | `rules/session-start.md`, `hooks/guard-git.sh`, `skills/generate-screen/` |
+| GitHub 조직·저장소 | kebab-case. 주소: `https://github.com/ai-study-clickclick/design-system` | `ai-study-clickclick/design-system` |
 
 ## 디자인 토큰
 
@@ -87,3 +103,17 @@ repo/
 
 - 토큰·키·파일명은 영어, 설명은 한글로 쓴다
 - 키 표기는 위 토큰 규칙의 점 표기와 같게 쓴다
+- 규칙 문서(`DESIGN.md` · `docs/UX.md` · `docs/WRITING.md` · `docs/PATTERNS.md`)는 끝에 `## Do's and Don'ts` 섹션을 둔다. 한 줄에 하나씩, 맞는지 확인할 수 있는 문장으로 쓴다(`/ui-review`가 이 목록으로 점검). 형식:
+
+  ```markdown
+  ## Do's and Don'ts
+
+  `/ui-review`가 이 목록을 그대로 점검표로 씁니다. "(웹 프로토타입에서 확인 불가)" 표시가 있는 항목은 건너뜁니다.
+
+  ### <주제>
+
+  - [ ] <해야 할 것: "~한다". 숫자·이름을 넣어 확인할 수 있게>
+  - [ ] <하지 말 것: "~하지 않는다">
+  - [ ] <프로토타입에서 확인할 수 없는 항목> (웹 프로토타입에서 확인 불가)
+  ```
+- 같은 규칙은 한 문서에만 쓴다. 다른 문서에서는 그 문서를 가리킨다
