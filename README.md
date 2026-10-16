@@ -6,3 +6,5 @@
 - 지금 상태: [`PROGRESS.md`](PROGRESS.md)
 - AI용 규칙: [`AGENTS.md`](AGENTS.md) · [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md) (사람은 Notion 설명을 보면 됩니다)
 - Claude Code는 이 `design-system` 폴더를 열어서 작업합니다. 상위 폴더에서 열면 차단 설정·규칙이 적용되지 않습니다
+
+![열심히 했으니까….](.github/assets/readme-cheer.jpg)
