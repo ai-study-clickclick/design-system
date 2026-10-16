@@ -1,3 +1,10 @@
+---
+paths:
+  - "**/*.md"
+  - ".claude/**"
+  - ".github/**"
+---
+
 # 문서 관리
 
 ## PROGRESS.md

@@ -25,3 +25,4 @@
 - main에 직접 push하지 않습니다. 저장소는 organization(`ai-study-clickclick/design-system`)으로 이전해 공개 전환했고, main 보호 설정(PR 필수 · 승인 2명 · Squash merge만)이 완료됐습니다
 - 2차 미팅(2026-10-14)에서 MVP 범위·참고 라이브러리·레인 담당·GitHub 운영을 정했습니다. 요약은 `AGENTS.md` "확정된 기준", 원문은 Notion Meeting "2차 미팅"(https://app.notion.com/p/3f1b2380e7d780fdbba4f8c4191a8ec3)
 - PR은 승인 2명을 받은 뒤 올린 사람이 Squash merge합니다
+- 여러 단계 절차 규칙(`.claude/rules/`의 `session-start.md`·`git.md`·`notion.md`)은 4-x 스킬 작업 때 스킬로 옮깁니다(1-1 하네스 리서치 결론)

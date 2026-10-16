@@ -59,8 +59,8 @@ AI 코딩 에이전트용 지시 파일입니다. 사람용 설명은 Notion Tas
 | 세션 시작 순서 | `.claude/rules/session-start.md` | 세션 시작 (Claude Code가 자동으로 읽음) |
 | Git 작업 · 동시 작업 | `.claude/rules/git.md` | 브랜치·커밋·PR·머지 (자동) |
 | Notion 연결 · Notion 작성 | `.claude/rules/notion.md` | Notion 카드·페이지 작업 (자동) |
-| 동기화 | `.claude/rules/sync.md` | 코드·피그마 맞추기 (자동) |
-| `PROGRESS.md` · 문서 연결 | `.claude/rules/docs.md` | 문서를 고칠 때 (자동) |
+| 동기화 | `.claude/rules/sync.md` | 코드·피그마 맞추기 (`src/`·`DESIGN.md`·`briefs/`를 다룰 때 자동) |
+| `PROGRESS.md` · 문서 연결 | `.claude/rules/docs.md` | 문서를 고칠 때 (`*.md`·`.claude/`·`.github/`를 다룰 때 자동) |
 | 차단 설정 | `.claude/settings.json` · `.claude/hooks/` | 항상 (규칙이 아니라 시스템이 막음) |
 | 파일 위치 · 이름 | `docs/CONVENTIONS.md` | 파일·브랜치·커밋 만들 때 |
 | 디자인 값 · 디자인 Do/Don't | `DESIGN.md` | 화면·컴포넌트·토큰 작업 |

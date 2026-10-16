@@ -34,7 +34,7 @@ repo/
 └─ .claude/
    ├─ settings.json      # 팀 공유 차단 설정(main 직접 commit·push, force push 막기)
    ├─ hooks/             # 차단 설정이 실행하는 스크립트
-   ├─ rules/             # AGENTS.md에서 나눈 상세 규칙. Claude Code가 자동으로 읽음
+   ├─ rules/             # AGENTS.md에서 나눈 상세 규칙. Claude Code가 자동으로 읽음(일부는 `paths`로 해당 파일을 다룰 때만)
    └─ skills/            # sync, pull, audit, brief, generate-screen, theme, ui-review
 ```
 
