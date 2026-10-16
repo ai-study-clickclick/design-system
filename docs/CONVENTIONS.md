@@ -30,7 +30,8 @@ repo/
 │     ├─ docs/           # 라이브러리: 기본 테마 토큰·컴포넌트 갤러리 (시스템 관리자)
 │     └─ prototypes/     # 화면별 프로토타입. 폴더 하나 = 화면 하나 = 링크 하나 (화면 작업자)
 ├─ .github/
-│  └─ pull_request_template.md
+│  ├─ pull_request_template.md
+│  └─ assets/            # README 등 문서에 쓰는 이미지
 └─ .claude/
    ├─ settings.json      # 팀 공유 차단 설정(main 직접 commit·push, force push 막기)
    ├─ hooks/             # 차단 설정이 실행하는 스크립트
