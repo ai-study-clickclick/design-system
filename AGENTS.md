@@ -67,7 +67,7 @@ AI 코딩 에이전트용 지시 파일입니다. 사람용 설명은 Notion Tas
 | UX · 문구 · 화면 패턴 Do/Don't | `docs/UX.md` · `docs/WRITING.md` · `docs/PATTERNS.md` | 화면 작업 · `/ui-review` |
 | 현재 상태 | `PROGRESS.md` | 세션 시작 |
 
-- 규칙 문서(`DESIGN.md` · `docs/*.md`)는 끝에 Do's and Don'ts 섹션을 둔다. 같은 규칙은 한 곳에만 쓰고 다른 곳에서는 그 파일을 가리킨다
+- 규칙 문서 형식(Do's and Don'ts · 같은 규칙은 한 곳에만)은 `docs/CONVENTIONS.md` "MD 작성", 새 규칙을 넣을 곳은 `.claude/rules/docs.md` "규칙 추가"를 따른다
 - 아직 없는 파일은 해당 태스크에서 만든다. 없는 파일의 규칙은 지어내지 않고 사용자에게 묻는다
 
 ## 레인
