@@ -5,3 +5,5 @@
 - 할 일 · 일정 · 작업 방법 · 규칙 설명: Notion "디자인 시스템 › 프로젝트 실행 계획"
 - 지금 상태: [`PROGRESS.md`](PROGRESS.md)
 - AI용 규칙: [`AGENTS.md`](AGENTS.md) · [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md) (사람은 Notion 설명을 보면 됩니다)
+
+![열심히 했으니까….](.github/assets/readme-cheer.jpg)
