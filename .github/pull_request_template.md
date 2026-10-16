@@ -17,9 +17,9 @@
 - [ ] 브랜치·커밋·PR 제목이 `docs/CONVENTIONS.md` 규칙을 따름
 - [ ] 최신 main을 반영함
 - [ ] `PROGRESS.md`를 갱신함
-- [ ] 함께 고칠 문서를 고침 (`AGENTS.md` "문서 연결")
+- [ ] 함께 고칠 문서를 고침 (`.claude/rules/docs.md` "문서 연결")
 - [ ] 자동 생성 파일을 직접 고치지 않음
 - [ ] 화면 작업이면 시스템 파일(`DESIGN.md` · `docs/` · `src/components/` · `src/styles/` · `.claude/`)을 고치지 않음
 - [ ] `/audit` 통과 (3-5 이후, 해당 시)
-- [ ] 리뷰어 1~2명 지정함(규칙 문서·`CLAUDE.md` 변경은 2명 승인)
+- [ ] 리뷰어 2명 이상 지정함(승인 2명이 있어야 머지됨)
 - [ ] 팀 Slack에 PR 알림
