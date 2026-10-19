@@ -6,7 +6,8 @@
 - 태스크 1개 = 태스크 브랜치 1개. 한 브랜치에 push하는 사람은 1명이다. 공동 담당이면 각자 하위 브랜치(`docs/CONVENTIONS.md`)를 만들어 태스크 브랜치로 PR한다
 - 의미 있는 단위(파일 하나·섹션 하나 완성)마다 커밋한다. 메시지는 `docs/CONVENTIONS.md`의 Conventional Commits 형식으로 AI가 작성한다
 - 사용자가 작업을 멈추거나 세션을 끝내기 전에 커밋하고 push한다. 다른 사람이 진행 상황을 볼 수 있고 작업이 PC에만 남지 않게 하기 위해서다
-- 작업은 동시에 해도 된다. PR은 먼저 올라온 순서대로 올린다(2차 미팅 결정). 첫 push 후 `gh pr list`로 열린 PR을 확인한다. 열린 PR이 없으면 `gh pr create --draft`로 Draft PR을 연다. 있으면 push까지만 하고 사용자에게 알린다. 그 PR이 머지되면 `git merge origin/main`으로 최신 main을 받아 충돌을 해결한 뒤 연다
+- 같은 파일은 한 번에 한 명만 고친다(특히 `DESIGN.md`는 모든 화면에 영향). 예외: `PROGRESS.md`는 모든 PR이 고치므로 같이 고쳐도 되고, 충돌이 나면 양쪽을 살려 합친다. 파일을 고치기 전에 `gh pr list`와 `git fetch` 후 원격 브랜치를 확인한다(`git diff --name-only origin/main...origin/<브랜치>`). 다른 사람의 열린 PR이나 push된 브랜치가 같은 파일을 고치고 있으면 그 파일은 작업하지 않고 사용자에게 알린다. 그 PR이 머지되면 최신 main을 받아 시작한다
+- 다른 파일끼리는 동시에 작업해도 된다. PR은 먼저 올라온 순서대로 올린다(2차 미팅 결정). 첫 push 후 `gh pr list`로 열린 PR을 확인한다. 열린 PR이 없으면 `gh pr create --draft`로 Draft PR을 연다. 있으면 push까지만 하고 사용자에게 알린다. 그 PR이 머지되면 `git merge origin/main`으로 최신 main을 받아 충돌을 해결한 뒤 연다
 - PR을 열기 전에 먼저 머지된 내용과 겹치거나 어긋나는 내용이 없는지 확인한다
 - PR 제목은 커밋 형식, 본문은 `.github/pull_request_template.md`를 채운다(Notion 카드 링크 필수)
 - 같은 PR에서 `PROGRESS.md`를 갱신한다
@@ -22,8 +23,6 @@
 
 ## 동시 작업
 
-- `DESIGN.md`는 한 번에 1명만 고친다. 시작 전 열린 PR에 `DESIGN.md` 변경이 있는지 확인하고, 있으면 사용자에게 알린다
 - 자동 생성 파일(`src/styles/tokens.css` · `docs/components/*.md`)은 직접 고치지 않는다. 충돌 시 main을 반영한 뒤 `/sync`로 다시 생성한다
-- `PROGRESS.md` 충돌은 양쪽 내용을 모두 살려 합친다
 - 공동 담당 태스크는 하위 브랜치를 만들어 태스크 브랜치로 PR한다
 - 피그마 메인 컴포넌트·Variables는 시스템 관리자만 고친다. 코드에서 고쳤으면 `/sync`로, 피그마에서 직접 고쳤으면 `/pull`로 코드에 반영해 PR을 만든다. 실험은 Sandbox, 화면은 Generated 페이지에서 한다

@@ -3,7 +3,7 @@
 세션을 시작하면 이 순서부터 따른다.
 
 1. `PROGRESS.md`와 `git log --oneline -15`로 현재 상태를 파악한다
-2. `gh pr list`로 열린 PR을 확인한다. 열린 PR이 있으면 사용자에게 알린다. 작업은 시작해도 되지만, 내 PR은 그 PR이 머지된 뒤 최신 main을 받아 충돌을 해결하고 연다(`.claude/rules/git.md`). 같은 파일을 고치는 PR이면 특히 겹치는 부분을 알려 준다
+2. `gh pr list`로 열린 PR을, `git fetch` 후 원격 브랜치를 확인한다. 다른 사람이 내가 고칠 파일을 고치고 있으면 그 파일은 작업하지 않고 사용자에게 알린다. 다른 파일이면 작업을 시작해도 되지만, 내 PR은 먼저 열린 PR이 머지된 뒤 최신 main을 받아 충돌을 해결하고 연다(`.claude/rules/git.md`)
 3. 작업할 태스크 Step(예: `1-2`)을 사용자에게 확인한다. 화면 작업이면 Step 대신 화면 주제를 확인한다. 둘 다 아니면 `chore`로 처리한다. Notion이 연결돼 있으면 그 카드의 `Description`·`Depends`·`Status`·`Assign`을 읽는다(`.claude/rules/notion.md` 참고)
 4. 브랜치를 정한다. 사용자에게 묻지 않고 아래 순서로 판단한다
    - 먼저 `git fetch`로 원격 상태를 받는다. 사용자는 회사·집 등 여러 PC에서 같은 브랜치를 이어서 작업할 수 있다
