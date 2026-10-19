@@ -15,7 +15,7 @@
 | 0-5 | 각자 Claude Code ↔ GitHub 연결 확인 | 진행 중 |
 | 1-0 | `docs/CONVENTIONS.md` 확정 | PR #8 리뷰 중 (1-1과 함께 확정) |
 | 1-1 | `AGENTS.md` 하네스 보완(규칙 분리 `.claude/rules/` · 차단 설정 `.claude/settings.json`) | PR #8 리뷰 중 (한나, 1-0 함께 확정) |
-| 1-2 | `DESIGN.md` 공부·검토, 정해야 할 것 정리(시간 되면 초안) | 다음 할 일 (예은) |
+| 1-2 | `DESIGN.md` 초안 v0.1 (Stitch 형식, 다크모드·PC↔MO 제외) | PR 리뷰 요청 (예은) |
 | 3-2 준비 | MVP 컴포넌트 19개 이름·속성 비교표 초안(shadcn·당근·토스) | 다음 할 일 (수진) |
 | 4-x 준비 | Claude Code 스킬 공부, 4-1 `/brief` 흐름 메모 | 다음 할 일 (지수) |
 
