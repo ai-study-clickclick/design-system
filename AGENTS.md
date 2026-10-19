@@ -14,7 +14,7 @@ AI 코딩 에이전트용 지시 파일입니다. 사람용 설명은 Notion Tas
 
 ## 확정된 기준
 
-2차 미팅(2026-10-14) 결정. 해당 규칙 문서(`DESIGN.md` · `docs/UX.md` · `docs/WRITING.md`)가 생기면 그 문서가 기준이다.
+2차 미팅(2026-10-14) 결정과 그 뒤 PR로 확정한 변경(출처를 함께 적음). 해당 규칙 문서(`DESIGN.md` · `docs/UX.md` · `docs/WRITING.md`)가 생기면 그 문서가 기준이다.
 
 - **MVP 범위**: 라이트 모드 + 컴포넌트 19개. 다크모드는 나중에
   - 2차 미팅 16개: Button · Input · Select · Checkbox · Switch · Card · Modal · Toast · Textarea · Radio · Badge · Avatar · Tabs · List item · Top bar · Bottom sheet
