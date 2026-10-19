@@ -292,7 +292,7 @@ components:
 | 7 | 간격 스케일 | 4px 단위 4~48 | 근거 없음 | `spacing` |
 | 8 | 글자 단계 선택·라벨 굵기 600 | SEED 값 6단계 선택, 라벨 600 | 토스 공식에 Semibold가 있고 SEED는 400/500/700 | `typography` |
 | 9 | 색 대비 기준값 | APCA 기준. 가독성 텍스트 Lc 75 이상(Lc 90 권장), 다른 텍스트 Lc 60 이상(16px 미만이면 굵게), placeholder·disabled 글자 Lc 30 이상 | SEED 포용적 디자인 문서의 기준을 그대로 씀(https://seed-design.io/llms/foundations/inclusive-design.txt). 팀이 WCAG 대신 APCA로 정함. APCA는 W3C 공식 권고가 아니고 2026년 4월 WCAG 3 초안에도 없어요(https://adrianroselli.com/2026/04/wcag3-contrast-as-of-april-2026.html) | Colors |
-| 10 | 키보드 포커스 링 2px 선 + 2px 띄움, 색 `stroke.focus`(blue-600, 5.17:1) | SEED CSS(@seed-design/css 3.0.3) 값 | SEED 규칙 문서엔 없고 배포 CSS에만 있어요. 모바일에 맞는지 확인 필요 | Components |
+| 10 | 키보드 포커스 링 2px 선 + 2px 띄움, 색 `stroke.focus`(blue-600, Lc 74.9) | SEED CSS(@seed-design/css 3.0.3) 값 | SEED 규칙 문서엔 없고 배포 CSS에만 있어요. 모바일에 맞는지 확인 필요 | Components |
 | 11 | 일시 알림·확인 요청·선택 목록의 컴포넌트 | Toast / Modal / Bottom sheet | UX.md 6-1이 "DESIGN.md를 따른다"고 넘김 | Components |
 | 12 | 컴포넌트 변형과 연결 토큰 (`button-critical`, `badge-brand` 등) | YAML `components` | 컴포넌트 스펙이 아직 없음 | `components` |
 
