@@ -57,14 +57,15 @@ repo/
 
 | 대상 | 규칙 | 예시 |
 |---|---|---|
-| 1단 기본 색표(Primitive) | `palette.<색>-<단계>`. 실제 색 값 | `palette.orange-600`, `palette.gray-1000` |
+| 1단 기본 색표(Primitive) | `palette.<색>-<단계>`. 실제 색 값 | `palette.orange-600`, `palette.gray-900` |
 | 2단 쓰임새 이름(Semantic) | `<쓰임새>.<이름>`. 1단 색을 가리킨다. 화면·컴포넌트에는 쓰임새 이름만 쓴다 | `bg.brand-solid`, `bg.neutral`, `fg.neutral`, `stroke.neutral` |
 | 색 외 토큰 | `<종류>.<단계>` | `space.4`, `radius.md`, `font.size.16` |
 | 토큰 참조 | 중괄호로 다른 토큰을 가리킨다(W3C DTCG 방식) | `{palette.orange-600}` |
 | 피그마 Variables | 토큰 이름의 `.`을 `/`로 바꾼다 | `bg/brand-solid` |
 | 테마 프리셋 | `theme.<name>`. 대표 컬러 1개(`brand.primary`)와 라운드 기준값(`radius.base`)만 정한다. 기본 토큰은 바꾸지 않는다 | `theme.ocean` |
 | 브랜드 색 단계 | `brand.primary`에서 `palette.brand-50` ~ `palette.brand-900` 단계를 자동 생성한다(OKLCH 명도 단계). 쓰임새 이름(`bg.brand-solid` 등)은 이 단계를 가리키므로 대표 컬러만 바꿔도 함께 바뀐다 | `{palette.brand-600}` |
-| 라운드 단계 | `radius.base`에서 `radius.sm` · `radius.md` · `radius.lg`를 비율로 계산한다 | `radius.md` |
+| 라운드 단계 | `radius.base`에서 `radius.sm` · `radius.md` · `radius.lg` · `radius.xl`을 비율로 계산한다. `radius.full`은 9999px로 고정한다 | `radius.md` |
+| DESIGN.md 안의 토큰 참조 | DESIGN.md는 Stitch 형식이라 그룹 이름을 앞에 붙인다. 위의 `{palette.orange-600}`은 `{colors.palette.orange-600}`로 쓴다 | `{colors.palette.orange-600}` |
 
 ## 코드·피그마
 
