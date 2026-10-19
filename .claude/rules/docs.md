@@ -24,7 +24,7 @@ paths:
 | 파일 추가·이동 | `docs/CONVENTIONS.md` 파일 위치 · AI가 꼭 읽어야 하면 `CLAUDE.md` |
 | 스킬 추가·변경 | `AGENTS.md`의 스킬 표 · `docs/CONVENTIONS.md` 스킬 목록 · Notion 실행 계획의 스킬 표 |
 | 태스크 추가·삭제·순서 변경 | `AGENTS.md`의 레인 표 · `PROGRESS.md` |
-| 팀 결정 확정 | 해당 규칙 문서 · `PROGRESS.md` 주의 사항 |
+| 팀 결정 확정 | 해당 규칙 문서 · `PROGRESS.md` 주의 사항 · 결정이 바뀌었으면 Notion Meeting 페이지의 해당 Decisions 아래에 "이후 변경" 메모(원문은 지우지 않음) |
 
 - Notion과 규칙 파일(`AGENTS.md` · `.claude/rules/`)이 다르면 규칙 파일이 기준이다. 사용자에게 알리고 Notion 쪽 수정을 요청한다
 
