@@ -4,6 +4,7 @@
 # - main으로 push(main · HEAD:main · refs/heads/main · --all)
 # - main 브랜치에 있을 때 commit·push
 # 따옴표 안 글자(커밋 메시지 등)와 heredoc 본문은 검사하지 않고, `git` 바로 뒤 명령어가 push·commit일 때만 본다.
+# jq가 없는 PC에서도 같은 방식으로 검사한다.
 # 규칙 원문: .claude/rules/git.md
 
 input=$(cat)
@@ -13,18 +14,58 @@ block() {
   exit 2
 }
 
-if ! command -v jq >/dev/null 2>&1; then
-  # jq가 없는 PC: 입력 전체에서 찾는다(조금 더 많이 막을 수 있지만 놓치지는 않음)
-  if printf '%s' "$input" | grep -Eq 'git[^;&|]* push[^;&|]*( --force| -f( |"|$)| --force-with-lease| --mirror| \+)'; then
-    block "force push는 어떤 브랜치에서도 하지 않습니다."
-  fi
-  if printf '%s' "$input" | grep -Eq 'git[^;&|]* push[^;&|]*[ :/]main( |"|$)'; then
-    block "main에 바로 push하지 않습니다."
-  fi
-  exit 0
-fi
+# 입력(JSON)에서 실행할 명령(tool_input.command)을 꺼낸다.
+# jq가 있으면 jq로, 없으면 아래 awk로 꺼낸다. 어느 쪽이든 이후 검사는 같다.
+# (GUARD_GIT_NO_JQ=1은 jq 없는 경로를 시험할 때만 쓴다)
+extract_command() {
+  awk '
+    { s = s $0 "\n" }
+    END {
+      n = length(s); i = 1; key = ""
+      while (i <= n) {
+        c = substr(s, i, 1)
+        if (c != "\"") { i++; continue }
+        # 문자열 하나를 읽으며 이스케이프를 푼다
+        v = ""; i++
+        while (i <= n) {
+          c = substr(s, i, 1)
+          if (c == "\"") break
+          if (c == "\\") {
+            i++; e = substr(s, i, 1)
+            if (e == "n") v = v "\n"
+            else if (e == "t") v = v "\t"
+            else if (e == "r" || e == "b" || e == "f") v = v " "
+            else if (e == "u") {
+              h = tolower(substr(s, i + 1, 4)); i += 4
+              if (h == "0022") v = v "\""
+              else if (h == "0027") v = v "\047"
+              else if (h == "005c") v = v "\\"
+              else if (h == "0026") v = v "&"
+              else if (h == "003c") v = v "<"
+              else if (h == "003e") v = v ">"
+              else v = v "X"
+            }
+            else v = v e
+          } else v = v c
+          i++
+        }
+        i++
+        # 다음 글자가 ":"이면 키, 아니면 값
+        j = i
+        while (j <= n && substr(s, j, 1) ~ /[ \t\n\r]/) j++
+        if (substr(s, j, 1) == ":") { key = v; i = j + 1; continue }
+        if (key == "command") { printf "%s", v; exit }
+        key = ""
+      }
+    }
+  '
+}
 
-cmd=$(printf '%s' "$input" | jq -r '.tool_input.command // empty' 2>/dev/null)
+if [ "${GUARD_GIT_NO_JQ:-}" != "1" ] && command -v jq >/dev/null 2>&1; then
+  cmd=$(printf '%s' "$input" | jq -r '.tool_input.command // empty' 2>/dev/null)
+else
+  cmd=$(printf '%s' "$input" | extract_command)
+fi
 [ -z "$cmd" ] && exit 0
 
 # 명령 문자열에서 git push·commit 호출만 골라 한 줄씩 출력한다.
