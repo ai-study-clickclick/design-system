@@ -65,6 +65,7 @@ repo/
 | 테마 프리셋 | `theme.<name>`. 대표 컬러 1개(`brand.primary`)와 라운드 기준값(`radius.base`)만 정한다. 기본 토큰은 바꾸지 않는다 | `theme.ocean` |
 | 브랜드 색 단계 | `brand.primary`에서 `palette.brand-50` ~ `palette.brand-900` 단계를 자동 생성한다(OKLCH 명도 단계). 쓰임새 이름(`bg.brand-solid` 등)은 이 단계를 가리키므로 대표 컬러만 바꿔도 함께 바뀐다 | `{palette.brand-600}` |
 | 라운드 단계 | `radius.base`에서 `radius.sm` · `radius.md` · `radius.lg`를 비율로 계산한다 | `radius.md` |
+| DESIGN.md 안의 토큰 참조 | DESIGN.md는 Stitch 형식이라 그룹 이름을 앞에 붙인다. 위의 `{palette.orange-600}`은 `{colors.palette.orange-600}`로 쓴다 | `{colors.palette.orange-600}` |
 
 ## 코드·피그마
 
@@ -116,4 +117,5 @@ repo/
   - [ ] <하지 말 것: "~하지 않는다">
   - [ ] <프로토타입에서 확인할 수 없는 항목> (웹 프로토타입에서 확인 불가)
   ```
+- 규칙 문서(`DESIGN.md` · `docs/UX.md` · `docs/WRITING.md` · `docs/PATTERNS.md`) 맨 위 상태: 초안 v0.x는 내용이 바뀌는 PR마다 0.1 올린다. 팀이 확정하면 v1.0으로 한다. 바뀐 내용 기록은 문서에 따로 두지 않는다(GitHub 기록이 대신함)
 - 같은 규칙은 한 문서에만 쓴다. 다른 문서에서는 그 문서를 가리킨다
