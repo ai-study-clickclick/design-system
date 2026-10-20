@@ -8,7 +8,7 @@ description: "[초안 v0.1] 딸깍딸깍 디자인 시스템의 디자인 값 �
 # - 토큰·키는 영어, 설명은 한글. 이름은 소문자 + 대시, 점(.)은 그룹 구분.
 # - 1단 palette.* → 2단 쓰임새(bg.*, fg.*, stroke.*). 화면·컴포넌트에는 쓰임새 이름만 쓴다.
 # - 점이 들어간 키는 따옴표로 감싼다. (Stitch 린트 v0.4.0으로 확인: 에러 없이 통과, 참조도 정상 해석)
-# - ❗ = Claude가 정한 값 (근거 문서에 값이 없거나 내가 고른 것). 팀이 다시 보고 확정해야 함. 전체 목록: Overview > Known Gaps
+# - ❗ = Claude가 정한 값 (근거 문서에 값이 없거나 내가 고른 것). 팀이 다시 보고 확정해야 함. 전체 목록: Overview > ❗ Claude가 정한 값
 # - ⚠ = 근거 문서에도 값이 없어서 비워 둔 칸 (팀 결정 대기)
 # ─────────────────────────────────────────────────────────────
 colors:
@@ -101,14 +101,14 @@ colors:
   "fg.informative": "{colors.palette.blue-700}"
   "fg.warning": "{colors.palette.yellow-700}"
   "fg.disabled": "{colors.palette.gray-400}"
-  "fg.placeholder": "{colors.palette.gray-500}"
+  "fg.placeholder": "{colors.palette.gray-400}"
   # 테두리 stroke.*  (중간 단계 = 테두리)
   "stroke.neutral": "{colors.palette.gray-200}"
   "stroke.neutral-strong": "{colors.palette.gray-300}"
   "stroke.focus": "{colors.palette.blue-600}"
   "stroke.critical": "{colors.palette.red-600}"
   # ❗ SEED 스펙 이름. 값 임시
-  "stroke.neutral-weak": "{colors.palette.gray-500}"
+  "stroke.neutral-weak": "{colors.palette.gray-400}"
   "stroke.neutral-muted": "{colors.palette.gray-100}"
   "stroke.neutral-contrast": "{colors.palette.gray-900}"
   "stroke.critical-solid": "{colors.palette.red-600}"
@@ -291,15 +291,17 @@ components:
 | 6 | 컴포넌트 높이 | 56 / 44 / 52px | 44는 UX.md 최소. 56은 비공식 정리 사이트 값이라 공식 문서로 검증 못 함 | `components` |
 | 7 | 간격 스케일 | 4px 단위 4~48 | 근거 없음 | `spacing` |
 | 8 | 글자 단계 선택·라벨 굵기 600 | SEED 값 6단계 선택, 라벨 600 | 토스 공식에 Semibold가 있고 SEED는 400/500/700 | `typography` |
-| 9 | 색 대비 기준값 | APCA 기준. 가독성 텍스트 Lc 75 이상(Lc 90 권장), 다른 텍스트 Lc 60 이상(16px 미만이면 굵게), placeholder·disabled 글자 Lc 30 이상 | SEED 포용적 디자인 문서의 기준을 그대로 씀(https://seed-design.io/llms/foundations/inclusive-design.txt). 팀이 WCAG 대신 APCA로 정함. APCA는 W3C 공식 권고가 아니고 2026년 4월 WCAG 3 초안에도 없어요(https://adrianroselli.com/2026/04/wcag3-contrast-as-of-april-2026.html) | Colors |
-| 10 | 키보드 포커스 링 2px 선 + 2px 띄움, 색 `stroke.focus`(blue-600, Lc 74.9) | SEED CSS(@seed-design/css 3.0.3) 값 | SEED 규칙 문서엔 없고 배포 CSS에만 있어요. 모바일에 맞는지 확인 필요 | Components |
-| 11 | 일시 알림·확인 요청·선택 목록의 컴포넌트 | Toast / Modal / Bottom sheet | UX.md 6-1이 "DESIGN.md를 따른다"고 넘김 | Components |
-| 12 | 컴포넌트 변형과 연결 토큰 (`button-critical`, `badge-brand` 등) | YAML `components` | 컴포넌트 스펙이 아직 없음 | `components` |
+| 9 | 키보드 포커스 링 2px 선 + 2px 띄움, 색 `stroke.focus`(blue-600, Lc 74.9) | SEED CSS(@seed-design/css 3.0.3) 값 | SEED 규칙 문서엔 없고 배포 CSS에만 있어요. 모바일에 맞는지, 주황 브랜드와 같이 놓았을 때 어울리는지 화면에서 확인 필요 | Components |
+| 10 | 일시 알림·확인 요청·선택 목록의 컴포넌트 | Toast / Modal / Bottom sheet | UX.md 6-1이 "DESIGN.md를 따른다"고 넘김 | Components |
+| 11 | 컴포넌트 변형과 연결 토큰 (`button-critical`, `badge-brand` 등) | YAML `components` | 컴포넌트 스펙이 아직 없음 | `components` |
+| 12 | `stroke.*` 이름 순서 | `neutral-weak`(gray-400) · `neutral`(gray-200) · `neutral-strong`(gray-300) | `weak`·`muted`·`contrast`는 SEED 이름, `neutral`·`neutral-strong`은 우리 이름이라 이름 순서와 진하기가 달라요. 이름을 정리할지 팀 결정 필요 | `colors` |
 
 ### ⚠ 근거 문서에도 값이 없어 비워 둔 것
 
 - 나머지 컴포넌트(Select, Textarea, Checkbox, Radio, Switch, Avatar, Tabs, List item, Top bar, Spinner, Skeleton)의 토큰 연결.
 - 다크모드(Notion 6-3)와 PC↔MO 변환(6-4)은 Backlog라 이번 초안에서 뺐어요. 나중에 추가해요.
+- 비활성 버튼과 보조(secondary) 버튼 배경이 같은 연회색(gray-100)이라 글자색으로만 구분돼요. 컴포넌트를 만들 때 같이 놓고 확인해요.
+- Stitch에는 테두리 속성이 없어 입력창 테두리 색을 YAML `input`에 연결하지 못했어요. 입력 테두리는 위 "상태와 피드백" 표를 따라요(기본 `stroke.neutral-weak` 1px).
 
 ### Stitch 형식의 한계
 
@@ -324,11 +326,11 @@ components:
 | placeholder·disabled 글자 | Lc 30 이상 |
 | 색만으로 의미 전달 금지 | 글자나 아이콘을 함께 (SEED 포용적 디자인, UX.md) |
 
-출처: SEED 포용적 디자인 문서(https://seed-design.io/llms/foundations/inclusive-design.txt). 점수는 APCA 공식 패키지 apca-w3 0.1.9로 계산했어요.
+출처: SEED 포용적 디자인 문서(https://seed-design.io/llms/foundations/inclusive-design.txt). 점수는 APCA 공식 패키지 apca-w3 0.1.9로 계산했어요. APCA는 W3C 공식 권고가 아니고 2026년 4월 WCAG 3 초안에도 없어서 법·인증 근거로는 쓰지 않아요(https://adrianroselli.com/2026/04/wcag3-contrast-as-of-april-2026.html).
 
 - 주황 600(`bg.brand-solid`) 위 흰 버튼 라벨(16px 굵게)은 Lc 67.6이라 "다른 텍스트" Lc 60 이상을 통과해요. 주황 700 위는 Lc 79.9예요.
 - 흰 배경 위 글자색 점수: `fg.neutral` 104.7, `fg.critical` 80.2, `fg.informative` 82.2, `fg.positive` 74.2, `fg.warning` 73.7, `fg.neutral-muted` 72.9, `fg.brand`(주황 700) 74.5. 마지막 네 개는 Lc 75에 조금 못 미치므로 본문이 아닌 보조 글자·라벨에만 써요(Lc 60 이상 통과).
-- `fg.disabled`(gray-400) Lc 49.5, `fg.placeholder`(gray-500) Lc 72.9로 둘 다 Lc 30 이상이에요.
+- `fg.disabled`(gray-400) Lc 49.5, `fg.placeholder`(gray-400)는 같은 값이라 Lc 49.5로 둘 다 Lc 30 이상이에요.
 - SEED 문서에는 테두리·아이콘 같은 글자가 아닌 요소의 Lc 기준이 없어요. 그래서 이 파일도 정하지 않고, 기준이 생기면 추가해요.
 - Stitch 린트의 `contrast-ratio` 검사는 WCAG 4.5:1 기준이라 주황 600 버튼에서 경고가 계속 나와요. APCA 기준으로는 정상이에요.
 
@@ -391,7 +393,7 @@ UX.md 5장이 넘긴 "상태 모양"과 4장·10장이 넘긴 "눌림·움직임
 | 선택 | 체크박스 `bg.brand-solid` + 체크 `fg.on-brand-solid`, 테두리 없음. 스위치 트랙 `bg.brand-solid`, 손잡이 크기 1(꺼짐 0.8) | `checked`와 `aria-checked`만, 모양 값 없음 | 글자 선택만 | `bg-primary border-primary text-primary-foreground` | **SEED** (토큰 = 당근+토스). shadcn은 구조만 |
 | 비활성 | 버튼·체크박스: `bg.disabled` + `fg.disabled`. 윤곽 버튼은 배경 투명 + 테두리 `stroke.neutral-muted`. 스위치: 트랙 투명도 **0.38**. 라벨도 비활성색 | 눌러도 안 바뀌고 좌우로 흔들림(체크박스). 값 없음 | — | `opacity-50` + 클릭 막기 | **SEED** (값 있음) |
 | 로딩 | 버튼 배경이 `-pressed` 토큰으로 고정 + 진행 표시. disabled는 따로 | 인디케이터 3개, 너비 유지, `aria-busy` | — | — | **SEED + 토스** |
-| 포커스 | 입력: 테두리 `stroke.neutral-contrast` **2px**. 버튼·체크박스는 값 없음 | 값 없음(포커스 이벤트만) | — | `ring-[3px] ring-ring/50` (키보드 포커스, 쓰지 않음) | 입력은 **SEED** 2px. 키보드 포커스 링은 SEED CSS 값(`stroke.focus` 2px 선 + 2px 띄움) ❗ |
+| 포커스 | 입력: 테두리 `stroke.neutral-contrast` **2px**. 버튼·체크박스: `stroke.focus` 2px 선 + 2px 띄움 | 값 없음(포커스 이벤트만) | — | `ring-[3px] ring-ring/50` (쓰지 않음) | 입력은 **SEED** 2px. 버튼·체크박스 포커스 링은 SEED 배포 CSS 값이에요(규칙 문서엔 없음) ❗ |
 | 오류 | 입력: `stroke.critical-solid` 2px (포커스 중에도 유지) | `hasError` + 도움말 문구 | `error-deep` | `aria-invalid:border-destructive ring-destructive/20` | **SEED** 2px |
 
 **섞어 쓸 때 맞출 점**: ① 비활성은 SEED 하나(색 교체)로 통일하고 shadcn의 `opacity-50`은 쓰지 않아요. 스위치만 SEED 스펙대로 0.38. ② 눌림·선택·비활성·오류가 전부 SEED 토큰 구조라 서로 어긋나지 않아요. ③ 키보드 포커스 링도 SEED CSS 값이라 섞임이 없어요. 입력창은 포커스 2px 테두리 하나만 쓰고 링은 겹쳐 쓰지 않아요. ④ 이 스펙의 토큰은 모두 YAML에 추가했어요(값은 ❗ 임시). `fg.on-brand`는 SEED 이름에 맞춰 `fg.on-brand-solid`로 바꿨어요.
@@ -479,8 +481,8 @@ UX.md 6-1은 5종 중 **제자리 메시지**(Input·Textarea·Select의 오류�
 
 ### 색·글자
 
-- [ ] 브랜드 색 글자가 필요하면 `fg.brand`를 쓴다.
-- [ ] 주황(`bg.brand-solid`) 위 흰 글자는 16px 이상 굵게로만 쓴다(APCA Lc 60 이상). 16px 미만은 굵게, 본문 글자는 쓰지 않는다.
+- [ ] 브랜드 색 글자(`fg.brand`)는 라벨·보조 글자에만 쓴다. 본문 글자에는 쓰지 않는다(Lc 74.5로 본문 기준 75에 못 미침).
+- [ ] 주황(`bg.brand-solid`) 위 흰 글자는 굵은 버튼 라벨에만 쓴다(APCA Lc 60 이상). 본문 글자에는 쓰지 않는다.
 - [ ] 아이콘은 Lucide만 쓴다.
 
 ### 컴포넌트·상태
