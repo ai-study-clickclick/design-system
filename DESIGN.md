@@ -155,7 +155,7 @@ colors:
   "fg.brand-contrast": "{colors.palette.brand-700}"
   "fg.critical": "{colors.palette.red-700}"
   "fg.critical-contrast": "{colors.palette.red-900}"
-  "fg.disabled": "{colors.palette.gray-600}"  # SEED는 gray-500(Lc 23.4). 기준 30을 넘도록 팀이 gray-600(Lc 34.5)으로 정함
+  "fg.disabled": "{colors.palette.gray-600}"  # SEED는 gray-500(흰 배경 Lc 23.4). 기준 30을 넘도록 팀이 gray-600(흰 배경 Lc 41.1)으로 정함. 비활성 배경 위는 16.7→34.5
   "fg.informative": "{colors.palette.blue-700}"
   "fg.informative-contrast": "{colors.palette.blue-900}"
   "fg.neutral": "{colors.palette.gray-1000}"
@@ -253,13 +253,13 @@ spacing:
   "space.screen-max": 480px     # ❗ 넓은 화면에서 콘텐츠 최대 폭 (SEED sm 구간 상한 479px 참고)
   "space.screen-margin": 16px   # 화면 좌우 여백 (SEED 간격 문서의 global-gutter 16px)
   "space.gutter": 16px          # SEED 모바일 gutter 16px
-  "space.touch-min": 44px       # 누르는 영역 최소 크기 (UX.md 4-3)
+  "space.touch-min": 44px       # 누르는 영역 기본 크기, 공간이 부족해도 최소 24px (UX.md 4-3)
 
 components:
   # 이름·속성은 코드와 피그마가 같게 (예: Button · variant=primary).
   # 상태(pressed·disabled·loading·selected)는 별도 키로 둔다.
   # 값은 SEED 컴포넌트 스펙 파일(https://seed-design.io/rootage/components/<이름>.json)에서 가져왔어요.
-  # SEED에 스펙이 없어 ❗ Claude가 정한 곳: card(라운드·여백), 보통 버튼 높이 44px(UX.md 최소 누르는 영역, SEED는 40px). top-bar 높이는 SEED iOS 값(44), avatar 48·spinner 40은 SEED 크기 목록에서 고른 값.
+  # SEED에 스펙이 없어 ❗ Claude가 정한 곳: card(라운드·여백), 보통 버튼 높이 44px(UX.md 기본 누르는 영역, SEED는 40px). top-bar 높이는 SEED iOS 값(44), avatar 48·spinner 40은 SEED 크기 목록에서 고른 값.
   # MVP 19개 중 아래에 없는 것은 "Components" 섹션 표의 TODO 참고.
   button-primary:
     backgroundColor: "{colors.bg.brand-solid}"
@@ -421,17 +421,17 @@ components:
 | # | 항목 | 정한 값 | 왜 이 값인지 | 위치 |
 | --- | --- | --- | --- | --- |
 | 1 | 기준 화면 폭·최대 폭 | 375 / 480px | 375는 SEED·토스 문서에 숫자가 없어 일반적인 모바일 값으로 정했어요. 480은 SEED 레이아웃의 sm 구간 시작(480px)이에요. 화면 여백 16px는 SEED 간격 문서의 `global-gutter` 값이에요(레이아웃 문서 표에는 12px로 나와 문서끼리 달라요) | `spacing`, Layout |
-| 2 | 브랜드 주황의 값과 이름 | SEED carrot 값(orange-600 = #ff6600). 이름은 `orange` | #ff6600은 당근의 브랜드색이에요. 우리 브랜드 주황을 따로 정할지는 팀 결정이에요(정해지면 `orange-*` 값만 바꿔요). 이름 `orange`는 우리가 붙였어요(SEED 이름은 `carrot`). 회색·빨강·초록·파랑·노랑도 SEED 값이에요. SEED 값 그대로라서 APCA 기준에 못 미치는 곳이 있어요: `fg.brand` Lc 54.8, `fg.disabled`(SEED 회색 500) Lc 23.4(아래 "색 대비 기준값"). 브랜드 글자는 `fg.brand-contrast`를 쓰는 것으로 **확정**(짧은 강조에만, 본문 문장은 `fg.neutral`). 비활성 글자도 **확정**: SEED 값(회색 500) 대신 한 단계 진한 회색 600(Lc 34.5)을 써요. 기준 30을 넘고 SEED의 `fg.placeholder`와 같은 색이에요. 큰 라운드와 함께 SEED와 다른 두 부분 중 하나예요 | `colors` |
+| 2 | 브랜드 주황의 값과 이름 | SEED carrot 값(orange-600 = #ff6600). 이름은 `orange` | #ff6600은 당근의 브랜드색이에요. 우리 브랜드 주황을 따로 정할지는 팀 결정이에요(정해지면 `orange-*` 값만 바꿔요). 이름 `orange`는 우리가 붙였어요(SEED 이름은 `carrot`). 회색·빨강·초록·파랑·노랑도 SEED 값이에요. SEED 값 그대로라서 APCA 기준에 못 미치는 곳이 있어요: `fg.brand` Lc 54.8, `fg.disabled`(SEED 회색 500) 흰 배경 Lc 23.4(아래 "색 대비 기준값"). 브랜드 글자는 `fg.brand-contrast`를 쓰는 것으로 **확정**(짧은 강조에만, 본문 문장은 `fg.neutral`). 비활성 글자도 **확정**: SEED 값(회색 500) 대신 한 단계 진한 회색 600을 써요(흰 배경 Lc 23.4→41.1, 비활성 배경 Lc 16.7→34.5). 기준 30을 넘고 SEED의 `fg.placeholder`와 같은 색이에요. 큰 라운드와 함께 SEED와 다른 두 부분 중 하나예요 | `colors` |
 | 3 | 쓰임새 토큰 목록 | SEED 색 역할 표 전체(`bg` 41개 · `fg` 22개 · `stroke` 16개) | 이름과 가리키는 단계 모두 SEED 그대로예요. 안 쓰는 토큰은 린트 경고로 보여요. 쓰는 것만 추릴지는 컴포넌트가 정해진 뒤 봐요 | `colors` |
 | 4 | 큰 라운드 기본 테마와 컴포넌트별 라운드 단계 | 기준 16px. sm 8 / md 12 / lg 16 / xl 24px, 컴포넌트마다 SEED 값보다 한 단계 큰 값 | **확정.** 팀이 정한 기본 테마(AGENTS.md "주황 + 큰 라운드")와 PR #9 리뷰에서 승인받은 모양이에요. 단계 값 8·12·16·24px는 모두 SEED 라운드 단계 안이에요. SEED 컴포넌트 값(큰 버튼 12 · 보통 버튼 8 · Toast 8 · Banner 10 · Modal 20 · 배지 6 · Sheet 24)과 다른 점은 아래 "SEED 컴포넌트 스펙과 비교" 표에 적었어요. 이름(`sm`~`xl`)과 컴포넌트마다 어느 단계를 쓸지는 우리가 정했어요 | `rounded` |
-| 5 | 컴포넌트 높이 | 52 / 44 / 52px | Large 버튼·CTA 52px는 SEED 값이에요. SEED Medium 버튼은 40px인데 UX.md 최소 누르는 영역(44px)에 맞춰 44px로 키웠어요. 입력창 52px도 SEED 텍스트 필드 Large 값이에요 | `components` |
+| 5 | 컴포넌트 높이 | 52 / 44 / 52px | Large 버튼·CTA 52px는 SEED 값이에요. SEED Medium 버튼은 40px인데 UX.md 기본 누르는 영역(44px)에 맞춰 44px로 키웠어요. 입력창 52px도 SEED 텍스트 필드 Large 값이에요 | `components` |
 | 6 | 간격 스케일 | SEED 간격 스케일 전체(2~64px)와 의미 간격 | 값·이름 모두 SEED예요. 어떤 단계를 어디에 쓸지는 컴포넌트에서 정해요 | `spacing` |
 | 7 | 글자 단계 선택 | SEED 값 6단계 선택 | 라벨 굵기는 SEED 스펙(700·500)에 맞췄어요. 어떤 단계를 어디에 쓸지만 Claude가 골랐어요 | `typography` |
 | 8 | 키보드 포커스 링 | 2px 선 + 2px 띄움, 색 `stroke.focus-ring`(blue-600, 흰 배경 Lc 54.2). SEED CSS(@seed-design/css 3.0.3) 값 | **확정**(SEED 배포 CSS 값 그대로). SEED 규칙 문서엔 없고 배포 CSS에만 있어요. 주황 브랜드와 같이 놓았을 때 어울리지 않으면 화면을 보고 다시 열어요 | Components |
 | 9 | 일시 알림·확인 요청·선택 목록의 컴포넌트 | Toast / Modal / Bottom sheet | UX.md 6-1이 "DESIGN.md를 따른다"고 넘김. 이름은 Toast로 확정(SEED는 Snackbar라고 불러요, 규칙은 같아요: https://seed-design.io/llms/components/snackbar.txt) | Components |
 | 10 | 컴포넌트 변형과 연결 토큰 (`button-critical`, `badge-brand` 등) | YAML `components` | 컴포넌트 스펙이 아직 없음 | `components` |
 | 11 | 브랜드 색 단계 수 | `palette.brand-100`~`900` (50 없음) | SEED 팔레트에 50 단계가 없어 100~900만 뒀어요. CONVENTIONS.md는 "brand-50 ~ brand-900"으로 적혀 있어서 단계 수를 맞춰야 해요. 팀 결정 필요 | `colors` |
-| 12 | SEED에 값이 없거나 우리가 골라야 했던 컴포넌트 값 | Card(라운드 16·여백 16), 보통 버튼 높이 44px, Top bar 높이 44px | Card는 SEED 컴포넌트에 없고 기초 상자 Box(https://seed-design.io/react/components/layout/box)로 조합해요. 라운드·여백은 SEED 토큰 중에서 우리가 골랐어요. 보통 버튼은 UX.md 최소 누르는 영역(44px)이 SEED Medium(40px)보다 커서 키웠어요. Top bar는 SEED가 iOS 44 / Android 56이라 iOS 값을 골랐어요. Avatar 48(SEED 크기 목록의 "작은 리스트" 크기)과 Spinner 40(SEED Progress Circle의 "전체 페이지 로딩" 크기)은 SEED 값이에요 | `components` |
+| 12 | SEED에 값이 없거나 우리가 골라야 했던 컴포넌트 값 | Card(라운드 16·여백 16), 보통 버튼 높이 44px, Top bar 높이 44px | Card는 SEED 컴포넌트에 없고 기초 상자 Box(https://seed-design.io/react/components/layout/box)로 조합해요. 라운드·여백은 SEED 토큰 중에서 우리가 골랐어요. 보통 버튼은 UX.md 기본 누르는 영역(44px)이 SEED Medium(40px)보다 커서 키웠어요. Top bar는 SEED가 iOS 44 / Android 56이라 iOS 값을 골랐어요. Avatar 48(SEED 크기 목록의 "작은 리스트" 크기)과 Spinner 40(SEED Progress Circle의 "전체 페이지 로딩" 크기)은 SEED 값이에요 | `components` |
 | 13 | `caption` 굵기 | 12px · 굵기 700(bold) | SEED는 "다른 텍스트는 Lc 60 이상, 16px 미만이면 bold"라고 해요. 캡션 예외는 SEED에 없어서 그대로 따랐어요. UX.md 11-1 표가 캡션·날짜를 "다른 텍스트"로 분류했어요(지수 님 PR #10 의견). **확정**(SEED 규칙 그대로). 화면에서 너무 무거우면 다시 열어요 | `typography` |
 | 14 | 로딩 최소 표시 시간 | 0.4초 | UX.md 제안값이에요. SEED 로딩 문서(Skeleton·Progress Circle)에도 최소 표시 시간은 없어요. 화면에서 확인한 뒤 확정해요 | `motion` |
 | 15 | 주된 CTA 버튼 색 | `button-primary`가 주황(`bg.brand-solid`) | SEED는 대부분 화면의 주된 CTA를 neutral-solid(검정 계열)로 하고 brand-solid는 핵심 기능 순간에만 쓰라고 해요(화면당 1개). 우리 기본 테마는 주황이라 어디에 주황을 쓸지 팀 결정 필요: https://seed-design.io/llms/components/action-button.txt | `components` |
@@ -443,7 +443,7 @@ components:
 - 나머지 컴포넌트(Select, Textarea, Checkbox, Radio, Switch, Avatar, Tabs, List item, Top bar, Spinner, Skeleton)의 토큰 연결.
 - 다크모드(Notion 6-3)와 PC↔MO 변환(6-4)은 Backlog라 이번 초안에서 뺐어요. 나중에 추가해요.
 - 비활성 버튼과 보조(secondary) 버튼 배경이 같은 연회색(gray-200)이라 글자색으로만 구분돼요. SEED도 두 배경이 같은 색(gray-200)이고 글자색(`fg.neutral` / `fg.disabled`)으로 구분해요. 컴포넌트를 만들 때 같이 놓고 확인해요.
-- Stitch에는 테두리 속성이 없어 입력창 테두리 색을 YAML `input`에 연결하지 못했어요. 입력 테두리는 위 "상태와 피드백" 표를 따라요(기본 `stroke.neutral-weak` 1px).
+- Stitch에는 테두리 속성이 없어 입력창 테두리 색을 YAML `input`에 연결하지 못했어요. 입력 테두리는 아래 "상태와 피드백" 표를 따라요(기본 `stroke.neutral-weak` 1px).
 
 ### Stitch 형식의 한계
 
@@ -473,8 +473,8 @@ components:
 - 값은 전부 SEED 색표라서, SEED 자신의 기준에 못 미치는 곳도 SEED와 똑같이 남아 있어요. 아래 점수가 그래요.
 - 주황 600(`bg.brand-solid`) 위 흰 버튼 라벨(Large 18px·Medium 14px, 굵게)은 Lc 60.1이라 "다른 텍스트" Lc 60 이상을 겨우 통과해요. 주황 700 위는 Lc 71.5예요.
 - 흰 배경 위 글자색 점수: `fg.neutral` 104.0, `fg.neutral-muted` 82.7(본문 75 통과), `fg.neutral-subtle` 61.8, `fg.warning` 68.1, `fg.positive` 66.4, `fg.informative` 66.2, `fg.critical` 63.3, `fg.brand`(주황 600) 54.8. `fg.brand`는 "다른 텍스트" 기준 60에도 못 미쳐요. 글자에 브랜드 색을 쓰려면 `fg.brand-contrast`(주황 700, 흰 배경 Lc 66.0)를 써요. 66.0은 "다른 텍스트" 기준 60은 넘지만 본문 기준 75에는 못 미쳐서, 본문 글자색으로는 쓰지 않아요.
-- 연한 배경(`bg.*-weak`) 위 글자: `fg.*` 700단계는 Lc 56~63(브랜드 48.5)이라 쓰기 어려워요. `fg.*-contrast`는 critical 81.6, informative 84.5, positive 85.2, warning 89.1로 본문 기준 75를 넘어요. 브랜드는 주황 700이 Lc 59.7로 60에 조금 못 미쳐요. 그래서 Banner·Badge 글자는 `-contrast`를 써요(SEED Callout·Badge와 같아요).
-- `fg.disabled`는 SEED 값(gray-500)이 흰 배경 위 Lc 23.4, 비활성 배경(`bg.disabled`, gray-200) 위 Lc 16.7로 기준 30에 못 미쳐서, 팀 결정으로 gray-600으로 올렸어요(흰 배경 Lc 41.1, 비활성 배경 위 Lc 34.5로 통과). `fg.placeholder`(gray-600)와 같은 색이에요.
+- 연한 배경(`bg.*-weak`) 위 글자: `fg.*` 700단계는 Lc 56~63(브랜드 48.5)이라 쓰기 어려워요. `fg.*-contrast`는 critical 81.6, informative 84.5, positive 85.2, warning 89.1로 본문 기준 75를 넘어요. 브랜드는 주황 700이 Lc 59.7로 60에 조금 못 미쳐요. 그래서 Banner·Badge 글자는 `-contrast`를 써요(Badge weak의 굵기 예외는 아래 Badge 규칙 참고. SEED Callout·Badge와 같아요).
+- `fg.disabled`는 SEED 값(gray-500)이 흰 배경 위 Lc 23.4, 비활성 배경(`bg.disabled`, gray-200) 위 Lc 16.7로 기준 30에 못 미쳐서, 팀 결정으로 gray-600으로 올렸어요(흰 배경은 Lc 23.4→41.1, 비활성 배경 위는 Lc 16.7→34.5로 통과). `fg.placeholder`(gray-600)와 같은 색이에요.
 - SEED 문서에는 테두리·아이콘 같은 글자가 아닌 요소의 Lc 기준이 없어요. 그래서 이 파일도 정하지 않고, 기준이 생기면 추가해요.
 - Stitch 린트의 `contrast-ratio` 검사는 WCAG 2 기준(4.5:1)이라 경고가 나요(흰 글자 on 주황 600 버튼 2.94:1, 주황 700 눌림 3.99:1, 빨강 버튼 3.76:1). 팀이 APCA 기준으로 정했으므로(PR #9 리뷰) 이 경고는 예상된 거예요. 다만 APCA는 법·인증 근거가 아니에요.
 
@@ -492,10 +492,10 @@ components:
 - **기준 화면 폭**: 375px ❗. 그보다 좁은 화면에서도 글자가 잘리거나 겹치지 않아야 해요.
 - **화면 여백** `space.screen-margin`: 16px (SEED `global-gutter`). **간격** `space.gutter`: 16px (SEED).
 - **최대 폭** `space.screen-max`: 480px ❗. 넓은 화면에서는 콘텐츠를 늘리지 않고 가운데에 둬요.
-- **누르는 영역**: `space.touch-min` 44×44px 이상. 아이콘이 작아도 누르는 영역은 이 크기를 확보해요. 촘촘한 목록의 보조 아이콘, 문장 속 링크처럼 공간이 부족한 곳은 예외지만 주변과 충분히 떨어뜨려요(UX.md 4-3).
+- **누르는 영역**: `space.touch-min` 44×44px을 기본으로 해요. 아이콘이 작아도 누르는 영역은 이 크기를 확보해요. 촘촘한 목록의 보조 아이콘, 문장 속 링크처럼 공간이 부족한 곳도 최소 24×24px은 지키고 주변과 충분히 떨어뜨려요. 라벨을 포함한 영역을 누르는 영역으로 봐요(SEED 포용적 디자인, UX.md 4-3).
 - 누를 수 있는 요소·읽어야 하는 정보·고정 바는 안전 영역 안에 둬요. 배경과 구분선은 화면 끝까지 쓸 수 있어요.
 - 간격은 `spacing`의 `space.*`만 써요.
-- 컴포넌트 높이: Large 버튼·CTA 52px(SEED), 보통 44px(누르는 영역 최소 ❗: SEED Medium은 40px), 입력창 52px(SEED 텍스트 필드 Large).
+- 컴포넌트 높이: Large 버튼·CTA 52px(SEED), 보통 44px(누르는 영역 기본 ❗: SEED Medium은 40px), 입력창 52px(SEED 텍스트 필드 Large).
 
 ## Elevation & Depth
 
@@ -635,7 +635,7 @@ SEED 공식 스펙 파일(rootage JSON)의 값과 우리 값을 나란히 놓았
 | 컴포넌트 | SEED 값 (스펙 파일) | 우리 값 | 판정 | 출처 |
 | --- | --- | --- | --- | --- |
 | Button Large | 높이 52 · 라운드 12 · 좌우 20 · 라벨 18 bold (action-button) | 높이 52 · 라운드 16 · 좌우 20 · 라벨 18 bold | 큰 라운드 테마라 SEED(12)보다 한 단계 큼 ❗ 4 | [action-button](https://seed-design.io/llms/components/action-button.txt) |
-| Button Medium | 높이 40 · 라운드 8 · 좌우 16 · 라벨 14 bold | 높이 44 · 라운드 12 · 좌우 16 · 라벨 14 bold | 높이: UX.md 최소 누르는 영역 ❗ 12 / 라운드: 큰 라운드 ❗ 4 | [action-button](https://seed-design.io/llms/components/action-button.txt) |
+| Button Medium | 높이 40 · 라운드 8 · 좌우 16 · 라벨 14 bold | 높이 44 · 라운드 12 · 좌우 16 · 라벨 14 bold | 높이: UX.md 기본 누르는 영역 ❗ 12 / 라운드: 큰 라운드 ❗ 4 | [action-button](https://seed-design.io/llms/components/action-button.txt) |
 | Input Large | 높이 52 · 라운드 12 · 좌우 16 · 글자 16 · 테두리 1px, 포커스·오류 2px (text-input) | 높이 52 · 라운드 12 · 좌우 16 · 글자 16 · 테두리 1px, 포커스·오류 2px | 라운드가 SEED(12)와 같은 값(큰 라운드의 md) ❗ 4 | [text-input](https://seed-design.io/llms/components/text-input.txt) |
 | Toast | 라운드 8 · 여백 10 · 최소 높이 44 · 최대 폭 464 · 글자 14 (snackbar) | 라운드 12 · 여백 10 · 최소 높이 44 · 최대 폭 464 · 글자 14 | 큰 라운드 ❗ 4 | [snackbar](https://seed-design.io/llms/components/snackbar.txt) |
 | Banner | 라운드 10 · 여백 14 · 간격 12 · 최소 높이 50 · 글자 14, 글자색 `-contrast` (callout) | 라운드 12 · 여백 14 · 간격 12 · 최소 높이 50 · 글자 14, 글자색 `-contrast` | 큰 라운드 ❗ 4 | [callout](https://seed-design.io/llms/components/callout.txt) |
@@ -661,15 +661,18 @@ SEED 공식 스펙 파일(rootage JSON)의 값과 우리 값을 나란히 놓았
 - 톤 6가지: neutral · brand · informative · positive · warning · critical. 스타일 3가지: solid(배경이 복잡하거나 이미지 위, 강하게 강조), outline(중간 강조), weak(반복되는 화면, 카테고리 태그·보조 정보).
 - weak는 색이 있는 배경 위에 쓰지 않는다. 브랜드 톤은 브랜드를 드러내는 곳에만 아껴 쓴다.
 - 한 대상에 1~2개까지, 라벨은 2~3단어이고 10자를 넘으면 말줄임이다. 눌러지는 요소가 아니므로 행동은 Chip·Toggle Button·Action Button을 쓴다.
+- 글자 굵기와 대비는 SEED Badge 스펙을 그대로 따르는 예외다. weak 라벨은 12px·굵기 500(medium)이고 solid·outline 라벨은 bold(700)다. SEED 포용적 디자인 문서의 "다른 텍스트는 Lc 60 이상, 16px 미만이면 bold"와 weak만 다르지만, SEED의 배지 스펙이 이 값이라 바꾸지 않는다. 브랜드 weak(`fg.brand-contrast` 글자, `bg.brand-weak` 배경)는 Lc 59.7로 60에 조금 못 미친다. 이 값도 SEED 스펙 그대로다.
 - 출처: https://seed-design.io/llms/components/badge.txt
+- 출처(굵기·글자색 값): https://seed-design.io/rootage/components/badge.json
+- 출처(대비·굵기 기준): https://seed-design.io/llms/foundations/inclusive-design.txt
 
 **Checkbox · Radio · Switch**
 
 - Checkbox: 크기 Medium·Large. 모양은 Square(필수 선택이거나 꼭 알아야 할 때)와 Ghost(필수가 아니고 3개 이하). 상태는 선택·미선택·일부 선택(Indeterminate). 그룹은 부모를 고르면 자식이 모두 선택되고, 일부만 선택되면 부모가 일부 선택으로 표시된다.
   - 출처: https://seed-design.io/llms/components/checkbox.txt
-- Radio: 크기 Medium·Large. 단일 선택이고 권장 옵션을 기본 선택으로 둔다. 세로 배치가 기본이다. 선택지 2~6개는 Radio Group, 6개 이상이거나 늘어날 수 있으면 입력 버튼으로 열고 Bottom sheet에 전체 목록을 보여 준다.
+- Radio: 크기 Medium·Large. 단일 선택이다. 세로 배치가 기본이다. 기본 선택 여부와 라디오 대신 선택 목록을 쓰는 기준(선택지 개수)은 UX.md 8-2를 따른다.
   - 출처: https://seed-design.io/llms/components/radio.txt
-- Switch: 높이 16·24·32. 16은 터치 영역을 높이 24로 잡는다. 켜자마자 적용되는 설정에 쓰고, 마지막에 저장해야 적용되면 Checkbox를 쓴다. 각 Switch는 독립적으로 동작하고, 비활성이면 마크와 라벨 모두 비활성 색이다.
+- Switch: 높이 16·24·32. 16은 터치 영역을 높이 24로 잡는다. Switch와 Checkbox 중 무엇을 쓸지는 UX.md 8-2를 따른다. 각 Switch는 독립적으로 동작하고, 비활성이면 마크와 라벨 모두 비활성 색이다.
   - 출처: https://seed-design.io/llms/components/switch.txt
 - 세 가지 모두 라벨을 포함한 영역(목록에 넣으면 행 전체)이 터치 영역이다.
   - 출처: https://seed-design.io/llms/components/checkbox.txt
@@ -677,7 +680,7 @@ SEED 공식 스펙 파일(rootage JSON)의 값과 우리 값을 나란히 놓았
 **Textarea · 입력 서식**
 
 - Textarea 높이: 자동 크기를 켜면 최소 3줄(95px), 최대는 정하기 나름이다. 끄면 최소 2줄(70px)이고 최대 높이를 반드시 정하며 넘으면 안에서 스크롤된다.
-- 주민번호·전화번호처럼 형식이 있는 값은 입력칸을 나누지 않고 한 칸에서 자동으로 서식을 맞춘다.
+- 주민번호·전화번호처럼 형식이 있는 값의 자동 서식은 UX.md 8-4를 따른다.
 - 출처: https://seed-design.io/llms/components/text-input.txt
 
 **Divider**
@@ -716,7 +719,7 @@ SEED 공식 스펙 파일(rootage JSON)의 값과 우리 값을 나란히 놓았
 
 ### 컴포넌트·상태
 
-- [ ] 누르는 영역은 `space.touch-min`(44px) 이상으로 잡는다.
+- [ ] 누르는 영역은 `space.touch-min`(44px)을 기본으로 잡고, 공간이 부족해도 최소 24×24px은 지킨다. 라벨을 포함한 영역을 누르는 영역으로 본다.
 - [ ] 눌림은 `-pressed` 토큰과 150ms 줄어듦으로 표현한다.
 - [ ] 비활성 요소에 눌림·선택 모양을 겹쳐 쓰지 않는다.
 - [ ] 로딩 중인 버튼은 너비를 유지하고 연속 누름을 막는다.
