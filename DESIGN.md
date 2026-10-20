@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: clickclick-design-system
-description: "[초안 v0.2] 딸깍딸깍 디자인 시스템의 디자인 값 원본. YAML 토큰이 원본이고 본문은 근거와 쓰는 법이다. 앱 화면(모바일), 라이트 모드, 기본 테마는 주황 + 큰 라운드. 값은 SEED 기준."
+description: "[초안 v0.2] 딸깍딸깍 디자인 시스템의 디자인 값 원본. YAML 토큰이 원본이고 본문은 근거와 쓰는 법이다. 앱 화면(모바일), 라이트 모드, 기본 테마는 주황 + 큰 라운드. 값은 SEED 기준(큰 라운드와 비활성 글자색만 다름)."
 
 # ─────────────────────────────────────────────────────────────
 # 작성 규칙 (docs/CONVENTIONS.md)
@@ -155,7 +155,7 @@ colors:
   "fg.brand-contrast": "{colors.palette.brand-700}"
   "fg.critical": "{colors.palette.red-700}"
   "fg.critical-contrast": "{colors.palette.red-900}"
-  "fg.disabled": "{colors.palette.gray-500}"
+  "fg.disabled": "{colors.palette.gray-600}"  # SEED는 gray-500(Lc 23.4). 기준 30을 넘도록 팀이 gray-600(Lc 34.5)으로 정함
   "fg.informative": "{colors.palette.blue-700}"
   "fg.informative-contrast": "{colors.palette.blue-900}"
   "fg.neutral": "{colors.palette.gray-1000}"
@@ -412,7 +412,7 @@ components:
 | 색 대비 기준(APCA) | https://seed-design.io/llms/foundations/inclusive-design.txt |
 | 컴포넌트 값 | https://seed-design.io/rootage/components/<이름>.json (action-button, text-input, snackbar, callout, alert-dialog, bottom-sheet, badge, list-item, top-navigation, avatar, progress-circle, skeleton, checkbox, radio, switch, select-box) |
 
-우리가 직접 정한 것: 색 이름 `orange`(값은 SEED carrot), 팔레트에서 50 단계를 뺀 것, APCA 점수(apca-w3 0.1.9로 직접 계산), 라운드 이름(`sm`~`xl`)과 컴포넌트별 단계(❗ 4번), ❗ 12번의 컴포넌트 값, Do's 문장.
+우리가 직접 정한 것: 색 이름 `orange`(값은 SEED carrot), `fg.disabled`를 회색 600으로 올린 것(SEED는 회색 500), 팔레트에서 50 단계를 뺀 것, APCA 점수(apca-w3 0.1.9로 직접 계산), 라운드 이름(`sm`~`xl`)과 컴포넌트별 단계(❗ 4번), ❗ 12번의 컴포넌트 값, Do's 문장.
 
 ### ❗ Claude가 정한 값 (팀이 다시 봐야 해요)
 
@@ -421,7 +421,7 @@ components:
 | # | 항목 | 정한 값 | 왜 이 값인지 | 위치 |
 | --- | --- | --- | --- | --- |
 | 1 | 기준 화면 폭·최대 폭 | 375 / 480px | 375는 SEED·토스 문서에 숫자가 없어 일반적인 모바일 값으로 정했어요. 480은 SEED 레이아웃의 sm 구간 시작(480px)이에요. 화면 여백 16px는 SEED 간격 문서의 `global-gutter` 값이에요(레이아웃 문서 표에는 12px로 나와 문서끼리 달라요) | `spacing`, Layout |
-| 2 | 브랜드 주황의 값과 이름 | SEED carrot 값(orange-600 = #ff6600). 이름은 `orange` | #ff6600은 당근의 브랜드색이에요. 우리 브랜드 주황을 따로 정할지는 팀 결정이에요(정해지면 `orange-*` 값만 바꿔요). 이름 `orange`는 우리가 붙였어요(SEED 이름은 `carrot`). 회색·빨강·초록·파랑·노랑도 SEED 값이에요. SEED 값 그대로라서 APCA 기준에 못 미치는 곳이 있어요: `fg.brand` Lc 54.8, `fg.disabled` Lc 23.4(아래 "색 대비 기준값"). 브랜드 글자는 `fg.brand-contrast`를 쓰는 것으로 **확정**(짧은 강조에만, 본문 문장은 `fg.neutral`). 비활성 글자는 SEED 값을 그대로 두고 팀에 물어요 | `colors` |
+| 2 | 브랜드 주황의 값과 이름 | SEED carrot 값(orange-600 = #ff6600). 이름은 `orange` | #ff6600은 당근의 브랜드색이에요. 우리 브랜드 주황을 따로 정할지는 팀 결정이에요(정해지면 `orange-*` 값만 바꿔요). 이름 `orange`는 우리가 붙였어요(SEED 이름은 `carrot`). 회색·빨강·초록·파랑·노랑도 SEED 값이에요. SEED 값 그대로라서 APCA 기준에 못 미치는 곳이 있어요: `fg.brand` Lc 54.8, `fg.disabled`(SEED 회색 500) Lc 23.4(아래 "색 대비 기준값"). 브랜드 글자는 `fg.brand-contrast`를 쓰는 것으로 **확정**(짧은 강조에만, 본문 문장은 `fg.neutral`). 비활성 글자도 **확정**: SEED 값(회색 500) 대신 한 단계 진한 회색 600(Lc 34.5)을 써요. 기준 30을 넘고 SEED의 `fg.placeholder`와 같은 색이에요. 큰 라운드와 함께 SEED와 다른 두 부분 중 하나예요 | `colors` |
 | 3 | 쓰임새 토큰 목록 | SEED 색 역할 표 전체(`bg` 41개 · `fg` 22개 · `stroke` 16개) | 이름과 가리키는 단계 모두 SEED 그대로예요. 안 쓰는 토큰은 린트 경고로 보여요. 쓰는 것만 추릴지는 컴포넌트가 정해진 뒤 봐요 | `colors` |
 | 4 | 큰 라운드 기본 테마와 컴포넌트별 라운드 단계 | 기준 16px. sm 8 / md 12 / lg 16 / xl 24px, 컴포넌트마다 SEED 값보다 한 단계 큰 값 | **확정.** 팀이 정한 기본 테마(AGENTS.md "주황 + 큰 라운드")와 PR #9 리뷰에서 승인받은 모양이에요. 단계 값 8·12·16·24px는 모두 SEED 라운드 단계 안이에요. SEED 컴포넌트 값(큰 버튼 12 · 보통 버튼 8 · Toast 8 · Banner 10 · Modal 20 · 배지 6 · Sheet 24)과 다른 점은 아래 "SEED 컴포넌트 스펙과 비교" 표에 적었어요. 이름(`sm`~`xl`)과 컴포넌트마다 어느 단계를 쓸지는 우리가 정했어요 | `rounded` |
 | 5 | 컴포넌트 높이 | 52 / 44 / 52px | Large 버튼·CTA 52px는 SEED 값이에요. SEED Medium 버튼은 40px인데 UX.md 최소 누르는 영역(44px)에 맞춰 44px로 키웠어요. 입력창 52px도 SEED 텍스트 필드 Large 값이에요 | `components` |
@@ -474,7 +474,7 @@ components:
 - 주황 600(`bg.brand-solid`) 위 흰 버튼 라벨(Large 18px·Medium 14px, 굵게)은 Lc 60.1이라 "다른 텍스트" Lc 60 이상을 겨우 통과해요. 주황 700 위는 Lc 71.5예요.
 - 흰 배경 위 글자색 점수: `fg.neutral` 104.0, `fg.neutral-muted` 82.7(본문 75 통과), `fg.neutral-subtle` 61.8, `fg.warning` 68.1, `fg.positive` 66.4, `fg.informative` 66.2, `fg.critical` 63.3, `fg.brand`(주황 600) 54.8. `fg.brand`는 "다른 텍스트" 기준 60에도 못 미쳐요. 글자에 브랜드 색을 쓰려면 `fg.brand-contrast`(주황 700, 흰 배경 Lc 66.0)를 써요. 66.0은 "다른 텍스트" 기준 60은 넘지만 본문 기준 75에는 못 미쳐서, 본문 글자색으로는 쓰지 않아요.
 - 연한 배경(`bg.*-weak`) 위 글자: `fg.*` 700단계는 Lc 56~63(브랜드 48.5)이라 쓰기 어려워요. `fg.*-contrast`는 critical 81.6, informative 84.5, positive 85.2, warning 89.1로 본문 기준 75를 넘어요. 브랜드는 주황 700이 Lc 59.7로 60에 조금 못 미쳐요. 그래서 Banner·Badge 글자는 `-contrast`를 써요(SEED Callout·Badge와 같아요).
-- `fg.disabled`(gray-500)는 흰 배경 위 Lc 23.4, 비활성 배경(`bg.disabled`, gray-200) 위 Lc 16.7로 기준 30에 못 미쳐요(SEED 값 그대로). `fg.placeholder`(gray-600)는 Lc 41.1이라 통과해요.
+- `fg.disabled`는 SEED 값(gray-500)이 흰 배경 위 Lc 23.4, 비활성 배경(`bg.disabled`, gray-200) 위 Lc 16.7로 기준 30에 못 미쳐서, 팀 결정으로 gray-600으로 올렸어요(흰 배경 Lc 41.1, 비활성 배경 위 Lc 34.5로 통과). `fg.placeholder`(gray-600)와 같은 색이에요.
 - SEED 문서에는 테두리·아이콘 같은 글자가 아닌 요소의 Lc 기준이 없어요. 그래서 이 파일도 정하지 않고, 기준이 생기면 추가해요.
 - Stitch 린트의 `contrast-ratio` 검사는 WCAG 2 기준(4.5:1)이라 경고가 나요(흰 글자 on 주황 600 버튼 2.94:1, 주황 700 눌림 3.99:1, 빨강 버튼 3.76:1). 팀이 APCA 기준으로 정했으므로(PR #9 리뷰) 이 경고는 예상된 거예요. 다만 APCA는 법·인증 근거가 아니에요.
 
