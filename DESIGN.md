@@ -683,13 +683,6 @@ SEED 공식 스펙 파일(rootage JSON)의 값과 우리 값을 나란히 놓았
 - 주민번호·전화번호처럼 형식이 있는 값의 자동 서식은 UX.md 8-4를 따른다.
 - 출처: https://seed-design.io/llms/components/text-input.txt
 
-**Divider**
-
-- 두께 1px. 기본 색 `stroke.neutral-muted`, 더 약하게는 `stroke.neutral-subtle`. 가로(위아래 쌓을 때)와 세로(나란히 놓을 때)가 있다.
-- 구분 강도는 세 단계다: 같은 그룹 안은 안쪽 여백이 있는 구분선(약), 그룹 사이나 행동 영역은 전체 너비 구분선(중), 완전히 다른 내용은 8px 간격(강, 구분선 부품이 아니라 바탕 층 사이 간격).
-- 꼭 필요할 때만 쓰고, 목록처럼 반복되는 화면은 구분선 없이도 나뉘는지 먼저 본다. 화면 맨 아래 요소에는 두지 않는다.
-- 출처: https://seed-design.io/llms/components/divider.txt
-
 **Tabs**
 
 - SEED Tab 스펙: 높이 44(medium)·40(small), 좌우·상하 여백 10px, 글자 16px(medium)·14px(small) 굵게. 색은 선택 `fg.neutral`, 미선택 `fg.neutral-subtle`, 비활성 `fg.disabled`.
