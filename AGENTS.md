@@ -1,6 +1,6 @@
 # AGENTS.md
 
-AI 코딩 에이전트용 지시 파일입니다. 사람용 설명은 Notion Task "AGENTS.md 작성"(1-1) 카드에 있습니다.
+AI 코딩 에이전트용 지시 파일이다. 사람용 설명은 Notion Task "AGENTS.md 작성"(1-1) 카드에 있다
 
 ## 프로젝트
 
@@ -14,17 +14,16 @@ AI 코딩 에이전트용 지시 파일입니다. 사람용 설명은 Notion Tas
 
 ## 확정된 기준
 
-2차 미팅(2026-10-14) 결정과 그 뒤 PR로 확정한 변경(출처를 함께 적음). 해당 규칙 문서(`DESIGN.md` · `docs/UX.md` · `docs/WRITING.md`)가 생기면 그 문서가 기준이다.
+팀이 확정한 기준이다. 해당 규칙 문서(`DESIGN.md` · `docs/UX.md` · `docs/WRITING.md`)에 같은 내용이 있으면 그 문서가 기준이다
 
 - **MVP 범위**: 라이트 모드 + 컴포넌트 19개. 다크모드는 나중에
-  - 2차 미팅 16개: Button · Input · Select · Checkbox · Switch · Card · Modal · Toast · Textarea · Radio · Badge · Avatar · Tabs · List item · Top bar · Bottom sheet
-  - 이후 추가 3개: Spinner · Skeleton · Banner (`docs/UX.md` 결정 기록, PR #5)
+  - Button · Input · Select · Checkbox · Switch · Card · Modal · Toast · Textarea · Radio · Badge · Avatar · Tabs · List item · Top bar · Bottom sheet · Spinner · Skeleton · Banner
 - **없는 UI는 만들지 않는다**: 19개(및 `DESIGN.md`에 정의된 것)에 없는 컴포넌트·패턴이 필요하면 누구의 작업이든 임의로 만들지 않고 멈춰서 사용자에게 묻는다
 - **참고 라이브러리**: 한 라이브러리를 그대로 쓰지 않는다. 부품 뼈대(코드)는 shadcn/ui, 색·글자 규칙은 당근 SEED + 토스 TDS, 문구·화면 규칙은 토스 TDS(규칙만 참고하고 문장은 새로 씀. 토스 자료는 복사 금지), AI 활용 방식은 당근 SEED, 색 단계별 용도·모서리·그림자는 Vercel Geist를 참고한다. shadcn/ui에 없는 앱 부품(Top bar · Bottom sheet · 하단 고정 버튼)은 당근·토스를 참고해 새로 만든다
 - **만드는 화면**: 앱 화면(모바일). 기준 화면 폭은 `DESIGN.md`(1-2)에서 정한다
 - **기본 스타일**: 글꼴 Pretendard, 기본 테마는 주황 대표 컬러 + 큰 라운드, 아이콘은 Lucide 그대로
 - **디자인 토큰 이름**: 기본 색표 + 쓰임새 이름의 2단(`docs/CONVENTIONS.md`)
-- **문구 말투**: 기본 '~해요', 엄격한 화면(결제·약관 등)은 '~합니다'
+- **화면 문구 말투**: 기본 '~해요', 엄격한 화면(결제·약관 등)은 '~합니다'
 - **컴포넌트 이름·속성**: shadcn/ui · 당근 · 토스를 비교해 정하고, 코드와 피그마에서 같게 쓴다
 - **피그마**: 코드를 기준으로 자동 생성하고, 세부만 피그마에서 다듬는다
 - 태스크·결정은 사람이 Notion Task DB에서 관리한다. GitHub Issues로 태스크를 만들지 않는다
@@ -46,7 +45,7 @@ AI 코딩 에이전트용 지시 파일입니다. 사람용 설명은 Notion Tas
 
 ## 꼭 지킬 것
 
-규칙의 원칙만 적는다. 상세 절차는 "규칙 지도"의 파일에 있다.
+규칙의 원칙만 적는다. 상세 절차는 "규칙 지도"의 파일에 있다
 
 - main에 직접 commit·push하지 않고, 어떤 브랜치에서도 force push하지 않는다. 이 두 가지는 `.claude/settings.json`의 차단 설정이 막는다. 막히면 우회하지 말고 사용자에게 브랜치 → PR로 안내한다
 - 머지는 사용자가 대화에서 직접 요청할 때만 하고, 무엇을 어디에 합치는지 다시 확인받는다
@@ -63,12 +62,12 @@ AI 코딩 에이전트용 지시 파일입니다. 사람용 설명은 Notion Tas
 | 동기화 | `.claude/rules/sync.md` | 코드·피그마 맞추기 (`src/`·`DESIGN.md`·`briefs/`를 다룰 때 자동) |
 | `PROGRESS.md` · 문서 연결 | `.claude/rules/docs.md` | 문서를 고칠 때 (`*.md`·`.claude/`·`.github/`를 다룰 때 자동) |
 | 차단 설정 | `.claude/settings.json` · `.claude/hooks/` | 항상 (규칙이 아니라 시스템이 막음) |
-| 파일 위치 · 이름 | `docs/CONVENTIONS.md` | 파일·브랜치·커밋 만들 때 |
+| 파일 위치 · 이름 · MD 작성 | `docs/CONVENTIONS.md` | 파일·브랜치·커밋 만들 때, MD를 쓰거나 고칠 때 |
 | 디자인 값 · 디자인 Do/Don't | `DESIGN.md` | 화면·컴포넌트·토큰 작업 |
 | UX · 문구 · 화면 패턴 Do/Don't | `docs/UX.md` · `docs/WRITING.md` · `docs/PATTERNS.md` | 화면 작업 · `/ui-review` |
 | 현재 상태 | `PROGRESS.md` | 세션 시작 |
 
-- 규칙 문서 형식(Do's and Don'ts · 같은 규칙은 한 곳에만)은 `docs/CONVENTIONS.md` "MD 작성", 새 규칙을 넣을 곳은 `.claude/rules/docs.md` "규칙 추가"를 따른다
+- MD를 쓰거나 고칠 때(말투 · 표시 · 출처 · Do's and Don'ts · 같은 규칙은 한 곳에만)는 `docs/CONVENTIONS.md` "MD 작성", 새 규칙을 넣을 곳은 `.claude/rules/docs.md` "규칙 추가"를 따른다
 - 아직 없는 파일은 해당 태스크에서 만든다. 없는 파일의 규칙은 지어내지 않고 사용자에게 묻는다
 
 ## 레인
