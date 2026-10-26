@@ -245,11 +245,13 @@ spacing:
   "space.screen-max": 480px     # 넓은 화면에서 콘텐츠 최대 폭
   "space.screen-margin": 16px   # 화면 좌우 여백 (SEED global-gutter)
   "space.gutter": 16px          # SEED 모바일 gutter 16px
-  "space.touch-min": 44px       # 누르는 영역 기본 크기, 공간이 부족해도 최소 24px (docs/UX.md "손가락으로 쓰기 쉽게")
+  "space.touch-min": 44px       # 누르는 영역 기본 크기 (docs/UX.md "손가락으로 쓰기 쉽게")
+  "space.touch-min-sm": 24px    # 공간이 부족한 곳의 누르는 영역 최소 크기
 
 components:
   # 이름·속성은 코드와 피그마가 같게 (예: Button · variant=primary).
   # 상태(pressed·disabled·loading·selected)는 별도 키로 둔다.
+  # padding은 가로 값이다. 가로·세로가 다르면 paddingX · paddingY를 함께 둔다
   # 값은 SEED 컴포넌트 스펙 값. SEED에 없는 값: card(라운드·여백), 보통 버튼 높이 44px(기본 누르는 영역)
   # top-bar 높이는 SEED iOS 값(44), avatar 48·spinner 40은 SEED 크기 목록의 값
   # MVP 19개 중 아래에 없는 것은 "Components"의 "MVP 컴포넌트 19개" 표를 따른다
@@ -276,6 +278,9 @@ components:
   button-secondary-pressed:
     backgroundColor: "{colors.bg.neutral-weak-pressed}"
     textColor: "{colors.fg.neutral}"
+  button-secondary-disabled:
+    backgroundColor: "{colors.bg.disabled}"
+    textColor: "{colors.fg.disabled}"
   button-critical:
     backgroundColor: "{colors.bg.critical-solid}"
     textColor: "{colors.fg.on-critical-solid}"
@@ -286,6 +291,9 @@ components:
   button-critical-pressed:
     backgroundColor: "{colors.bg.critical-solid-pressed}"
     textColor: "{colors.fg.on-critical-solid}"
+  button-critical-disabled:
+    backgroundColor: "{colors.bg.disabled}"
+    textColor: "{colors.fg.disabled}"
   button-medium:
     backgroundColor: "{colors.bg.brand-solid}"
     textColor: "{colors.fg.on-brand-solid}"
@@ -293,6 +301,12 @@ components:
     rounded: "{rounded.radius.md}"
     height: 44px
     padding: "{spacing.space.16}"
+  button-medium-pressed:
+    backgroundColor: "{colors.bg.brand-solid-pressed}"
+    textColor: "{colors.fg.on-brand-solid}"
+  button-medium-disabled:
+    backgroundColor: "{colors.bg.disabled}"
+    textColor: "{colors.fg.disabled}"
   input:
     backgroundColor: "{colors.bg.layer-default}"
     textColor: "{colors.fg.neutral}"
@@ -314,6 +328,8 @@ components:
     typography: "{typography.label-sm}"
     rounded: "{rounded.radius.sm}"
     padding: "{spacing.space.8}"
+    paddingX: "{spacing.space.8}"
+    paddingY: "{spacing.space.4}"
   toast:
     backgroundColor: "{colors.bg.neutral-solid}"
     textColor: "{colors.fg.on-neutral-solid}"
@@ -328,12 +344,16 @@ components:
     typography: "{typography.body-md}"
     height: 40px
     padding: "{spacing.space.16}"
+    paddingX: "{spacing.space.16}"
+    paddingY: "{spacing.space.10}"
   banner-critical:
     backgroundColor: "{colors.bg.critical-weak}"
     textColor: "{colors.fg.critical-contrast}"
     typography: "{typography.body-md}"
     height: 40px
     padding: "{spacing.space.16}"
+    paddingX: "{spacing.space.16}"
+    paddingY: "{spacing.space.10}"
   bottom-sheet:
     backgroundColor: "{colors.bg.layer-floating}"
     textColor: "{colors.fg.neutral}"
@@ -349,7 +369,9 @@ components:
     backgroundColor: "{colors.bg.transparent}"
     textColor: "{colors.fg.neutral}"
     typography: "{typography.body-lg}"
-    padding: "{spacing.space.12}"
+    padding: "{spacing.space.16}"
+    paddingX: "{spacing.space.16}"
+    paddingY: "{spacing.space.12}"
   list-item-pressed:
     backgroundColor: "{colors.bg.transparent-pressed}"
     textColor: "{colors.fg.neutral}"
@@ -423,7 +445,7 @@ APCA는 W3C 공식 표준이 아니므로 법 · 인증 근거로는 쓰지 않�
 - `fg.brand`는 기준 60에도 못 미친다. 글자에 브랜드 색을 쓰려면 `fg.brand-contrast`(주황 700, 흰 배경 Lc 66.0)를 쓴다. 66.0은 기준 60은 넘지만 본문 기준 75에는 못 미쳐서 본문 글자색으로는 쓰지 않는다
 - 연한 배경(`bg.*-weak`) 위 `fg.*` 700단계 글자는 Lc 56~63(브랜드 48.5)이라 쓰기 어렵다. `fg.*-contrast`는 critical 81.6, informative 84.5, positive 85.2, warning 89.1로 본문 기준 75를 넘는다. 브랜드는 주황 700이 Lc 59.7로 60에 조금 못 미친다. 그래서 Banner · Badge 글자는 `-contrast`를 쓴다(Badge weak의 굵기 예외는 Components의 Badge 규칙을 따른다)
 - `fg.disabled`는 SEED 값(gray-500)이 흰 배경 위 Lc 23.4, 비활성 배경(`bg.disabled`, gray-200) 위 Lc 16.7로 기준 30에 못 미쳐서 gray-600으로 올렸다(흰 배경 Lc 41.1, 비활성 배경 Lc 34.5). `fg.placeholder`(gray-600)와 같은 색이다
-- 글자가 아닌 요소(테두리 · 아이콘)의 Lc 기준은 아직 없다. 기준이 생기면 추가한다
+- `[결정 필요]` 글자가 아닌 요소(입력칸 테두리 · 체크박스 · 라디오 · 스위치의 테두리 · 의미 있는 아이콘 · 포커스 표시)의 대비 기준값. 임시 값이 없으므로 이런 요소에 기존 토큰 외의 색을 정해야 하면 사람에게 묻는다
 - Stitch 린트의 `contrast-ratio` 검사는 WCAG 2 기준(4.5:1)이라 흰 글자 on 주황 600 버튼, 주황 700 눌림, 빨강 버튼에서 경고가 나온다. APCA 기준으로 정했으므로 예상된 경고다
 
 ## Typography
@@ -439,7 +461,7 @@ APCA는 W3C 공식 표준이 아니므로 법 · 인증 근거로는 쓰지 않�
 - **기준 화면 폭** `space.screen-width`: 375px. 좁은 화면 · 큰 글자에서의 동작은 `docs/UX.md` "글자 크기와 콘텐츠 길이"를 따른다
 - **화면 여백** `space.screen-margin`: 16px. **간격** `space.gutter`: 16px
 - **최대 폭** `space.screen-max`: 480px. 넓은 화면에서는 콘텐츠를 늘리지 않고 가운데에 둔다
-- **누르는 영역** `space.touch-min`: 44×44px. 공간이 부족한 곳의 최소값은 24×24px다. 언제 줄여도 되는지는 `docs/UX.md` "손가락으로 쓰기 쉽게"를 따른다
+- **누르는 영역** `space.touch-min`: 44×44px. 공간이 부족한 곳의 최소값은 `space.touch-min-sm` 24×24px다. 언제 줄여도 되는지는 `docs/UX.md` "손가락으로 쓰기 쉽게"를 따른다
 - 안전 영역 배치는 `docs/UX.md` "가려지면 안 되는 것"을 따른다
 - 간격은 `spacing`의 `space.*`만 쓴다
 - 컴포넌트 높이: Large 버튼 · CTA 52px, 보통 버튼 44px(기본 누르는 영역에 맞춘 값), 입력창 52px
@@ -455,6 +477,8 @@ APCA는 W3C 공식 표준이 아니므로 법 · 인증 근거로는 쓰지 않�
 | 2 `layer-floating` | Bottom sheet, 메뉴 | 면 색 + 그림자 | `shadow.s2` |
 | 3 | Modal(확인 요청) | 면 색 + 그림자 + 뒤 배경 `bg.overlay` | `shadow.s3` |
 | 일시 알림 | Toast | 면 색(`bg.neutral-solid`) | 없음 |
+
+- 면 색이 바로 뒤 바탕과 같으면 `stroke.neutral-weak` 1px 테두리로 구분한다. 예: `bg.neutral-weak`(보조 버튼 · Skeleton) · `bg.disabled` 면을 `bg.layer-basement` 위에 둘 때(모두 gray-200)
 
 | 그림자 토큰 (라이트 모드) | 값 |
 | --- | --- |
@@ -649,11 +673,14 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 - [ ] 연한 배경(`bg.*-weak`) 위에 `fg.critical` · `fg.informative` 같은 700단계 글자를 쓰지 않는다
 - [ ] 주황(`bg.brand-solid`) 위 흰 글자는 굵은 버튼 라벨에만 쓴다(APCA Lc 60.1)
 - [ ] `fg.brand-contrast`(Lc 66.0)를 두 줄 이상 본문 문장에 쓰지 않는다. 본문은 `fg.neutral`이다
+- [ ] 흰 배경 위 Lc 75 미만 글자색(`fg.neutral-subtle` · `fg.brand-contrast` · `fg.warning` · `fg.positive` · `fg.informative` · `fg.critical`)은 16px 미만이면 굵게(700) 쓴다. Badge weak 라벨(500)은 예외다
+- [ ] 한 화면에서 쓰는 글자 크기는 4단계 이내다
 - [ ] 아이콘은 Lucide만 쓴다
 
 ### 컴포넌트 · 상태
 
-- [ ] 누르는 영역이 공간이 부족한 곳에서도 24×24px 이상이다
+- [ ] 누르는 영역이 공간이 부족한 곳에서도 `space.touch-min-sm`(24×24px) 이상이다
+- [ ] 면 색과 바로 뒤 바탕 색이 같으면 `stroke.neutral-weak` 1px 테두리로 구분한다
 - [ ] 눌림은 `-pressed` 토큰과 150ms 줄어듦으로 표현한다
 - [ ] 비활성 요소에 눌림 · 선택 모양을 겹쳐 쓰지 않는다
 - [ ] 로딩 중인 버튼은 로딩 전과 너비가 같다
