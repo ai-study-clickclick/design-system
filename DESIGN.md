@@ -191,15 +191,17 @@ theme:
     radius.base: 16px
 
 typography:
-  # 기본 글꼴 Pretendard. 크기·줄 높이는 당근 SEED 스케일(t9·t7·t6·t5·t4·t2) 값을 참고.
-  # 라벨 굵기: 버튼 라벨 bold 700, 배지(weak) 라벨 medium 500. Large 버튼 라벨은 SEED t6(18px)
+  # 기본 글꼴 Pretendard. 크기·줄 높이는 당근 SEED 스케일(t9·t7·t6·t5·t4·t3·t2) 값을 참고.
+  # 라벨 굵기: 버튼·탭 라벨 bold 700, 배지(weak) 라벨 medium 500. Large 버튼 라벨은 SEED t6(18px), Tabs medium 라벨은 t5(16px)
   title-lg: { fontFamily: Pretendard, fontSize: 24px, fontWeight: 700, lineHeight: 32px }
   title-md: { fontFamily: Pretendard, fontSize: 20px, fontWeight: 700, lineHeight: 27px }
   title-sm: { fontFamily: Pretendard, fontSize: 18px, fontWeight: 700, lineHeight: 24px }
   body-lg: { fontFamily: Pretendard, fontSize: 16px, fontWeight: 400, lineHeight: 22px }
   body-md: { fontFamily: Pretendard, fontSize: 14px, fontWeight: 400, lineHeight: 19px }
+  body-sm: { fontFamily: Pretendard, fontSize: 13px, fontWeight: 400, lineHeight: 18px }
   caption: { fontFamily: Pretendard, fontSize: 12px, fontWeight: 700, lineHeight: 16px }
   label-lg: { fontFamily: Pretendard, fontSize: 18px, fontWeight: 700, lineHeight: 24px }
+  label-base: { fontFamily: Pretendard, fontSize: 16px, fontWeight: 700, lineHeight: 22px }
   label-md: { fontFamily: Pretendard, fontSize: 14px, fontWeight: 700, lineHeight: 19px }
   label-sm: { fontFamily: Pretendard, fontSize: 12px, fontWeight: 500, lineHeight: 16px }
 
@@ -392,6 +394,9 @@ components:
     padding: "{spacing.space.16}"
     paddingX: "{spacing.space.16}"
     paddingY: "{spacing.space.12}"
+  list-item-detail:
+    textColor: "{colors.fg.neutral-muted}"
+    typography: "{typography.body-sm}"
   list-item-pressed:
     backgroundColor: "{colors.bg.transparent-pressed}"
     textColor: "{colors.fg.neutral}"
@@ -410,9 +415,9 @@ components:
   spinner-small:
     rounded: "{rounded.radius.full}"
     size: 24px
-  # Tabs 글자 굵기는 bold. medium의 16px bold 글자 스타일은 아직 없다
   tabs-medium:
     textColor: "{colors.fg.neutral}"
+    typography: "{typography.label-base}"
     height: 44px
     padding: "{spacing.space.10}"
   tabs-small:
@@ -488,10 +493,11 @@ APCA는 W3C 공식 표준이 아니므로 법 · 인증 근거로는 쓰지 않�
 ## Typography
 
 - 글꼴은 Pretendard 하나만 쓴다. 앱 화면 전체에 웹폰트로 넣는다
-- 위계: 화면 제목 `title-lg`, 섹션 제목 `title-md` · `title-sm`, 본문 `body-lg` · `body-md`, 보조 `caption`, 버튼 · 라벨 `label-*`
+- 위계: 화면 제목 `title-lg`, 섹션 제목 `title-md` · `title-sm`, 본문 `body-lg` · `body-md`, 목록 보조 글자 `body-sm`, 보조 `caption`, 버튼 · 탭 · 라벨 `label-*`
 - 제목과 본문의 계층을 분명히 나눈다. 한 화면에서 쓰는 글자 크기는 4단계 이내다
 - 기기 글자 크기 설정을 따르는 규칙은 `docs/UX.md` "글자 크기와 콘텐츠 길이"와 "개인 설정 존중"을 따른다
-- 라벨 굵기: `label-lg` · `label-md`는 700(bold), 배지 weak에 쓰는 `label-sm`은 500(medium)이다. Large 버튼 라벨은 18px다
+- 라벨 굵기: `label-lg` · `label-base` · `label-md`는 700(bold), 배지 weak에 쓰는 `label-sm`은 500(medium)이다. Large 버튼 라벨은 18px(`label-lg`), Tabs medium 라벨은 16px(`label-base`)다
+- `body-sm`(13px 보통 굵기)에는 `fg.neutral` · `fg.neutral-muted`만 쓴다. Lc 75 미만 글자색은 16px 미만이면 굵게 써야 해서다
 
 ## Layout
 
@@ -624,7 +630,7 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 | Modal | `modal` | |
 | Select, Textarea, Checkbox, Radio, Switch | 연결 없음 | 박스 · 손잡이 크기 값이 없어 만들기 전에 사람에게 묻는다. 선택 상태는 `bg.brand-weak` / `bg.brand-solid` |
 | Tabs | `tabs-*` | 쓰는 법은 "컴포넌트별 사용 규칙"의 Tabs를 따른다 |
-| List item | `list-item` · `list-item-pressed` | 눌림은 `bg.transparent-pressed` |
+| List item | `list-item` · `list-item-detail` · `list-item-pressed` | 눌림은 `bg.transparent-pressed` |
 | Top bar | `top-bar` | shadcn에 없다 |
 | Avatar, Spinner, Skeleton | `avatar` · `spinner` · `spinner-small` · `skeleton` | 시간 값은 "로딩과 알림 시간" 표를 따른다 |
 
@@ -641,7 +647,7 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 | Modal | 라운드 24 · 최대 폭 272 · 여백 20 · 제목 20 bold · 내용 16 |
 | Bottom sheet | 라운드 24 · 여백 16 |
 | Badge | 라운드 8 · 여백 8×4 · 최소 높이 24 · 글자 12(weak 500, solid · outline 700) |
-| List item | 위아래 12 · 좌우 16 · 제목 16 · 보조 13 |
+| List item | 위아래 12 · 좌우 16 · 제목 16(`body-lg`) · 보조 13(`body-sm`, `fg.neutral-muted`) |
 | Top bar | 높이 44 |
 | Avatar | 크기 48 |
 | Spinner | 크기 40(전체 페이지 로딩용). 요소 안에서는 24 |
@@ -688,7 +694,7 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 
 **Tabs**
 
-- 높이 44(medium) · 40(small), 좌우 · 상하 여백 10px, 글자 16px(medium) · 14px(small) 굵게. 색은 선택 `fg.neutral`, 미선택 `fg.neutral-subtle`, 비활성 `fg.disabled`
+- 높이 44(medium) · 40(small), 좌우 · 상하 여백 10px, 글자 `label-base` 16px(medium) · `label-md` 14px(small) 굵게. 색은 선택 `fg.neutral`, 미선택 `fg.neutral-subtle`, 비활성 `fg.disabled`
 - 탭이 5개 이하면 칸을 꽉 채우는 Fill, 6개 이상이거나 라벨이 길면 라벨 길이에 맞추는 Hug를 쓴다. 알림 배지는 여러 탭에 동시에 달지 않고, 내용을 확인하면 사라진다
 
 ## Do's and Don'ts
