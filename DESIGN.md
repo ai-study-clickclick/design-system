@@ -307,6 +307,22 @@ components:
   button-medium-disabled:
     backgroundColor: "{colors.bg.disabled}"
     textColor: "{colors.fg.disabled}"
+  # 윤곽 버튼은 SEED neutralOutline 값. 테두리는 비활성일 때도 같다
+  button-outline:
+    backgroundColor: "{colors.bg.transparent}"
+    textColor: "{colors.fg.neutral}"
+    borderColor: "{colors.stroke.neutral-muted}"
+    borderWidth: 1px
+    typography: "{typography.label-lg}"
+    rounded: "{rounded.radius.lg}"
+    height: 52px
+    padding: "{spacing.space.20}"
+  button-outline-pressed:
+    backgroundColor: "{colors.bg.transparent-pressed}"
+    textColor: "{colors.fg.neutral}"
+  button-outline-disabled:
+    backgroundColor: "{colors.bg.transparent}"
+    textColor: "{colors.fg.disabled}"
   input:
     backgroundColor: "{colors.bg.layer-default}"
     textColor: "{colors.fg.neutral}"
@@ -327,6 +343,7 @@ components:
     textColor: "{colors.fg.brand-contrast}"
     typography: "{typography.label-sm}"
     rounded: "{rounded.radius.sm}"
+    height: 24px
     padding: "{spacing.space.8}"
     paddingX: "{spacing.space.8}"
     paddingY: "{spacing.space.4}"
@@ -336,6 +353,7 @@ components:
     typography: "{typography.body-md}"
     rounded: "{rounded.radius.md}"
     height: 44px
+    maxWidth: 464px
     padding: "{spacing.space.10}"
   # Banner는 SEED Page Banner 값. 화면 전체 폭이라 모서리를 두지 않는다
   banner-informative:
@@ -346,6 +364,7 @@ components:
     padding: "{spacing.space.16}"
     paddingX: "{spacing.space.16}"
     paddingY: "{spacing.space.10}"
+    gap: "{spacing.space.6}"
   banner-critical:
     backgroundColor: "{colors.bg.critical-weak}"
     textColor: "{colors.fg.critical-contrast}"
@@ -354,6 +373,7 @@ components:
     padding: "{spacing.space.16}"
     paddingX: "{spacing.space.16}"
     paddingY: "{spacing.space.10}"
+    gap: "{spacing.space.6}"
   bottom-sheet:
     backgroundColor: "{colors.bg.layer-floating}"
     textColor: "{colors.fg.neutral}"
@@ -387,6 +407,23 @@ components:
   spinner:
     rounded: "{rounded.radius.full}"
     size: 40px
+  spinner-small:
+    rounded: "{rounded.radius.full}"
+    size: 24px
+  # Tabs 글자 굵기는 bold. medium의 16px bold 글자 스타일은 아직 없다
+  tabs-medium:
+    textColor: "{colors.fg.neutral}"
+    height: 44px
+    padding: "{spacing.space.10}"
+  tabs-small:
+    textColor: "{colors.fg.neutral}"
+    typography: "{typography.label-md}"
+    height: 40px
+    padding: "{spacing.space.10}"
+  tabs-unselected:
+    textColor: "{colors.fg.neutral-subtle}"
+  tabs-disabled:
+    textColor: "{colors.fg.disabled}"
   skeleton:
     backgroundColor: "{colors.bg.neutral-weak}"
     rounded: "{rounded.radius.sm}"
@@ -577,7 +614,7 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 
 | 컴포넌트 | 토큰 연결 | 비고 |
 | --- | --- | --- |
-| Button | `button-*` | variant: primary / secondary / critical, 크기 Large · Medium |
+| Button | `button-*` | variant: primary / secondary / critical / outline, 크기 Large · Medium |
 | Input | `input` · `input-disabled` | 포커스 · 오류 상태는 "상태와 피드백" 표를 따른다 |
 | Card | `card` | |
 | Badge | `badge-brand` | 다른 톤은 "컴포넌트별 사용 규칙"의 Badge를 따른다 |
@@ -586,10 +623,10 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 | Bottom sheet | `bottom-sheet` | shadcn에 없다. 당근 · 토스를 따른다 |
 | Modal | `modal` | |
 | Select, Textarea, Checkbox, Radio, Switch | 연결 없음 | 박스 · 손잡이 크기 값이 없어 만들기 전에 사람에게 묻는다. 선택 상태는 `bg.brand-weak` / `bg.brand-solid` |
-| Tabs | 연결 없음 | 값은 "컴포넌트별 사용 규칙"의 Tabs를 따른다 |
+| Tabs | `tabs-*` | 쓰는 법은 "컴포넌트별 사용 규칙"의 Tabs를 따른다 |
 | List item | `list-item` · `list-item-pressed` | 눌림은 `bg.transparent-pressed` |
 | Top bar | `top-bar` | shadcn에 없다 |
-| Avatar, Spinner, Skeleton | `avatar` · `spinner` · `skeleton` | 시간 값은 "로딩과 알림 시간" 표를 따른다 |
+| Avatar, Spinner, Skeleton | `avatar` · `spinner` · `spinner-small` · `skeleton` | 시간 값은 "로딩과 알림 시간" 표를 따른다 |
 
 ### 컴포넌트 값
 
@@ -597,6 +634,7 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 | --- | --- |
 | Button Large | 높이 52 · 라운드 16 · 좌우 20 · 라벨 18 bold |
 | Button Medium | 높이 44 · 라운드 12 · 좌우 16 · 라벨 14 bold |
+| Button outline | Large와 크기가 같다. 배경 투명 · 테두리 `stroke.neutral-muted` 1px · 글자 `fg.neutral`. 눌림 `bg.transparent-pressed` |
 | Input Large | 높이 52 · 라운드 12 · 좌우 16 · 글자 16 · 테두리 1px, 포커스 · 오류 2px |
 | Toast | 라운드 12 · 여백 10 · 최소 높이 44 · 최대 폭 464 · 글자 14 |
 | Banner | 좌우 여백 16 · 위아래 여백 10 · 간격 6 · 최소 높이 40 · 제목 14 bold · 내용 14 medium, 글자 · 아이콘색 `-contrast`, 모서리 없음 |
