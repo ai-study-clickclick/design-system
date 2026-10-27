@@ -486,7 +486,7 @@ APCA는 W3C 공식 표준이 아니므로 법 · 인증 근거로는 쓰지 않�
 - 흰 배경 위 글자색 점수: `fg.neutral` 104.0, `fg.neutral-muted` 82.7(본문 75 통과), `fg.neutral-subtle` 61.8, `fg.warning` 68.1, `fg.positive` 66.4, `fg.informative` 66.2, `fg.critical` 63.3, `fg.brand`(주황 600) 54.8
 - `fg.brand`는 기준 60에도 못 미친다. 글자에 브랜드 색을 쓰려면 `fg.brand-contrast`(주황 700, 흰 배경 Lc 66.0)를 쓴다. 66.0은 기준 60은 넘지만 본문 기준 75에는 못 미쳐서 본문 글자색으로는 쓰지 않는다
 - 연한 배경(`bg.*-weak`) 위 `fg.*` 700단계 글자는 Lc 56~63(브랜드 48.5)이라 쓰기 어렵다. `fg.*-contrast`는 critical 81.6, informative 84.5, positive 85.2, warning 89.1로 본문 기준 75를 넘는다. 브랜드는 주황 700이 Lc 59.7로 60에 조금 못 미친다. 그래서 Banner · Badge 글자는 `-contrast`를 쓴다(Badge weak의 굵기 예외는 Components의 Badge 규칙을 따른다)
-- `fg.disabled`는 SEED 값(gray-500)이 흰 배경 위 Lc 23.4, 비활성 배경(`bg.disabled`, gray-200) 위 Lc 16.7로 기준 30에 못 미쳐서 gray-600으로 올렸다(흰 배경 Lc 41.1, 비활성 배경 Lc 34.5). `fg.placeholder`(gray-600)와 같은 색이다
+- `[결정 필요]` `fg.disabled` 색. 임시 값은 gray-600이다. SEED 값(gray-500)은 흰 배경 위 Lc 23.4, 비활성 배경(`bg.disabled`, gray-200) 위 Lc 16.7로 기준 30에 못 미친다. gray-600은 흰 배경 Lc 41.1, 비활성 배경 Lc 34.5이고 `fg.placeholder`(gray-600)와 같은 색이다
 - `[결정 필요]` 글자가 아닌 요소(입력칸 테두리 · 체크박스 · 라디오 · 스위치의 테두리 · 의미 있는 아이콘 · 포커스 표시)의 대비 기준값. 임시 값이 없으므로 이런 요소에 기존 토큰 외의 색을 정해야 하면 사람에게 묻는다
 - Stitch 린트의 `contrast-ratio` 검사는 WCAG 2 기준(4.5:1)이라 흰 글자 on 주황 600 버튼, 주황 700 눌림, 빨강 버튼에서 경고가 나온다. APCA 기준으로 정했으므로 예상된 경고다
 
