@@ -453,7 +453,7 @@ components:
 | 부품 뼈대(구성 · 구조) | shadcn/ui. 없는 앱 부품(Top bar, Bottom sheet, 하단 고정 버튼)은 당근 · 토스 | Components |
 | 색 · 글자 토큰 | 당근 SEED + 토스 TDS | Colors, Typography |
 | 색 단계 용도 · 모서리 | Vercel | Colors, Shapes |
-| 간격 · 그림자 값 | 당근 SEED | `spacing`, Elevation & Depth |
+| 간격 · 그림자 · 모서리 값 | 당근 SEED | `spacing`, Elevation & Depth, Shapes |
 | 움직임 · 눌림 | 당근 SEED | Components |
 | 문구 · 말투 | 토스(규칙만 참고) | 여기서 다루지 않음 → `docs/WRITING.md` |
 | 사용성 · 접근성 · 상태 규칙 | 팀 결정 | 여기서 다루지 않음 → `docs/UX.md`(값만 이 파일이 정한다) |
@@ -536,6 +536,7 @@ APCA는 W3C 공식 표준이 아니므로 법 · 인증 근거로는 쓰지 않�
 
 - 라운드는 컴포넌트마다 SEED 값을 쓴다. 단계 값 6 · 8 · 12 · 16 · 20 · 24px는 SEED 라운드 단계이고, `radius.base`(= `radius.lg`) 16px에서 나머지를 비율로 계산한다. 테마는 이 값만 바꾼다
 - 큰 버튼 · 입력 `radius.md`(12), 보통 버튼 · Toast `radius.sm`(8), 배지 `radius.xs`(6), 카드 `radius.lg`(16), Modal `radius.xl`(20), Bottom sheet `radius.2xl`(24), 동그란 요소 `radius.full`. Banner는 화면 전체 폭이라 모서리를 두지 않는다
+- 면이 크고 위로 뜰수록 라운드가 커진다(Vercel Geist 참고): 배지 6 < 보통 버튼 · Toast 8 < 큰 버튼 · 입력 12 < 카드 16 < Modal 20 < Bottom sheet 24
 - Skeleton은 글자 줄 `radius.sm`(8), 카드 · 썸네일 `radius.lg`(16), 아바타 `radius.full`이다
 - 라운드가 있는 상자 안에 라운드가 있는 요소를 넣을 때는 안쪽 라운드 = 바깥 라운드 − 안쪽 여백이다. 예: 카드 16에 여백 6이면 안쪽은 10
 
