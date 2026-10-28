@@ -329,6 +329,8 @@ components:
   input:
     backgroundColor: "{colors.bg.layer-default}"
     textColor: "{colors.fg.neutral}"
+    borderColor: "{colors.stroke.neutral-weak}"
+    borderWidth: 1px
     typography: "{typography.body-lg}"
     rounded: "{rounded.radius.md}"
     height: 52px
@@ -339,6 +341,8 @@ components:
   card:
     backgroundColor: "{colors.bg.layer-default}"
     textColor: "{colors.fg.neutral}"
+    borderColor: "{colors.stroke.neutral-weak}"
+    borderWidth: 1px
     rounded: "{rounded.radius.lg}"
     padding: "{spacing.space.16}"
   badge-brand:
