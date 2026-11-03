@@ -49,7 +49,7 @@ Claude가 묻지 않고 알아서 채우는 칸이다
 | --- | --- |
 | `owner` | 지금 작업하는 사람의 Git 사용자 이름 (`git config user.name`) |
 | `platform` | 늘 `app` |
-| `output` | 늘 `prototype+figma` (10장) |
+| `output` | 임시로 `prototype+figma` (10장 `[결정 필요]` 참고) |
 | `strict` | 보통 `false`. 결제·약관처럼 '~합니다' 말투가 필요한 엄격한 화면이면 `true` (`AGENTS.md` "확정된 기준"의 화면 문구 말투) |
 | `level` | 4장 기준으로 나눈 결과. 쉬운 화면이면 `easy`, 어려운 화면이면 `hard`. "알아서 해줘"처럼 묻는 방식이 바뀌어도 그대로 둔다 |
 
