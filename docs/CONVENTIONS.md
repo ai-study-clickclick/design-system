@@ -51,6 +51,7 @@ repo/
 | 예외: 규칙 문서 | 대문자 이름 + `.md` | `AGENTS.md`, `docs/UX.md` |
 | 예외: 컴포넌트·아이콘 이름 | PascalCase (아래 "코드·피그마") | `BottomSheet` |
 | `.claude/` 안의 규칙·훅·스킬 | kebab-case | `rules/session-start.md`, `hooks/guard-git.sh`, `skills/generate-screen/` |
+| 예외: 스킬 파일 | Claude Code 형식대로 대문자 `SKILL.md` | `skills/generate-screen/SKILL.md` |
 | GitHub 조직·저장소 | kebab-case. 주소: `https://github.com/ai-study-clickclick/design-system` | `ai-study-clickclick/design-system` |
 
 ## 디자인 토큰
@@ -59,7 +60,7 @@ repo/
 |---|---|---|
 | 1단 기본 색표(Primitive) | `palette.<색>-<단계>`. 실제 색 값 | `palette.orange-600`, `palette.gray-1000` |
 | 2단 쓰임새 이름(Semantic) | `<쓰임새>.<이름>`. 1단 색을 가리킨다. 화면·컴포넌트에는 쓰임새 이름만 쓴다 | `bg.brand-solid`, `bg.neutral-weak`, `fg.neutral`, `stroke.neutral-weak` |
-| 색 외 토큰 | `<종류>.<단계>` | `space.4`, `radius.md` |
+| 색 외 토큰 | `<종류>.<단계>`. 단계가 아닌 쓰임새 값은 `<종류>.<쓰임새>` | `space.4`, `radius.md`, `space.touch-min` |
 | 글자 스타일 | `<역할>-<크기>` | `title-lg`, `body-md`, `label-sm` |
 | 토큰 참조 | 중괄호로 다른 토큰을 가리킨다(W3C DTCG 방식) | `{palette.orange-600}` |
 | 피그마 Variables | 토큰 이름의 `.`을 `/`로 바꾼다 | `bg/brand-solid` |
