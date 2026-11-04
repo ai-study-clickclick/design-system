@@ -12,7 +12,7 @@
 | Step | 할 일 | 상태 |
 |---|---|---|
 | 0-5 | 각자 Claude Code ↔ GitHub 연결, 차단 설정 동작 확인 | 진행 중 (전원) |
-| 1-0 · 1-1 | `CONVENTIONS.md` 브랜드 색 단계 예외 · 라운드 단계 · `BRIEF.md` 적용 범위 · 개인정보 예외, 이름 규칙 `SKILL.md` · 쓰임새 토큰 예외, `AGENTS.md` 기본 라운드 문구 · 규칙 지도 `BRIEF.md` · 프로토타입 먼저 | 진행 중 (한나) |
+| 1-0 · 1-1 | `CONVENTIONS.md` 브랜드 색 단계 예외 · 라운드 단계 · `BRIEF.md` 적용 범위 · 개인정보 예외, 이름 규칙 `SKILL.md` · 쓰임새 토큰 예외, `AGENTS.md` 기본 라운드 문구 · 규칙 지도 `BRIEF.md` · 프로토타입 먼저, `notion.md` 하위 카드 | 진행 중 (한나) |
 | 1-3 | `docs/UX.md` 형식 통일 | 다음 할 일 (유진, 1-0 형식 규칙 머지 후) |
 | 1-3 검토 | `docs/UX.md` · `docs/CONVENTIONS.md` 교차 검토(유진) | 진행 중 |
 | 1-6 | `docs/BRIEF.md` 초안: 화면 요청 양식, 짧은 요청 처리 기준 | 리뷰 중 (지수) |
