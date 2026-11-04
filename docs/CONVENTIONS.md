@@ -112,7 +112,8 @@ repo/
 | `README.md` · `.github/pull_request_template.md` | 공통. 사람용이라 말투만 "~합니다" |
 | 스킬(`.claude/skills/*/SKILL.md`) | 공통. 머리(frontmatter)는 Claude Code 스킬 형식을 따른다 |
 | 자동 생성 문서(`docs/components/*.md`) | 공통. 스킬 템플릿에서 맞추고 파일은 직접 고치지 않는다 |
-| 작업 결과물(`briefs/` · `evals/`) | `docs/BRIEF.md` 양식과 파일 이름 규칙만. 사용자 요청 문장은 고치지 않는다 |
+| `docs/BRIEF.md` | 공통 |
+| 작업 결과물(`briefs/` · `evals/`) | `docs/BRIEF.md` 양식과 파일 이름 규칙만. 사용자 요청 문장은 고치지 않는다. 예외: 실제 사람의 이름 · 이메일 · 전화번호는 `[개인정보]`로 바꾼다(공개 저장소) |
 
 ### 공통
 

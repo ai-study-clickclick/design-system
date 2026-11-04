@@ -65,6 +65,7 @@ AI 코딩 에이전트용 지시 파일이다. 사람용 설명은 Notion Task "
 | 파일 위치 · 이름 · MD 작성 | `docs/CONVENTIONS.md` | 파일·브랜치·커밋 만들 때, MD를 쓰거나 고칠 때 |
 | 디자인 값 · 디자인 Do/Don't | `DESIGN.md` | 화면·컴포넌트·토큰 작업 |
 | UX · 문구 · 화면 패턴 Do/Don't | `docs/UX.md` · `docs/WRITING.md` · `docs/PATTERNS.md` | 화면 작업 · `/ui-review` |
+| 화면 요청서(브리프) | `docs/BRIEF.md` | 화면 요청 · `/brief` |
 | 현재 상태 | `PROGRESS.md` | 세션 시작 |
 
 - MD를 쓰거나 고칠 때(말투 · 표시 · 출처 · Do's and Don'ts · 같은 규칙은 한 곳에만)는 `docs/CONVENTIONS.md` "MD 작성", 새 규칙을 넣을 곳은 `.claude/rules/docs.md` "규칙 추가"를 따른다
