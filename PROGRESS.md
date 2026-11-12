@@ -13,8 +13,7 @@
 |---|---|---|
 | 0-5 | 각자 Claude Code ↔ GitHub 연결, 차단 설정 동작 확인 | 진행 중 (전원) |
 | 1-0 · 1-1 | MD 작성 형식 통일 규칙 추가, 규칙 파일 형식 정리 | 리뷰 중 (한나) |
-| 1-3 | `docs/UX.md` 형식 통일 | 다음 할 일 (유진, 1-0 형식 규칙 머지 후) |
-| 1-3 검토 | `docs/UX.md` · `docs/CONVENTIONS.md` 교차 검토(유진) | 진행 중 |
+| 1-3 | `docs/UX.md` 형식 통일, 화면 상태 가이드 추가, `DESIGN.md` Banner · Select 결정 반영 | 리뷰 중 (유진) |
 | 1-6 | `docs/BRIEF.md` 초안: 화면 요청 양식, 짧은 요청 처리 기준 | 리뷰 중 (지수, v0.3 owner → GitHub 아이디 · 4-1 /brief 스킬) |
 | 3-2 준비 | MVP 컴포넌트 19개 이름 · 속성 비교표(shadcn · 당근 · 토스) | 다음 할 일 (수진, `DESIGN.md` 수정 반영) |
 
@@ -26,5 +25,6 @@
 - 1-2에서 `DESIGN.md` 팀 결정 6개를 확정함: 기준 화면 폭 375px · 최대 480px, 로딩 표시 지연 0.2초 · 최소 유지 0.4초, 주된 CTA는 주황, Banner는 SEED Page Banner 값, Select는 입력 버튼 + Bottom sheet, SEED에 없는 크기. 값은 `DESIGN.md`가 기준
 - 기본 테마 라운드는 SEED 값을 기준으로 한다("큰 라운드"를 SEED 값으로 해석). 화면 작업에서 작게 느껴지면 `radius.base`를 다시 정한다(`DESIGN.md` "Shapes")
 - 규칙 문서 형식 통일은 `docs/CONVENTIONS.md` "MD 작성"을 따른다
+- 6차 미팅에서 화면 상태를 정상 + 조건에 맞는 묶음(기다림 · 비어 있음 · 실패 · 이용 불가)으로 정함. 정의는 `docs/UX.md` "상태"가 기준이고, 화면 성격별 표는 1-5에서 `docs/PATTERNS.md`로 옮긴다. `docs/BRIEF.md`는 v0.4에서 같은 기준으로 맞춘다
 - 여러 단계 절차 규칙(`.claude/rules/`의 `session-start.md` · `git.md` · `notion.md`)은 4-x 스킬 작업 때 스킬로 옮긴다
 - 4-x에서 `/sync` · `/pull` 스킬을 만들 때 스킬 안에서 `.claude/rules/sync.md`를 읽게 한다(`sync.md`는 `src/` 등을 다룰 때만 자동으로 읽혀서, 말로만 `/sync`를 시키면 안 읽힐 수 있음)
