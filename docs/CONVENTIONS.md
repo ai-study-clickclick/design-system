@@ -78,6 +78,7 @@ repo/
 | 컴포넌트 파일 | kebab-case | `button.tsx` |
 | 피그마 컴포넌트 | 코드와 같은 이름. Variant 속성명·값도 코드 props와 같게 | `Button` → `variant=primary, size=md` |
 | 브리프·평가 파일 | `YYMMDD-topic.md` | `261014-login.md` |
+| 여러 단계 흐름의 브리프 | `[결정 필요]` 임시로 `YYMMDD-topic-<단계 번호>-<단계 이름>.md`. 프로토타입 폴더도 같은 이름 | `261112-return-1-select.md` |
 | 프로토타입 화면 | 폴더 `src/app/prototypes/YYMMDD-topic/`, 주소 `/prototypes/YYMMDD-topic`. 브리프와 같은 이름 | `/prototypes/261014-login` |
 | 피그마 Generated 화면 | 프로토타입과 같은 이름의 프레임 | `261014-login` |
 
@@ -126,8 +127,8 @@ repo/
 
 마침표
 
-- 줄 끝(목록 · 표 칸 · 제목 · 문단)에는 찍지 않는다
-- 한 줄에 문장이 둘 이상이면 문장 사이에만 찍는다
+- 한 문장이면 끝에 찍지 않는다(목록 · 표 칸 · 제목 · 문단)
+- 문장이 둘 이상이면 마지막 문장까지 모두 찍는다
 
 표기
 
