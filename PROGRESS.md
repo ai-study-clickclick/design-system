@@ -16,6 +16,7 @@
 | 1-3 | `docs/UX.md` 형식 통일 | 다음 할 일 (유진, 1-0 형식 규칙 머지 후) |
 | 1-3 검토 | `docs/UX.md` · `docs/CONVENTIONS.md` 교차 검토(유진) | 진행 중 |
 | 1-6 | `docs/BRIEF.md` 초안: 화면 요청 양식, 짧은 요청 처리 기준 | 리뷰 중 (지수, v0.3 owner → GitHub 아이디 · 4-1 /brief 스킬) |
+| 2-1 | 라이브러리 · 프로토타입 사이트 뼈대(Next.js + Tailwind) + Vercel 연결 | 진행 중 (한나, Vercel은 org 관리자 허용 필요) |
 | 3-2 준비 | MVP 컴포넌트 19개 이름 · 속성 비교표(shadcn · 당근 · 토스) | 다음 할 일 (수진, `DESIGN.md` 수정 반영) |
 
 ## 주의 사항
