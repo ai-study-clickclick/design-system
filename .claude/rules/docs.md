@@ -36,7 +36,7 @@ paths:
 |---|---|---|
 | 1 | 기계로 확인해 막을 수 있다 | 차단 설정(`.claude/settings.json` · `.claude/hooks/`) · GitHub 설정 |
 | 2 | 결과물을 점검하면 된다 | 린트 · `/ui-review` · `/audit` |
-| 3 | 여러 단계 절차다 | 스킬(`.claude/skills/`). 스킬을 만들기 전(4-x)까지는 `.claude/rules/`. |
+| 3 | 여러 단계 절차다 | 스킬(`.claude/skills/`). 스킬을 만들기 전(4-x)까지는 `.claude/rules/` |
 | 4 | 특정 파일·폴더에서만 필요하다 | `.claude/rules/` + `paths` |
 | 5 | 디자인·UX·문구·화면 규칙이다 | 해당 규칙 문서의 Do's and Don'ts(`docs/CONVENTIONS.md` "MD 작성") |
 | 6 | 판단이 필요한 핵심 원칙이다 | `AGENTS.md`(짧게) |
