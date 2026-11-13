@@ -14,7 +14,7 @@ AI 코딩 에이전트용 지시 파일이다. 사람용 설명은 Notion Task "
 
 ## 확정된 기준
 
-팀이 확정한 기준이다. 해당 규칙 문서(`DESIGN.md` · `docs/UX.md` · `docs/WRITING.md`)에 같은 내용이 있으면 그 문서가 기준이다.
+팀이 확정한 기준이다. 해당 규칙 문서(`DESIGN.md` · `docs/UX.md` · `docs/WRITING.md` · `docs/PATTERNS.md` · `docs/BRIEF.md`)에 같은 내용이 있으면 그 문서가 기준이다.
 
 - **MVP 범위**: 라이트 모드 + 컴포넌트 19개. 다크모드는 나중에.
   - Button · Input · Select · Checkbox · Switch · Card · Modal · Toast · Textarea · Radio · Badge · Avatar · Tabs · List item · Top bar · Bottom sheet · Spinner · Skeleton · Banner
@@ -89,7 +89,7 @@ AI 코딩 에이전트용 지시 파일이다. 사람용 설명은 Notion Task "
 | `/sync` | 모두(범위는 역할별) | 코드 → 피그마 방향. 관리자: `DESIGN.md`·코드 변경을 코드 테마·피그마 Variables·메인 컴포넌트·`/docs`에 반영. 작업자: 본인 프로토타입 → 같은 이름의 피그마 Generated 프레임. | 토큰 2-2·3-1, 컴포넌트 3-4, 화면 4-5 머지 후 |
 | `/pull` | 모두(범위는 역할별) | 피그마 → 코드 방향. 관리자: 피그마 메인 컴포넌트 수정 → `DESIGN.md`·코드. 작업자: 피그마 Generated의 본인 프레임 → 같은 이름의 프로토타입. | 컴포넌트 3-4, 화면 4-5 머지 후 |
 | `/audit` | 관리자 | 불일치 리포트(수정하지 않음): `DESIGN.md`↔코드↔피그마, 규칙 MD↔Notion(실행 계획·1-0·1-1 카드 요약), `PROGRESS.md`·PR↔Task DB 상태. Notion 연결이 없으면 Notion 점검은 건너뛰고 알림. | 3-5 머지 후 |
-| `/brief` | 작업자 | 자연어 요청 → 브리프(`owner` 기록). 빠진 필수 항목은 화면마다 최대 3개 질문(목적 질문 제외). 보통 `/generate-screen`이 자동 호출. | 4-1 머지 후 |
+| `/brief` | 작업자 | 자연어 요청 → 브리프(`owner` 기록). 빠진 필수 항목은 화면마다 최대 3개 질문(세는 법은 `docs/BRIEF.md` "몇 개 묻나"). 보통 `/generate-screen`이 자동 호출. | 4-1 머지 후 |
 | `/ui-review` | 작업자 | 생성물을 `docs/UX.md`·`docs/WRITING.md` 기준으로 점검 | 4-2 머지 후 |
 | `/generate-screen` | 작업자 | 브리프 → 구성 계획 → 사용자 확인 → 기본 테마로 프로토타입 생성(피그마는 확정 후 필요하면 `/sync`). 끝나면 그 화면의 프로토타입 링크를 알림. | 4-3 머지 후 |
 | `/theme` | 작업자 | 생성한 화면에 테마 프리셋을 적용·비교. 본인 프로토타입에만 적용하고 피그마는 `/sync`로 맞춤. `DESIGN.md`는 바꾸지 않음. | 4-4 머지 후 |
