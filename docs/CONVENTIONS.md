@@ -1,6 +1,6 @@
 # CONVENTIONS.md
 
-파일 위치 · 이름 · MD 작성 규칙이다. 사람용 요약은 Notion Task "저장소 구조·네이밍 규칙"(1-0) 카드에 있다
+파일 위치 · 이름 · MD 작성 규칙이다. 사람용 요약은 Notion Task "저장소 구조·네이밍 규칙"(1-0) 카드에 있다.
 
 > 상태: 초안
 
@@ -39,7 +39,7 @@ repo/
    └─ skills/            # sync, pull, audit, brief, generate-screen, theme, ui-review
 ```
 
-- "자동 생성" 파일은 직접 고치지 않는다. 원본을 고치고 `/sync`로 다시 만든다
+- "자동 생성" 파일은 직접 고치지 않는다. 원본을 고치고 `/sync`로 다시 만든다.
 
 ## 공통 이름 규칙
 
@@ -51,6 +51,7 @@ repo/
 | 예외: 규칙 문서 | 대문자 이름 + `.md` | `AGENTS.md`, `docs/UX.md` |
 | 예외: 컴포넌트·아이콘 이름 | PascalCase (아래 "코드·피그마") | `BottomSheet` |
 | `.claude/` 안의 규칙·훅·스킬 | kebab-case | `rules/session-start.md`, `hooks/guard-git.sh`, `skills/generate-screen/` |
+| 예외: 스킬 파일 | Claude Code 형식대로 대문자 `SKILL.md` | `skills/generate-screen/SKILL.md` |
 | GitHub 조직·저장소 | kebab-case. 주소: `https://github.com/ai-study-clickclick/design-system` | `ai-study-clickclick/design-system` |
 
 ## 디자인 토큰
@@ -58,15 +59,15 @@ repo/
 | 대상 | 규칙 | 예시 |
 |---|---|---|
 | 1단 기본 색표(Primitive) | `palette.<색>-<단계>`. 실제 색 값 | `palette.orange-600`, `palette.gray-1000` |
-| 2단 쓰임새 이름(Semantic) | `<쓰임새>.<이름>`. 1단 색을 가리킨다. 화면·컴포넌트에는 쓰임새 이름만 쓴다 | `bg.brand-solid`, `bg.neutral-weak`, `fg.neutral`, `stroke.neutral-weak` |
-| 색 외 토큰 | `<종류>.<단계>` | `space.4`, `radius.md` |
+| 2단 쓰임새 이름(Semantic) | `<쓰임새>.<이름>`. 1단 색을 가리킨다. 화면·컴포넌트에는 쓰임새 이름만 쓴다. | `bg.brand-solid`, `bg.neutral-weak`, `fg.neutral`, `stroke.neutral-weak` |
+| 색 외 토큰 | `<종류>.<단계>`. 단계가 아닌 쓰임새 값은 `<종류>.<쓰임새>` | `space.4`, `radius.md`, `space.touch-min` |
 | 글자 스타일 | `<역할>-<크기>` | `title-lg`, `body-md`, `label-sm` |
 | 토큰 참조 | 중괄호로 다른 토큰을 가리킨다(W3C DTCG 방식) | `{palette.orange-600}` |
 | 피그마 Variables | 토큰 이름의 `.`을 `/`로 바꾼다 | `bg/brand-solid` |
-| 테마 프리셋 | `theme.<name>`. 대표 컬러 1개(`brand.primary`)와 라운드 기준값(`radius.base`)만 정한다. 기본 토큰은 바꾸지 않는다 | `theme.ocean` |
-| 브랜드 색 단계 | `brand.primary`에서 `palette.brand-100` ~ `palette.brand-900` 단계를 자동 생성한다(OKLCH 명도 단계). 쓰임새 이름(`bg.brand-solid` 등)은 이 단계를 가리키므로 대표 컬러만 바꿔도 함께 바뀐다 | `{palette.brand-600}` |
-| 라운드 단계 | `radius.base`에서 `radius.sm` · `radius.md` · `radius.lg`를 비율로 계산한다 | `radius.md` |
-| DESIGN.md 안의 토큰 참조 | DESIGN.md는 Stitch 형식이라 그룹 이름을 앞에 붙인다. 위의 `{palette.orange-600}`은 `{colors.palette.orange-600}`로 쓴다 | `{colors.palette.orange-600}` |
+| 테마 프리셋 | `theme.<name>`. 대표 컬러 1개(`brand.primary`)와 라운드 기준값(`radius.base`)만 정한다. 기본 토큰은 바꾸지 않는다. | `theme.ocean` |
+| 브랜드 색 단계 | `brand.primary`에서 `palette.brand-100` ~ `palette.brand-900` 단계를 자동 생성한다(OKLCH 명도 단계). 쓰임새 이름(`bg.brand-solid` 등)은 이 단계를 가리키므로 대표 컬러만 바꿔도 함께 바뀐다. 예외: 기본 테마(`theme.default`)는 다시 계산하지 않고 `palette.orange-100` ~ `palette.orange-900`을 그대로 가리킨다. | `{palette.brand-600}` |
+| 라운드 단계 | `radius.base`에서 나머지 단계를 비율로 계산한다. 단계 이름 · 비율은 `DESIGN.md` `rounded`를 따른다. | `radius.md` |
+| DESIGN.md 안의 토큰 참조 | DESIGN.md는 Stitch 형식이라 그룹 이름을 앞에 붙인다. 위의 `{palette.orange-600}`은 `{colors.palette.orange-600}`로 쓴다. | `{colors.palette.orange-600}` |
 
 ## 코드·피그마
 
@@ -77,6 +78,7 @@ repo/
 | 컴포넌트 파일 | kebab-case | `button.tsx` |
 | 피그마 컴포넌트 | 코드와 같은 이름. Variant 속성명·값도 코드 props와 같게 | `Button` → `variant=primary, size=md` |
 | 브리프·평가 파일 | `YYMMDD-topic.md` | `261014-login.md` |
+| 여러 단계 흐름의 브리프 | `[결정 필요]` 임시로 `YYMMDD-topic-<단계 번호>-<단계 이름>.md`. 프로토타입 폴더도 같은 이름 | `261112-return-1-select.md` |
 | 프로토타입 화면 | 폴더 `src/app/prototypes/YYMMDD-topic/`, 주소 `/prototypes/YYMMDD-topic`. 브리프와 같은 이름 | `/prototypes/261014-login` |
 | 피그마 Generated 화면 | 프로토타입과 같은 이름의 프레임 | `261014-login` |
 
@@ -84,10 +86,10 @@ repo/
 
 | 대상 | 규칙 | 예시 |
 |---|---|---|
-| 브랜치 | `type/step-topic`. 앞의 `docs/`·`feat/`는 작업 종류 표시일 뿐 폴더가 아니다. 파일 위치는 위 "파일 위치"를 따른다(예: `docs/1-3-ux-md` 브랜치에서도 파일은 `docs/UX.md`) | `docs/1-2-design-md` |
+| 브랜치 | `type/step-topic`. 앞의 `docs/`·`feat/`는 작업 종류 표시일 뿐 폴더가 아니다. 파일 위치는 위 "파일 위치"를 따른다(예: `docs/1-3-ux-md` 브랜치에서도 파일은 `docs/UX.md`). | `docs/1-2-design-md` |
 | 하위 브랜치 | `type/step-topic-detail`. 태스크 브랜치로 PR한다 | `docs/1-2-design-md-color` |
 | 태스크 외 브랜치 | `chore/topic` | `chore/remove-test-md` |
-| 화면 작업 브랜치 | `screen/YYMMDD-topic` | `screen/261014-login` |
+| 화면 작업 브랜치 | `screen/YYMMDD-topic`. 여러 단계 흐름은 단계 번호 없이 흐름 이름으로 한 브랜치 | `screen/261014-login` · `screen/261112-return` |
 | 커밋 메시지 | [Conventional Commits](https://www.conventionalcommits.org/) `type(step): 요약`. 화면 작업은 scope에 `screen`, 태스크 외는 scope 생략 | `docs(1-2): 컬러 토큰 추가` · `feat(screen): 로그인 화면` |
 | PR 제목 | 커밋 메시지와 같은 형식(Squash merge 시 main 커밋 메시지가 됨) | `docs(1-2): DESIGN.md 초안` |
 
@@ -112,20 +114,22 @@ repo/
 | `README.md` · `.github/pull_request_template.md` | 공통. 사람용이라 말투만 "~합니다" |
 | 스킬(`.claude/skills/*/SKILL.md`) | 공통. 머리(frontmatter)는 Claude Code 스킬 형식을 따른다 |
 | 자동 생성 문서(`docs/components/*.md`) | 공통. 스킬 템플릿에서 맞추고 파일은 직접 고치지 않는다 |
-| 작업 결과물(`briefs/` · `evals/`) | `docs/BRIEF.md` 양식과 파일 이름 규칙만. 사용자 요청 문장은 고치지 않는다 |
+| `docs/BRIEF.md` | 공통 |
+| 작업 결과물(`briefs/` · `evals/`) | `docs/BRIEF.md` 양식과 파일 이름 규칙만. 사용자 요청 문장은 고치지 않는다. 예외: 개인정보는 `[개인정보]`로 바꾼다(`docs/BRIEF.md` "요청 원문과 개인정보"). |
 
 ### 공통
 
 말투
 
 - 문서 본문은 "~한다"로 쓴다
-- 사용자 화면에 들어갈 문구는 `docs/WRITING.md`의 화면 말투를 따른다. 문서 안에 예시로 쓸 때는 따옴표로 감싼다(예: 버튼 "저장하기")
+- 사용자 화면에 들어갈 문구는 `docs/WRITING.md`의 화면 말투를 따른다. 문서 안에 예시로 쓸 때는 따옴표로 감싼다(예: 버튼 "저장하기").
 - 화면 문구 예시 · 코드 · 인용은 말투 · 마침표 규칙에서 제외한다
 
 마침표
 
-- 줄 끝(목록 · 표 칸 · 제목 · 문단)에는 찍지 않는다
-- 한 줄에 문장이 둘 이상이면 문장 사이에만 찍는다
+- 한 문장이면 끝에 찍지 않는다(목록 · 표 칸 · 제목 · 문단)
+- 문장이 둘 이상이면 마지막 문장까지 모두 찍는다
+- 표 칸에서 값 · 이름 뒤에 붙인 설명은 한 문장으로 본다(예: "PascalCase. 이름·속성은 … 정한다"). 설명이 두 문장 이상이면 마지막 문장까지 찍는다.
 
 표기
 
@@ -148,11 +152,11 @@ repo/
 | 규칙 · 값 | 쓴다 | 누르는 영역 44px |
 | 판단 근거: AI가 규칙에 없는 상황을 판단할 때 필요한 이유 | 규칙 옆에 한 줄로 쓴다 | 손가락으로 정확히 누를 수 있는 크기 |
 | 따를 기준: 값을 정할 때 참고할 라이브러리 | 이름만 쓴다(버전 · 주소 없이) | 배지 글자는 SEED Badge를 따른다 |
-| 출처: 값을 가져온 곳 | 쓰지 않는다. PR 본문 "근거" 표에 쓴다 | SEED CSS 3.0.3의 값 |
-| 히스토리: 문서 작성 방식 · 형식을 고른 이유 · 비교표 · 결정 과정 · 바뀐 내용 | 쓰지 않는다. 필요하면 Notion · PR에 쓴다 | Stitch 형식을 고른 이유 |
+| 출처: 값을 가져온 곳 | 쓰지 않는다. PR 본문 "근거" 표에 쓴다. | SEED CSS 3.0.3의 값 |
+| 히스토리: 문서 작성 방식 · 형식을 고른 이유 · 비교표 · 결정 과정 · 바뀐 내용 | 쓰지 않는다. 필요하면 Notion · PR에 쓴다. | Stitch 형식을 고른 이유 |
 | 담당자 이름 | 쓰지 않는다(`PROGRESS.md` 제외) | — |
 
-- 헷갈리면 "AI가 화면을 만들 때 이 문장이 필요한가"로 판단한다. 필요하면 근거 · 기준, 검수하는 사람만 필요하면 출처다
+- 헷갈리면 "AI가 화면을 만들 때 이 문장이 필요한가"로 판단한다. 필요하면 근거 · 기준, 검수하는 사람만 필요하면 출처다.
 
 표시
 
@@ -160,26 +164,26 @@ repo/
 |---|---|---|---|
 | 표시 없음 | 지킨다 | 모든 문서 | 지킬 수 없으면 만들기 전에 사람에게 묻는다 |
 | `[권장]` | 기본으로 따른다 | 규칙 문서 | 브리프에 다른 요청이 있으면 그것을 따른다 |
-| `[결정 필요]` | 팀 확정 전 | 모든 문서 | 함께 적힌 임시 값을 따른다. 임시 값이 없으면 지어내지 않고 사람에게 묻는다 |
-| (웹 프로토타입에서 확인 불가) | 점검 범위 밖 | 규칙 문서 | `/ui-review`가 점검을 건너뛴다. 규칙은 지킨다 |
+| `[결정 필요]` | 팀 확정 전 | 모든 문서 | 함께 적힌 임시 값을 따른다. 임시 값이 없으면 지어내지 않고 사람에게 묻는다. |
+| (웹 프로토타입에서 확인 불가) | 점검 범위 밖 | 규칙 문서 | `/ui-review`가 점검을 건너뛴다. 규칙은 지킨다. |
 
-- 규칙 · 표 · 설명 문장 모두 표시가 없으면 지킨다. 강도가 낮은 규칙에만 `[권장]`을 붙인다
+- 규칙 · 표 · 설명 문장 모두 표시가 없으면 지킨다. 강도가 낮은 규칙에만 `[권장]`을 붙인다.
 - 기준 문서에서 값을 찾지 못하면 임의로 넣지 않고 `[결정 필요]`로 표시한다
-- `[결정 필요]`는 정해지면 지운다. 값의 출처는 MD에 표시하지 않고 PR 본문 "근거" 표에 남긴다(출처가 없으면 "없음")
-- 표시의 정의는 이 장에만 둔다. 다른 문서는 이 장을 가리킨다
+- `[결정 필요]`는 정해지면 지운다. 값의 출처는 MD에 표시하지 않고 PR 본문 "근거" 표에 남긴다(출처가 없으면 "없음").
+- 표시의 정의는 이 장에만 둔다. 다른 문서는 이 장을 가리킨다.
 
 ### 규칙 문서
 
 - 머리: 제목 아래에 `> 상태: 초안 v0.x · 태스크: 1-x`, 이어서 다루는 범위와 다른 문서와의 경계를 한 줄씩 쓴다
-- 버전: 내용이 바뀌는 PR마다 0.1 올린다. 팀이 확정하면 v1.0으로 한다
-- `DESIGN.md`: 맨 위 YAML(Stitch 형식)은 그대로 두고 머리는 YAML 바로 아래에 둔다. 장 제목은 Stitch 장 이름을 따른다. YAML 주석에는 값 설명만 쓴다
-- 맨 끝은 `## Do's and Don'ts`다. 뒤에 다른 장을 두지 않는다
+- 버전: 내용이 바뀌는 PR마다 0.1 올린다. 팀이 확정하면 v1.0으로 한다.
+- `DESIGN.md`: 맨 위 YAML(Stitch 형식)은 그대로 두고 머리는 YAML 바로 아래에 둔다. 장 제목은 Stitch 장 이름을 따른다. YAML 주석에는 값 설명만 쓴다.
+- 맨 끝은 `## Do's and Don'ts`다. 뒤에 다른 장을 두지 않는다.
 - Do's 항목은 한 줄에 하나씩, 맞는지 확인할 수 있는 문장으로 쓴다(`/ui-review`가 이 목록으로 점검). 항목 아래에 하위 줄(출처 등)을 두지 않는다. 형식:
 
   ```markdown
   ## Do's and Don'ts
 
-  `/ui-review`가 이 목록을 점검표로 쓴다. "(웹 프로토타입에서 확인 불가)" 표시가 있는 항목은 건너뛴다
+  `/ui-review`가 이 목록을 점검표로 쓴다. "(웹 프로토타입에서 확인 불가)" 표시가 있는 항목은 건너뛴다.
 
   ### <주제>
 
@@ -188,4 +192,4 @@ repo/
   - [ ] <프로토타입에서 확인할 수 없는 항목> (웹 프로토타입에서 확인 불가)
   ```
 
-- 같은 규칙은 한 문서에만 쓴다. 다른 문서에서는 그 문서를 가리킨다
+- 같은 규칙은 한 문서에만 쓴다. 다른 문서에서는 그 문서를 가리킨다.
