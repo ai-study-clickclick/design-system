@@ -89,7 +89,7 @@ repo/
 | 브랜치 | `type/step-topic`. 앞의 `docs/`·`feat/`는 작업 종류 표시일 뿐 폴더가 아니다. 파일 위치는 위 "파일 위치"를 따른다(예: `docs/1-3-ux-md` 브랜치에서도 파일은 `docs/UX.md`). | `docs/1-2-design-md` |
 | 하위 브랜치 | `type/step-topic-detail`. 태스크 브랜치로 PR한다 | `docs/1-2-design-md-color` |
 | 태스크 외 브랜치 | `chore/topic` | `chore/remove-test-md` |
-| 화면 작업 브랜치 | `screen/YYMMDD-topic` | `screen/261014-login` |
+| 화면 작업 브랜치 | `screen/YYMMDD-topic`. 여러 단계 흐름은 단계 번호 없이 흐름 이름으로 한 브랜치 | `screen/261014-login` · `screen/261112-return` |
 | 커밋 메시지 | [Conventional Commits](https://www.conventionalcommits.org/) `type(step): 요약`. 화면 작업은 scope에 `screen`, 태스크 외는 scope 생략 | `docs(1-2): 컬러 토큰 추가` · `feat(screen): 로그인 화면` |
 | PR 제목 | 커밋 메시지와 같은 형식(Squash merge 시 main 커밋 메시지가 됨) | `docs(1-2): DESIGN.md 초안` |
 
