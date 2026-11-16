@@ -7,8 +7,10 @@ import path from "node:path";
 export type Token = { name: string; value: string; ref?: string };
 
 function readBlock(css: string, selector: string) {
-  const start = css.indexOf(`${selector} {`);
-  if (start === -1) return [];
+  // 선택자 뒤에 다른 선택자가 이어질 수 있다(예: ":root,\n[data-theme] {")
+  const match = css.match(new RegExp(`^${selector.replace(/[[\]]/g, "\\$&")}[^{]*\\{`, "m"));
+  if (!match || match.index === undefined) return [];
+  const start = match.index;
   const end = css.indexOf("\n}", start);
   return [...css.slice(start, end).matchAll(/^\s*(--[\w-]+):\s*(.+);$/gm)].map(([, name, value]) => ({
     name,
