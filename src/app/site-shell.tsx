@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { libraryGroups, prototypeGroups, sectionOf, sections, type NavGroup } from "./site-nav";
 
 // 사이트 전체 틀: 위 메뉴 + 왼쪽 메뉴(LNB) + 본문. 어느 페이지로 가도 같은 틀 안에서 본문만 바뀐다
+// 위 메뉴의 지금 영역은 굵기와 글자색으로 구분한다(밑줄 없음)
 // PC · 태블릿(768px 이상)은 LNB가 늘 보이고, 그보다 좁으면 위 메뉴 버튼으로 LNB를 연다
 export default function SiteShell({ screens, children }: { screens: string[]; children: React.ReactNode }) {
   const pathname = usePathname();
@@ -41,11 +42,11 @@ export default function SiteShell({ screens, children }: { screens: string[]; ch
                   key={s.key}
                   href={s.href}
                   aria-current={active ? "page" : undefined}
-                  className={`flex min-h-touch-min items-center whitespace-nowrap rounded-sm px-12 text-label-md ${
-                    active ? "text-neutral" : "text-neutral-muted hover:bg-transparent-pressed"
+                  className={`flex min-h-touch-min items-center whitespace-nowrap rounded-sm px-12 hover:bg-transparent-pressed ${
+                    active ? "text-label-md text-neutral" : "text-body-md text-neutral-muted"
                   }`}
                 >
-                  <span className={active ? "border-b-2 border-neutral-contrast py-4" : "py-4"}>{s.title}</span>
+                  {s.title}
                 </Link>
               );
             })}
