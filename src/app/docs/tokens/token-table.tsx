@@ -19,16 +19,16 @@ export function TokenRow({
   detail?: string;
 }) {
   return (
-    <li className="flex items-center gap-16 py-12">
+    <li className="flex flex-col gap-8 py-12 sm:flex-row sm:items-center sm:gap-16">
       <div className="min-w-0 flex-1">
         <p className="text-label-md break-all">{name}</p>
-        {description && <p className="mt-2 text-body-sm text-neutral-subtle">{description}</p>}
+        {description && <p className="mt-2 text-label-sm text-neutral-muted">{description}</p>}
       </div>
-      <div className="flex w-[280px] shrink-0 items-center gap-8">
+      <div className="flex shrink-0 items-center gap-8 sm:w-[280px]">
         {preview}
         <span className="min-w-0">
           <span className="block text-body-md break-all">{value}</span>
-          {detail && <span className="block text-body-sm text-neutral-subtle">{detail}</span>}
+          {detail && <span className="block text-label-sm text-neutral-muted">{detail}</span>}
         </span>
       </div>
     </li>
@@ -39,16 +39,16 @@ export function TokenRow({
 export function ColorDot({ cssVar, kind = "fill" }: { cssVar: string; kind?: "fill" | "text" | "stroke" }) {
   if (kind === "text") {
     return (
-      <span className="flex size-24 shrink-0 items-center justify-center text-label-md" style={{ color: `var(${cssVar})` }}>
+      <span aria-hidden className="flex size-24 shrink-0 items-center justify-center text-label-md" style={{ color: `var(${cssVar})` }}>
         가
       </span>
     );
   }
   if (kind === "stroke") {
-    return <span className="size-24 shrink-0 rounded-full border-2" style={{ borderColor: `var(${cssVar})` }} />;
+    return <span aria-hidden className="size-24 shrink-0 rounded-full border-2" style={{ borderColor: `var(${cssVar})` }} />;
   }
   return (
-    <span className="size-24 shrink-0 rounded-full border border-neutral-subtle" style={{ background: `var(${cssVar})` }} />
+    <span aria-hidden className="size-24 shrink-0 rounded-full border border-neutral-subtle" style={{ background: `var(${cssVar})` }} />
   );
 }
 

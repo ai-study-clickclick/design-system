@@ -8,3 +8,9 @@ body {
   background: var(--bg-layer-default);
   color: var(--fg-neutral);
 }
+
+/* 키보드로 고른 요소 표시. stroke.focus-ring 2px 선 + 2px 띄움(DESIGN.md "상태와 피드백") */
+:focus-visible {
+  outline: 2px solid var(--stroke-focus-ring);
+  outline-offset: 2px;
+}

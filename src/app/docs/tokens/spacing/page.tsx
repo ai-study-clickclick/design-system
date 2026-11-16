@@ -1,4 +1,4 @@
-import DocPage, { Section } from "../../doc-page";
+import DocPage, { Section } from "../../../doc-page";
 import { readTokens } from "../read-tokens";
 import { TokenRow, TokenTable } from "../token-table";
 
@@ -28,25 +28,25 @@ export default function SpacingPage() {
       href="/docs/tokens/spacing"
       category="토큰"
       title="간격"
-      description="여백과 간격은 이 토큰만 쓴다. 이름의 숫자가 곧 px 값이다"
+      description="여백과 간격은 이 토큰만 써요. 이름의 숫자가 곧 px 값이에요"
       toc={[
         { id: "scale", title: "간격 단계" },
         { id: "named", title: "쓰임새 간격" },
       ]}
     >
-      <Section id="scale" title="간격 단계" description="클래스: p-16 · gap-8 · mt-24처럼 space 뒤 이름을 쓴다">
+      <Section id="scale" title="간격 단계" description="클래스: p-16 · gap-8 · mt-24처럼 space 뒤 이름을 써요">
         <TokenTable>
           {scale.map((t) => (
             <TokenRow
               key={t.name}
               name={t.name}
               value={t.resolved}
-              preview={<span className="h-12 shrink-0 rounded-xs bg-brand-solid" style={{ width: `var(${t.cssVar})` }} />}
+              preview={<span aria-hidden className="h-12 shrink-0 rounded-xs bg-brand-solid" style={{ width: `var(${t.cssVar})` }} />}
             />
           ))}
         </TokenTable>
       </Section>
-      <Section id="named" title="쓰임새 간격" description="화면 단위로 정한 값이다. 클래스: px-screen-margin · max-w-screen-max">
+      <Section id="named" title="쓰임새 간격" description="화면 단위로 정한 값이에요. 클래스: px-screen-margin · max-w-screen-max">
         <TokenTable>
           {named.map((t) => (
             <TokenRow key={t.name} name={t.name} description={usage[t.name]} value={t.resolved} />
