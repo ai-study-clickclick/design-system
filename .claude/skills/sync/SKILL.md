@@ -1,6 +1,6 @@
 ---
 name: sync
-description: 코드 → 피그마 방향 동기화. 지금은 1단계(`DESIGN.md` → 코드 테마 `src/styles/tokens.css` · `/docs` 토큰 화면)만 한다. 사용자가 "/sync", "토큰 반영해 줘", "DESIGN.md 바꾼 거 코드에 맞춰 줘"라고 할 때 실행한다. 자동으로 실행하지 않는다
+description: 코드 → 피그마 방향 동기화. 지금은 1단계(`DESIGN.md` → 코드 테마 `src/styles/tokens.css`)만 한다. 사용자가 "/sync", "토큰 반영해 줘", "DESIGN.md 바꾼 거 코드에 맞춰 줘"라고 할 때 실행한다. 자동으로 실행하지 않는다
 ---
 
 # /sync
@@ -20,7 +20,6 @@ description: 코드 → 피그마 방향 동기화. 지금은 1단계(`DESIGN.md
 2. 실행 결과의 "확인 필요" 줄을 사용자에게 그대로 알린다. 오류가 나면 고치지 말고 오류 문장과 `DESIGN.md`의 해당 줄을 보여 준다.
 3. `git diff src/styles/tokens.css`로 바뀐 토큰을 찾아 사용자에게 쉬운 말로 요약한다(예: "`bg.brand-solid`가 가리키는 색이 바뀜")
 4. `npm run build`로 사이트가 깨지지 않는지 확인한다
-5. `/docs/tokens` 화면은 `tokens.css`를 읽어 그리므로 따로 고치지 않는다. 미리보기 주소(`design-system-git-<브랜치>-1nah.vercel.app/docs/tokens`)를 알려 준다.
 
 ## 하지 않는 것
 

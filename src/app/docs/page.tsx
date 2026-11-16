@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const sections = [
-  { href: "/docs/tokens", title: "토큰", description: "색 · 글자 · 간격 · 라운드 · 그림자" },
+  { href: null, title: "토큰", description: "색 · 글자 · 간격 · 라운드 · 그림자. 2-4에서 채운다" },
   { href: null, title: "컴포넌트", description: "MVP 컴포넌트 19개. 2-4에서 채운다" },
 ];
 

@@ -14,7 +14,7 @@
 | 0-5 | 각자 Claude Code ↔ GitHub 연결, 차단 설정 동작 확인 | 진행 중 (전원) |
 | 1-5 | `docs/PATTERNS.md` 작성, `UX.md` 화면 성격별 묶음 표 옮기기 | 다음 할 일 (유진) |
 | 2-1 | 라이브러리 · 프로토타입 사이트 뼈대(Next.js + Tailwind) + Vercel 연결 | 리뷰 중 (한나) |
-| 2-2 | `/sync` 1단계: `DESIGN.md` → `tokens.css` · `/docs` 토큰 화면 | 진행 중 (한나, 2-1 머지 후 PR · 그림자는 `DESIGN.md` YAML 추가 후 반영) |
+| 2-2 | `/sync` 1단계: `DESIGN.md` → `tokens.css` | 진행 중 (한나, 2-1 머지 후 PR · 그림자는 `DESIGN.md` YAML 추가 후 반영) |
 | 3-2 준비 | MVP 컴포넌트 19개 이름 · 속성 비교표(shadcn · 당근 · 토스) | 다음 할 일 (수진, `DESIGN.md` 수정 반영) |
 
 ## 주의 사항
@@ -24,6 +24,7 @@
 - 3차 미팅에서 A안(새 태스크 대신 작성한 MD 형식 통일 · 교차 검토 1주)을 정함. 다음 태스크(2-1 · 1-4 · 1-5 · 1-7 · 3-3 준비 · 4-x 준비) 담당은 다음 미팅에서 정함.
 - 1-2에서 `DESIGN.md` 팀 결정 6개를 확정함: 기준 화면 폭 375px · 최대 480px, 로딩 표시 지연 0.2초(이후 SEED Loading 패턴에 맞춰 1초로 변경) · 최소 유지 0.4초, 주된 CTA는 주황, Banner는 SEED Page Banner 값, Select는 입력 버튼 + Bottom sheet, SEED에 없는 크기. 값은 `DESIGN.md`가 기준.
 - 기본 테마 라운드는 SEED 값을 기준으로 한다("큰 라운드"를 SEED 값으로 해석). 화면 작업에서 작게 느껴지면 `radius.base`를 다시 정한다(`DESIGN.md` "Shapes").
+- 2-4의 `/docs` 토큰 화면은 2-2 중에 미리 만들어 `feat/2-4-docs` 브랜치에 보관했다. 2-4를 시작할 때 이 브랜치에서 이어 간다(2-3 · 2-2 머지 후 `git merge origin/main`).
 - 규칙 문서 형식 통일은 `docs/CONVENTIONS.md` "MD 작성"을 따른다
 - 6차 미팅에서 화면 상태를 정상 + 조건에 맞는 묶음(기다림 · 비어 있음 · 실패 · 이용 불가)으로 정함. 정의는 `docs/UX.md` "상태"가 기준이고, 화면 성격별 표는 1-5에서 `docs/PATTERNS.md`로 옮긴다.
 - 여러 단계 절차 규칙(`.claude/rules/`의 `session-start.md` · `git.md` · `notion.md`)은 4-x 스킬 작업 때 스킬로 옮긴다
