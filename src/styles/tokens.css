@@ -1,7 +1,8 @@
 /* 자동 생성 파일이다. 직접 고치지 않는다 */
 /* 원본: DESIGN.md 맨 위 YAML · 만드는 법: npm run tokens(/sync) */
 
-:root {
+:root,
+[data-theme] {
   /* 1단 기본 색표 */
   --palette-gray-00: #ffffff;
   --palette-gray-100: #f7f8f9;
@@ -579,6 +580,7 @@
   --text-label-sm--line-height: var(--typography-label-sm-line-height);
   --text-label-sm--font-weight: var(--typography-label-sm-font-weight);
   /* p-16 · gap-8 · w-screen-max ← space.* */
+  --spacing-0: 0px; /* 토큰은 아니지만 p-0 · top-0 · inset-0을 쓰기 위해 둔다 */
   --spacing-2: var(--space-2);
   --spacing-4: var(--space-4);
   --spacing-6: var(--space-6);

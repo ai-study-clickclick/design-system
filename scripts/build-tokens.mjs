@@ -176,6 +176,9 @@ function baseVariables(design, warnings) {
   const radius = radiusSteps(defaultTheme["radius.base"]);
   lines.push(section("라운드 기준값 (단계는 아래 @theme static)"));
   lines.push(`--radius-base: ${defaultTheme["radius.base"]};`);
+  if (rounded["radius.base"] && rounded["radius.base"] !== defaultTheme["radius.base"]) {
+    warnings.push(`radius.base: rounded 값 ${rounded["radius.base"]}와 theme.default 값 ${defaultTheme["radius.base"]}가 다르다(theme.default를 쓴다)`);
+  }
   const shared = ["--radius-*: initial;"];
   for (const [name, value] of Object.entries(radius)) {
     const yamlValue = rounded[`radius.${name}`];
@@ -272,6 +275,7 @@ function tailwindTheme(design) {
   }
 
   lines.push(section("p-16 · gap-8 · w-screen-max ← space.*"));
+  lines.push("--spacing-0: 0px; /* 토큰은 아니지만 p-0 · top-0 · inset-0을 쓰기 위해 둔다 */");
   for (const key of Object.keys(spacing)) {
     lines.push(`--spacing-${key.slice(6)}: var(${cssName(key)});`);
   }
@@ -290,7 +294,9 @@ const css = [
   "/* 자동 생성 파일이다. 직접 고치지 않는다 */",
   "/* 원본: DESIGN.md 맨 위 YAML · 만드는 법: npm run tokens(/sync) */",
   "",
-  block(":root", lines),
+  // [data-theme]에도 같은 값을 둔다. CSS 변수는 정의된 곳에서 값이 정해져 내려가므로,
+  // 테마가 바꾼 palette.brand-* · radius-*를 쓰임새 색 · 컴포넌트 값이 테마 요소에서 다시 읽게 하기 위해서다
+  block(":root,\n[data-theme]", lines),
   "/* 라운드 · 그림자: Tailwind와 같은 이름(--radius-* · --shadow-*)이라 여기서 바로 정한다. rounded-md · shadow-s2로 쓴다 */",
   block("@theme static", shared),
   ...themes,
