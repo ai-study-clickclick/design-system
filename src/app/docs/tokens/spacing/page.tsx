@@ -2,7 +2,7 @@ import DocPage, { Section } from "../../../doc-page";
 import { readTokens } from "../read-tokens";
 import { TokenRow, TokenTable } from "../token-table";
 
-export const metadata = { title: "간격 · 딸깍 디자인 시스템" };
+export const metadata = { title: "Spacing · 딸깍 디자인 시스템" };
 
 // 쓰임새가 있는 간격 토큰의 설명. DESIGN.md "Layout" 기준
 const usage: Record<string, string> = {
@@ -26,15 +26,15 @@ export default function SpacingPage() {
   return (
     <DocPage
       href="/docs/tokens/spacing"
-      category="토큰"
-      title="간격"
+      category="Tokens"
+      title="Spacing"
       description="여백과 간격은 이 토큰만 써요. 이름의 숫자가 곧 px 값이에요"
       toc={[
-        { id: "scale", title: "간격 단계" },
-        { id: "named", title: "쓰임새 간격" },
+        { id: "scale", title: "Scale" },
+        { id: "named", title: "Semantic" },
       ]}
     >
-      <Section id="scale" title="간격 단계" description="클래스: p-16 · gap-8 · mt-24처럼 space 뒤 이름을 써요">
+      <Section id="scale" title="Scale" description="클래스: p-16 · gap-8 · mt-24처럼 space 뒤 이름을 써요">
         <TokenTable>
           {scale.map((t) => (
             <TokenRow
@@ -46,7 +46,7 @@ export default function SpacingPage() {
           ))}
         </TokenTable>
       </Section>
-      <Section id="named" title="쓰임새 간격" description="화면 단위로 정한 값이에요. 클래스: px-screen-margin · max-w-screen-max">
+      <Section id="named" title="Semantic" description="화면 단위로 정한 값이에요. 클래스: px-screen-margin · max-w-screen-max">
         <TokenTable>
           {named.map((t) => (
             <TokenRow key={t.name} name={t.name} description={usage[t.name]} value={t.resolved} />

@@ -5,31 +5,31 @@ export type NavGroup = { title: string; items: NavItem[] };
 export type Section = { key: "docs" | "prototypes"; href: string; title: string };
 
 export const sections: Section[] = [
-  { key: "docs", href: "/docs/tokens/color", title: "라이브러리" },
-  { key: "prototypes", href: "/prototypes", title: "프로토타입" },
+  { key: "docs", href: "/docs/tokens/color", title: "Library" },
+  { key: "prototypes", href: "/prototypes", title: "Prototypes" },
 ];
 
 export const libraryGroups: NavGroup[] = [
   {
-    title: "토큰",
+    title: "Tokens",
     items: [
-      { href: "/docs/tokens/color", title: "색", ready: true },
-      { href: "/docs/tokens/typography", title: "글자", ready: true },
-      { href: "/docs/tokens/spacing", title: "간격", ready: true },
-      { href: "/docs/tokens/radius", title: "라운드", ready: true },
-      { href: "/docs/tokens/shadow", title: "그림자", ready: true },
+      { href: "/docs/tokens/color", title: "Color", ready: true },
+      { href: "/docs/tokens/typography", title: "Typography", ready: true },
+      { href: "/docs/tokens/spacing", title: "Spacing", ready: true },
+      { href: "/docs/tokens/radius", title: "Radius", ready: true },
+      { href: "/docs/tokens/shadow", title: "Shadow", ready: true },
     ],
   },
   {
-    title: "컴포넌트",
-    items: [{ href: "/docs/components", title: "MVP 컴포넌트 19개" }],
+    title: "Components",
+    items: [{ href: "/docs/components", title: "MVP 19" }],
   },
 ];
 
 export function prototypeGroups(screens: string[]): NavGroup[] {
   return [
-    { title: "프로토타입", items: [{ href: "/prototypes", title: "전체 화면", ready: true }] },
-    { title: "화면", items: screens.map((name) => ({ href: `/prototypes/${name}`, title: name, ready: true })) },
+    { title: "Prototypes", items: [{ href: "/prototypes", title: "All screens", ready: true }] },
+    { title: "Screens", items: screens.map((name) => ({ href: `/prototypes/${name}`, title: name, ready: true })) },
   ];
 }
 

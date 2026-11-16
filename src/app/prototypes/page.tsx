@@ -2,7 +2,7 @@ import Link from "next/link";
 import DocPage from "../doc-page";
 import { getScreens } from "./screens";
 
-export const metadata = { title: "프로토타입 · 딸깍 디자인 시스템" };
+export const metadata = { title: "Prototypes · 딸깍 디자인 시스템" };
 
 export default function PrototypesPage() {
   const screens = getScreens();
@@ -10,8 +10,8 @@ export default function PrototypesPage() {
   return (
     <DocPage
       href="/prototypes"
-      category="프로토타입"
-      title="전체 화면"
+      category="Prototypes"
+      title="All screens"
       description="화면 하나가 폴더 하나예요. 최근에 만든 화면이 위에 있어요"
       toc={[]}
     >

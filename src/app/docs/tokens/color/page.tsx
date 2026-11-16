@@ -2,7 +2,7 @@ import DocPage, { Section, SubSection, type TocItem } from "../../../doc-page";
 import { readTokens, type Token } from "../read-tokens";
 import { ColorDot, TokenRow, TokenTable, tokenDetail, tokenValue } from "../token-table";
 
-export const metadata = { title: "색 · 딸깍 디자인 시스템" };
+export const metadata = { title: "Color · 딸깍 디자인 시스템" };
 
 // 역할(쓰임새 이름의 두 번째 단어)별 설명. 우리 기준(DESIGN.md)에 맞춰 새로 쓴 문장이다
 const roles: { key: string; title: string; description: string }[] = [
@@ -24,9 +24,9 @@ const roles: { key: string; title: string; description: string }[] = [
 const roleOf = (t: Token) => t.name.split(".")[1].split("-")[0];
 
 const properties = [
-  { key: "bg", id: "bg", title: "배경 bg", description: "화면 전체나 UI 요소의 면에 써요", kind: "fill" as const },
-  { key: "fg", id: "fg", title: "글자 · 아이콘 fg", description: "글자와 아이콘처럼 면 위에 올라가는 요소에 써요", kind: "text" as const },
-  { key: "stroke", id: "stroke", title: "테두리 stroke", description: "요소의 윤곽선과 구분선에 써요", kind: "stroke" as const },
+  { key: "bg", id: "bg", title: "Background", description: "bg.* · 화면 전체나 UI 요소의 면에 써요", kind: "fill" as const },
+  { key: "fg", id: "fg", title: "Foreground", description: "fg.* · 글자와 아이콘처럼 면 위에 올라가는 요소에 써요", kind: "text" as const },
+  { key: "stroke", id: "stroke", title: "Stroke", description: "stroke.* · 요소의 윤곽선과 구분선에 써요", kind: "stroke" as const },
 ];
 
 const paletteNames: Record<string, string> = {
@@ -44,22 +44,22 @@ export default function ColorPage() {
   const { semantic, paletteGroups } = readTokens();
 
   const toc: TocItem[] = [
-    { id: "structure", title: "구조" },
-    { id: "naming", title: "이름 읽는 법" },
-    { id: "roles", title: "쓰임새 색" },
+    { id: "structure", title: "Structure" },
+    { id: "naming", title: "Naming" },
+    { id: "roles", title: "Semantic" },
     ...properties.map((p) => ({ id: p.id, title: p.title, depth: 2 as const })),
-    { id: "palette", title: "기본 색표" },
+    { id: "palette", title: "Palette" },
   ];
 
   return (
     <DocPage
       href="/docs/tokens/color"
-      category="토큰"
-      title="색"
+      category="Tokens"
+      title="Color"
       description="화면의 계층 · 상태 · 브랜드를 색으로 나타내요. 화면과 컴포넌트에는 쓰임새 색만 써요"
       toc={toc}
     >
-      <Section id="structure" title="구조" description="색은 두 단으로 나뉘어요. 쓰임새 색이 기본 색표의 색을 가리켜요">
+      <Section id="structure" title="Structure" description="색은 두 단으로 나뉘어요. 쓰임새 색이 기본 색표의 색을 가리켜요">
         <div className="grid gap-16 sm:grid-cols-2">
           <div className="rounded-md bg-neutral-muted p-20">
             <p className="text-caption text-neutral-subtle">1단</p>
@@ -76,7 +76,7 @@ export default function ColorPage() {
         </div>
       </Section>
 
-      <Section id="naming" title="이름 읽는 법" description="쓰임새 색 이름은 네 부분으로 읽어요">
+      <Section id="naming" title="Naming" description="쓰임새 색 이름은 네 부분으로 읽어요">
         <div className="rounded-md bg-neutral-muted px-24 py-32 text-center">
           <p className="text-title-lg">
             <span>bg</span>.<span className="text-brand-contrast">brand</span>-<span className="text-informative">solid</span>-
@@ -93,7 +93,7 @@ export default function ColorPage() {
 
       <Section
         id="roles"
-        title="쓰임새 색"
+        title="Semantic"
         description="클래스로 쓸 때는 앞의 속성을 클래스 앞말로 바꿔요. bg.brand-solid → bg-brand-solid, fg.neutral → text-neutral, stroke.neutral-weak → border-neutral-weak"
       >
         {properties.map((p) => {
@@ -126,7 +126,7 @@ export default function ColorPage() {
         })}
       </Section>
 
-      <Section id="palette" title="기본 색표" description="쓰임새 색이 가리키는 실제 색이에요. 쓰임새 색으로 나타낼 수 없는 예외에만 써요">
+      <Section id="palette" title="Palette" description="쓰임새 색이 가리키는 실제 색이에요. 쓰임새 색으로 나타낼 수 없는 예외에만 써요">
         <div className="space-y-24">
           {paletteGroups.map(([group, tokens]) => (
             <div key={group}>

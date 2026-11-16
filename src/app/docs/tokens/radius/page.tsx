@@ -1,7 +1,7 @@
 import DocPage, { Section } from "../../../doc-page";
 import { readTokens } from "../read-tokens";
 
-export const metadata = { title: "라운드 · 딸깍 디자인 시스템" };
+export const metadata = { title: "Radius · 딸깍 디자인 시스템" };
 
 // 단계별 쓰는 곳. DESIGN.md "Shapes" 기준
 const usage: Record<string, string> = {
@@ -21,24 +21,24 @@ export default function RadiusPage() {
   return (
     <DocPage
       href="/docs/tokens/radius"
-      category="토큰"
-      title="라운드"
+      category="Tokens"
+      title="Radius"
       description="면이 크고 위로 뜰수록 라운드가 커져요. 테마는 기준값 하나만 정하고 나머지 단계는 비율로 계산해요"
       toc={[
-        { id: "base", title: "기준값" },
-        { id: "tokens", title: "라운드 단계" },
-        { id: "compare", title: "한눈에 비교" },
+        { id: "base", title: "Base" },
+        { id: "tokens", title: "Scale" },
+        { id: "compare", title: "Corner zoom" },
       ]}
     >
       <Section
         id="base"
-        title="기준값"
+        title="Base"
         description="radius.base = radius.lg예요. 다른 단계는 이 값에 0.375 · 0.5 · 0.75 · 1 · 1.25 · 1.5를 곱해요"
       >
         <p className="rounded-md bg-neutral-muted p-20 text-body-md">기본 테마 radius.base: {radiusBase}</p>
       </Section>
 
-      <Section id="tokens" title="라운드 단계" description="같은 크기의 면에 그려서 단계마다 차이가 보이게 했어요. 클래스: rounded-<이름>">
+      <Section id="tokens" title="Scale" description="같은 크기의 면에 그려서 단계마다 차이가 보이게 했어요. 클래스: rounded-<이름>">
         <ul className="grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-3">
           {radius.map((t) => (
             <li key={t.name} className="rounded-md border border-neutral-weak p-16">
@@ -57,7 +57,7 @@ export default function RadiusPage() {
         </ul>
       </Section>
 
-      <Section id="compare" title="모서리 확대" description="모서리 하나를 4배로 키워 나란히 그렸어요. 단계마다 곡선 크기를 비교할 수 있어요">
+      <Section id="compare" title="Corner zoom" description="모서리 하나를 4배로 키워 나란히 그렸어요. 단계마다 곡선 크기를 비교할 수 있어요">
         <ul className="flex flex-wrap gap-16 rounded-md bg-neutral-muted p-24">
           {radius
             .filter((t) => t.name !== "radius.full")

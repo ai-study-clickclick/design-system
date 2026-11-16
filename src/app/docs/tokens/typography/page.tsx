@@ -1,7 +1,7 @@
 import DocPage, { Section } from "../../../doc-page";
 import { readTokens } from "../read-tokens";
 
-export const metadata = { title: "글자 · 딸깍 디자인 시스템" };
+export const metadata = { title: "Typography · 딸깍 디자인 시스템" };
 
 const groups = [
   { key: "title", title: "Title", description: "화면 제목과 큰 묶음의 제목에 써요" },
@@ -18,12 +18,12 @@ export default function TypographyPage() {
   return (
     <DocPage
       href="/docs/tokens/typography"
-      category="토큰"
-      title="글자"
+      category="Tokens"
+      title="Typography"
       description="글꼴은 Pretendard 하나만 써요. 글자 스타일 하나가 크기 · 굵기 · 줄 높이를 함께 정해요"
-      toc={[{ id: "usage", title: "쓰는 법" }, ...groups.map((g) => ({ id: g.key, title: g.title }))]}
+      toc={[{ id: "usage", title: "Usage" }, ...groups.map((g) => ({ id: g.key, title: g.title }))]}
     >
-      <Section id="usage" title="쓰는 법" description="클래스 text-<이름> 하나로 크기 · 굵기 · 줄 높이가 함께 들어가요. 예: text-title-lg">
+      <Section id="usage" title="Usage" description="클래스 text-<이름> 하나로 크기 · 굵기 · 줄 높이가 함께 들어가요. 예: text-title-lg">
         <p className="rounded-md bg-neutral-muted p-20 text-body-md">글꼴: Pretendard · 대체 글꼴: 시스템 기본 글꼴</p>
       </Section>
       {groups.map((g) => {
