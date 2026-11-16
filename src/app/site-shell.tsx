@@ -54,7 +54,7 @@ export default function SiteShell({ screens, children }: { screens: string[]; ch
       </header>
 
       <div className="mx-auto flex max-w-[1280px] gap-32 px-16 md:px-24 lg:gap-40">
-        <aside className="sticky top-56 hidden h-[calc(100vh-56px)] w-[200px] shrink-0 overflow-y-auto py-32 md:block">
+        <aside className="sticky top-56 hidden h-[calc(100vh-56px)] w-[240px] shrink-0 overflow-y-auto py-32 md:block">
           <Lnb groups={groups} pathname={pathname} />
         </aside>
         <div className="min-w-0 flex-1">{children}</div>
@@ -72,14 +72,16 @@ export default function SiteShell({ screens, children }: { screens: string[]; ch
   );
 }
 
-// 왼쪽 메뉴. 지금 보는 페이지를 면 색과 굵은 글자로 함께 표시한다(색만으로 구분하지 않음)
+// 왼쪽 메뉴. SEED 문서 사이트 크기: 한 줄 높이 40px · 줄 사이 2px · 글자 14px 보통 굵기
+// 지금 보는 페이지는 글자색과 함께 면(bg.transparent-selected)으로 표시해 색만으로 구분하지 않는다
+// 누르는 영역은 40px로 44px보다 작지만 24px 이상이고 줄마다 떨어져 있다(UX.md "손가락으로 쓰기 쉽게")
 function Lnb({ groups, pathname }: { groups: NavGroup[]; pathname: string }) {
   return (
-    <nav aria-label="페이지 목록" className="space-y-24">
+    <nav aria-label="페이지 목록" className="space-y-20">
       {groups.map((group) => (
         <div key={group.title}>
-          <p className="px-12 text-caption text-neutral-subtle">{group.title}</p>
-          <ul className="mt-4">
+          <p className="px-8 pb-4 text-caption text-neutral-subtle">{group.title}</p>
+          <ul className="space-y-2">
             {group.items.map((item) => {
               const active = pathname === item.href;
               return (
@@ -88,16 +90,14 @@ function Lnb({ groups, pathname }: { groups: NavGroup[]; pathname: string }) {
                     <Link
                       href={item.href}
                       aria-current={active ? "page" : undefined}
-                      className={`flex min-h-touch-min items-center rounded-sm px-12 ${
-                        active
-                          ? "bg-transparent-selected text-label-md text-neutral"
-                          : "text-body-md text-neutral-muted hover:bg-transparent-pressed"
+                      className={`flex h-40 items-center rounded-sm px-8 text-body-md ${
+                        active ? "bg-transparent-selected text-neutral" : "text-neutral-muted hover:bg-transparent-pressed"
                       }`}
                     >
-                      {item.title}
+                      <span className="truncate">{item.title}</span>
                     </Link>
                   ) : (
-                    <span className="flex min-h-touch-min items-center gap-8 px-12 text-body-md text-disabled">
+                    <span className="flex h-40 items-center gap-8 px-8 text-body-md text-disabled">
                       {item.title}
                       <span className="text-caption text-neutral-muted">준비 중</span>
                     </span>

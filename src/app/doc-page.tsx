@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { neighbors } from "./site-nav";
+import TocNav from "./toc-nav";
 
 // 문서 한 장의 틀: 분류 · 제목 · 한 줄 설명 · 본문 · 이전/다음 문서, 오른쪽 목차
 // 글자 크기는 4단계(title-lg 24 · title-sm 18 · 14 · 12)만 쓴다(DESIGN.md "색 · 글자")
@@ -54,19 +55,7 @@ export default function DocPage({
 
       {toc.length > 0 && (
         <aside className="sticky top-56 hidden h-fit w-[180px] shrink-0 py-40 xl:block">
-          <p className="text-caption text-neutral-subtle">목차</p>
-          <ul className="mt-8 border-l border-neutral-weak">
-            {toc.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className={`block py-4 text-body-md text-neutral-muted hover:text-neutral ${item.depth === 2 ? "pl-24" : "pl-12"}`}
-                >
-                  {item.title}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <TocNav toc={toc} />
         </aside>
       )}
     </div>
