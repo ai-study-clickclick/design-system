@@ -15,17 +15,17 @@ const sections = [
 
 export default function Home() {
   return (
-    <main className="mx-auto max-w-2xl px-6 py-16">
-      <h1 className="text-2xl font-bold">딸깍 디자인 시스템</h1>
-      <ul className="mt-8 space-y-3">
+    <main className="mx-auto max-w-2xl px-24 py-64">
+      <h1 className="text-title-lg">딸깍 디자인 시스템</h1>
+      <ul className="mt-32 space-y-12">
         {sections.map((section) => (
           <li key={section.href}>
             <Link
               href={section.href}
-              className="block rounded-lg border border-gray-200 p-5 hover:bg-gray-50"
+              className="block rounded-lg border border-neutral-weak p-20 hover:bg-layer-default-pressed"
             >
-              <p className="font-semibold">{section.title}</p>
-              <p className="mt-1 text-sm text-gray-600">{section.description}</p>
+              <p className="text-title-sm">{section.title}</p>
+              <p className="mt-4 text-body-md text-neutral-muted">{section.description}</p>
             </Link>
           </li>
         ))}
