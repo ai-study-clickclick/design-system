@@ -19,7 +19,8 @@ AI 코딩 에이전트용 지시 파일이다. 사람용 설명은 Notion Task "
 - **MVP 범위**: 라이트 모드 + 컴포넌트 19개. 다크모드는 나중에.
   - Button · Input · Select · Checkbox · Switch · Card · Modal · Toast · Textarea · Radio · Badge · Avatar · Tabs · List item · Top bar · Bottom sheet · Spinner · Skeleton · Banner
 - **없는 UI는 묻고 임시로 만든다**: 19개(및 `DESIGN.md`에 정의된 것)에 없는 컴포넌트·패턴이 필요하면 혼자 정하지 않고 "있는 컴포넌트로 대신 / 새로 만들기"를 사용자에게 묻는다. 새로 만들면 임시로 만든 것이라고 기록하고, 디자인이 확정되면 시스템 관리자에게 추가를 요청해 그 컴포넌트로 바꾼다. 절차는 `docs/BRIEF.md` "없는 컴포넌트가 필요할 때"를 따른다.
-- **참고 라이브러리**: 한 라이브러리를 그대로 쓰지 않는다. 부품 뼈대(코드)는 shadcn/ui, 색·글자 규칙은 당근 SEED + 토스 TDS, 문구·화면 규칙은 토스 TDS(규칙만 참고하고 문장은 새로 씀. 토스 자료는 복사 금지), AI 활용 방식은 당근 SEED, 색 단계별 용도·모서리·그림자는 Vercel Geist를 참고한다. shadcn/ui에 없는 앱 부품(Top bar · Bottom sheet · 하단 고정 버튼)은 당근·토스를 참고해 새로 만든다.
+- **참고 라이브러리**: 한 라이브러리를 그대로 쓰지 않는다. 부품 뼈대(코드)는 shadcn/ui, 색·글자 규칙은 당근 SEED + 토스 TDS, 문구·화면 규칙은 토스 TDS(규칙만 참고하고 문장은 새로 씀. 토스 자료는 복사 금지), AI 활용 방식은 당근 SEED, 색 단계별 용도·모서리·그림자는 Vercel Geist를 참고한다. shadcn/ui에 없는 앱 부품(Top bar · Bottom sheet)은 당근·토스를 참고해 새로 만든다. 하단 고정 버튼은 새 부품이 아니라 Button을 화면 아래에 고정하는 배치이고, 구성은 `docs/PATTERNS.md`를 따른다.
+- **작은 결정은 담당자가**: 이름 · 표기처럼 작은 결정은 그 내용을 적는 문서의 담당자가 정하고 팀에 알린다
 - **만드는 화면**: 앱 화면(모바일). 기준 화면 폭은 `DESIGN.md`(1-2)에서 정한다.
 - **기본 스타일**: 글꼴 Pretendard, 기본 테마는 주황 대표 컬러 + SEED 라운드 값, 아이콘은 Lucide 그대로
 - **디자인 토큰 이름**: 기본 색표 + 쓰임새 이름의 2단(`docs/CONVENTIONS.md`)
