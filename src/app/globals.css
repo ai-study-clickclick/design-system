@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+/* 디자인 토큰(src/styles/tokens.css)은 2-2 `/sync`에서 만든다 */
+
+body {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: #ffffff;
+  color: #1a1c20;
+}
