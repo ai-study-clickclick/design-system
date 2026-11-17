@@ -4,10 +4,10 @@ import ScreenFrame from "../screen-frame";
 export default function ExampleScreen() {
   return (
     <ScreenFrame>
-      <main className="px-5 py-10">
-        <h1 className="text-xl font-bold">예시 화면</h1>
-        <p className="mt-2 text-sm text-gray-600">
-          프로토타입은 이 틀(기준 폭 375px, 최대 480px) 안에 만든다
+      <main className="px-screen-margin py-40">
+        <h1 className="text-title-md">예시 화면</h1>
+        <p className="mt-8 text-body-md text-neutral-muted">
+          프로토타입은 이 틀(기준 폭 375px, 최대 480px) 안에 만들어요
         </p>
       </main>
     </ScreenFrame>

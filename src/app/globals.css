@@ -1,9 +1,16 @@
 @import "tailwindcss";
+@import "../styles/tokens.css";
 
-/* 디자인 토큰(src/styles/tokens.css)은 2-2 `/sync`에서 만든다 */
+/* 토큰 값은 src/styles/tokens.css(DESIGN.md에서 자동 생성)를 쓴다 */
 
 body {
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background: #ffffff;
-  color: #1a1c20;
+  font-family: var(--font-family-base);
+  background: var(--bg-layer-default);
+  color: var(--fg-neutral);
+}
+
+/* 키보드로 고른 요소 표시. stroke.focus-ring 2px 선 + 2px 띄움(DESIGN.md "상태와 피드백") */
+:focus-visible {
+  outline: 2px solid var(--stroke-focus-ring);
+  outline-offset: 2px;
 }

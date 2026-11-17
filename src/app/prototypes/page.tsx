@@ -1,43 +1,39 @@
-import fs from "node:fs";
-import path from "node:path";
 import Link from "next/link";
+import DocPage from "../doc-page";
+import { getScreens } from "./screens";
 
-// 폴더 이름 규칙(YYMMDD-topic)에 맞는 폴더만 화면으로 본다
-const SCREEN_FOLDER = /^\d{6}-[a-z0-9-]+$/;
-
-function getScreens() {
-  const dir = path.join(process.cwd(), "src/app/prototypes");
-  return fs
-    .readdirSync(dir, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && SCREEN_FOLDER.test(entry.name))
-    .map((entry) => entry.name)
-    .sort()
-    .reverse();
-}
+export const metadata = { title: "Prototypes · 딸깍 디자인 시스템" };
 
 export default function PrototypesPage() {
   const screens = getScreens();
 
   return (
-    <main className="mx-auto max-w-2xl px-6 py-16">
-      <Link href="/" className="text-sm text-gray-500 hover:underline">
-        ← 처음으로
-      </Link>
-      <h1 className="mt-4 text-2xl font-bold">프로토타입</h1>
-      <p className="mt-2 text-sm text-gray-600">최근에 만든 화면이 위에 있다</p>
+    <DocPage
+      href="/prototypes"
+      category="Prototypes"
+      title="All screens"
+      description="화면 하나가 폴더 하나예요. 최근에 만든 화면이 위에 있어요"
+      toc={[]}
+    >
       {screens.length === 0 ? (
-        <p className="mt-8 text-sm text-gray-500">아직 만든 화면이 없다</p>
+        <p className="rounded-md bg-neutral-muted p-20 text-body-md text-neutral-muted">
+          아직 만든 화면이 없어요. 화면을 만들면 여기와 왼쪽 메뉴에 나와요
+        </p>
       ) : (
-        <ul className="mt-8 divide-y divide-gray-200 border-y border-gray-200">
+        <ul className="divide-y divide-neutral-weak border-y border-neutral-weak">
           {screens.map((name) => (
             <li key={name}>
-              <Link href={`/prototypes/${name}`} className="block py-4 hover:bg-gray-50">
+              <Link
+                href={`/prototypes/${name}`}
+                className="flex min-h-touch-min items-center justify-between px-12 text-body-md hover:bg-transparent-pressed"
+              >
                 {name}
+                <span aria-hidden className="text-neutral-muted">→</span>
               </Link>
             </li>
           ))}
         </ul>
       )}
-    </main>
+    </DocPage>
   );
 }
