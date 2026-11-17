@@ -13,8 +13,7 @@
 |---|---|---|
 | 0-5 | 각자 Claude Code ↔ GitHub 연결, 차단 설정 동작 확인 | 진행 중 (전원) |
 | 1-5 | `docs/PATTERNS.md` 작성, `UX.md` 화면 성격별 묶음 표 옮기기 | 다음 할 일 (유진) |
-| 2-1 | 라이브러리 · 프로토타입 사이트 뼈대(Next.js + Tailwind) + Vercel 연결 | 리뷰 중 (한나) |
-| 2-2 | `/sync` 1단계: `DESIGN.md` → `tokens.css` | 리뷰 중 (한나, 2-1 머지 후 머지 · 그림자는 `DESIGN.md` YAML 추가 후 반영) |
+| 2-2 | `/sync` 1단계: `DESIGN.md` → `tokens.css` | 리뷰 중 (한나, 2-4 토큰 화면 · 사이트 틀 선작업 포함 · 그림자는 `DESIGN.md` YAML 추가 후 반영) |
 | 3-2 준비 | MVP 컴포넌트 19개 이름 · 속성 비교표(shadcn · 당근 · 토스) | 다음 할 일 (수진, `DESIGN.md` 수정 반영) |
 
 ## 주의 사항
