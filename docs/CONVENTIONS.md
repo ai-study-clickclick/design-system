@@ -31,10 +31,11 @@ repo/
 │  ├─ styles/tokens.css  # DESIGN.md에서 자동 생성
 │  └─ app/
 │     ├─ layout.tsx · globals.css · page.tsx  # 사이트 공통 틀 · 공통 스타일 · 첫 화면 (시스템 관리자)
+│     ├─ site-shell.tsx · site-nav.ts · doc-page.tsx · toc-nav.tsx  # 사이트 틀(위 메뉴 · 왼쪽 메뉴 · 문서 · 목차) (시스템 관리자)
 │     ├─ docs/           # 라이브러리: 기본 테마 토큰·컴포넌트 갤러리 (시스템 관리자)
 │     └─ prototypes/     # 화면별 프로토타입. 폴더 하나 = 화면 하나 = 링크 하나 (화면 작업자)
-│        ├─ page.tsx     # 프로토타입 목록 (시스템 관리자)
-│        └─ screen-frame.tsx  # 앱 화면 틀(`ScreenFrame`). 화면 작업자는 고치지 않는다 (시스템 관리자)
+│        ├─ page.tsx · screens.ts  # 프로토타입 목록 · 화면 폴더 찾기 (시스템 관리자)
+│        └─ screen-frame.tsx  # 앱 화면 틀(`ScreenFrame`): 화면 이동 · 기기 크기 고르기. 화면 작업자는 고치지 않는다 (시스템 관리자)
 ├─ .github/
 │  ├─ pull_request_template.md
 │  └─ assets/            # README 등 문서에 쓰는 이미지

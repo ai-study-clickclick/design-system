@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SiteShell from "./site-shell";
+import { getScreens } from "./prototypes/screens";
 
 export const metadata: Metadata = {
   title: "딸깍 디자인 시스템",
@@ -19,7 +21,9 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css"
         />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <SiteShell screens={getScreens()}>{children}</SiteShell>
+      </body>
     </html>
   );
 }
