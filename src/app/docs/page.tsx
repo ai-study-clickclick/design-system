@@ -8,7 +8,7 @@ const sections = [
 export default function DocsPage() {
   return (
     <main className="mx-auto max-w-2xl px-24 py-64">
-      <Link href="/" className="text-body-md text-neutral-subtle hover:underline">
+      <Link href="/" className="text-body-md text-neutral-muted hover:underline">
         ← 처음으로
       </Link>
       <h1 className="mt-16 text-title-lg">라이브러리</h1>
@@ -28,7 +28,7 @@ export default function DocsPage() {
           ) : (
             <li key={section.title} className="rounded-lg border border-dashed border-neutral-weak p-20">
               <p className="text-title-sm">{section.title}</p>
-              <p className="mt-4 text-body-md text-neutral-subtle">{section.description}</p>
+              <p className="mt-4 text-body-md text-neutral-muted">{section.description}</p>
             </li>
           ),
         )}

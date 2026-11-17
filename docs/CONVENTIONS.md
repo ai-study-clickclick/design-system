@@ -70,7 +70,7 @@ repo/
 | 글자 스타일 | `<역할>-<크기>` | `title-lg`, `body-md`, `label-sm` |
 | 토큰 참조 | 중괄호로 다른 토큰을 가리킨다(W3C DTCG 방식) | `{palette.orange-600}` |
 | 피그마 Variables | 토큰 이름의 `.`을 `/`로 바꾼다 | `bg/brand-solid` |
-| 코드에서 쓰기 | CSS 변수는 `.`을 `-`로 바꾼다. Tailwind 클래스는 쓰임새 이름 앞 그룹을 빼고 클래스 앞말로 쓴다(`bg.*` → `bg-*`, `fg.*` → `text-*`, `stroke.*` → `border-*`, `space.*` → `p-*`·`gap-*` 등, `radius.*` → `rounded-*`, 글자 스타일 → `text-*`). Tailwind 기본 색 · 간격 · 글자 크기는 쓸 수 없다(간격 0만 예외로 `p-0` · `top-0`을 쓴다). | `var(--bg-brand-solid)` · `bg-brand-solid` · `text-neutral` · `p-16` · `text-title-lg` |
+| 코드에서 쓰기 | CSS 변수는 `.`을 `-`로 바꾼다. Tailwind 클래스는 쓰임새 이름 앞 그룹을 빼고 클래스 앞말로 쓴다(`bg.*` → `bg-*`, `fg.*` → `text-*`, `stroke.*` → `border-*`, `space.*` → `p-*`·`gap-*` 등, `radius.*` → `rounded-*`, 글자 스타일 → `text-*`). Tailwind 기본 색 · 간격 · 글자 크기는 쓸 수 없다(간격 0만 예외로 `p-0` · `top-0`을 쓴다). 토큰에 없는 숫자(`p-3` 등)는 오류 없이 스타일만 빠진다. 앱 화면(프로토타입) · 컴포넌트에는 대괄호 값(`p-[13px]` · `bg-[#ff0000]` 등)도 쓰지 않는다. 라이브러리 사이트 틀(PC 레이아웃)은 PC 가이드가 없어 예외로 둔다. | `var(--bg-brand-solid)` · `bg-brand-solid` · `text-neutral` · `p-16` · `text-title-lg` |
 | 테마 프리셋 | `theme.<name>`. 대표 컬러 1개(`brand.primary`)와 라운드 기준값(`radius.base`)만 정한다. 기본 토큰은 바꾸지 않는다. | `theme.ocean` |
 | 브랜드 색 단계 | `brand.primary`에서 `palette.brand-100` ~ `palette.brand-900` 단계를 자동 생성한다(OKLCH 명도 단계). 쓰임새 이름(`bg.brand-solid` 등)은 이 단계를 가리키므로 대표 컬러만 바꿔도 함께 바뀐다. 예외: 기본 테마(`theme.default`)는 다시 계산하지 않고 `palette.orange-100` ~ `palette.orange-900`을 그대로 가리킨다. | `{palette.brand-600}` |
 | 라운드 단계 | `radius.base`에서 나머지 단계를 비율로 계산한다. 단계 이름 · 비율은 `DESIGN.md` `rounded`를 따른다. | `radius.md` |

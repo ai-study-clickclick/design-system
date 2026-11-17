@@ -1,6 +1,6 @@
 ---
 name: sync
-description: 코드 → 피그마 방향 동기화. 지금은 1단계(`DESIGN.md` → 코드 테마 `src/styles/tokens.css`)만 한다. 사용자가 "/sync", "토큰 반영해 줘", "DESIGN.md 바꾼 거 코드에 맞춰 줘"라고 할 때 실행한다. 자동으로 실행하지 않는다
+description: 코드 → 피그마 방향 동기화. 지금은 1단계(`DESIGN.md` → 코드 테마 `src/styles/tokens.css`)만 한다. 사용자가 "/sync", "토큰 반영해 줘", "DESIGN.md 바꾼 거 코드에 맞춰 줘"라고 할 때 실행한다. 자동으로 실행하지 않는다.
 ---
 
 # /sync
@@ -13,6 +13,8 @@ description: 코드 → 피그마 방향 동기화. 지금은 1단계(`DESIGN.md
 2. 역할을 확인한다(`AGENTS.md` "역할과 작업 범위"). 1단계는 디자인 시스템을 바꾸므로 시스템 관리자만 실행한다. 화면 작업자가 부르면 멈추고 "시스템 관리자에게 요청이 필요하다"고 알린다.
 
 ## 1단계: `DESIGN.md` → 코드 테마
+
+`DESIGN.md`를 고친 브랜치에서 실행하고, 만든 `src/styles/tokens.css`를 같은 PR에 올린다. 머지 뒤 main의 `DESIGN.md`와 사이트 값이 어긋나지 않게 하기 위해서다.
 
 1. `npm run tokens`를 실행한다. `scripts/build-tokens.mjs`가 `DESIGN.md` 맨 위 YAML을 읽어 `src/styles/tokens.css`를 다시 만든다. 같은 YAML이면 같은 파일이 나오므로, 파일 전체를 다시 만들어도 바뀐 토큰만 달라진다(`.claude/rules/sync.md`의 바뀐 부분만 반영하는 규칙과 맞다).
    - 기본 테마는 `:root`, 다른 테마 프리셋은 `[data-theme="<name>"]`에 들어간다

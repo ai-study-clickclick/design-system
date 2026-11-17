@@ -71,7 +71,7 @@ export default function ScreenFrame({ children }: { children: React.ReactNode })
           onKeyDown={onKeyDown}
           className="absolute top-0 -right-16 hidden h-full w-16 cursor-ew-resize touch-none items-center justify-center md:flex"
         >
-          <div className="h-48 w-4 rounded-full bg-neutral-weak-pressed" />
+          <div className="h-48 w-4 rounded-full bg-neutral-solid" />
         </div>
       </div>
     </div>

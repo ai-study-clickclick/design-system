@@ -29,7 +29,7 @@ const FONT_FALLBACK = '-apple-system, BlinkMacSystemFont, system-ui, "Apple SD G
 
 function readDesign() {
   const text = fs.readFileSync(SOURCE, "utf8");
-  const match = text.match(/^---\n([\s\S]*?)\n---/);
+  const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!match) throw new Error("DESIGN.md 맨 위에 YAML(--- 사이)이 없다");
   return parse(match[1]);
 }
@@ -206,10 +206,11 @@ function baseVariables(design, warnings) {
       const resolved = resolveRef(value, design);
       const name = `--${component}-${prop.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`)}`;
       if (typeof resolved === "object") {
+        // 속성 이름을 넣어, 한 컴포넌트에 글자 스타일이 둘 이상이어도 겹치지 않게 한다
         const t = resolved.typography;
-        lines.push(`--${component}-font-size: var(--typography-${t}-font-size);`);
-        lines.push(`--${component}-font-weight: var(--typography-${t}-font-weight);`);
-        lines.push(`--${component}-line-height: var(--typography-${t}-line-height);`);
+        lines.push(`${name}-font-size: var(--typography-${t}-font-size);`);
+        lines.push(`${name}-font-weight: var(--typography-${t}-font-weight);`);
+        lines.push(`${name}-line-height: var(--typography-${t}-line-height);`);
       } else {
         lines.push(`${name}: ${resolved};`);
       }
@@ -219,12 +220,40 @@ function baseVariables(design, warnings) {
   return { lines: lines.map((l) => l.trimStart()), shared };
 }
 
-function themeVariables(design) {
+// APCA 대비(Lc, 절댓값). DESIGN.md "Colors" 대비 기준과 같은 방식이다
+function apca(textHex, bgHex) {
+  const lum = (hex) => {
+    const [r, g, b] = [1, 3, 5].map((i) => (parseInt(hex.slice(i, i + 2), 16) / 255) ** 2.4);
+    const y = 0.2126729 * r + 0.7151522 * g + 0.072175 * b;
+    return y < 0.022 ? y + (0.022 - y) ** 1.414 : y;
+  };
+  const [yt, yb] = [lum(textHex), lum(bgHex)];
+  const sapc = yb > yt ? (yb ** 0.56 - yt ** 0.57) * 1.14 : (yb ** 0.65 - yt ** 0.62) * 1.14;
+  if (Math.abs(sapc) < 0.1) return 0;
+  return Math.abs(sapc) * 100 - 2.7;
+}
+
+// 브랜드 버튼 글자(fg.on-brand-solid)가 브랜드 600(bg.brand-solid) 위에서 Lc 60을 넘는지 본다. 값은 바꾸지 않고 알리기만 한다
+const BUTTON_TEXT_LC = 60;
+function checkBrandContrast(name, brandHex, design, warnings) {
+  const textHex = primaryHex("{colors.fg.on-brand-solid}", design.colors);
+  if (!/^#[0-9a-f]{6}$/i.test(textHex) || !/^#[0-9a-f]{6}$/i.test(brandHex)) return;
+  const lc = apca(textHex, brandHex);
+  if (lc < BUTTON_TEXT_LC) {
+    warnings.push(`theme.${name}: 브랜드 버튼 글자 대비 Lc ${lc.toFixed(1)}로 기준 ${BUTTON_TEXT_LC}보다 낮다(DESIGN.md "Colors")`);
+  }
+}
+
+function themeVariables(design, warnings) {
   const blocks = [];
   for (const [name, theme] of Object.entries(design.theme ?? {})) {
-    if (name === "default") continue;
+    if (name === "default") {
+      checkBrandContrast(name, primaryHex("{colors.bg.brand-solid}", design.colors), design, warnings);
+      continue;
+    }
     const lines = [];
     const hex = primaryHex(theme["brand.primary"], design.colors);
+    checkBrandContrast(name, brandSteps(hex, design.colors)["600"] ?? hex, design, warnings);
     lines.push(`--brand-primary: ${hex};`);
     for (const [step, value] of Object.entries(brandSteps(hex, design.colors))) {
       lines.push(`--palette-brand-${step}: ${value};`);
@@ -288,7 +317,7 @@ function tailwindTheme(design) {
 const design = readDesign();
 const warnings = [];
 const { lines, shared } = baseVariables(design, warnings);
-const themes = themeVariables(design);
+const themes = themeVariables(design, warnings);
 
 const css = [
   "/* 자동 생성 파일이다. 직접 고치지 않는다 */",
