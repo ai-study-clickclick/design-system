@@ -14,6 +14,8 @@ repo/
 ├─ .gitignore             # 올리지 않을 파일(.env 비밀 값, node_modules 등)
 ├─ PROGRESS.md            # 현재 상태 (CLAUDE.md가 불러옴)
 ├─ DESIGN.md              # 기본 토큰 + 테마 프리셋(YAML) + 시각 규칙
+├─ package.json           # 사이트 설치 목록과 실행 명령(`npm run dev` 등). package-lock.json은 자동 생성
+├─ next.config.ts · tsconfig.json · postcss.config.mjs · eslint.config.mjs  # 사이트 설정 (시스템 관리자)
 ├─ docs/
 │  ├─ CONVENTIONS.md
 │  ├─ UX.md
@@ -28,8 +30,11 @@ repo/
 │  ├─ components/ui/     # 컴포넌트 코드
 │  ├─ styles/tokens.css  # DESIGN.md에서 자동 생성
 │  └─ app/
+│     ├─ layout.tsx · globals.css · page.tsx  # 사이트 공통 틀 · 공통 스타일 · 첫 화면 (시스템 관리자)
 │     ├─ docs/           # 라이브러리: 기본 테마 토큰·컴포넌트 갤러리 (시스템 관리자)
 │     └─ prototypes/     # 화면별 프로토타입. 폴더 하나 = 화면 하나 = 링크 하나 (화면 작업자)
+│        ├─ page.tsx     # 프로토타입 목록 (시스템 관리자)
+│        └─ screen-frame.tsx  # 앱 화면 틀(`ScreenFrame`). 화면 작업자는 고치지 않는다 (시스템 관리자)
 ├─ .github/
 │  ├─ pull_request_template.md
 │  └─ assets/            # README 등 문서에 쓰는 이미지
@@ -81,7 +86,8 @@ repo/
 | 피그마 컴포넌트 | 코드와 같은 이름. Variant 속성명·값도 코드 props와 같게 | `Button` → `variant=primary, size=md` |
 | 브리프·평가 파일 | `YYMMDD-topic.md` | `261014-login.md` |
 | 여러 단계 흐름의 브리프 | `[결정 필요]` 임시로 `YYMMDD-topic-<단계 번호>-<단계 이름>.md`. 프로토타입 폴더도 같은 이름 | `261112-return-1-select.md` |
-| 프로토타입 화면 | 폴더 `src/app/prototypes/YYMMDD-topic/`, 주소 `/prototypes/YYMMDD-topic`. 브리프와 같은 이름 | `/prototypes/261014-login` |
+| 프로토타입 화면 | 폴더 `src/app/prototypes/YYMMDD-topic/`, 주소 `/prototypes/YYMMDD-topic`. 브리프와 같은 이름이다. 화면은 `ScreenFrame`(`prototypes/screen-frame.tsx`)으로 감싼다. | `/prototypes/261014-login` |
+| 프로토타입 링크 | `https://design-system-git-<브랜치>-1nah.vercel.app` + 화면 주소. 브랜치 이름의 `/`는 `-`로 바꾼다. 주소 앞부분이 63자를 넘으면 Vercel이 잘라 바꾸므로, 실제 주소는 커밋 옆 Vercel 표시나 PR의 Vercel 댓글에서 확인한다. | `screen/261014-login` → `https://design-system-git-screen-261014-login-1nah.vercel.app/prototypes/261014-login` |
 | 피그마 Generated 화면 | 프로토타입과 같은 이름의 프레임 | `261014-login` |
 
 ## Git
