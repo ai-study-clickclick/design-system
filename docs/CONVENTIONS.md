@@ -85,6 +85,7 @@ repo/
 | 아이콘 | Lucide 아이콘 이름 그대로 | `ChevronRight` |
 | 컴포넌트 파일 | kebab-case | `button.tsx` |
 | 피그마 컴포넌트 | 코드와 같은 이름. Variant 속성명·값도 코드 props와 같게 | `Button` → `variant=primary, size=md` |
+| 컴포넌트 크기 | 줄임말 `xs` · `sm` · `md` · `lg` · `xl`. 코드 `size` 속성 · 피그마 Variant · 컴포넌트 토큰 이름에 같은 값을 쓴다. 크기가 두 가지 이상이면 기본 크기도 이름에 적고, 하나뿐이면 적지 않는다. 문서에 Large · Medium · Small로 풀어 쓴 크기는 `lg` · `md` · `sm`으로 읽는다. | `Button` `size=lg` · `button-primary-lg` · `tabs-sm` |
 | 브리프·평가 파일 | `YYMMDD-topic.md` | `261014-login.md` |
 | 여러 단계 흐름의 브리프 | `[결정 필요]` 임시로 `YYMMDD-topic-<단계 번호>-<단계 이름>.md`. 프로토타입 폴더도 같은 이름 | `261112-return-1-select.md` |
 | 프로토타입 화면 | 폴더 `src/app/prototypes/YYMMDD-topic/`, 주소 `/prototypes/YYMMDD-topic`. 브리프와 같은 이름이다. 화면은 `ScreenFrame`(`prototypes/screen-frame.tsx`)으로 감싼다. | `/prototypes/261014-login` |
