@@ -9,7 +9,7 @@
 
 ## 내 PC에서 사이트 보기
 
-처음 한 번 `npm install`로 설치한 뒤, `npm run dev`를 실행하고 브라우저에서 `http://localhost:3000`을 엽니다
+Node.js 20 이상(nodejs.org의 LTS 버전)을 먼저 설치합니다. 처음 한 번 `npm install`로 설치한 뒤, `npm run dev`를 실행하고 브라우저에서 `http://localhost:3000`을 엽니다
 
 - `/docs`: 라이브러리(토큰 · 컴포넌트)
 - `/prototypes`: 화면별 프로토타입 목록
