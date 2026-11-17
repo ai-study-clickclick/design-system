@@ -14,6 +14,8 @@ repo/
 ├─ .gitignore             # 올리지 않을 파일(.env 비밀 값, node_modules 등)
 ├─ PROGRESS.md            # 현재 상태 (CLAUDE.md가 불러옴)
 ├─ DESIGN.md              # 기본 토큰 + 테마 프리셋(YAML) + 시각 규칙
+├─ package.json           # 사이트 설치 목록과 실행 명령(`npm run dev` 등). package-lock.json은 npm이 자동 생성
+├─ next.config.ts · tsconfig.json · postcss.config.mjs · eslint.config.mjs  # 사이트 설정 (시스템 관리자)
 ├─ docs/
 │  ├─ CONVENTIONS.md
 │  ├─ UX.md
@@ -23,12 +25,17 @@ repo/
 │  └─ components/        # 컴포넌트별 사용법 (자동 생성)
 ├─ briefs/                # 화면 요청 브리프. `owner` 값이 화면 주인 (화면 작업자)
 ├─ evals/                 # 평가 시나리오와 결과
+├─ scripts/               # 스킬이 실행하는 프로그램(예: build-tokens.mjs, /sync가 tokens.css를 만들 때)
 ├─ src/
 │  ├─ components/ui/     # 컴포넌트 코드
 │  ├─ styles/tokens.css  # DESIGN.md에서 자동 생성
 │  └─ app/
+│     ├─ layout.tsx · globals.css · page.tsx  # 사이트 공통 틀 · 공통 스타일 · 첫 화면 (시스템 관리자)
+│     ├─ site-shell.tsx · site-nav.ts · doc-page.tsx · toc-nav.tsx  # 사이트 틀(위 메뉴 · 왼쪽 메뉴 · 문서 · 목차) (시스템 관리자)
 │     ├─ docs/           # 라이브러리: 기본 테마 토큰·컴포넌트 갤러리 (시스템 관리자)
 │     └─ prototypes/     # 화면별 프로토타입. 폴더 하나 = 화면 하나 = 링크 하나 (화면 작업자)
+│        ├─ page.tsx · screens.ts  # 프로토타입 목록 · 화면 폴더 찾기 (시스템 관리자)
+│        └─ screen-frame.tsx  # 앱 화면 틀(`ScreenFrame`): 화면 이동 · 기기 크기 고르기. 화면 작업자는 고치지 않는다 (시스템 관리자)
 ├─ .github/
 │  ├─ pull_request_template.md
 │  └─ assets/            # README 등 문서에 쓰는 이미지
@@ -64,6 +71,7 @@ repo/
 | 글자 스타일 | `<역할>-<크기>` | `title-lg`, `body-md`, `label-sm` |
 | 토큰 참조 | 중괄호로 다른 토큰을 가리킨다(W3C DTCG 방식) | `{palette.orange-600}` |
 | 피그마 Variables | 토큰 이름의 `.`을 `/`로 바꾼다 | `bg/brand-solid` |
+| 코드에서 쓰기 | CSS 변수는 `.`을 `-`로 바꾼다. Tailwind 클래스는 쓰임새 이름 앞 그룹을 빼고 클래스 앞말로 쓴다(`bg.*` → `bg-*`, `fg.*` → `text-*`, `stroke.*` → `border-*`, `space.*` → `p-*`·`gap-*` 등, `radius.*` → `rounded-*`, 글자 스타일 → `text-*`). Tailwind 기본 색 · 간격 · 글자 크기는 쓸 수 없다(간격 0만 예외로 `p-0` · `top-0`을 쓴다). 토큰에 없는 숫자(`p-3` 등)는 오류 없이 스타일만 빠진다. 앱 화면(프로토타입) · 컴포넌트에는 대괄호 값(`p-[13px]` · `bg-[#ff0000]` 등)도 쓰지 않는다. 사이트 틀(라이브러리 사이트 · 프로토타입 화면 틀 `screen-frame.tsx`)은 PC 가이드가 없어 예외로 둔다. | `var(--bg-brand-solid)` · `bg-brand-solid` · `text-neutral` · `p-16` · `text-title-lg` |
 | 테마 프리셋 | `theme.<name>`. 대표 컬러 1개(`brand.primary`)와 라운드 기준값(`radius.base`)만 정한다. 기본 토큰은 바꾸지 않는다. | `theme.ocean` |
 | 브랜드 색 단계 | `brand.primary`에서 `palette.brand-100` ~ `palette.brand-900` 단계를 자동 생성한다(OKLCH 명도 단계). 쓰임새 이름(`bg.brand-solid` 등)은 이 단계를 가리키므로 대표 컬러만 바꿔도 함께 바뀐다. 예외: 기본 테마(`theme.default`)는 다시 계산하지 않고 `palette.orange-100` ~ `palette.orange-900`을 그대로 가리킨다. | `{palette.brand-600}` |
 | 라운드 단계 | `radius.base`에서 나머지 단계를 비율로 계산한다. 단계 이름 · 비율은 `DESIGN.md` `rounded`를 따른다. | `radius.md` |
@@ -79,7 +87,8 @@ repo/
 | 피그마 컴포넌트 | 코드와 같은 이름. Variant 속성명·값도 코드 props와 같게 | `Button` → `variant=primary, size=md` |
 | 브리프·평가 파일 | `YYMMDD-topic.md` | `261014-login.md` |
 | 여러 단계 흐름의 브리프 | `[결정 필요]` 임시로 `YYMMDD-topic-<단계 번호>-<단계 이름>.md`. 프로토타입 폴더도 같은 이름 | `261112-return-1-select.md` |
-| 프로토타입 화면 | 폴더 `src/app/prototypes/YYMMDD-topic/`, 주소 `/prototypes/YYMMDD-topic`. 브리프와 같은 이름 | `/prototypes/261014-login` |
+| 프로토타입 화면 | 폴더 `src/app/prototypes/YYMMDD-topic/`, 주소 `/prototypes/YYMMDD-topic`. 브리프와 같은 이름이다. 화면은 `ScreenFrame`(`prototypes/screen-frame.tsx`)으로 감싼다. | `/prototypes/261014-login` |
+| 프로토타입 링크 | `https://design-system-git-<브랜치>-1nah.vercel.app` + 화면 주소. 브랜치 이름의 `/`는 `-`로 바꾼다. 주소 앞부분이 63자를 넘으면 Vercel이 잘라 바꾸므로, 실제 주소는 커밋 옆 Vercel 표시나 PR의 Vercel 댓글에서 확인한다. | `screen/261014-login` → `https://design-system-git-screen-261014-login-1nah.vercel.app/prototypes/261014-login` |
 | 피그마 Generated 화면 | 프로토타입과 같은 이름의 프레임 | `261014-login` |
 
 ## Git

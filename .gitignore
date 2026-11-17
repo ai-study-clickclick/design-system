@@ -10,3 +10,7 @@ node_modules/
 # OS·개인 설정
 .DS_Store
 .claude/settings.local.json
+
+# Next.js가 자동으로 만드는 파일
+next-env.d.ts
+*.tsbuildinfo
