@@ -69,7 +69,7 @@ repo/
 | 2단 쓰임새 이름(Semantic) | `<쓰임새>.<이름>`. 1단 색을 가리킨다. 화면·컴포넌트에는 쓰임새 이름만 쓴다. | `bg.brand-solid`, `bg.neutral-weak`, `fg.neutral`, `stroke.neutral-weak` |
 | 색 외 토큰 | `<종류>.<단계>`. 단계가 아닌 쓰임새 값은 `<종류>.<쓰임새>` | `space.4`, `radius.md`, `space.touch-min` |
 | 글자 스타일 | `<역할>-<크기>` | `title-lg`, `body-md`, `label-sm` |
-| 컴포넌트 토큰 | `<컴포넌트>-<종류>-<크기>-<상태>`. 없는 부분은 뺀다. 크기 값은 아래 "코드·피그마"의 컴포넌트 크기를 따르고, 모든 크기에 같은 상태 값은 크기를 빼고 쓴다. | `button-primary-lg-pressed`, `tabs-md`, `tabs-unselected` |
+| 컴포넌트 토큰 | `<컴포넌트>-<종류>-<크기>-<상태>`. 없는 부분은 뺀다. 크기 값은 아래 "코드·피그마"의 컴포넌트 크기를 따르고, 크기가 둘 이상인 컴포넌트는 상태 토큰에도 크기를 붙인다(값이 같아도). | `button-primary-lg-pressed`, `tabs-md`, `tabs-md-unselected` |
 | 토큰 참조 | 중괄호로 다른 토큰을 가리킨다(W3C DTCG 방식) | `{palette.orange-600}` |
 | 피그마 Variables | 토큰 이름의 `.`을 `/`로 바꾼다 | `bg/brand-solid` |
 | 코드에서 쓰기 | CSS 변수는 `.`을 `-`로 바꾼다. Tailwind 클래스는 쓰임새 이름 앞 그룹을 빼고 클래스 앞말로 쓴다(`bg.*` → `bg-*`, `fg.*` → `text-*`, `stroke.*` → `border-*`, `space.*` → `p-*`·`gap-*` 등, `radius.*` → `rounded-*`, 글자 스타일 → `text-*`). Tailwind 기본 색 · 간격 · 글자 크기는 쓸 수 없다(간격 0만 예외로 `p-0` · `top-0`을 쓴다). 토큰에 없는 숫자(`p-3` 등)는 오류 없이 스타일만 빠진다. 앱 화면(프로토타입) · 컴포넌트에는 대괄호 값(`p-[13px]` · `bg-[#ff0000]` 등)도 쓰지 않는다. 사이트 틀(라이브러리 사이트 · 프로토타입 화면 틀 `screen-frame.tsx`)은 PC 가이드가 없어 예외로 둔다. | `var(--bg-brand-solid)` · `bg-brand-solid` · `text-neutral` · `p-16` · `text-title-lg` |
