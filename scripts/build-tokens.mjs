@@ -252,7 +252,9 @@ function themeVariables(design, warnings) {
       continue;
     }
     const lines = [];
+    if (!theme["brand.primary"]) throw new Error(`theme.${name}: brand.primary가 없다(테마는 brand.primary와 radius.base를 함께 정한다)`);
     const hex = primaryHex(theme["brand.primary"], design.colors);
+    if (!/^#[0-9a-f]{6}$/i.test(hex)) throw new Error(`theme.${name}: brand.primary는 #RRGGBB 6자리로 쓴다(지금: ${hex})`);
     checkBrandContrast(name, brandSteps(hex, design.colors)["600"] ?? hex, design, warnings);
     lines.push(`--brand-primary: ${hex};`);
     for (const [step, value] of Object.entries(brandSteps(hex, design.colors))) {

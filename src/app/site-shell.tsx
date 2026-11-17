@@ -17,6 +17,8 @@ export default function SiteShell({ screens, children }: { screens: string[]; ch
   const pathname = usePathname();
   const section = sectionOf(pathname);
   const groups = section === "prototypes" ? prototypeGroups(screens) : libraryGroups;
+  // 휴대폰에서 프로토타입 화면을 볼 때는 위 메뉴를 고정하지 않는다. 스크롤하면 올라가서 앱의 Top bar가 맨 위에 붙는다
+  const isScreen = /^\/prototypes\/[^/]+/.test(pathname);
   const [open, setOpen] = useState(false);
 
   // 다른 페이지로 가면 열려 있던 메뉴를 닫는다
@@ -25,7 +27,7 @@ export default function SiteShell({ screens, children }: { screens: string[]; ch
   return (
     <ScreensContext.Provider value={screens}>
     <div className="min-h-screen bg-layer-default">
-      <header className="sticky top-0 z-20 border-b border-neutral-weak bg-layer-default">
+      <header className={`${isScreen ? "md:sticky" : "sticky"} top-0 z-20 border-b border-neutral-weak bg-layer-default`}>
         <div className="mx-auto flex h-56 max-w-[1280px] items-center gap-16 px-16 md:gap-32 md:px-24">
           <button
             type="button"

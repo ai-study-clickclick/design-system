@@ -11,6 +11,7 @@ import { useScreens } from "../site-shell";
 // 앱 콘텐츠 폭은 기준 375px, 최대 480px(`DESIGN.md` "Layout")라서, 480px보다 넓은 기기에서는 콘텐츠가 가운데에 놓인다
 // 기기 크기는 CSS 픽셀(브라우저가 쓰는 크기) 기준이다
 // 휴대폰(768px 미만)에서는 기기 크기 조절 없이 화면 폭을 다 쓴다
+// PC에서는 틀에 transform을 걸어, 화면에 고정되는 요소(하단 고정 버튼 · Bottom sheet · Modal · Toast의 fixed)가 브라우저 창이 아니라 틀 기준으로 붙게 한다
 type Size = { w: number; h: number };
 
 const BASE: Size = { w: 375, h: 812 };
@@ -82,7 +83,7 @@ export default function ScreenFrame({ children }: { children: React.ReactNode })
 
       <div className="md:mt-16 md:overflow-x-auto md:pb-32">
         <div
-          className="relative mx-auto w-full bg-layer-default md:w-[var(--frame-w)] md:rounded-lg md:border md:border-neutral-weak"
+          className="relative mx-auto w-full bg-layer-default md:w-[var(--frame-w)] md:transform-gpu md:rounded-lg md:border md:border-neutral-weak"
           style={{ "--frame-w": `${size.w}px`, "--frame-h": `${size.h}px` } as React.CSSProperties}
         >
           <div className="min-h-[calc(100vh-56px)] md:h-[var(--frame-h)] md:min-h-0 md:overflow-y-auto md:rounded-lg">
