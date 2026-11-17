@@ -439,7 +439,7 @@ components:
     rounded: "{rounded.radius.sm}"
 ---
 
-> 상태: 초안 v0.4 · 태스크: 1-2
+> 상태: 초안 v0.5 · 태스크: 1-2
 > 이 문서는 **보이는 값**(색 · 글자 · 간격 · 모서리 · 그림자 · 움직임 · 컴포넌트 모양)을 정하는 원본이다
 > 다루는 범위: 기본 테마의 토큰과 MVP 컴포넌트 값. 다크모드와 PC↔MO 변환은 나중에 추가한다
 > 동작은 `docs/UX.md`, 문구는 `docs/WRITING.md`, 화면 유형별 구성은 `docs/PATTERNS.md`를 따른다
@@ -452,7 +452,7 @@ components:
 
 | 영역 | 따를 기준 | 이 파일의 장 |
 | --- | --- | --- |
-| 부품 뼈대(구성 · 구조) | shadcn/ui. 없는 앱 부품(Top bar, Bottom sheet, 하단 고정 버튼)은 당근 · 토스 | Components |
+| 부품 뼈대(구성 · 구조) | shadcn/ui. 없는 앱 부품(Top bar, Bottom sheet)은 당근 · 토스. 하단 고정 버튼은 Button 배치(`docs/PATTERNS.md`). | Components |
 | 색 · 글자 토큰 | 당근 SEED + 토스 TDS | Colors, Typography |
 | 색 단계 용도 · 모서리 · 그림자 쓰는 원칙 | Vercel Geist | Colors, Elevation & Depth, Shapes |
 | 간격 · 그림자 · 모서리 값 | 당근 SEED | `spacing`, Elevation & Depth, Shapes |
