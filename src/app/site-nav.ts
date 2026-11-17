@@ -5,11 +5,15 @@ export type NavGroup = { title: string; items: NavItem[] };
 export type Section = { key: "docs" | "prototypes"; href: string; title: string };
 
 export const sections: Section[] = [
-  { key: "docs", href: "/docs/tokens/color", title: "Library" },
+  { key: "docs", href: "/docs", title: "Library" },
   { key: "prototypes", href: "/prototypes", title: "Prototypes" },
 ];
 
 export const libraryGroups: NavGroup[] = [
+  {
+    title: "Library",
+    items: [{ href: "/docs", title: "Overview", ready: true }],
+  },
   {
     title: "Tokens",
     items: [
