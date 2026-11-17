@@ -5,24 +5,19 @@ export type NavGroup = { title: string; items: NavItem[] };
 export type Section = { key: "docs" | "prototypes"; href: string; title: string };
 
 export const sections: Section[] = [
-  { key: "docs", href: "/docs", title: "Library" },
+  { key: "docs", href: "/docs/tokens/color", title: "Library" },
   { key: "prototypes", href: "/prototypes", title: "Prototypes" },
 ];
 
-// 토큰 · 컴포넌트 문서는 2-4에서 채운다. 그 전까지 "준비 중"으로 보인다
 export const libraryGroups: NavGroup[] = [
-  {
-    title: "Library",
-    items: [{ href: "/docs", title: "Overview", ready: true }],
-  },
   {
     title: "Tokens",
     items: [
-      { href: "/docs/tokens/color", title: "Color" },
-      { href: "/docs/tokens/typography", title: "Typography" },
-      { href: "/docs/tokens/spacing", title: "Spacing" },
-      { href: "/docs/tokens/radius", title: "Radius" },
-      { href: "/docs/tokens/shadow", title: "Shadow" },
+      { href: "/docs/tokens/color", title: "Color", ready: true },
+      { href: "/docs/tokens/typography", title: "Typography", ready: true },
+      { href: "/docs/tokens/spacing", title: "Spacing", ready: true },
+      { href: "/docs/tokens/radius", title: "Radius", ready: true },
+      { href: "/docs/tokens/shadow", title: "Shadow", ready: true },
     ],
   },
   {
