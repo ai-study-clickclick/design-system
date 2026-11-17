@@ -452,7 +452,7 @@ components:
 
 | 영역 | 따를 기준 | 이 파일의 장 |
 | --- | --- | --- |
-| 부품 뼈대(구성 · 구조) | shadcn/ui. 없는 앱 부품(Top bar, Bottom sheet)은 당근 · 토스. 하단 고정 버튼은 Button 배치(`docs/PATTERNS.md`) | Components |
+| 부품 뼈대(구성 · 구조) | shadcn/ui. 없는 앱 부품(Top bar, Bottom sheet)은 당근 · 토스. 하단 고정 버튼은 Button 배치(`docs/PATTERNS.md`). | Components |
 | 색 · 글자 토큰 | 당근 SEED + 토스 TDS | Colors, Typography |
 | 색 단계 용도 · 모서리 · 그림자 쓰는 원칙 | Vercel Geist | Colors, Elevation & Depth, Shapes |
 | 간격 · 그림자 · 모서리 값 | 당근 SEED | `spacing`, Elevation & Depth, Shapes |

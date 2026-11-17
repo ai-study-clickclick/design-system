@@ -69,6 +69,7 @@ repo/
 | 2단 쓰임새 이름(Semantic) | `<쓰임새>.<이름>`. 1단 색을 가리킨다. 화면·컴포넌트에는 쓰임새 이름만 쓴다. | `bg.brand-solid`, `bg.neutral-weak`, `fg.neutral`, `stroke.neutral-weak` |
 | 색 외 토큰 | `<종류>.<단계>`. 단계가 아닌 쓰임새 값은 `<종류>.<쓰임새>` | `space.4`, `radius.md`, `space.touch-min` |
 | 글자 스타일 | `<역할>-<크기>` | `title-lg`, `body-md`, `label-sm` |
+| 컴포넌트 토큰 | `<컴포넌트>-<종류>-<크기>-<상태>`. 없는 부분은 뺀다. 크기 값은 아래 "코드·피그마"의 컴포넌트 크기를 따르고, 모든 크기에 같은 상태 값은 크기를 빼고 쓴다. | `button-primary-lg-pressed`, `tabs-md`, `tabs-unselected` |
 | 토큰 참조 | 중괄호로 다른 토큰을 가리킨다(W3C DTCG 방식) | `{palette.orange-600}` |
 | 피그마 Variables | 토큰 이름의 `.`을 `/`로 바꾼다 | `bg/brand-solid` |
 | 코드에서 쓰기 | CSS 변수는 `.`을 `-`로 바꾼다. Tailwind 클래스는 쓰임새 이름 앞 그룹을 빼고 클래스 앞말로 쓴다(`bg.*` → `bg-*`, `fg.*` → `text-*`, `stroke.*` → `border-*`, `space.*` → `p-*`·`gap-*` 등, `radius.*` → `rounded-*`, 글자 스타일 → `text-*`). Tailwind 기본 색 · 간격 · 글자 크기는 쓸 수 없다(간격 0만 예외로 `p-0` · `top-0`을 쓴다). 토큰에 없는 숫자(`p-3` 등)는 오류 없이 스타일만 빠진다. 앱 화면(프로토타입) · 컴포넌트에는 대괄호 값(`p-[13px]` · `bg-[#ff0000]` 등)도 쓰지 않는다. 사이트 틀(라이브러리 사이트 · 프로토타입 화면 틀 `screen-frame.tsx`)은 PC 가이드가 없어 예외로 둔다. | `var(--bg-brand-solid)` · `bg-brand-solid` · `text-neutral` · `p-16` · `text-title-lg` |
@@ -85,7 +86,7 @@ repo/
 | 아이콘 | Lucide 아이콘 이름 그대로 | `ChevronRight` |
 | 컴포넌트 파일 | kebab-case | `button.tsx` |
 | 피그마 컴포넌트 | 코드와 같은 이름. Variant 속성명·값도 코드 props와 같게 | `Button` → `variant=primary, size=md` |
-| 컴포넌트 크기 | 줄임말 `xs` · `sm` · `md` · `lg` · `xl`. 코드 `size` 속성 · 피그마 Variant · 컴포넌트 토큰 이름에 같은 값을 쓴다. 크기가 두 가지 이상이면 기본 크기도 이름에 적고, 하나뿐이면 적지 않는다. 문서에 Large · Medium · Small로 풀어 쓴 크기는 `lg` · `md` · `sm`으로 읽는다. | `Button` `size=lg` · `button-primary-lg` · `tabs-sm` |
+| 컴포넌트 크기 | 줄임말 `xs` · `sm` · `md` · `lg` · `xl`. 코드 `size` 속성 · 피그마 Variant · 컴포넌트 토큰 이름에 같은 값을 쓴다. 크기가 두 가지 이상이면 기본 크기도 이름에 적고, 하나뿐이면 적지 않는다. 토큰 이름 순서는 위 "디자인 토큰"의 컴포넌트 토큰을 따른다. 문서에 풀어 쓴 크기는 Large · 큰은 `lg`, Medium · 보통은 `md`, Small · 작은은 `sm`으로 읽는다. | `Button` `size=lg` · `button-primary-lg` · `tabs-sm` |
 | 브리프·평가 파일 | `YYMMDD-topic.md` | `261014-login.md` |
 | 여러 단계 흐름의 브리프 | `[결정 필요]` 임시로 `YYMMDD-topic-<단계 번호>-<단계 이름>.md`. 프로토타입 폴더도 같은 이름 | `261112-return-1-select.md` |
 | 프로토타입 화면 | 폴더 `src/app/prototypes/YYMMDD-topic/`, 주소 `/prototypes/YYMMDD-topic`. 브리프와 같은 이름이다. 화면은 `ScreenFrame`(`prototypes/screen-frame.tsx`)으로 감싼다. | `/prototypes/261014-login` |
