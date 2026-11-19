@@ -19,13 +19,14 @@ paths:
 
 | 바뀐 것 | 함께 고칠 것 |
 |---|---|
-| `AGENTS.md` · `CLAUDE.md` · `.claude/rules/` · `.claude/settings.json` | Notion 1-1 카드의 사람용 요약 · `.github/pull_request_template.md` 체크리스트 · `AGENTS.md` 규칙 지도 |
-| `docs/CONVENTIONS.md` | Notion 1-0 카드의 사람용 요약 |
+| `AGENTS.md` · `CLAUDE.md` · `.claude/rules/` · `.claude/settings.json` | `README.md` "사람이 알아야 할 것"(사람에게 필요한 내용이 바뀌었을 때) · `.github/pull_request_template.md` 체크리스트 · `AGENTS.md` 규칙 지도 |
+| `docs/CONVENTIONS.md` | `README.md` "사람이 알아야 할 것"(사람에게 필요한 내용이 바뀌었을 때) |
 | 파일 추가·이동 | `docs/CONVENTIONS.md` 파일 위치 · AI가 꼭 읽어야 하면 `CLAUDE.md` |
-| 스킬 추가·변경 | `AGENTS.md`의 스킬 표 · `docs/CONVENTIONS.md` 스킬 목록 · Notion 실행 계획의 스킬 표 |
+| 스킬 추가·변경 | `AGENTS.md`의 스킬 표 · `docs/CONVENTIONS.md` 스킬 목록 |
 | 태스크 추가·삭제·순서 변경 | `AGENTS.md`의 레인 표 · `PROGRESS.md` |
 | 팀 결정 확정 | 해당 규칙 문서 · `PROGRESS.md` 주의 사항 · 결정이 바뀌었으면 Notion Meeting 페이지의 해당 Decisions 아래에 "이후 변경" 메모(원문은 지우지 않음) |
 
+- 같은 내용은 한 곳에만 적는다. 규칙 · 작업 방식은 저장소(MD)에, Git에 맞지 않는 것(회의록 · 테스트 결과 · 일정 · 태스크)만 Notion에 둔다. Notion 카드에는 할 일 한 줄과 결과물 링크만 두고 규칙을 요약하지 않는다.
 - Notion과 규칙 파일(`AGENTS.md` · `.claude/rules/`)이 다르면 규칙 파일이 기준이다. 사용자에게 알리고 Notion 쪽 수정을 요청한다.
 
 ## 규칙 추가
