@@ -2,6 +2,8 @@
 
 딸깍딸깍 AI 스터디 — 클로드로 자연어 디자인 시스템 만들기
 
+![열심히 했으니까….](.github/assets/readme-cheer.jpg)
+
 - 규칙 · 작업 방식은 이 저장소(MD)에만 있습니다. 같은 내용은 한 곳에만 적고, Notion에는 Git에 맞지 않는 것(회의록 · 테스트 결과 · 일정 · 태스크)만 둡니다.
 - 할 일 · 일정 · 회의록: Notion "디자인 시스템"(프로젝트 실행 계획 · Task DB · Meeting)
 - 지금 상태 · 사이트 주소: [`PROGRESS.md`](PROGRESS.md)
@@ -40,5 +42,3 @@ Node.js 20 이상(nodejs.org의 LTS 버전)을 먼저 설치합니다. 처음 �
 
 - `/docs`: 라이브러리(토큰 · 컴포넌트)
 - `/prototypes`: 화면별 프로토타입 목록
-
-![열심히 했으니까….](.github/assets/readme-cheer.jpg)
