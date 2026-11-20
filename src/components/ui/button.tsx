@@ -7,7 +7,7 @@ import { cn } from "./cn";
 import { usePressScale } from "./press";
 import { Spinner } from "./spinner";
 
-// Button: variant primary · secondary · critical · outline, size md(44) · lg(52)
+// Button: variant primary · secondary · critical · outline, size sm(36, 임시) · md(44) · lg(52)
 // 폭은 Button이 아니라 놓는 자리가 정한다(fullWidth 없음, 3-2 비교표 결정 3)
 // 채움 버튼은 한 화면에 하나(DESIGN.md "컴포넌트별 사용 규칙")
 const buttonVariants = cva(
@@ -23,7 +23,8 @@ const buttonVariants = cva(
       },
       size: {
         lg: "h-(--button-primary-height) rounded-md px-20 text-label-lg",
-        md: "h-(--button-medium-height) rounded-sm px-16 text-label-md",
+        md: "h-(--button-medium-height) rounded-(--button-md-rounded) px-16 text-label-md",
+        sm: "h-(--button-sm-height) rounded-sm px-14 text-label-md",
       },
     },
     defaultVariants: { variant: "primary", size: "lg" },

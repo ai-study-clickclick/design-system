@@ -7,7 +7,7 @@ import { cn } from "./cn";
 
 // Checkbox: 여러 개를 고르거나 하나를 켜고 끈다
 // label · checked(indeterminate 포함) · disabled · invalid / size md · lg / variant square · ghost(3-2 비교표)
-// 상자 md 20 · lg 24, 줄 높이 md 32 · lg 36, 라운드 4는 SEED 값 임시(DESIGN.md 추가 요청)
+// 상자 md 20 · lg 24, 줄 높이 md 32 · lg 36은 SEED 값 임시(DESIGN.md 추가 요청). 라운드 radius.xs
 // 라벨까지 누르는 영역이다(DESIGN.md "Checkbox · Radio · Switch")
 export type CheckboxProps = Omit<React.ComponentProps<typeof CheckboxPrimitive.Root>, "asChild"> & {
   label?: React.ReactNode;
@@ -42,7 +42,7 @@ export function Checkbox({
         checked={checked}
         aria-invalid={invalid || undefined}
         className={cn(
-          "peer flex shrink-0 items-center justify-center rounded-(--checkbox-rounded)",
+          "peer flex shrink-0 items-center justify-center rounded-xs",
           size === "md" ? "size-20" : "size-24",
           square
             ? cn(

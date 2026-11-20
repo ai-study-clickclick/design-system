@@ -7,6 +7,7 @@ import { cn } from "./cn";
 // BottomSheet: 아래에서 올라오는 시트. 선택 목록 · 옵션 목록에 쓴다(DESIGN.md "피드백 종류별 컴포넌트")
 // 뼈대는 shadcn Drawer(vaul), 모양은 당근 · 토스 참고. 라운드 24 · 여백 16 · 그림자 s2
 // open · title · description · footer(하단 버튼) · showHandle · showCloseButton(3-2 비교표)
+// 핸들과 닫기는 함께 쓰지 않는다. showCloseButton을 켜면 핸들은 숨긴다
 export type BottomSheetProps = {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -46,8 +47,8 @@ export function BottomSheet({
             className,
           )}
         >
-          {showHandle && <div aria-hidden className="mx-auto mt-8 h-4 w-36 shrink-0 rounded-full bg-neutral-weak-pressed" />}
-          <div className="flex items-start gap-8 px-16 pt-16">
+          {showHandle && !showCloseButton && <div aria-hidden className="mx-auto mt-8 h-4 w-36 shrink-0 rounded-full bg-neutral-weak-pressed" />}
+          <div className={cn("flex items-start gap-8 px-16", showHandle && !showCloseButton ? "pt-12" : "pt-20")}>
             <div className="min-w-0 flex-1">
               <Drawer.Title className="text-title-md">{title}</Drawer.Title>
               {description ? (

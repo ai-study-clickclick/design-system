@@ -3,12 +3,22 @@
 /* 이름은 docs/CONVENTIONS.md "디자인 토큰"을 따른다 */
 
 :root {
-  /* 버튼 outline md (DESIGN.md 추가 전) */
-  --button-outline-md-height: 44px;
-  --button-outline-md-rounded: var(--radius-sm);
+  /* Button md 라운드 10(DESIGN.md 8에서 바꾸기로 함, 8차 확정 전). outline md도 같은 크기 */
+  --button-md-rounded: 10px;
+  /* Button sm: 높이 36 · 라운드 8 · 좌우 14 · 글자 14 (SEED ActionButton small, 3-2 · DESIGN.md 추가 요청) */
+  --button-sm-height: 36px;
 
-  /* Checkbox · Radio: 상자 md 20 · lg 24, 줄 높이 md 32 · lg 36 (SEED Checkmark · Radiomark) */
-  --checkbox-rounded: 4px;
+  /* Checkbox · Radio: 상자 md 20 · lg 24, 줄 높이 md 32 · lg 36 (SEED Checkmark · Radiomark). Checkbox 라운드는 radius.xs */
+
+  /* Badge sm: 최소 높이 20 · 좌우 6 · 위아래 2 · 라운드 4 (SEED Badge medium) */
+  --badge-sm-min-height: 20px;
+  --badge-sm-rounded: 4px;
+
+  /* Tabs solid: 둥근 칩 높이 36 (임시) */
+  --tabs-solid-height: 36px;
+
+  /* Select plain: 테두리 없는 작은 선택 높이 32 (임시) */
+  --select-plain-height: 32px;
 
   /* Switch: 트랙 sm 26×16 · md 38×24 · lg 52×32, 손잡이 12 · 20 · 26 (SEED Switchmark) */
   --switch-sm-width: 26px;
@@ -35,7 +45,22 @@
 
 /* 그림자: DESIGN.md 본문 "Elevation & Depth" 표 값. YAML에 들어가면 tokens.css로 옮긴다 */
 @theme {
+  /* Badge sm 글자 11px (SEED t1) */
+  --text-label-xs: 11px;
+  --text-label-xs--line-height: 14px;
+  --text-label-xs--font-weight: 700;
   --shadow-s1: 0 1px 4px rgba(0, 0, 0, 0.08);
   --shadow-s2: 0 2px 10px rgba(0, 0, 0, 0.1);
   --shadow-s3: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* corner smoothing: 피그마 60%(iOS)와 비슷하게. 지원하는 브라우저(크롬 계열)만 적용되고, 나머지는 일반 라운드로 보인다 */
+/* 동그란 요소(rounded-full)는 원 그대로 둔다 */
+@layer base {
+  * {
+    corner-shape: superellipse(1.6);
+  }
+  .rounded-full {
+    corner-shape: round;
+  }
 }

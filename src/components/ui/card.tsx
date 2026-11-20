@@ -1,27 +1,41 @@
 import { cn } from "./cn";
 
-// Card: 사진이 주인 항목이나 묶음을 담는 면. shadcn 구조 그대로, variant 없음
+// Card: 사진이 주인 항목이나 묶음을 담는 면. shadcn 구조 그대로
 // 라운드 16 · 여백 16 · bg.layer-default · stroke.neutral-weak 1px · 그림자 없음
-export function Card({ className, ...props }: React.ComponentProps<"div">) {
+// variant default · emphasis(대표 컬러 면). emphasis는 3-2 비교표 · DESIGN.md에 없는 임시 추가
+export type CardProps = React.ComponentProps<"div"> & { variant?: "default" | "emphasis" };
+
+export function Card({ variant = "default", className, ...props }: CardProps) {
   return (
     <div
       data-slot="card"
-      className={cn("flex flex-col gap-12 rounded-lg border border-neutral-weak bg-layer-default p-16 text-neutral", className)}
+      data-emphasis={variant === "emphasis" || undefined}
+      className={cn(
+        "group/card flex flex-col gap-16 rounded-lg p-16",
+        variant === "default" ? "border border-neutral-weak bg-layer-default text-neutral" : "bg-brand-solid text-on-brand-solid",
+        className,
+      )}
       {...props}
     />
   );
 }
 
+/** 제목 · 부제 · 오른쪽 행동을 묶는 머리. 제목과 부제는 붙여 둔다 */
 export function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
-  return <div data-slot="card-header" className={cn("flex items-start gap-8", className)} {...props} />;
+  return <div data-slot="card-header" className={cn("flex items-start gap-12", className)} {...props} />;
+}
+
+/** 제목과 부제를 위아래로 붙인다(간격 4) */
+export function CardHeading({ className, ...props }: React.ComponentProps<"div">) {
+  return <div data-slot="card-heading" className={cn("flex min-w-0 flex-1 flex-col gap-4", className)} {...props} />;
 }
 
 export function CardTitle({ className, ...props }: React.ComponentProps<"h3">) {
-  return <h3 data-slot="card-title" className={cn("min-w-0 flex-1 text-title-sm", className)} {...props} />;
+  return <h3 data-slot="card-title" className={cn("text-title-sm", className)} {...props} />;
 }
 
 export function CardDescription({ className, ...props }: React.ComponentProps<"p">) {
-  return <p data-slot="card-description" className={cn("text-body-md text-neutral-subtle", className)} {...props} />;
+  return <p data-slot="card-description" className={cn("text-body-md text-neutral-subtle group-data-emphasis/card:text-on-brand-solid", className)} {...props} />;
 }
 
 /** 제목 오른쪽 보조 행동(아이콘 버튼 등) */

@@ -7,7 +7,7 @@ const typography = [
   "title-lg", "title-md", "title-sm",
   "body-lg", "body-md", "body-sm",
   "emphasis-md", "caption",
-  "label-lg", "label-base", "label-md", "label-sm",
+  "label-lg", "label-base", "label-md", "label-sm", "label-xs",
 ];
 
 const twMerge = extendTailwindMerge({

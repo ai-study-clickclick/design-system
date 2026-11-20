@@ -1,11 +1,13 @@
 "use client";
 
 import { AlertDialog } from "radix-ui";
+import { X } from "lucide-react";
 import { cn } from "./cn";
 
 // Modal: 확인 요청 전용(DESIGN.md "피드백 종류별 컴포넌트"). 바깥을 눌러도 닫히지 않는다
 // 뼈대는 shadcn AlertDialog. 라운드 20 · 최대 폭 272 · 여백 20 · 제목 20 bold · 내용 16 · 그림자 s3
 // open · title · description · ModalFooter(버튼 최대 2개)(3-2 비교표)
+// showCloseButton(오른쪽 위 X, 기본 끔)은 3-2 비교표에 없는 임시 추가. 답하지 않고 빠져나가도 되는 확인에만 쓴다
 export type ModalProps = {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -15,10 +17,11 @@ export type ModalProps = {
   description?: React.ReactNode;
   /** ModalFooter에 버튼을 최대 2개 */
   children?: React.ReactNode;
+  showCloseButton?: boolean;
   className?: string;
 };
 
-export function Modal({ open, onOpenChange, trigger, title, description, children, className }: ModalProps) {
+export function Modal({ open, onOpenChange, trigger, title, description, children, showCloseButton = false, className }: ModalProps) {
   return (
     <AlertDialog.Root open={open} onOpenChange={onOpenChange}>
       {trigger && <AlertDialog.Trigger asChild>{trigger}</AlertDialog.Trigger>}
@@ -31,7 +34,15 @@ export function Modal({ open, onOpenChange, trigger, title, description, childre
             className,
           )}
         >
-          <div className="flex flex-col gap-8">
+          {showCloseButton && (
+            <AlertDialog.Cancel
+              aria-label="닫기"
+              className="absolute top-8 right-8 flex size-touch-min items-center justify-center rounded-full text-neutral-subtle active:bg-transparent-pressed"
+            >
+              <X aria-hidden className="size-20" />
+            </AlertDialog.Cancel>
+          )}
+          <div className={cn("flex flex-col gap-8", showCloseButton && "pr-24")}>
             <AlertDialog.Title className="text-title-md">{title}</AlertDialog.Title>
             {description ? (
               <AlertDialog.Description className="text-body-lg text-neutral-muted">{description}</AlertDialog.Description>
