@@ -7,7 +7,8 @@ import { cn } from "./cn";
 import { usePressScale } from "./press";
 import { Spinner } from "./spinner";
 
-// Button: variant primary · secondary · critical · outline, size sm(36, 임시) · md(44) · lg(52)
+// Button: variant primary · primaryWeak · neutral · secondary · critical · outline, size sm(36, 임시) · md(44) · lg(52)
+// primaryWeak(연한 대표 컬러) · neutral(진한 회색)은 3-2 비교표 · DESIGN.md에 없는 임시 추가
 // 폭은 Button이 아니라 놓는 자리가 정한다(fullWidth 없음, 3-2 비교표 결정 3)
 // 채움 버튼은 한 화면에 하나(DESIGN.md "컴포넌트별 사용 규칙")
 const buttonVariants = cva(
@@ -16,6 +17,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: "bg-brand-solid text-on-brand-solid active:bg-brand-solid-pressed disabled:bg-disabled disabled:text-disabled",
+        primaryWeak: "bg-brand-weak text-brand-contrast active:bg-brand-weak-pressed disabled:bg-disabled disabled:text-disabled",
+        neutral: "bg-neutral-solid text-on-neutral-solid active:bg-neutral-solid-pressed disabled:bg-disabled disabled:text-disabled",
         secondary: "bg-neutral-weak text-neutral active:bg-neutral-weak-pressed disabled:bg-disabled disabled:text-disabled",
         critical: "bg-critical-solid text-on-critical-solid active:bg-critical-solid-pressed disabled:bg-disabled disabled:text-disabled",
         // outline md는 DESIGN.md에 아직 없어 크기만 md를 쓴다(button-outline-md 추가 요청)
@@ -34,6 +37,8 @@ const buttonVariants = cva(
 // 로딩이 1초를 넘으면 배경을 -pressed로 고정한다(DESIGN.md "상태와 피드백"의 로딩)
 const loadingBackground = {
   primary: "bg-brand-solid-pressed",
+  primaryWeak: "bg-brand-weak-pressed",
+  neutral: "bg-neutral-solid-pressed",
   secondary: "bg-neutral-weak-pressed",
   critical: "bg-critical-solid-pressed",
   outline: "bg-transparent-pressed",

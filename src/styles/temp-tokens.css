@@ -10,11 +10,7 @@
 
   /* Checkbox · Radio: 상자 md 20 · lg 24, 줄 높이 md 32 · lg 36 (SEED Checkmark · Radiomark). Checkbox 라운드는 radius.xs */
 
-  /* Badge sm: 최소 높이 20 · 좌우 6 · 위아래 2 · 라운드 4 (SEED Badge medium) */
-  --badge-sm-min-height: 20px;
-  --badge-sm-rounded: 4px;
-
-  /* Tabs solid: 둥근 칩 높이 36 (임시) */
+  /* Tabs solid: 둥근 칩 높이 36, layout=hug만 (임시) */
   --tabs-solid-height: 36px;
 
   /* Select plain: 테두리 없는 작은 선택 높이 32 (임시) */
@@ -45,10 +41,6 @@
 
 /* 그림자: DESIGN.md 본문 "Elevation & Depth" 표 값. YAML에 들어가면 tokens.css로 옮긴다 */
 @theme {
-  /* Badge sm 글자 11px (SEED t1) */
-  --text-label-xs: 11px;
-  --text-label-xs--line-height: 14px;
-  --text-label-xs--font-weight: 700;
   --shadow-s1: 0 1px 4px rgba(0, 0, 0, 0.08);
   --shadow-s2: 0 2px 10px rgba(0, 0, 0, 0.1);
   --shadow-s3: 0 4px 16px rgba(0, 0, 0, 0.12);
@@ -60,7 +52,8 @@
   * {
     corner-shape: superellipse(1.6);
   }
-  .rounded-full {
+  .rounded-full,
+  .no-corner-smoothing * {
     corner-shape: round;
   }
 }
