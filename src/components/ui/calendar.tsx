@@ -8,6 +8,7 @@ import { cn } from "./cn";
 // Calendar: 날짜 고르기. MVP 19개 밖에서 추가한 컴포넌트(임시, 8차 미팅 확정 전)
 // 뼈대는 shadcn Calendar(react-day-picker), 값은 SEED 참고 임시. 날짜 칸 44(누르는 영역)
 // mode="single" · "range" · "multiple"은 react-day-picker 속성을 그대로 쓴다
+// 폭은 놓인 자리를 꽉 채우고 7칸을 똑같이 나눈다. 칸 높이 44, 날짜 원 40
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
 export function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
@@ -17,21 +18,21 @@ export function Calendar({ className, classNames, showOutsideDays = true, ...pro
       locale={ko}
       showOutsideDays={showOutsideDays}
       data-slot="calendar"
-      className={cn("w-fit text-neutral", className)}
+      className={cn("w-full text-neutral", className)}
       classNames={{
         root: cn(d.root, "relative"),
-        months: "flex flex-col",
-        month: "flex flex-col gap-8",
+        months: "flex w-full flex-col",
+        month: "flex w-full flex-col gap-8",
         nav: "absolute inset-x-0 top-0 flex h-(--calendar-day-size) items-center justify-between",
         button_previous: "flex size-(--calendar-day-size) items-center justify-center rounded-full active:bg-transparent-pressed disabled:text-disabled",
         button_next: "flex size-(--calendar-day-size) items-center justify-center rounded-full active:bg-transparent-pressed disabled:text-disabled",
         month_caption: "flex h-(--calendar-day-size) items-center justify-center",
         caption_label: "text-title-sm",
-        month_grid: "border-collapse",
+        month_grid: "w-full border-collapse",
         weekdays: "flex",
-        weekday: "flex size-(--calendar-day-size) items-center justify-center text-label-sm text-neutral-subtle",
+        weekday: "flex h-(--calendar-day-size) flex-1 items-center justify-center text-label-sm text-neutral-subtle",
         week: "flex",
-        day: "flex size-(--calendar-day-size) items-center justify-center p-0 text-body-lg",
+        day: "flex h-(--calendar-day-size) flex-1 items-center justify-center p-0 text-body-lg",
         day_button:
           "flex size-40 items-center justify-center rounded-full active:bg-transparent-pressed disabled:pointer-events-none",
         today: "text-brand-contrast",

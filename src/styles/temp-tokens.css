@@ -41,6 +41,12 @@
   --textarea-auto-min-height: 95px;
   --textarea-fixed-height: 70px;
 
+  /* SegmentedControl: 바깥 높이 md 40 · sm 32(안쪽 칸 36 · 28, 바깥 여백 2), 라운드 바깥 10 · 칸 8 (MVP 밖 임시) */
+  --segmented-control-md-item-height: 36px;
+  --segmented-control-sm-item-height: 28px;
+  --segmented-control-rounded: 10px;
+  --segmented-control-item-rounded: 8px;
+
   /* Calendar (SEED 값 참고, MVP 밖 추가 컴포넌트) */
   --calendar-day-size: 44px;
 }
@@ -52,14 +58,29 @@
   --shadow-s3: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
-/* corner smoothing: 피그마 60%(iOS)와 비슷하게. 지원하는 브라우저(크롬 계열)만 적용되고, 나머지는 일반 라운드로 보인다 */
-/* 동그란 요소(rounded-full)는 원 그대로 둔다 */
+/* corner smoothing: 위 메뉴 세그먼트로 세 가지를 비교한다(site-shell.tsx)
+   기본: 일반 라운드
+   html.corner-smooth: superellipse만. 같은 라운드 안에서 모서리가 각져 덜 둥글어 보인다
+   html.corner-comp: superellipse + 라운드 1.6배. 피그마 60%처럼 곡선이 라운드 값 바깥에서 시작하는 것을 흉내 낸다(근사값, 피그마 견본과 비교해 조정 필요)
+   토큰 값(피그마와 같은 값)은 바꾸지 않고, 보정은 웹에서 그릴 때만 한다. 동그란 요소(rounded-full)는 원 그대로 */
 @layer base {
-  * {
+  html.corner-smooth *,
+  html.corner-comp * {
     corner-shape: superellipse(1.6);
   }
-  .rounded-full,
-  .no-corner-smoothing * {
+  html .rounded-full {
     corner-shape: round;
   }
+}
+
+html.corner-comp {
+  --radius-xs: calc(6px * 1.6);
+  --radius-sm: calc(8px * 1.6);
+  --radius-md: calc(12px * 1.6);
+  --radius-lg: calc(16px * 1.6);
+  --radius-xl: calc(20px * 1.6);
+  --radius-2xl: calc(24px * 1.6);
+  --button-md-rounded: calc(10px * 1.6);
+  --segmented-control-rounded: calc(10px * 1.6);
+  --segmented-control-item-rounded: calc(8px * 1.6);
 }

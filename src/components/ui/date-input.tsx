@@ -92,9 +92,7 @@ export function DateInput({
           </BottomSheetClose>
         }
       >
-        <div className="flex justify-center">
-          <Calendar mode="single" selected={draft} onSelect={setDraft} disabled={disabledDates} defaultMonth={draft} />
-        </div>
+        <Calendar mode="single" selected={draft} onSelect={setDraft} disabled={disabledDates} defaultMonth={draft} />
       </BottomSheet>
     </Field>
   );
