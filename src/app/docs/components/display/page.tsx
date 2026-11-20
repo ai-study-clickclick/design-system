@@ -15,6 +15,7 @@ export default function DisplayPage() {
     <DocPage
       href="/docs/components/display"
       category="Components"
+      wide
       title="Display"
       description="내용을 담아 보여 주는 부품이다."
       toc={sections.map(({ id, title }) => ({ id, title }))}

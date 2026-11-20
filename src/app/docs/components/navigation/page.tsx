@@ -13,6 +13,7 @@ export default function NavigationPage() {
     <DocPage
       href="/docs/components/navigation"
       category="Components"
+      wide
       title="Navigation"
       description="지금 위치를 알려 주고 화면 사이를 오가게 하는 부품이다."
       toc={sections.map(({ id, title }) => ({ id, title }))}

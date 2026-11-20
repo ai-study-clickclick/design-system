@@ -19,6 +19,7 @@ export default function InputsPage() {
     <DocPage
       href="/docs/components/inputs"
       category="Components"
+      wide
       title="Inputs"
       description="값을 넣거나 고르는 부품이다. 라벨 → 입력칸 → 도움말 또는 오류 문구 순서로 둔다."
       toc={sections.map(({ id, title }) => ({ id, title }))}

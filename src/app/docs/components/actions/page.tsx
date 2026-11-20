@@ -8,6 +8,7 @@ export default function ActionsPage() {
     <DocPage
       href="/docs/components/actions"
       category="Components"
+      wide
       title="Actions"
       description="누르면 무언가를 실행하는 부품이다. 채움 버튼은 한 화면에 하나만 둔다."
       toc={[

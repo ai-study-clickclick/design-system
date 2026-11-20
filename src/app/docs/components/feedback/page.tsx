@@ -17,6 +17,7 @@ export default function FeedbackPage() {
     <DocPage
       href="/docs/components/feedback"
       category="Components"
+      wide
       title="Feedback"
       description="상태와 결과를 알려 주는 부품이다. 언제 무엇을 쓰는지는 docs/UX.md “피드백의 종류”를 따른다."
       toc={sections.map(({ id, title }) => ({ id, title }))}
