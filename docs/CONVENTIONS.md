@@ -1,6 +1,6 @@
 # CONVENTIONS.md
 
-파일 위치 · 이름 · MD 작성 규칙이다. 사람용 요약은 Notion Task "저장소 구조·네이밍 규칙"(1-0) 카드에 있다.
+파일 위치 · 이름 · MD 작성 규칙이다. 사람용 요약은 `README.md`에 있다.
 
 > 상태: 초안
 
@@ -26,6 +26,8 @@ repo/
 ├─ briefs/                # 화면 요청 브리프. `owner` 값이 화면 주인 (화면 작업자)
 ├─ evals/                 # 평가 시나리오와 결과
 ├─ scripts/               # 스킬이 실행하는 프로그램(예: build-tokens.mjs, /sync가 tokens.css를 만들 때)
+│  ├─ build-figma-variables.mjs  # /sync 2단계: tokens.css → 피그마 Variables 코드
+│  └─ figma-text-styles/  # 글자 스타일 피그마 플러그인. 피그마 앱에서 사람이 실행
 ├─ src/
 │  ├─ components/ui/     # 컴포넌트 코드
 │  ├─ styles/tokens.css  # DESIGN.md에서 자동 생성
@@ -86,9 +88,10 @@ repo/
 | 아이콘 | Lucide 아이콘 이름 그대로 | `ChevronRight` |
 | 컴포넌트 파일 | kebab-case | `button.tsx` |
 | 피그마 컴포넌트 | 코드와 같은 이름. Variant 속성명·값도 코드 props와 같게 | `Button` → `variant=primary, size=md` |
+| 컴포넌트 속성 | 속성 이름 · 값이 두 단어 이상이면 camelCase. 코드 props와 피그마 Variant에 같게 쓴다. | `errorMessage` · `autoSize` · `tone=staticWhite` |
 | 컴포넌트 크기 | 줄임말 `xs` · `sm` · `md` · `lg` · `xl`. 코드 `size` 속성 · 피그마 Variant · 컴포넌트 토큰 이름에 같은 값을 쓴다. 크기가 두 가지 이상이면 기본 크기도 이름에 적고, 하나뿐이면 적지 않는다. 토큰 이름 순서는 위 "디자인 토큰"의 컴포넌트 토큰을 따른다. 문서에 풀어 쓴 크기는 Large · 큰은 `lg`, Medium · 보통은 `md`, Small · 작은은 `sm`으로 읽는다. | `Button` `size=lg` · `button-primary-lg` · `tabs-sm` |
 | 브리프·평가 파일 | `YYMMDD-topic.md` | `261014-login.md` |
-| 여러 단계 흐름의 브리프 | `[결정 필요]` 임시로 `YYMMDD-topic-<단계 번호>-<단계 이름>.md`. 프로토타입 폴더도 같은 이름 | `261112-return-1-select.md` |
+| 여러 단계 흐름의 브리프 | `YYMMDD-topic-<단계 번호>-<단계 이름>.md`. 프로토타입 폴더도 같은 이름이다. 앞부분(`YYMMDD-topic`)이 같으면 같은 흐름이다. | `261112-return-1-select.md` |
 | 프로토타입 화면 | 폴더 `src/app/prototypes/YYMMDD-topic/`, 주소 `/prototypes/YYMMDD-topic`. 브리프와 같은 이름이다. 화면은 `ScreenFrame`(`prototypes/screen-frame.tsx`)으로 감싼다. | `/prototypes/261014-login` |
 | 프로토타입 링크 | `https://design-system-git-<브랜치>-1nah.vercel.app` + 화면 주소. 브랜치 이름의 `/`는 `-`로 바꾼다. 주소 앞부분이 63자를 넘으면 Vercel이 잘라 바꾸므로, 실제 주소는 커밋 옆 Vercel 표시나 PR의 Vercel 댓글에서 확인한다. | `screen/261014-login` → `https://design-system-git-screen-261014-login-1nah.vercel.app/prototypes/261014-login` |
 | 피그마 Generated 화면 | 프로토타입과 같은 이름의 프레임 | `261014-login` |
