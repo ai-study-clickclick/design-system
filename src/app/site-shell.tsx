@@ -136,12 +136,12 @@ function Lnb({ groups, pathname }: { groups: NavGroup[]; pathname: string }) {
   );
 }
 
-// 라운드 corner smoothing 비교: 기본 · Smoothing(superellipse만) · 보정(라운드 1.6배 + superellipse)
+// 라운드 corner smoothing 비교: Default · Smoothing(superellipse만) · Adjusted(라운드 1.45배 + superellipse)
 // 비교해 보기 위한 사이트 도구다(src/styles/temp-tokens.css)
 const cornerModes = [
-  { value: "round", label: "기본" },
+  { value: "round", label: "Default" },
   { value: "smooth", label: "Smoothing" },
-  { value: "comp", label: "보정" },
+  { value: "comp", label: "Adjusted" },
 ];
 
 function CornerSmoothingToggle() {
@@ -153,7 +153,7 @@ function CornerSmoothingToggle() {
   }, [mode]);
   return (
     <div className="ml-auto hidden items-center gap-8 sm:flex">
-      <span className="text-label-sm text-neutral-subtle">Corner</span>
+      <span className="text-label-sm text-neutral-subtle">Corner smoothing</span>
       <SegmentedControl size="sm" aria-label="라운드 모서리 보기" options={cornerModes} value={mode} onValueChange={setMode} />
     </div>
   );
