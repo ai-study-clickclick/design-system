@@ -11,7 +11,7 @@
 
 | Step | 할 일 | 상태 |
 |---|---|---|
-| 2-3 | MVP 컴포넌트 코드(값이 있는 15개부터, 이름 · 속성은 3-2 비교표) + 2-4 갤러리 | 다음 할 일 (한나) |
+| 2-3 | MVP 컴포넌트 19개 + Calendar(임시) 코드 · 2-4 갤러리(`/docs/components`). 값이 없는 부분은 SEED 값 임시 | 진행 중 (한나) |
 | 1-2 · 1-4 | `DESIGN.md` 쌓인 수정(크기 표기 · 상자 크기 · 하단 고정 배치 값 · 그림자 · Spinner 색) · `WRITING.md` 엄격한 화면 | 다음 할 일 (예은) |
 | 1-5 · 4-2 | `PATTERNS.md` `[결정 필요]` 정리 · `/ui-review` | 진행 중 (유진) |
 | 1-6 · 1-7 | `BRIEF.md` · `/brief` v0.5 · 평가 가이드 | 다음 할 일 (지수) |
@@ -29,6 +29,7 @@
 - 컴포넌트 크기 표기는 줄임말(`sm` · `md` · `lg`)로 정했다(`docs/CONVENTIONS.md` "코드·피그마"). `DESIGN.md` 본문 · YAML 토큰 이름은 아직 Large · Medium · `button-medium` 표기라 `DESIGN.md` 담당이 맞춘다.
 - 6차 미팅에서 이름 · 표기처럼 작은 결정은 그 내용을 적는 문서의 담당자가 정하기로 함(`AGENTS.md` "확정된 기준")
 - 규칙 담당 결정: 하단 고정 버튼은 새 컴포넌트가 아니라 Button 배치 패턴이다(MVP 19개 그대로). 여백 · 안전 영역 · 버튼 뒤 배경 값은 `DESIGN.md`에 아직 없다.
+- 2-3에서 `DESIGN.md`에 없는 값(Checkbox · Radio · Switch 크기, outline `md`, Spinner tone 색, 그림자, Textarea 높이, Calendar)은 SEED 값으로 `src/styles/temp-tokens.css`에 임시로 뒀다. `DESIGN.md` 담당이 반영하면 그 파일에서 지운다. Calendar는 MVP 19개 밖 임시 추가라 8차 미팅에서 확정한다.
 - 규칙 문서 형식 통일은 `docs/CONVENTIONS.md` "MD 작성"을 따른다
 - 6차 미팅에서 화면 상태를 정상 + 조건에 맞는 묶음(기다림 · 비어 있음 · 실패 · 이용 불가)으로 정함. 정의는 `docs/UX.md` "상태", 화면 성격별 장면은 `docs/PATTERNS.md` "화면 성격별 상태 장면"이 기준이다.
 - 여러 단계 절차 규칙(`.claude/rules/`의 `session-start.md` · `git.md` · `notion.md`)은 4-x 스킬 작업 때 스킬로 옮긴다

@@ -27,8 +27,9 @@ repo/
 ├─ evals/                 # 평가 시나리오와 결과
 ├─ scripts/               # 스킬이 실행하는 프로그램(예: build-tokens.mjs, /sync가 tokens.css를 만들 때)
 ├─ src/
-│  ├─ components/ui/     # 컴포넌트 코드
+│  ├─ components/ui/     # 컴포넌트 코드(컴포넌트 하나 = 파일 하나, cn.ts · field.tsx · press.ts는 공통 도우미)
 │  ├─ styles/tokens.css  # DESIGN.md에서 자동 생성
+│  ├─ styles/temp-tokens.css  # DESIGN.md에 아직 없는 값의 임시 토큰(SEED 값). DESIGN.md에 들어가면 지운다
 │  └─ app/
 │     ├─ layout.tsx · globals.css · page.tsx  # 사이트 공통 틀 · 공통 스타일 · 첫 화면 (시스템 관리자)
 │     ├─ site-shell.tsx · site-nav.ts · doc-page.tsx · toc-nav.tsx  # 사이트 틀(위 메뉴 · 왼쪽 메뉴 · 문서 · 목차) (시스템 관리자)
