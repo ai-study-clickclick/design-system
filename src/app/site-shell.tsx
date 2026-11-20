@@ -86,10 +86,10 @@ export default function SiteShell({ screens, children }: { screens: string[]; ch
 // 누르는 영역은 40px로 44px보다 작지만 24px 이상이고 줄마다 떨어져 있다(UX.md "손가락으로 쓰기 쉽게")
 function Lnb({ groups, pathname }: { groups: NavGroup[]; pathname: string }) {
   return (
-    <nav aria-label="페이지 목록" className="space-y-20">
+    <nav aria-label="페이지 목록" className="space-y-32">
       {groups.map((group) => (
         <div key={group.title}>
-          <p className="px-8 pb-4 text-caption text-neutral-subtle">{group.title}</p>
+          <p className="px-8 pb-8 text-caption text-brand-contrast">{group.title}</p>
           <ul className="space-y-2">
             {group.items.map((item) => {
               const active = pathname === item.href;
