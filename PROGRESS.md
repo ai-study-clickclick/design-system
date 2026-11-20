@@ -29,7 +29,7 @@
 - 컴포넌트 크기 표기는 줄임말(`sm` · `md` · `lg`)로 정했다(`docs/CONVENTIONS.md` "코드·피그마"). `DESIGN.md` 본문 · YAML 토큰 이름은 아직 Large · Medium · `button-medium` 표기라 `DESIGN.md` 담당이 맞춘다.
 - 6차 미팅에서 이름 · 표기처럼 작은 결정은 그 내용을 적는 문서의 담당자가 정하기로 함(`AGENTS.md` "확정된 기준")
 - 규칙 담당 결정: 하단 고정 버튼은 새 컴포넌트가 아니라 Button 배치 패턴이다(MVP 19개 그대로). 여백 · 안전 영역 · 버튼 뒤 배경 값은 `DESIGN.md`에 아직 없다.
-- 7차 미팅에서 `docs/PATTERNS.md`의 `[결정 필요]` 3묶음은 규칙 담당이 정하기로 함. 화면 성격 12가지를 확정했고, 상태 화면 버튼은 `button-outline-md`로 정했다. `DESIGN.md`에 `button-outline-md`가 아직 없어 `DESIGN.md` 담당이 추가한다.
+- 7차 미팅에서 `docs/PATTERNS.md`의 `[결정 필요]` 3묶음은 규칙 담당이 정하기로 함. 새 화면 성격 5개를 확정했고, 상태 화면 버튼은 `button-outline-md`로 정했다. `DESIGN.md`에 `button-outline-md`가 아직 없어 `DESIGN.md` 담당이 추가한다.
 - 규칙 문서 형식 통일은 `docs/CONVENTIONS.md` "MD 작성"을 따른다
 - 6차 미팅에서 화면 상태를 정상 + 조건에 맞는 묶음(기다림 · 비어 있음 · 실패 · 이용 불가)으로 정함. 정의는 `docs/UX.md` "상태", 화면 성격별 장면은 `docs/PATTERNS.md` "화면 성격별 상태 장면"이 기준이다.
 - 여러 단계 절차 규칙(`.claude/rules/`의 `session-start.md` · `git.md` · `notion.md`)은 4-x 스킬 작업 때 스킬로 옮긴다
