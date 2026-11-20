@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../styles/tokens.css";
+@import "../styles/temp-tokens.css";
 
 /* 토큰 값은 src/styles/tokens.css(DESIGN.md에서 자동 생성)를 쓴다 */
 
