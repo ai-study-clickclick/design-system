@@ -1,0 +1,87 @@
+"use client";
+
+import { useId } from "react";
+import { Checkbox as CheckboxPrimitive } from "radix-ui";
+import { Check, Minus } from "lucide-react";
+import { cn } from "./cn";
+
+// Checkbox: 여러 개를 고르거나 하나를 켜고 끈다
+// label · checked(indeterminate 포함) · disabled · invalid / size md · lg / variant square · ghost(3-2 비교표)
+// 상자 md 20 · lg 24, 줄 높이 md 32 · lg 36, 라운드 4는 SEED 값 임시(DESIGN.md 추가 요청)
+// 라벨까지 누르는 영역이다(DESIGN.md "Checkbox · Radio · Switch")
+export type CheckboxProps = Omit<React.ComponentProps<typeof CheckboxPrimitive.Root>, "asChild"> & {
+  label?: React.ReactNode;
+  size?: "md" | "lg";
+  /** square: 필수이거나 꼭 알아야 할 때 · ghost: 필수가 아니고 3개 이하 */
+  variant?: "square" | "ghost";
+  invalid?: boolean;
+};
+
+export function Checkbox({
+  id,
+  label,
+  size = "md",
+  variant = "square",
+  invalid,
+  disabled,
+  checked,
+  className,
+  ...props
+}: CheckboxProps) {
+  const auto = useId();
+  const inputId = id ?? auto;
+  const square = variant === "square";
+  return (
+    <div
+      data-slot="checkbox"
+      className={cn("inline-flex items-center gap-8", size === "md" ? "min-h-32" : "min-h-36", className)}
+    >
+      <CheckboxPrimitive.Root
+        id={inputId}
+        disabled={disabled}
+        checked={checked}
+        aria-invalid={invalid || undefined}
+        className={cn(
+          "peer flex shrink-0 items-center justify-center rounded-(--checkbox-rounded)",
+          size === "md" ? "size-20" : "size-24",
+          square
+            ? cn(
+                "border bg-layer-default text-on-brand-solid",
+                invalid ? "border-critical-solid" : "border-neutral-weak",
+                "aria-checked:border-0 aria-checked:bg-brand-solid",
+                checked === "indeterminate" && "border-0 bg-brand-solid",
+                "disabled:border-0 disabled:bg-disabled disabled:text-disabled",
+              )
+            : cn("text-neutral-subtle aria-checked:text-brand disabled:text-disabled", checked === "indeterminate" && "text-brand"),
+        )}
+        {...props}
+      >
+        {square ? (
+          <CheckboxPrimitive.Indicator className="flex items-center justify-center">
+            {checked === "indeterminate" ? (
+              <Minus aria-hidden strokeWidth={3} className={size === "md" ? "size-12" : "size-14"} />
+            ) : (
+              <Check aria-hidden strokeWidth={3} className={size === "md" ? "size-12" : "size-14"} />
+            )}
+          </CheckboxPrimitive.Indicator>
+        ) : checked === "indeterminate" ? (
+          <Minus aria-hidden strokeWidth={3} className={size === "md" ? "size-14" : "size-18"} />
+        ) : (
+          <Check aria-hidden strokeWidth={3} className={size === "md" ? "size-14" : "size-18"} />
+        )}
+      </CheckboxPrimitive.Root>
+      {label && (
+        <label
+          htmlFor={inputId}
+          className={cn(
+            "cursor-pointer select-none",
+            size === "md" ? "text-body-md" : "text-body-lg",
+            disabled ? "cursor-not-allowed text-disabled" : "text-neutral",
+          )}
+        >
+          {label}
+        </label>
+      )}
+    </div>
+  );
+}
