@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
+import { SegmentedControl } from "@/components/ui/segmented-control";
 import { libraryGroups, prototypeGroups, sectionOf, sections, type NavGroup } from "./site-nav";
 
 // 사이트 전체 틀: 위 메뉴 + 왼쪽 메뉴(LNB) + 본문. 어느 페이지로 가도 같은 틀 안에서 본문만 바뀐다
@@ -136,15 +136,25 @@ function Lnb({ groups, pathname }: { groups: NavGroup[]; pathname: string }) {
   );
 }
 
-// 라운드 corner smoothing(피그마 60%) 켜고 끄기. 비교해 보기 위한 사이트 도구다(src/styles/temp-tokens.css)
+// 라운드 corner smoothing 비교: 기본 · Smoothing(superellipse만) · 보정(라운드 1.6배 + superellipse)
+// 비교해 보기 위한 사이트 도구다(src/styles/temp-tokens.css)
+const cornerModes = [
+  { value: "round", label: "기본" },
+  { value: "smooth", label: "Smoothing" },
+  { value: "comp", label: "보정" },
+];
+
 function CornerSmoothingToggle() {
-  const [on, setOn] = useState(true);
+  const [mode, setMode] = useState("smooth");
   useEffect(() => {
-    document.documentElement.classList.toggle("no-corner-smoothing", !on);
-  }, [on]);
+    const root = document.documentElement;
+    root.classList.toggle("corner-smooth", mode === "smooth");
+    root.classList.toggle("corner-comp", mode === "comp");
+  }, [mode]);
   return (
-    <div className="ml-auto hidden items-center sm:flex">
-      <Switch size="sm" label="Corner smoothing" checked={on} onCheckedChange={setOn} />
+    <div className="ml-auto hidden items-center gap-8 sm:flex">
+      <span className="text-label-sm text-neutral-subtle">Corner</span>
+      <SegmentedControl size="sm" aria-label="라운드 모서리 보기" options={cornerModes} value={mode} onValueChange={setMode} />
     </div>
   );
 }

@@ -8,7 +8,7 @@ const groups = [
   { href: "/docs/components/actions", title: "Actions", description: "누르면 실행하는 부품", items: ["Button"] },
   { href: "/docs/components/inputs", title: "Inputs", description: "값을 넣거나 고르는 부품", items: ["Input", "DateInput(임시)", "Textarea", "Select", "Checkbox", "Radio", "Switch", "Calendar(임시)"] },
   { href: "/docs/components/display", title: "Display", description: "내용을 담아 보여 주는 부품", items: ["Card", "ListItem", "Badge", "Avatar"] },
-  { href: "/docs/components/navigation", title: "Navigation", description: "위치를 알려 주고 오가게 하는 부품", items: ["TopBar", "Tabs"] },
+  { href: "/docs/components/navigation", title: "Navigation", description: "위치를 알려 주고 오가게 하는 부품", items: ["TopBar", "Tabs", "SegmentedControl(임시)"] },
   { href: "/docs/components/feedback", title: "Feedback", description: "상태와 결과를 알려 주는 부품", items: ["Modal", "BottomSheet", "Toast", "Banner", "Spinner", "Skeleton"] },
 ];
 

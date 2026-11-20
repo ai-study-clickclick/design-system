@@ -1,6 +1,7 @@
 "use client";
 
 import { MoreVertical, Settings, Share } from "lucide-react";
+import { SegmentedControl } from "@/components/ui/segmented-control";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TopBar, TopBarBackButton, TopBarCloseButton, TopBarIconButton } from "@/components/ui/top-bar";
 import { Board, Example, Grid, Part, Phone } from "../gallery";
@@ -98,6 +99,42 @@ export function TabsDemo() {
               ))}
             </TabsList>
           </Tabs>
+        </Example>
+      </Part>
+    </Board>
+  );
+}
+
+export function SegmentedControlDemo() {
+  const two = [
+    { value: "domestic", label: "국내" },
+    { value: "overseas", label: "해외" },
+  ];
+  const three = [
+    { value: "1m", label: "1개월" },
+    { value: "3m", label: "3개월" },
+    { value: "6m", label: "6개월" },
+  ];
+  return (
+    <Board column>
+      <Part title="size=md · 높이 40 · 놓인 자리 폭을 똑같이 나눔" column>
+        <Example label="2개" grow>
+          <div className="w-[343px]">
+            <SegmentedControl aria-label="송금 종류" options={two} />
+          </div>
+        </Example>
+        <Example label="3개" grow>
+          <div className="w-[343px]">
+            <SegmentedControl aria-label="조회 기간" options={three} />
+          </div>
+        </Example>
+      </Part>
+      <Part title="size=sm · 높이 32 · 글자만큼">
+        <Example label="2개">
+          <SegmentedControl size="sm" aria-label="송금 종류" options={two} />
+        </Example>
+        <Example label="3개">
+          <SegmentedControl size="sm" aria-label="조회 기간" options={three} />
         </Example>
       </Part>
     </Board>

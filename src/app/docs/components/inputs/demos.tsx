@@ -270,14 +270,10 @@ export function CalendarDemo() {
   return (
     <Grid>
       <Phone label='mode="single" · 하루 고르기'>
-        <div className="flex justify-center">
-          <Calendar mode="single" selected={date} onSelect={setDate} />
-        </div>
+        <Calendar mode="single" selected={date} onSelect={setDate} />
       </Phone>
       <Phone label='mode="range" · 기간 고르기(거래 내역 조회)'>
-        <div className="flex justify-center">
-          <Calendar mode="range" selected={range} onSelect={setRange} />
-        </div>
+        <Calendar mode="range" selected={range} onSelect={setRange} />
       </Phone>
     </Grid>
   );
