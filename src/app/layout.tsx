@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SiteShell from "./site-shell";
 import { getScreens } from "./prototypes/screens";
+import { Toaster } from "@/components/ui/toast";
 
 export const metadata: Metadata = {
   title: "딸깍 디자인 시스템",
@@ -23,6 +24,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <SiteShell screens={getScreens()}>{children}</SiteShell>
+        <Toaster />
       </body>
     </html>
   );

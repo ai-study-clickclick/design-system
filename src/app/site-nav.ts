@@ -26,7 +26,7 @@ export const libraryGroups: NavGroup[] = [
   },
   {
     title: "Components",
-    items: [{ href: "/docs/components", title: "MVP 19" }],
+    items: [{ href: "/docs/components", title: "All components", ready: true }],
   },
 ];
 
