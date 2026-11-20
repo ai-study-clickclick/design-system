@@ -65,7 +65,7 @@ AI 코딩 에이전트용 지시 파일이다. 사람용 설명은 `README.md`�
 | `PROGRESS.md` · 문서 연결 | `.claude/rules/docs.md` | 문서를 고칠 때 (`*.md`·`.claude/`·`.github/`를 다룰 때 자동) |
 | 차단 설정 | `.claude/settings.json` · `.claude/hooks/` | 항상 (규칙이 아니라 시스템이 막음) |
 | 파일 위치 · 이름 · MD 작성 | `docs/CONVENTIONS.md` | 파일·브랜치·커밋 만들 때, MD를 쓰거나 고칠 때 |
-| 디자인 값 · 디자인 Do/Don't | `DESIGN.md` | 화면·컴포넌트·토큰 작업 |
+| 디자인 값 · 디자인 Do/Don't | `DESIGN.md` | 화면·컴포넌트·토큰 작업 · `/ui-review` |
 | UX · 문구 · 화면 패턴 Do/Don't | `docs/UX.md` · `docs/WRITING.md` · `docs/PATTERNS.md` | 화면 작업 · `/ui-review` |
 | 화면 요청서(브리프) | `docs/BRIEF.md` | 화면 요청 · `/brief` |
 | 현재 상태 | `PROGRESS.md` | 세션 시작 |
@@ -91,7 +91,7 @@ AI 코딩 에이전트용 지시 파일이다. 사람용 설명은 `README.md`�
 | `/pull` | 모두(범위는 역할별) | 피그마 → 코드 방향. 관리자: 피그마 메인 컴포넌트 수정 → `DESIGN.md`·코드. 작업자: 피그마 Generated의 본인 프레임 → 같은 이름의 프로토타입. | 컴포넌트 3-4, 화면 4-5 머지 후 |
 | `/audit` | 관리자 | 불일치 리포트(수정하지 않음): `DESIGN.md`↔코드↔피그마, 규칙 MD↔`README.md`, `PROGRESS.md`·PR↔Task DB 상태. Notion 연결이 없으면 Notion 점검은 건너뛰고 알림. | 3-5 머지 후 |
 | `/brief` | 작업자 | 자연어 요청 → 브리프(`owner` 기록). 빠진 필수 항목은 화면마다 최대 3개 질문(세는 법은 `docs/BRIEF.md` "몇 개 묻나"). 보통 `/generate-screen`이 자동 호출. | 4-1 머지 후 |
-| `/ui-review` | 작업자 | 생성물을 `docs/UX.md`·`docs/WRITING.md` 기준으로 점검 | 4-2 머지 후 |
+| `/ui-review` | 작업자 | 생성물(프로토타입, 시험용 다른 앱 캡처)을 `DESIGN.md`·`docs/UX.md`·`docs/WRITING.md`·`docs/PATTERNS.md`의 Do's and Don'ts로 점검해 보고. 본인 프로토타입만 확인받고 고침. | 4-2 머지 후 |
 | `/generate-screen` | 작업자 | 브리프 → 구성 계획 → 사용자 확인 → 기본 테마로 프로토타입 생성(피그마는 확정 후 필요하면 `/sync`). 끝나면 그 화면의 프로토타입 링크를 알림. | 4-3 머지 후 |
 | `/theme` | 작업자 | 생성한 화면에 테마 프리셋을 적용·비교. 본인 프로토타입에만 적용하고 피그마는 `/sync`로 맞춤. `DESIGN.md`는 바꾸지 않음. | 4-4 머지 후 |
 
