@@ -1,0 +1,193 @@
+"use client";
+
+import { ArrowLeftRight, Bell, ChevronRight, CreditCard, PiggyBank, Wallet } from "lucide-react";
+import { Avatar } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardHeading, CardTitle } from "@/components/ui/card";
+import { ListItem } from "@/components/ui/list-item";
+import { Board, Example, Grid, Phone } from "../gallery";
+
+// 견본 이미지 대신 쓰는 회색 면(실제 이미지 자리)
+// 안쪽 라운드 = 카드 16 − 여백 16 = 0(DESIGN.md "Shapes")
+function ImagePlaceholder({ label }: { label: string }) {
+  return (
+    <div className="flex aspect-video w-full items-center justify-center bg-neutral-weak text-label-sm text-neutral-subtle">
+      {label}
+    </div>
+  );
+}
+
+export function CardDemo() {
+  return (
+    <Grid>
+      <Phone label="기본 · 제목 + 부제">
+        <Card>
+          <CardHeading>
+            <CardTitle>이번 달 소비</CardTitle>
+            <CardDescription>11월 1일 ~ 11월 20일</CardDescription>
+          </CardHeading>
+          <CardContent className="text-title-lg">1,240,000원</CardContent>
+        </Card>
+      </Phone>
+      <Phone label="태그 + 오른쪽 이동">
+        <Card>
+          <CardHeader>
+            <CardHeading>
+              <CardTitle>딸깍 적금</CardTitle>
+              <CardDescription>연 3.5% · 12개월</CardDescription>
+            </CardHeading>
+            <Badge size="sm" tone="brand">
+              추천
+            </Badge>
+          </CardHeader>
+        </Card>
+      </Phone>
+      <Phone label="아이콘 + 행동(작은 버튼)">
+        <Card>
+          <CardHeader>
+            <span className="flex size-40 shrink-0 items-center justify-center rounded-md bg-neutral-weak">
+              <Wallet aria-hidden className="size-24" />
+            </span>
+            <CardHeading>
+              <CardTitle>국민은행 통장</CardTitle>
+              <CardDescription>1234-56-789012</CardDescription>
+            </CardHeading>
+            <CardAction>
+              <Button size="sm" variant="secondary">
+                송금
+              </Button>
+            </CardAction>
+          </CardHeader>
+          <CardContent className="text-title-md">3,520,000원</CardContent>
+        </Card>
+      </Phone>
+      <Phone label="이미지 + 꽉 찬 버튼">
+        <Card>
+          <ImagePlaceholder label="이벤트 이미지" />
+          <CardHeading>
+            <CardTitle>첫 송금하면 1,000원</CardTitle>
+            <CardDescription>11월 30일까지 한 번만 받을 수 있어요</CardDescription>
+          </CardHeading>
+          <CardFooter>
+            <Button size="md" className="w-full">
+              혜택 받기
+            </Button>
+          </CardFooter>
+        </Card>
+      </Phone>
+      <Phone label="버튼 없음 · 누르면 이동">
+        <Card>
+          <CardHeader>
+            <CardHeading>
+              <CardTitle>신용점수 조회</CardTitle>
+              <CardDescription>조회해도 점수가 떨어지지 않아요</CardDescription>
+            </CardHeading>
+            <ChevronRight aria-hidden className="size-20 shrink-0 text-neutral-subtle" />
+          </CardHeader>
+        </Card>
+      </Phone>
+      <Phone label='variant="emphasis" · 강조(임시)'>
+        <Card variant="emphasis">
+          <CardHeading>
+            <CardTitle>모은 돈 120만 원 돌파</CardTitle>
+            <CardDescription>목표까지 80만 원 남았어요</CardDescription>
+          </CardHeading>
+          <CardFooter>
+            <Button size="sm" variant="secondary">
+              목표 보기
+            </Button>
+          </CardFooter>
+        </Card>
+      </Phone>
+    </Grid>
+  );
+}
+
+export function ListItemDemo() {
+  return (
+    <div className="flex flex-col gap-16">
+      <Board title="한 줄 구성" column>
+        <Example label="title만" grow>
+          <div className="w-[343px] rounded-md border border-neutral-weak">
+            <ListItem title="계좌 관리" />
+          </div>
+        </Example>
+        <Example label="title + description + withArrow(이동)" grow>
+          <div className="w-[343px] rounded-md border border-neutral-weak">
+            <ListItem title="이체 한도" description="1회 500만 원 · 1일 1,000만 원" withArrow onClick={() => {}} />
+          </div>
+        </Example>
+        <Example label="prefix 아이콘 + suffix 값" grow>
+          <div className="w-[343px] rounded-md border border-neutral-weak">
+            <ListItem title="포인트" prefix={<PiggyBank aria-hidden className="size-24" />} suffix={<span className="text-label-md">12,300P</span>} />
+          </div>
+        </Example>
+        <Example label="prefix Avatar + suffix Badge" grow>
+          <div className="w-[343px] rounded-md border border-neutral-weak">
+            <ListItem title="김딸깍" description="오늘 오후 2:30" prefix={<Avatar fallback="김" />} suffix={<Badge tone="positive">완료</Badge>} />
+          </div>
+        </Example>
+        <Example label="disabled" grow>
+          <div className="w-[343px] rounded-md border border-neutral-weak">
+            <ListItem title="해외 송금" description="지금은 쓸 수 없어요" withArrow disabled />
+          </div>
+        </Example>
+      </Board>
+      <Grid>
+        <Phone label="실제 화면 · 거래 내역" bare>
+          <div className="py-8">
+            <p className="px-16 pt-8 pb-4 text-label-md text-neutral-subtle">11월 20일</p>
+            <ListItem title="스타벅스" description="오전 8:42 · 체크카드" prefix={<Avatar fallback="스" />} suffix={<span className="text-label-md">-5,600원</span>} onClick={() => {}} />
+            <ListItem title="김딸깍" description="오전 11:05 · 이체" prefix={<Avatar fallback="김" />} suffix={<span className="text-label-md text-informative">+30,000원</span>} onClick={() => {}} />
+            <ListItem title="딸깍 적금" description="오후 1:00 · 자동이체" prefix={<Avatar fallback="적" />} suffix={<span className="text-label-md">-200,000원</span>} onClick={() => {}} />
+          </div>
+        </Phone>
+        <Phone label="실제 화면 · 메뉴 목록" bare>
+          <div className="py-8">
+            <ListItem title="계좌" prefix={<Wallet aria-hidden className="size-24" />} withArrow onClick={() => {}} />
+            <ListItem title="카드" prefix={<CreditCard aria-hidden className="size-24" />} suffix={<Badge size="sm" tone="brand">새 혜택</Badge>} withArrow onClick={() => {}} />
+            <ListItem title="송금 · 이체" prefix={<ArrowLeftRight aria-hidden className="size-24" />} withArrow onClick={() => {}} />
+            <ListItem title="알림" prefix={<Bell aria-hidden className="size-24" />} withArrow onClick={() => {}} />
+          </div>
+        </Phone>
+      </Grid>
+    </div>
+  );
+}
+
+const tones = ["neutral", "brand", "informative", "positive", "warning", "critical"] as const;
+const toneLabels = { neutral: "보통", brand: "추천", informative: "안내", positive: "완료", warning: "확인 필요", critical: "실패" };
+
+export function BadgeDemo() {
+  return (
+    <div className="flex flex-col gap-16">
+      {(["md", "sm"] as const).map((size) => (
+        <Board key={size} title={size === "md" ? "size=md · 최소 높이 24 · 글자 12" : "size=sm · 최소 높이 20 · 글자 11(임시)"} column>
+          {(["weak", "solid", "outline"] as const).map((variant) => (
+            <Example key={variant} label={`variant=${variant}`}>
+              {tones.map((tone) => (
+                <Badge key={tone} size={size} variant={variant} tone={tone}>
+                  {toneLabels[tone]}
+                </Badge>
+              ))}
+            </Example>
+          ))}
+        </Board>
+      ))}
+    </div>
+  );
+}
+
+export function AvatarDemo() {
+  return (
+    <Board>
+      <Example label="사진 없음 · 글자">
+        <Avatar fallback="김" />
+      </Example>
+      <Example label="사진 없음 · 기본 아이콘">
+        <Avatar />
+      </Example>
+    </Board>
+  );
+}
