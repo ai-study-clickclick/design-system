@@ -81,16 +81,6 @@ export function TabsDemo() {
             </TabsList>
           </Tabs>
         </Example>
-        <Example label="disabled 탭" grow>
-          <Tabs defaultValue="a" className="w-[343px]">
-            <TabsList>
-              <TabsTrigger value="a">국내</TabsTrigger>
-              <TabsTrigger value="b" disabled>
-                해외
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </Example>
       </Part>
       <Part title='variant="solid" · 둥근 칩(임시)' column>
         <Example label="layout=hug · 필터처럼 고르기" grow>
