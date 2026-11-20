@@ -1,9 +1,9 @@
 "use client";
 
-import { Bell, MoreVertical, Search, Settings, Share } from "lucide-react";
+import { MoreVertical, Settings, Share } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TopBar, TopBarBackButton, TopBarCloseButton, TopBarIconButton } from "@/components/ui/top-bar";
-import { Board, Example, Grid, Phone } from "../gallery";
+import { Board, Example, Grid, Part, Phone } from "../gallery";
 
 export function TopBarDemo() {
   return (
@@ -41,21 +41,6 @@ export function TopBarDemo() {
       <Phone label="닫기(위로 덮은 화면 · 완료 화면)" bare>
         <TopBar title="송금 완료" right={<TopBarCloseButton />} />
       </Phone>
-      <Phone label="첫 화면 · 뒤로가기 없음 · 아이콘 2개" bare>
-        <TopBar
-          title="홈"
-          right={
-            <>
-              <TopBarIconButton aria-label="검색">
-                <Search aria-hidden className="size-24" />
-              </TopBarIconButton>
-              <TopBarIconButton aria-label="알림">
-                <Bell aria-hidden className="size-24" />
-              </TopBarIconButton>
-            </>
-          }
-        />
-      </Phone>
       <Phone label="제목 없음 · 뒤로가기만" bare>
         <TopBar left={<TopBarBackButton />} />
       </Phone>
@@ -65,8 +50,8 @@ export function TopBarDemo() {
 
 export function TabsDemo() {
   return (
-    <div className="flex flex-col gap-16">
-      <Board title='variant="line" · 아래 줄(기본)' column>
+    <Board column>
+      <Part title='variant="line" · 아래 줄(기본)' column>
         <Example label="size=md · layout=fill · 5개 이하" grow>
           <Tabs defaultValue="all" className="w-[343px]">
             <TabsList>
@@ -106,8 +91,8 @@ export function TabsDemo() {
             </TabsList>
           </Tabs>
         </Example>
-      </Board>
-      <Board title='variant="solid" · 둥근 칩(임시)' column>
+      </Part>
+      <Part title='variant="solid" · 둥근 칩(임시)' column>
         <Example label="layout=hug · 필터처럼 고르기" grow>
           <Tabs defaultValue="1m" variant="solid" layout="hug" className="w-[343px]">
             <TabsList>
@@ -124,15 +109,7 @@ export function TabsDemo() {
             </TabsList>
           </Tabs>
         </Example>
-        <Example label="layout=fill" grow>
-          <Tabs defaultValue="send" variant="solid" className="w-[343px]">
-            <TabsList>
-              <TabsTrigger value="send">보내기</TabsTrigger>
-              <TabsTrigger value="request">요청하기</TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </Example>
-      </Board>
-    </div>
+      </Part>
+    </Board>
   );
 }

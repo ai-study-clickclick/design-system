@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import { libraryGroups, prototypeGroups, sectionOf, sections, type NavGroup } from "./site-nav";
 
 // 사이트 전체 틀: 위 메뉴 + 왼쪽 메뉴(LNB) + 본문. 어느 페이지로 가도 같은 틀 안에서 본문만 바뀐다
@@ -58,6 +59,7 @@ export default function SiteShell({ screens, children }: { screens: string[]; ch
               );
             })}
           </nav>
+          <CornerSmoothingToggle />
         </div>
       </header>
 
@@ -118,5 +120,18 @@ function Lnb({ groups, pathname }: { groups: NavGroup[]; pathname: string }) {
         </div>
       ))}
     </nav>
+  );
+}
+
+// 라운드 corner smoothing(피그마 60%) 켜고 끄기. 비교해 보기 위한 사이트 도구다(src/styles/temp-tokens.css)
+function CornerSmoothingToggle() {
+  const [on, setOn] = useState(true);
+  useEffect(() => {
+    document.documentElement.classList.toggle("no-corner-smoothing", !on);
+  }, [on]);
+  return (
+    <div className="ml-auto hidden items-center sm:flex">
+      <Switch size="sm" label="Corner smoothing" checked={on} onCheckedChange={setOn} />
+    </div>
   );
 }

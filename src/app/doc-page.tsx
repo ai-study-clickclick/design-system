@@ -20,7 +20,7 @@ export default function DocPage({
   title: string;
   description: string;
   toc: TocItem[];
-  /** 컴포넌트 갤러리처럼 견본이 넓은 문서는 본문 최대 폭을 두지 않는다 */
+  /** 컴포넌트 갤러리처럼 견본이 넓은 문서는 본문 최대 폭과 오른쪽 목차를 두지 않는다 */
   wide?: boolean;
   children: React.ReactNode;
 }) {
@@ -56,7 +56,7 @@ export default function DocPage({
         )}
       </article>
 
-      {toc.length > 0 && (
+      {!wide && toc.length > 0 && (
         <aside className="sticky top-56 hidden h-fit w-[180px] shrink-0 py-40 xl:block">
           <TocNav toc={toc} />
         </aside>

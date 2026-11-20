@@ -17,7 +17,7 @@ export default function ActionsPage() {
         { id: "button-layout", title: "Button · 배치" },
       ]}
     >
-      <Section id="button-size" title="Button · 크기" description="variant 4가지 × size 2가지. 큰 버튼은 하단 고정, 보통 버튼은 본문 안에 쓴다.">
+      <Section id="button-size" title="Button · 크기" description="variant 6가지 × size 3가지. 큰 버튼은 하단 고정, 보통 버튼은 본문, 작은 버튼은 카드 · 목록 안에 쓴다. primaryWeak · neutral · sm은 임시다.">
         <ButtonSizes />
       </Section>
       <Section id="button-state" title="Button · 상태" description="처리가 1초를 넘으면 배경이 눌림 색으로 고정되고 글자 자리에 Spinner가 돈다. 1초 안에 끝나면 모양은 그대로다.">

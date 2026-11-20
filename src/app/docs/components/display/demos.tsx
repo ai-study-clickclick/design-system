@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardHeading, CardTitle } from "@/components/ui/card";
 import { ListItem } from "@/components/ui/list-item";
-import { Board, Example, Grid, Phone } from "../gallery";
+import { Board, Example, Grid, Part, Phone } from "../gallery";
 
 // 견본 이미지 대신 쓰는 회색 면(실제 이미지 자리)
 // 안쪽 라운드 = 카드 16 − 여백 16 = 0(DESIGN.md "Shapes")
@@ -37,7 +37,7 @@ export function CardDemo() {
               <CardTitle>딸깍 적금</CardTitle>
               <CardDescription>연 3.5% · 12개월</CardDescription>
             </CardHeading>
-            <Badge size="sm" tone="brand">
+            <Badge tone="brand">
               추천
             </Badge>
           </CardHeader>
@@ -106,8 +106,8 @@ export function CardDemo() {
 
 export function ListItemDemo() {
   return (
-    <div className="flex flex-col gap-16">
-      <Board title="한 줄 구성" column>
+    <Board column>
+      <Part title="한 줄 구성" column>
         <Example label="title만" grow>
           <div className="w-[343px] rounded-md border border-neutral-weak">
             <ListItem title="계좌 관리" />
@@ -133,9 +133,9 @@ export function ListItemDemo() {
             <ListItem title="해외 송금" description="지금은 쓸 수 없어요" withArrow disabled />
           </div>
         </Example>
-      </Board>
-      <Grid>
-        <Phone label="실제 화면 · 거래 내역" bare>
+      </Part>
+      <Part title="실제 화면">
+        <Phone label="거래 내역" bare>
           <div className="py-8">
             <p className="px-16 pt-8 pb-4 text-label-md text-neutral-subtle">11월 20일</p>
             <ListItem title="스타벅스" description="오전 8:42 · 체크카드" prefix={<Avatar fallback="스" />} suffix={<span className="text-label-md">-5,600원</span>} onClick={() => {}} />
@@ -143,16 +143,16 @@ export function ListItemDemo() {
             <ListItem title="딸깍 적금" description="오후 1:00 · 자동이체" prefix={<Avatar fallback="적" />} suffix={<span className="text-label-md">-200,000원</span>} onClick={() => {}} />
           </div>
         </Phone>
-        <Phone label="실제 화면 · 메뉴 목록" bare>
+        <Phone label="메뉴 목록" bare>
           <div className="py-8">
             <ListItem title="계좌" prefix={<Wallet aria-hidden className="size-24" />} withArrow onClick={() => {}} />
-            <ListItem title="카드" prefix={<CreditCard aria-hidden className="size-24" />} suffix={<Badge size="sm" tone="brand">새 혜택</Badge>} withArrow onClick={() => {}} />
+            <ListItem title="카드" prefix={<CreditCard aria-hidden className="size-24" />} suffix={<Badge tone="brand">새 혜택</Badge>} withArrow onClick={() => {}} />
             <ListItem title="송금 · 이체" prefix={<ArrowLeftRight aria-hidden className="size-24" />} withArrow onClick={() => {}} />
             <ListItem title="알림" prefix={<Bell aria-hidden className="size-24" />} withArrow onClick={() => {}} />
           </div>
         </Phone>
-      </Grid>
-    </div>
+      </Part>
+    </Board>
   );
 }
 
@@ -161,21 +161,17 @@ const toneLabels = { neutral: "보통", brand: "추천", informative: "안내", 
 
 export function BadgeDemo() {
   return (
-    <div className="flex flex-col gap-16">
-      {(["md", "sm"] as const).map((size) => (
-        <Board key={size} title={size === "md" ? "size=md · 최소 높이 24 · 글자 12" : "size=sm · 최소 높이 20 · 글자 11(임시)"} column>
-          {(["weak", "solid", "outline"] as const).map((variant) => (
-            <Example key={variant} label={`variant=${variant}`}>
-              {tones.map((tone) => (
-                <Badge key={tone} size={size} variant={variant} tone={tone}>
-                  {toneLabels[tone]}
-                </Badge>
-              ))}
-            </Example>
+    <Board title="최소 높이 24 · 글자 12" column>
+      {(["weak", "solid", "outline"] as const).map((variant) => (
+        <Example key={variant} label={`variant=${variant}`}>
+          {tones.map((tone) => (
+            <Badge key={tone} variant={variant} tone={tone}>
+              {toneLabels[tone]}
+            </Badge>
           ))}
-        </Board>
+        </Example>
       ))}
-    </div>
+    </Board>
   );
 }
 

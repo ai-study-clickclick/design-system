@@ -2,21 +2,21 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Board, Example, Phone } from "../gallery";
+import { Board, Example, Part, Phone } from "../gallery";
 
-const variants = ["primary", "secondary", "critical", "outline"] as const;
+const variants = ["primary", "primaryWeak", "neutral", "secondary", "critical", "outline"] as const;
 const sizeTitle = {
   lg: "size=lg · 높이 52 · 라운드 12 · 글자 18 · 하단 고정",
   md: "size=md · 높이 44 · 라운드 10(임시) · 글자 14 · 본문 · 상태 화면",
   sm: "size=sm · 높이 36 · 라운드 8 · 글자 14(임시) · 카드 · 목록 안",
 };
-const labels = { primary: "송금하기", secondary: "취소", critical: "해지하기", outline: "다시 시도" };
+const labels = { primary: "송금하기", primaryWeak: "혜택 보기", neutral: "계좌 연결", secondary: "취소", critical: "해지하기", outline: "다시 시도" };
 
 export function ButtonSizes() {
   return (
-    <div className="flex flex-col gap-16">
+    <Board column>
       {(["lg", "md", "sm"] as const).map((size) => (
-        <Board key={size} title={sizeTitle[size]}>
+        <Part key={size} title={sizeTitle[size]}>
           {variants.map((variant) => (
             <Example key={variant} label={`variant=${variant}`}>
               <Button variant={variant} size={size}>
@@ -24,9 +24,9 @@ export function ButtonSizes() {
               </Button>
             </Example>
           ))}
-        </Board>
+        </Part>
       ))}
-    </div>
+    </Board>
   );
 }
 
@@ -70,7 +70,7 @@ export function ButtonStates() {
 
 export function ButtonLayouts() {
   return (
-    <div className="flex flex-wrap items-start gap-24">
+    <Board>
       <Phone label="하단 고정 · 꽉 찬 버튼 1개">
         <Button className="w-full">다음</Button>
       </Phone>
@@ -98,6 +98,6 @@ export function ButtonLayouts() {
           </Button>
         </div>
       </Phone>
-    </div>
+    </Board>
   );
 }
