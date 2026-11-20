@@ -1,17 +1,13 @@
 "use client";
 
-import { Toaster as Sonner, toast as sonnerToast } from "sonner";
+import { useEffect, useRef, useState } from "react";
 
 // Toast: 일시 알림. 한 번에 하나, 기본 4초, 손을 대면 멈춘다(docs/UX.md "일시 알림")
 // message · action(최대 1개) · duration · icon. variant 없음(3-2 비교표). icon은 임시 추가
-// 라운드 8 · 여백 10 · 최소 높이 44 · 최대 폭 464 · 글자 14 · bg.neutral-solid
+// 라운드 12 · 여백 좌우 16 · 위아래 10 · 최소 높이 44 · 최대 폭 464 · 글자 14 · bg.neutral-solid
+// 라운드 · 좌우 여백은 DESIGN.md(8 · 10)보다 키운 임시 값
 // 글자는 왼쪽, 버튼은 오른쪽 끝에 둔다. 글자가 길면 여러 줄로 내려간다
 const DURATION = 4000;
-
-/** 앱 맨 바깥(레이아웃)에 한 번만 둔다 */
-export function Toaster() {
-  return <Sonner position="bottom-center" visibleToasts={1} duration={DURATION} toastOptions={{ unstyled: true }} />;
-}
 
 export type ToastOptions = {
   /** 버튼 1개(되돌리기 등) */
@@ -22,43 +18,82 @@ export type ToastOptions = {
   icon?: React.ReactNode;
 };
 
-function ToastView({
-  id,
-  message,
-  action,
-  icon,
-}: {
-  id: string | number;
-  message: string;
-  action?: ToastOptions["action"];
-  icon?: React.ReactNode;
-}) {
+type ToastItem = ToastOptions & { id: number; message: string };
+
+// 한 번에 하나만 보여 준다. 새 알림이 오면 앞의 것을 바꾼다
+// 화면(페이지)과 Toaster(레이아웃)가 따로 묶여도 이어지도록 window 이벤트로 알린다
+const EVENT = "ds-toast";
+const DISMISS = "ds-toast-dismiss";
+let seq = 0;
+
+/** toast("저장했어요") 처럼 부른다 */
+export function toast(message: string, options: ToastOptions = {}) {
+  const item: ToastItem = { id: Date.now() + ++seq, message, ...options };
+  window.dispatchEvent(new CustomEvent<ToastItem>(EVENT, { detail: item }));
+}
+
+function dismiss(id: number) {
+  window.dispatchEvent(new CustomEvent<number>(DISMISS, { detail: id }));
+}
+
+/** 앱 맨 바깥(레이아웃)에 한 번만 둔다 */
+export function Toaster() {
+  const [item, setItem] = useState<ToastItem | null>(null);
+  useEffect(() => {
+    const show = (e: Event) => setItem((e as CustomEvent<ToastItem>).detail);
+    const hide = (e: Event) => setItem((cur) => (cur?.id === (e as CustomEvent<number>).detail ? null : cur));
+    window.addEventListener(EVENT, show);
+    window.addEventListener(DISMISS, hide);
+    return () => {
+      window.removeEventListener(EVENT, show);
+      window.removeEventListener(DISMISS, hide);
+    };
+  }, []);
   return (
-    <div
-      data-slot="toast"
-      className="flex min-h-(--toast-min-height) w-(--toast-max-width) max-w-full items-center gap-8 rounded-sm bg-neutral-solid p-10 text-body-md text-on-neutral-solid"
-    >
-      {icon && <span className="flex size-20 shrink-0 items-center justify-center *:size-20">{icon}</span>}
-      <p className="min-w-0 flex-1">{message}</p>
-      {action && (
-        <button
-          type="button"
-          onClick={() => {
-            action.onClick();
-            sonnerToast.dismiss(id);
-          }}
-          className="flex min-h-touch-min-sm shrink-0 items-center rounded-xs px-6 text-label-md text-on-neutral-solid active:bg-neutral-solid-pressed"
-        >
-          {action.label}
-        </button>
-      )}
+    <div aria-live="polite" className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-16 pb-24">
+      {item && <ToastView key={item.id} item={item} />}
     </div>
   );
 }
 
-/** toast("저장했어요") 처럼 부른다 */
-export function toast(message: string, { action, duration, icon }: ToastOptions = {}) {
-  sonnerToast.custom((id) => <ToastView id={id} message={message} action={action} icon={icon} />, {
-    duration: duration ?? DURATION,
-  });
+function ToastView({ item }: { item: ToastItem }) {
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const start = () => {
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => dismiss(item.id), item.duration ?? DURATION);
+  };
+  const stop = () => clearTimeout(timer.current);
+
+  useEffect(() => {
+    start();
+    return stop;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [item.id]);
+
+  return (
+    <div
+      data-slot="toast"
+      role="status"
+      onPointerEnter={stop}
+      onPointerLeave={start}
+      onTouchStart={stop}
+      onTouchEnd={start}
+      className="pointer-events-auto flex min-h-(--toast-min-height) w-full max-w-(--toast-max-width) items-center gap-8 rounded-md bg-neutral-solid py-10 pr-10 pl-16 text-body-md text-on-neutral-solid"
+    >
+      {item.icon && <span className="flex size-20 shrink-0 items-center justify-center *:size-20">{item.icon}</span>}
+      <p className="min-w-0 flex-1">{item.message}</p>
+      {item.action && (
+        <button
+          type="button"
+          onClick={() => {
+            item.action?.onClick();
+            dismiss(item.id);
+          }}
+          className="flex min-h-touch-min-sm shrink-0 items-center rounded-xs px-6 text-label-md text-on-neutral-solid active:bg-neutral-solid-pressed"
+        >
+          {item.action.label}
+        </button>
+      )}
+    </div>
+  );
 }

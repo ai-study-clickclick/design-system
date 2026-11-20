@@ -37,7 +37,7 @@ export function Calendar({ className, classNames, showOutsideDays = true, ...pro
         today: "text-brand-contrast",
         selected: "*:bg-brand-solid *:text-on-brand-solid *:text-label-base",
         range_start: "rounded-l-full bg-brand-weak",
-        range_middle: "bg-brand-weak *:bg-transparent! *:text-brand-contrast! *:text-body-lg!",
+        range_middle: "bg-brand-weak *:bg-transparent! *:text-brand-contrast! *:text-body-lg! *:font-medium!",
         range_end: "rounded-r-full bg-brand-weak",
         outside: "text-disabled",
         disabled: "text-disabled",

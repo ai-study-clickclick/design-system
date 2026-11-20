@@ -8,6 +8,9 @@ body {
   font-family: var(--font-family-base);
   background: var(--bg-layer-default);
   color: var(--fg-neutral);
+  /* 줄바꿈은 단어 단위(한글도 어절 단위). 너무 긴 단어만 중간에서 나눈다. 사이트 · 앱 화면 모두 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* 키보드로 고른 요소 표시. stroke.focus-ring 2px 선 + 2px 띄움(DESIGN.md "상태와 피드백") */

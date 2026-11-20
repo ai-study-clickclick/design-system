@@ -21,8 +21,8 @@ const buttonVariants = cva(
         neutral: "bg-neutral-solid text-on-neutral-solid active:bg-neutral-solid-pressed disabled:bg-disabled disabled:text-disabled",
         secondary: "bg-neutral-weak text-neutral active:bg-neutral-weak-pressed disabled:bg-disabled disabled:text-disabled",
         critical: "bg-critical-solid text-on-critical-solid active:bg-critical-solid-pressed disabled:bg-disabled disabled:text-disabled",
-        // outline md는 DESIGN.md에 아직 없어 크기만 md를 쓴다(button-outline-md 추가 요청)
-        outline: "border border-neutral-muted bg-transparent text-neutral active:bg-transparent-pressed disabled:text-disabled",
+        // outline 테두리는 stroke.neutral-weak(DESIGN.md는 neutral-muted, 너무 흐려 한 단계 진하게 바꿈, 임시)
+        outline: "border border-neutral-weak bg-transparent text-neutral active:bg-transparent-pressed disabled:text-disabled",
       },
       size: {
         lg: "h-(--button-primary-height) rounded-md px-20 text-label-lg",
