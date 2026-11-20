@@ -11,7 +11,11 @@ body {
 }
 
 /* 키보드로 고른 요소 표시. stroke.focus-ring 2px 선 + 2px 띄움(DESIGN.md "상태와 피드백") */
+/* 누르거나 터치할 때는 보이지 않고, Tab 키로 움직일 때만 보인다(html.keyboard-nav, site-shell.tsx) */
 :focus-visible {
+  outline: none;
+}
+html.keyboard-nav :focus-visible {
   outline: 2px solid var(--stroke-focus-ring);
   outline-offset: 2px;
 }

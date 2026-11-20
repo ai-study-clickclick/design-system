@@ -25,6 +25,19 @@ export default function SiteShell({ screens, children }: { screens: string[]; ch
   // 다른 페이지로 가면 열려 있던 메뉴를 닫는다
   useEffect(() => setOpen(false), [pathname]);
 
+  // 포커스 표시는 Tab 키로 움직일 때만 보인다. 누르거나 터치하면 숨긴다(globals.css)
+  useEffect(() => {
+    const root = document.documentElement;
+    const onKey = (e: KeyboardEvent) => e.key === "Tab" && root.classList.add("keyboard-nav");
+    const onPointer = () => root.classList.remove("keyboard-nav");
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("pointerdown", onPointer);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("pointerdown", onPointer);
+    };
+  }, []);
+
   return (
     <ScreensContext.Provider value={screens}>
     <div className="min-h-screen bg-layer-default">
