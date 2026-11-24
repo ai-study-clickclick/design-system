@@ -15,7 +15,7 @@
 | 1-2 · 1-4 | `DESIGN.md` 쌓인 수정(크기 표기 · 상자 크기 · 하단 고정 배치 값 · 그림자 · Spinner 색 · `button-outline-md` 추가) · `WRITING.md` 엄격한 화면 | 다음 할 일 (예은) |
 | 1-5 · 4-2 | `PATTERNS.md` v0.2 `[결정 필요]` 3묶음 정리 · `/ui-review` | 1-5 리뷰 중 · 4-2 다음 할 일 (유진) |
 | 1-6 · 1-7 | `BRIEF.md` · `/brief` v0.5 · 평가 가이드 | 다음 할 일 (지수) |
-| 3-1 | `/sync` 2단계: 토큰 → 피그마 Variables | 다음 할 일 (수진) |
+| 3-2 | 코드 기준 피그마 컴포넌트(2-3 미리보기로 시작) | 다음 할 일 (수진) |
 | 1-6-1 | 브리프 테스트(v0.4) | 진행 중 (예린 · 전원) |
 
 ## 주의 사항
@@ -33,6 +33,7 @@
 - 규칙 문서 형식 통일은 `docs/CONVENTIONS.md` "MD 작성"을 따른다
 - 6차 미팅에서 화면 상태를 정상 + 조건에 맞는 묶음(기다림 · 비어 있음 · 실패 · 이용 불가)으로 정함. 정의는 `docs/UX.md` "상태", 화면 성격별 장면은 `docs/PATTERNS.md` "화면 성격별 상태 장면"이 기준이다.
 - 여러 단계 절차 규칙(`.claude/rules/`의 `session-start.md` · `git.md` · `notion.md`)은 4-x 스킬 작업 때 스킬로 옮긴다
+- 피그마 연결(`use_figma`)은 피그마 서버에서 돌아 PC 글꼴(Pretendard)을 쓰지 못한다. 글자 스타일은 피그마 앱에서 `scripts/figma-text-styles` 플러그인으로 만든다.
 - 4-x에서 `/pull` 스킬을 만들 때 스킬 안에서 `.claude/rules/sync.md`를 읽게 한다(`sync.md`는 `src/` 등을 다룰 때만 자동으로 읽혀서, 말로만 시키면 안 읽힐 수 있음). `/sync`는 2-2에서 반영했다.
 - 7차 미팅에서 같은 내용은 한 곳에만 적기로 함. 규칙 · 작업 방식은 저장소(사람용 안내는 `README.md`), Notion에는 회의록 · 테스트 결과 · 일정 · 태스크만 둔다(`.claude/rules/docs.md` "문서 연결").
 - Vercel은 무료(Hobby)로 쓰기 위해 한나 개인 계정에 프로젝트를 만들었다. 메인 주소는 `clickclick-design-system.vercel.app`이다. 참고할 점:

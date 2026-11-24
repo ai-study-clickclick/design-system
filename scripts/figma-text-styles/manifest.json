@@ -1,0 +1,9 @@
+{
+  "name": "Design System Text Styles",
+  "id": "design-system-text-styles",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": { "allowedDomains": ["none"] }
+}
