@@ -106,6 +106,7 @@ colors:
   "bg.brand-solid-pressed": "{colors.palette.brand-700}"
   "bg.brand-weak": "{colors.palette.brand-100}"
   "bg.brand-weak-pressed": "{colors.palette.brand-200}"
+  "bg.brand-track": "{colors.palette.brand-200}"  # Spinner brand 트랙
   "bg.critical-solid": "{colors.palette.red-700}"
   "bg.critical-solid-pressed": "{colors.palette.red-800}"
   "bg.critical-weak": "{colors.palette.red-100}"
@@ -136,6 +137,7 @@ colors:
   "bg.positive-solid-pressed": "{colors.palette.green-800}"
   "bg.positive-weak": "{colors.palette.green-100}"
   "bg.positive-weak-pressed": "{colors.palette.green-200}"
+  "bg.static-white-track": "{colors.palette.static-white-alpha-300}"  # Spinner staticWhite 트랙
   "bg.transparent-pressed": "{colors.palette.static-black-alpha-100}"
   "bg.transparent-selected": "{colors.palette.static-black-alpha-200}"
   "bg.transparent-selected-pressed": "{colors.palette.static-black-alpha-300}"
@@ -156,7 +158,7 @@ colors:
   "fg.neutral-inverted": "{colors.palette.gray-00}"
   "fg.neutral-muted": "{colors.palette.gray-800}"
   "fg.neutral-subtle": "{colors.palette.gray-700}"
-  "fg.neutral-faint": "{colors.palette.gray-500}"  # 글자가 아닌 표시용(Spinner neutral 진행 색)
+  "fg.neutral-progress": "{colors.palette.gray-500}"  # Spinner neutral 진행 색
   "fg.on-brand-solid": "{colors.palette.static-white}"
   "fg.on-critical-solid": "{colors.palette.static-white}"
   "fg.on-informative-solid": "{colors.palette.static-white}"
@@ -172,7 +174,6 @@ colors:
   # 테두리 stroke.*
   "stroke.brand-solid": "{colors.palette.brand-700}"
   "stroke.brand-weak": "{colors.palette.brand-300}"
-  "stroke.brand-faint": "{colors.palette.brand-200}"  # Spinner brand 트랙
   "stroke.critical-solid": "{colors.palette.red-700}"
   "stroke.critical-weak": "{colors.palette.red-300}"
   "stroke.focus-ring": "{colors.palette.blue-600}"
@@ -183,7 +184,6 @@ colors:
   "stroke.neutral-solid": "{colors.palette.gray-800}"
   "stroke.neutral-subtle": "{colors.palette.static-black-alpha-200}"
   "stroke.neutral-weak": "{colors.palette.gray-400}"
-  "stroke.static-white-faint": "{colors.palette.static-white-alpha-300}"  # Spinner staticWhite 트랙
   "stroke.positive-solid": "{colors.palette.green-700}"
   "stroke.positive-weak": "{colors.palette.green-300}"
   "stroke.warning-solid": "{colors.palette.yellow-700}"
@@ -453,12 +453,12 @@ components:
   # tone별 색. 기본은 neutral. 버튼 안 Spinner는 tone 없이 버튼 글자색을 쓴다
   spinner-neutral:
     trackColor: "{colors.bg.neutral-weak}"
-    rangeColor: "{colors.fg.neutral-faint}"
+    rangeColor: "{colors.fg.neutral-progress}"
   spinner-brand:
-    trackColor: "{colors.stroke.brand-faint}"
-    rangeColor: "{colors.bg.brand-solid}"
+    trackColor: "{colors.bg.brand-track}"
+    rangeColor: "{colors.fg.brand}"
   spinner-static-white:
-    trackColor: "{colors.stroke.static-white-faint}"
+    trackColor: "{colors.bg.static-white-track}"
     rangeColor: "{colors.fg.static-white}"
   tabs-md:
     textColor: "{colors.fg.neutral}"
@@ -835,6 +835,7 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 
 - tone은 neutral(기본) · brand · staticWhite다. staticWhite는 색이 있는 배경이나 이미지 위에 쓴다.
 - 버튼 안 Spinner는 tone을 두지 않고 버튼 글자색을 따른다
+- 색은 트랙(뒤 고리) `bg.*`, 진행(도는 부분) `fg.*`로 고른다. Spinner 전용 색 이름은 `-track` · `-progress`로 쓰임을 붙인다.
 
 **Tabs**
 

@@ -89,6 +89,7 @@
   --bg-brand-solid-pressed: var(--palette-brand-700);
   --bg-brand-weak: var(--palette-brand-100);
   --bg-brand-weak-pressed: var(--palette-brand-200);
+  --bg-brand-track: var(--palette-brand-200);
   --bg-critical-solid: var(--palette-red-700);
   --bg-critical-solid-pressed: var(--palette-red-800);
   --bg-critical-weak: var(--palette-red-100);
@@ -119,6 +120,7 @@
   --bg-positive-solid-pressed: var(--palette-green-800);
   --bg-positive-weak: var(--palette-green-100);
   --bg-positive-weak-pressed: var(--palette-green-200);
+  --bg-static-white-track: var(--palette-static-white-alpha-300);
   --bg-transparent-pressed: var(--palette-static-black-alpha-100);
   --bg-transparent-selected: var(--palette-static-black-alpha-200);
   --bg-transparent-selected-pressed: var(--palette-static-black-alpha-300);
@@ -138,7 +140,7 @@
   --fg-neutral-inverted: var(--palette-gray-00);
   --fg-neutral-muted: var(--palette-gray-800);
   --fg-neutral-subtle: var(--palette-gray-700);
-  --fg-neutral-faint: var(--palette-gray-500);
+  --fg-neutral-progress: var(--palette-gray-500);
   --fg-on-brand-solid: var(--palette-static-white);
   --fg-on-critical-solid: var(--palette-static-white);
   --fg-on-informative-solid: var(--palette-static-white);
@@ -153,7 +155,6 @@
   --fg-warning-contrast: var(--palette-yellow-900);
   --stroke-brand-solid: var(--palette-brand-700);
   --stroke-brand-weak: var(--palette-brand-300);
-  --stroke-brand-faint: var(--palette-brand-200);
   --stroke-critical-solid: var(--palette-red-700);
   --stroke-critical-weak: var(--palette-red-300);
   --stroke-focus-ring: var(--palette-blue-600);
@@ -164,7 +165,6 @@
   --stroke-neutral-solid: var(--palette-gray-800);
   --stroke-neutral-subtle: var(--palette-static-black-alpha-200);
   --stroke-neutral-weak: var(--palette-gray-400);
-  --stroke-static-white-faint: var(--palette-static-white-alpha-300);
   --stroke-positive-solid: var(--palette-green-700);
   --stroke-positive-weak: var(--palette-green-300);
   --stroke-warning-solid: var(--palette-yellow-700);
@@ -412,10 +412,10 @@
   --spinner-sm-size: 24px;
   --spinner-sm-thickness: 3px;
   --spinner-neutral-track-color: var(--bg-neutral-weak);
-  --spinner-neutral-range-color: var(--fg-neutral-faint);
-  --spinner-brand-track-color: var(--stroke-brand-faint);
-  --spinner-brand-range-color: var(--bg-brand-solid);
-  --spinner-static-white-track-color: var(--stroke-static-white-faint);
+  --spinner-neutral-range-color: var(--fg-neutral-progress);
+  --spinner-brand-track-color: var(--bg-brand-track);
+  --spinner-brand-range-color: var(--fg-brand);
+  --spinner-static-white-track-color: var(--bg-static-white-track);
   --spinner-static-white-range-color: var(--fg-static-white);
   --tabs-md-text-color: var(--fg-neutral);
   --tabs-md-typography-font-size: var(--typography-label-base-font-size);
@@ -509,6 +509,7 @@
   --background-color-brand-solid-pressed: var(--bg-brand-solid-pressed);
   --background-color-brand-weak: var(--bg-brand-weak);
   --background-color-brand-weak-pressed: var(--bg-brand-weak-pressed);
+  --background-color-brand-track: var(--bg-brand-track);
   --background-color-critical-solid: var(--bg-critical-solid);
   --background-color-critical-solid-pressed: var(--bg-critical-solid-pressed);
   --background-color-critical-weak: var(--bg-critical-weak);
@@ -539,6 +540,7 @@
   --background-color-positive-solid-pressed: var(--bg-positive-solid-pressed);
   --background-color-positive-weak: var(--bg-positive-weak);
   --background-color-positive-weak-pressed: var(--bg-positive-weak-pressed);
+  --background-color-static-white-track: var(--bg-static-white-track);
   --background-color-transparent-pressed: var(--bg-transparent-pressed);
   --background-color-transparent-selected: var(--bg-transparent-selected);
   --background-color-transparent-selected-pressed: var(--bg-transparent-selected-pressed);
@@ -559,7 +561,7 @@
   --text-color-neutral-inverted: var(--fg-neutral-inverted);
   --text-color-neutral-muted: var(--fg-neutral-muted);
   --text-color-neutral-subtle: var(--fg-neutral-subtle);
-  --text-color-neutral-faint: var(--fg-neutral-faint);
+  --text-color-neutral-progress: var(--fg-neutral-progress);
   --text-color-on-brand-solid: var(--fg-on-brand-solid);
   --text-color-on-critical-solid: var(--fg-on-critical-solid);
   --text-color-on-informative-solid: var(--fg-on-informative-solid);
@@ -579,9 +581,6 @@
   --border-color-brand-weak: var(--stroke-brand-weak);
   --outline-color-brand-weak: var(--stroke-brand-weak);
   --ring-color-brand-weak: var(--stroke-brand-weak);
-  --border-color-brand-faint: var(--stroke-brand-faint);
-  --outline-color-brand-faint: var(--stroke-brand-faint);
-  --ring-color-brand-faint: var(--stroke-brand-faint);
   --border-color-critical-solid: var(--stroke-critical-solid);
   --outline-color-critical-solid: var(--stroke-critical-solid);
   --ring-color-critical-solid: var(--stroke-critical-solid);
@@ -612,9 +611,6 @@
   --border-color-neutral-weak: var(--stroke-neutral-weak);
   --outline-color-neutral-weak: var(--stroke-neutral-weak);
   --ring-color-neutral-weak: var(--stroke-neutral-weak);
-  --border-color-static-white-faint: var(--stroke-static-white-faint);
-  --outline-color-static-white-faint: var(--stroke-static-white-faint);
-  --ring-color-static-white-faint: var(--stroke-static-white-faint);
   --border-color-positive-solid: var(--stroke-positive-solid);
   --outline-color-positive-solid: var(--stroke-positive-solid);
   --ring-color-positive-solid: var(--stroke-positive-solid);
