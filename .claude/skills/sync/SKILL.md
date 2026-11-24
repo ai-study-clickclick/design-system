@@ -32,7 +32,7 @@ description: 코드 → 피그마 방향 동기화. 지금은 1단계(`DESIGN.md
    - 묶음은 `primitive` · `theme` · `semantic` · `space` · `typography` 5개다. 이름의 `.`은 `/`로 바꾼다(`docs/CONVENTIONS.md` "디자인 토큰").
    - 컴포넌트 토큰(`button-*` 등)은 넣지 않는다. 3-4에서 이 단계에 더한다.
 2. 결과의 `created` · `updated`를 사용자에게 쉬운 말로 알린다. `extraNotInCode`(피그마에만 있는 변수)는 지우지 않고 목록만 알린다.
-3. '토큰' 페이지의 견본은 Variables에 연결돼 있어 따로 고치지 않는다. 새 토큰이 생겼으면 견본을 더할지 사용자에게 묻는다.
+3. 자동 생성 토큰 프레임의 견본은 Variables에 연결돼 있어 따로 고치지 않는다. 새 토큰이 생겼으면 견본을 더할지 사용자에게 묻는다.
 4. 글자 스타일이 새로 생기거나 이름이 바뀌었으면, 사용자에게 피그마 앱에서 글자 스타일 플러그인(`scripts/figma-text-styles/manifest.json`)을 실행해 달라고 안내한다. 피그마 연결은 피그마 서버에서 돌아 PC 글꼴(Pretendard)을 쓰지 못하므로 AI가 대신 만들지 않는다. 값만 바뀌었으면 스타일이 Variables에 연결돼 있어 안내하지 않는다.
 
 ## 하지 않는 것

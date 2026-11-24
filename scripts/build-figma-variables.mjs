@@ -71,6 +71,8 @@ function scopes(col, name) {
   if (name.startsWith('fg/')) return ['TEXT_FILL','SHAPE_FILL','STROKE_COLOR'];
   if (name.startsWith('stroke/')) return ['STROKE_COLOR'];
   if (name.startsWith('radius/')) return name === 'radius/base' ? [] : ['CORNER_RADIUS'];
+  // 화면 폭은 간격 목록에 나오지 않게 크기 목록에만 둔다
+  if (name === 'space/screen-width' || name === 'space/screen-max') return ['WIDTH_HEIGHT'];
   if (name.startsWith('space/')) return ['GAP','WIDTH_HEIGHT'];
   if (name.startsWith('font-family')) return ['FONT_FAMILY'];
   if (name.endsWith('/font-size')) return ['FONT_SIZE'];
