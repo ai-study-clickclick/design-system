@@ -150,7 +150,7 @@ async function main() {
     frameTexts++;
   }
 
-  const msg = `글자 스타일 ${created}개 만들고 ${updated}개 고쳤어요 · 토큰 프레임 글자 ${frameTexts}개를 Pretendard로 맞췄어요`;
+  const msg = `글자 스타일 ${created}개 만들고 ${updated}개 맞췄어요 · 토큰 프레임 글자 ${frameTexts}개를 Pretendard로 맞췄어요`;
   if (problems.length) console.log("확인 필요:\n" + problems.join("\n"));
   figma.closePlugin(problems.length ? `${msg} · 확인 필요 ${problems.length}개(개발자 콘솔)` : msg);
 }
