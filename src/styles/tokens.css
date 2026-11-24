@@ -138,6 +138,7 @@
   --fg-neutral-inverted: var(--palette-gray-00);
   --fg-neutral-muted: var(--palette-gray-800);
   --fg-neutral-subtle: var(--palette-gray-700);
+  --fg-neutral-faint: var(--palette-gray-500);
   --fg-on-brand-solid: var(--palette-static-white);
   --fg-on-critical-solid: var(--palette-static-white);
   --fg-on-informative-solid: var(--palette-static-white);
@@ -145,12 +146,14 @@
   --fg-on-positive-solid: var(--palette-static-white);
   --fg-on-warning-solid: var(--palette-static-black-alpha-900);
   --fg-placeholder: var(--palette-gray-600);
+  --fg-static-white: var(--palette-static-white);
   --fg-positive: var(--palette-green-700);
   --fg-positive-contrast: var(--palette-green-900);
   --fg-warning: var(--palette-yellow-700);
   --fg-warning-contrast: var(--palette-yellow-900);
   --stroke-brand-solid: var(--palette-brand-700);
   --stroke-brand-weak: var(--palette-brand-300);
+  --stroke-brand-faint: var(--palette-brand-200);
   --stroke-critical-solid: var(--palette-red-700);
   --stroke-critical-weak: var(--palette-red-300);
   --stroke-focus-ring: var(--palette-blue-600);
@@ -161,6 +164,7 @@
   --stroke-neutral-solid: var(--palette-gray-800);
   --stroke-neutral-subtle: var(--palette-static-black-alpha-200);
   --stroke-neutral-weak: var(--palette-gray-400);
+  --stroke-static-white-faint: var(--palette-static-white-alpha-300);
   --stroke-positive-solid: var(--palette-green-700);
   --stroke-positive-weak: var(--palette-green-300);
   --stroke-warning-solid: var(--palette-yellow-700);
@@ -408,11 +412,11 @@
   --spinner-sm-size: 24px;
   --spinner-sm-thickness: 3px;
   --spinner-neutral-track-color: var(--bg-neutral-weak);
-  --spinner-neutral-range-color: var(--palette-gray-500);
-  --spinner-brand-track-color: var(--palette-brand-200);
+  --spinner-neutral-range-color: var(--fg-neutral-faint);
+  --spinner-brand-track-color: var(--stroke-brand-faint);
   --spinner-brand-range-color: var(--bg-brand-solid);
-  --spinner-static-white-track-color: var(--palette-static-white-alpha-300);
-  --spinner-static-white-range-color: var(--palette-static-white);
+  --spinner-static-white-track-color: var(--stroke-static-white-faint);
+  --spinner-static-white-range-color: var(--fg-static-white);
   --tabs-md-text-color: var(--fg-neutral);
   --tabs-md-typography-font-size: var(--typography-label-base-font-size);
   --tabs-md-typography-font-weight: var(--typography-label-base-font-weight);
@@ -555,6 +559,7 @@
   --text-color-neutral-inverted: var(--fg-neutral-inverted);
   --text-color-neutral-muted: var(--fg-neutral-muted);
   --text-color-neutral-subtle: var(--fg-neutral-subtle);
+  --text-color-neutral-faint: var(--fg-neutral-faint);
   --text-color-on-brand-solid: var(--fg-on-brand-solid);
   --text-color-on-critical-solid: var(--fg-on-critical-solid);
   --text-color-on-informative-solid: var(--fg-on-informative-solid);
@@ -562,6 +567,7 @@
   --text-color-on-positive-solid: var(--fg-on-positive-solid);
   --text-color-on-warning-solid: var(--fg-on-warning-solid);
   --text-color-placeholder: var(--fg-placeholder);
+  --text-color-static-white: var(--fg-static-white);
   --text-color-positive: var(--fg-positive);
   --text-color-positive-contrast: var(--fg-positive-contrast);
   --text-color-warning: var(--fg-warning);
@@ -573,6 +579,9 @@
   --border-color-brand-weak: var(--stroke-brand-weak);
   --outline-color-brand-weak: var(--stroke-brand-weak);
   --ring-color-brand-weak: var(--stroke-brand-weak);
+  --border-color-brand-faint: var(--stroke-brand-faint);
+  --outline-color-brand-faint: var(--stroke-brand-faint);
+  --ring-color-brand-faint: var(--stroke-brand-faint);
   --border-color-critical-solid: var(--stroke-critical-solid);
   --outline-color-critical-solid: var(--stroke-critical-solid);
   --ring-color-critical-solid: var(--stroke-critical-solid);
@@ -603,6 +612,9 @@
   --border-color-neutral-weak: var(--stroke-neutral-weak);
   --outline-color-neutral-weak: var(--stroke-neutral-weak);
   --ring-color-neutral-weak: var(--stroke-neutral-weak);
+  --border-color-static-white-faint: var(--stroke-static-white-faint);
+  --outline-color-static-white-faint: var(--stroke-static-white-faint);
+  --ring-color-static-white-faint: var(--stroke-static-white-faint);
   --border-color-positive-solid: var(--stroke-positive-solid);
   --outline-color-positive-solid: var(--stroke-positive-solid);
   --ring-color-positive-solid: var(--stroke-positive-solid);

@@ -156,6 +156,7 @@ colors:
   "fg.neutral-inverted": "{colors.palette.gray-00}"
   "fg.neutral-muted": "{colors.palette.gray-800}"
   "fg.neutral-subtle": "{colors.palette.gray-700}"
+  "fg.neutral-faint": "{colors.palette.gray-500}"  # 글자가 아닌 표시용(Spinner neutral 진행 색)
   "fg.on-brand-solid": "{colors.palette.static-white}"
   "fg.on-critical-solid": "{colors.palette.static-white}"
   "fg.on-informative-solid": "{colors.palette.static-white}"
@@ -163,6 +164,7 @@ colors:
   "fg.on-positive-solid": "{colors.palette.static-white}"
   "fg.on-warning-solid": "{colors.palette.static-black-alpha-900}"
   "fg.placeholder": "{colors.palette.gray-600}"
+  "fg.static-white": "{colors.palette.static-white}"  # 색 배경 · 이미지 위 표시(Spinner staticWhite 진행 색)
   "fg.positive": "{colors.palette.green-700}"
   "fg.positive-contrast": "{colors.palette.green-900}"
   "fg.warning": "{colors.palette.yellow-700}"
@@ -170,6 +172,7 @@ colors:
   # 테두리 stroke.*
   "stroke.brand-solid": "{colors.palette.brand-700}"
   "stroke.brand-weak": "{colors.palette.brand-300}"
+  "stroke.brand-faint": "{colors.palette.brand-200}"  # Spinner brand 트랙
   "stroke.critical-solid": "{colors.palette.red-700}"
   "stroke.critical-weak": "{colors.palette.red-300}"
   "stroke.focus-ring": "{colors.palette.blue-600}"
@@ -180,6 +183,7 @@ colors:
   "stroke.neutral-solid": "{colors.palette.gray-800}"
   "stroke.neutral-subtle": "{colors.palette.static-black-alpha-200}"
   "stroke.neutral-weak": "{colors.palette.gray-400}"
+  "stroke.static-white-faint": "{colors.palette.static-white-alpha-300}"  # Spinner staticWhite 트랙
   "stroke.positive-solid": "{colors.palette.green-700}"
   "stroke.positive-weak": "{colors.palette.green-300}"
   "stroke.warning-solid": "{colors.palette.yellow-700}"
@@ -449,13 +453,13 @@ components:
   # tone별 색. 기본은 neutral. 버튼 안 Spinner는 tone 없이 버튼 글자색을 쓴다
   spinner-neutral:
     trackColor: "{colors.bg.neutral-weak}"
-    rangeColor: "{colors.palette.gray-500}"
+    rangeColor: "{colors.fg.neutral-faint}"
   spinner-brand:
-    trackColor: "{colors.palette.brand-200}"
+    trackColor: "{colors.stroke.brand-faint}"
     rangeColor: "{colors.bg.brand-solid}"
   spinner-static-white:
-    trackColor: "{colors.palette.static-white-alpha-300}"
-    rangeColor: "{colors.palette.static-white}"
+    trackColor: "{colors.stroke.static-white-faint}"
+    rangeColor: "{colors.fg.static-white}"
   tabs-md:
     textColor: "{colors.fg.neutral}"
     typography: "{typography.label-base}"
@@ -674,9 +678,10 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 | 기본 | 버튼 `bg.brand-solid` + `fg.on-brand-solid`. 입력 테두리 `stroke.neutral-weak` 1px. |
 | 눌림 | 배경을 `-pressed` 토큰으로 바꾸고 2px 줄어든다. 투명 배경은 `bg.transparent-pressed`. |
 | 선택 | 체크박스 · 라디오 `bg.brand-solid` + 체크 · 안쪽 점 `fg.on-brand-solid`, 테두리 없음. Ghost 체크박스는 상자 없이 체크만 `fg.brand`. 스위치 트랙 `bg.brand-solid` + 손잡이 `fg.on-brand-solid`, 손잡이 크기 1(꺼짐 0.8). 연한 배경(`bg.brand-weak`)은 선택 표시에 쓰지 않는다. |
-| 비활성 | 버튼 · 체크박스는 `bg.disabled` + `fg.disabled`. 윤곽 버튼은 배경 투명 + 테두리 `stroke.neutral-muted`. 스위치는 트랙 투명도 0.38. 라벨도 비활성 색. |
+| 미선택 · 꺼짐 | 체크박스 · 라디오 상자 `bg.layer-default` + 테두리 `stroke.neutral-weak` 1px. Ghost 체크박스는 체크만 `fg.neutral-subtle`. 스위치 트랙 `bg.neutral-weak-pressed` + 손잡이 `bg.layer-default`(크기 0.8, 그림자 `shadow.s1`). |
+| 비활성 | 버튼 · 체크박스 · 라디오는 `bg.disabled` + `fg.disabled`(테두리 없음). 라디오 안쪽 점은 `bg.neutral-weak-pressed`. 윤곽 버튼은 배경 투명 + 테두리 `stroke.neutral-muted`. 스위치는 트랙 투명도 0.38. 라벨도 비활성 색. |
 | 로딩 | 1초 안에는 모양을 그대로 두고 추가 입력만 막는다. 1초가 넘으면 버튼 배경이 `-pressed` 토큰으로 고정되고 버튼 이름 자리에 Spinner(`spinner-sm`, 24px)를 보인다. 너비를 유지하고 `aria-busy`를 둔다. 비활성과는 따로 다룬다. |
-| 포커스 | 입력은 테두리 `stroke.neutral-contrast` 2px. 버튼 · 체크박스는 `stroke.focus-ring` 2px 선 + 2px 띄움. |
+| 포커스 | 입력은 테두리 `stroke.neutral-contrast` 2px. 버튼 · 체크박스 · 라디오 · 스위치는 `stroke.focus-ring` 2px 선 + 2px 띄움. |
 | 오류 | 입력은 `stroke.critical-solid` 2px(포커스 중에도 유지) |
 
 - 비활성은 색 교체 하나로 통일한다. `opacity-50`은 쓰지 않고, 스위치만 투명도 0.38을 쓴다.
@@ -755,7 +760,8 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 | Bottom sheet | `bottom-sheet` | shadcn에 없다. 당근 · 토스를 따른다. |
 | Modal | `modal` | |
 | Checkbox, Radio, Switch | `checkbox-*` · `radio-*` · `switch-*` | 선택 상태는 `bg.brand-solid`. 나머지 상태는 "상태와 피드백" 표를 따른다. |
-| Select, Textarea | 연결 없음 | 크기는 "컴포넌트별 사용 규칙"을 따른다 |
+| Select | `input` · `input-disabled` | 입력 버튼은 Input과 같은 크기 · 모양 · 상태를 쓴다. 목록은 Bottom sheet로 연다. |
+| Textarea | 연결 없음 | 크기는 "컴포넌트별 사용 규칙"을 따른다 |
 | Tabs | `tabs-*` | 쓰는 법은 "컴포넌트별 사용 규칙"의 Tabs를 따른다 |
 | List item | `list-item` · `list-item-detail` · `list-item-pressed` | 눌림은 `bg.transparent-pressed` |
 | Top bar | `top-bar` | shadcn에 없다 |
@@ -870,7 +876,7 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 - [ ] 로딩 중인 버튼은 로딩 전과 너비가 같다
 - [ ] 채움 버튼(`button-primary-lg` · `button-primary-md` · `button-critical-lg`)은 한 화면에 하나만 둔다
 - [ ] 닫기 성격의 보조 버튼과 채움 버튼을 나란히 둘 때 너비 비율은 3:7, 그 밖의 두 버튼은 5:5로 한다
-- [ ] 하단 고정 영역의 여백 · 배경은 "Layout"의 하단 고정 영역 값을 쓴다
+- [ ] 하단 고정 영역은 좌우 16px(`space.screen-margin`) · 위 12px(`space.component-default`) · 아래 16px(`space.16`) + 안전 영역, 버튼 사이 8px(`space.8`)이고, 배경은 `bg.layer-default`이며 구분선 · 그림자를 두지 않는다
 - [ ] 한 버튼에 앞 아이콘과 뒤 아이콘을 함께 쓰지 않는다
 - [ ] Banner는 한 화면에 하나만 둔다
 - [ ] 닫을 수 있는 Banner에 경고 · 오류를 담지 않는다
