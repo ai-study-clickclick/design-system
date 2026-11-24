@@ -45,7 +45,7 @@ export function ListItem({
         {description && <span className={cn("text-body-sm", disabled ? "text-disabled" : "text-neutral-subtle")}>{description}</span>}
       </span>
       {suffix && <span className="flex shrink-0 items-center gap-8">{suffix}</span>}
-      {withArrow && <ChevronRight aria-hidden className={cn("size-20 shrink-0", disabled ? "text-disabled" : "text-neutral-subtle")} />}
+      {withArrow && <ChevronRight aria-hidden className={cn("size-24 shrink-0", disabled ? "text-disabled" : "text-neutral-subtle")} />}
     </>
   );
   return (

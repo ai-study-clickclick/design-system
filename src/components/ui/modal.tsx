@@ -26,7 +26,7 @@ export function Modal({ open, onOpenChange, trigger, title, description, childre
     <AlertDialog.Root open={open} onOpenChange={onOpenChange}>
       {trigger && <AlertDialog.Trigger asChild>{trigger}</AlertDialog.Trigger>}
       <AlertDialog.Portal>
-        <AlertDialog.Overlay className="fixed inset-0 z-50 bg-overlay" />
+        <AlertDialog.Overlay data-slot="modal-overlay" className="fixed inset-0 z-50 bg-overlay" />
         <AlertDialog.Content
           data-slot="modal"
           className={cn(

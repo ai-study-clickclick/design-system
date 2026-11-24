@@ -84,7 +84,7 @@ export function Select({
         <span className={cn("min-w-0 truncate", variant === "box" && "flex-1", !selected && variant === "box" && "text-placeholder")}>
           {selected ? selected.label : placeholder}
         </span>
-        <ChevronDown aria-hidden className={cn("shrink-0", variant === "box" ? "size-20 text-neutral-subtle" : "size-16")} />
+        <ChevronDown aria-hidden className={cn("shrink-0", variant === "box" ? "size-24 text-neutral-subtle" : "size-20")} />
       </button>
       <BottomSheet open={open} onOpenChange={setOpen} title={sheetTitle ?? label ?? placeholder}>
         <ul role="listbox" aria-label={typeof label === "string" ? label : undefined} className="-mx-16">

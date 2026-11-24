@@ -85,3 +85,43 @@ html.corner-comp {
   --segmented-control-rounded: calc(10px * var(--corner-comp));
   --segmented-control-item-rounded: calc(8px * var(--corner-comp));
 }
+
+/* 움직임: DESIGN.md 본문 "움직임 값" · "나타나고 사라지는 값" 표 값. YAML에 들어가면 tokens.css로 옮긴다 */
+:root {
+  --duration-d2: 100ms;
+  --duration-d3: 150ms;
+  --duration-d4: 200ms;
+  --duration-d6: 300ms;
+  --timing-function-enter: cubic-bezier(0, 0, 0.15, 1);
+  --timing-function-exit: cubic-bezier(0.35, 0, 1, 1);
+  --timing-function-enter-expressive: cubic-bezier(0.03, 0.4, 0.1, 1);
+}
+
+@keyframes ds-fade-in { from { opacity: 0; } }
+@keyframes ds-fade-out { to { opacity: 0; } }
+@keyframes ds-toast-in { from { opacity: 0; transform: scale(0.8); } }
+@keyframes ds-toast-out { to { opacity: 0; transform: scale(0.8); } }
+/* Modal은 가운데 정렬용 translate(-50%)를 함께 둔다 */
+@keyframes ds-modal-in { from { opacity: 0; transform: translate(-50%, -50%) scale(1.3); } }
+@keyframes ds-modal-out { to { opacity: 0; } }
+
+/* Toast: 나타남 d3 enter, 사라짐 d2 exit */
+[data-slot="toast"][data-state="open"] { animation: ds-toast-in var(--duration-d3) var(--timing-function-enter); }
+[data-slot="toast"][data-state="closed"] { animation: ds-toast-out var(--duration-d2) var(--timing-function-exit) forwards; }
+
+/* Modal: 뒤 배경 d2 enter, 내용 크기 1.3 → 1 d4 enter-expressive. 사라짐은 둘 다 d2 exit */
+[data-slot="modal-overlay"][data-state="open"] { animation: ds-fade-in var(--duration-d2) var(--timing-function-enter); }
+[data-slot="modal"][data-state="open"] { animation: ds-modal-in var(--duration-d4) var(--timing-function-enter-expressive); }
+[data-slot="modal-overlay"][data-state="closed"],
+[data-slot="modal"][data-state="closed"] { animation: ds-modal-out var(--duration-d2) var(--timing-function-exit) forwards; }
+
+/* Bottom sheet: vaul 기본 움직임(0.5초)을 덮어쓴다. 나타남 d6(뒤 배경 enter, 내용 enter-expressive), 사라짐 d4 exit */
+[data-vaul-overlay][data-state="open"] { animation-duration: var(--duration-d6); animation-timing-function: var(--timing-function-enter); }
+[data-vaul-drawer][data-state="open"] { animation-duration: var(--duration-d6); animation-timing-function: var(--timing-function-enter-expressive); }
+[data-vaul-overlay][data-state="closed"],
+[data-vaul-drawer][data-state="closed"] { animation-duration: var(--duration-d4); animation-timing-function: var(--timing-function-exit); }
+
+/* 동작 줄이기: 나타나고 사라지는 움직임을 끈다(docs/UX.md "사용자를 방해하지 않기") */
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="toast"], [data-slot="modal"], [data-slot="modal-overlay"], [data-vaul-overlay], [data-vaul-drawer] { animation: none !important; }
+}

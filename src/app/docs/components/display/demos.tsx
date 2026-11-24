@@ -83,7 +83,7 @@ export function CardDemo() {
               <CardTitle>신용점수 조회</CardTitle>
               <CardDescription>조회해도 점수가 떨어지지 않아요</CardDescription>
             </CardHeading>
-            <ChevronRight aria-hidden className="size-20 shrink-0 text-neutral-subtle" />
+            <ChevronRight aria-hidden className="size-24 shrink-0 text-neutral-subtle" />
           </CardHeader>
         </Card>
       </Phone>

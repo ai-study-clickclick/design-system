@@ -8,6 +8,8 @@ import { useEffect, useRef, useState } from "react";
 // 라운드 · 좌우 여백은 DESIGN.md(8 · 10)보다 키운 임시 값
 // 글자는 왼쪽, 버튼은 오른쪽 끝에 둔다. 글자가 길면 여러 줄로 내려간다
 const DURATION = 4000;
+// 사라지는 시간: DESIGN.md "나타나고 사라지는 값" Toast d2. 움직임 값은 temp-tokens.css
+const EXIT_MS = 100;
 
 export type ToastOptions = {
   /** 버튼 1개(되돌리기 등) */
@@ -39,9 +41,18 @@ function dismiss(id: number) {
 /** 앱 맨 바깥(레이아웃)에 한 번만 둔다 */
 export function Toaster() {
   const [item, setItem] = useState<ToastItem | null>(null);
+  // 닫히는 알림 id. 사라지는 움직임(d2 100ms)이 끝난 뒤 지운다
+  const [closing, setClosing] = useState<number | null>(null);
   useEffect(() => {
-    const show = (e: Event) => setItem((e as CustomEvent<ToastItem>).detail);
-    const hide = (e: Event) => setItem((cur) => (cur?.id === (e as CustomEvent<number>).detail ? null : cur));
+    const show = (e: Event) => {
+      setClosing(null);
+      setItem((e as CustomEvent<ToastItem>).detail);
+    };
+    const hide = (e: Event) => {
+      const id = (e as CustomEvent<number>).detail;
+      setClosing(id);
+      setTimeout(() => setItem((cur) => (cur?.id === id ? null : cur)), EXIT_MS);
+    };
     window.addEventListener(EVENT, show);
     window.addEventListener(DISMISS, hide);
     return () => {
@@ -51,12 +62,12 @@ export function Toaster() {
   }, []);
   return (
     <div aria-live="polite" className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-16 pb-24">
-      {item && <ToastView key={item.id} item={item} />}
+      {item && <ToastView key={item.id} item={item} closing={closing === item.id} />}
     </div>
   );
 }
 
-function ToastView({ item }: { item: ToastItem }) {
+function ToastView({ item, closing }: { item: ToastItem; closing: boolean }) {
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const start = () => {
     clearTimeout(timer.current);
@@ -73,6 +84,7 @@ function ToastView({ item }: { item: ToastItem }) {
   return (
     <div
       data-slot="toast"
+      data-state={closing ? "closed" : "open"}
       role="status"
       onPointerEnter={stop}
       onPointerLeave={start}
