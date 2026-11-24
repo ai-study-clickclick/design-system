@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: clickclick-design-system
-description: "딸깍딸깍 디자인 시스템의 디자인 값 원본. YAML 토큰이 원본이고 본문은 쓰는 법이다. 앱 화면(모바일), 라이트 모드, 기본 테마는 주황. 값은 SEED 기준이며 주황 CTA, 비활성 글자색, 보통 버튼 높이가 다르다"
+description: "딸깍딸깍 디자인 시스템의 디자인 값 원본. YAML 토큰이 원본이고 본문은 쓰는 법이다. 앱 화면(모바일), 라이트 모드, 기본 테마는 주황. 값은 SEED 기준이며 주황 CTA, 비활성 글자색, Button md 높이가 다르다"
 
 # 토큰 이름은 docs/CONVENTIONS.md "디자인 토큰"을 따른다
 # 1단 palette.* → 2단 쓰임새(bg.*, fg.*, stroke.*). 화면·컴포넌트에는 쓰임새 이름만 쓴다
@@ -94,6 +94,7 @@ colors:
   "palette.static-black-alpha-700": "#00000074"
   "palette.static-black-alpha-900": "#000000d0"
   "palette.static-white": "#ffffff"
+  "palette.static-white-alpha-300": "#ffffff2e"   # Spinner staticWhite 트랙
 
   # ── 대표 컬러 ──
   "brand.primary": "{colors.palette.orange-600}"
@@ -192,7 +193,7 @@ theme:
 
 typography:
   # 기본 글꼴 Pretendard. 크기·줄 높이는 당근 SEED 스케일(t9·t7·t6·t5·t4·t3·t2) 값을 참고
-  # 라벨 굵기: 버튼·탭 라벨 bold 700, 배지(weak) 라벨 medium 500. Large 버튼 라벨은 18px, Tabs medium 라벨은 16px
+  # 라벨 굵기: 버튼·탭 라벨 bold 700, 배지(weak) 라벨 medium 500. Button lg 라벨은 18px, Tabs md 라벨은 16px
   title-lg: { fontFamily: Pretendard, fontSize: 24px, fontWeight: 700, lineHeight: 32px }
   title-md: { fontFamily: Pretendard, fontSize: 20px, fontWeight: 700, lineHeight: 27px }
   title-sm: { fontFamily: Pretendard, fontSize: 18px, fontWeight: 700, lineHeight: 24px }
@@ -211,8 +212,8 @@ rounded:
   # 테마는 radius.base 하나만 정하고 나머지는 /sync가 비율로 계산한다. 비율 = 0.375 / 0.5 / 0.75 / 1 / 1.25 / 1.5 (기본값 16px일 때 6/8/12/16/20/24)
   "radius.base": 16px
   "radius.xs": 6px      # 배지
-  "radius.sm": 8px      # 보통 버튼, Toast, Skeleton 글자 줄
-  "radius.md": 12px     # 큰 버튼, 입력창
+  "radius.sm": 8px      # Button md, Toast, Skeleton 글자 줄
+  "radius.md": 12px     # Button lg, 입력창
   "radius.lg": 16px     # 카드
   "radius.xl": 20px     # Modal
   "radius.2xl": 24px    # Bottom sheet
@@ -252,66 +253,73 @@ spacing:
   "space.touch-min": 44px       # 누르는 영역 기본 크기 (docs/UX.md "손가락으로 쓰기 쉽게")
   "space.touch-min-sm": 24px    # 공간이 부족한 곳의 누르는 영역 최소 크기
 
+shadows:
+  # 라이트 모드. 쓰는 곳은 본문 "Elevation & Depth"를 따른다
+  "shadow.s1": "0 1px 4px rgba(0,0,0,0.08)"
+  "shadow.s2": "0 2px 10px rgba(0,0,0,0.10)"
+  "shadow.s3": "0 4px 16px rgba(0,0,0,0.12)"
+
 components:
   # 이름·속성은 코드와 피그마가 같게 (예: Button · variant=primary)
   # 상태(pressed·disabled·loading·selected)는 별도 키로 둔다
   # padding은 가로 값이다. 가로·세로가 다르면 paddingX · paddingY를 함께 둔다
-  # 값은 SEED 컴포넌트 스펙 값. 보통 버튼 높이 44px는 기본 누르는 영역에 맞춘 값
+  # 크기는 docs/CONVENTIONS.md "코드·피그마"의 줄임말(sm · md · lg). 크기가 둘 이상이면 모든 크기와 상태 토큰 이름에 크기를 붙인다
+  # 값은 SEED 컴포넌트 스펙 값. Button md 높이 44px는 기본 누르는 영역에 맞춘 값
   # MVP 19개 중 아래에 없는 것은 "Components"의 "MVP 컴포넌트 19개" 표를 따른다
-  button-primary:
+  button-primary-lg:
     backgroundColor: "{colors.bg.brand-solid}"
     textColor: "{colors.fg.on-brand-solid}"
     typography: "{typography.label-lg}"
     rounded: "{rounded.radius.md}"
     height: 52px
     padding: "{spacing.space.20}"
-  button-primary-pressed:
+  button-primary-lg-pressed:
     backgroundColor: "{colors.bg.brand-solid-pressed}"
     textColor: "{colors.fg.on-brand-solid}"
-  button-primary-disabled:
+  button-primary-lg-disabled:
     backgroundColor: "{colors.bg.disabled}"
     textColor: "{colors.fg.disabled}"
-  button-secondary:
+  button-secondary-lg:
     backgroundColor: "{colors.bg.neutral-weak}"
     textColor: "{colors.fg.neutral}"
     typography: "{typography.label-lg}"
     rounded: "{rounded.radius.md}"
     height: 52px
     padding: "{spacing.space.20}"
-  button-secondary-pressed:
+  button-secondary-lg-pressed:
     backgroundColor: "{colors.bg.neutral-weak-pressed}"
     textColor: "{colors.fg.neutral}"
-  button-secondary-disabled:
+  button-secondary-lg-disabled:
     backgroundColor: "{colors.bg.disabled}"
     textColor: "{colors.fg.disabled}"
-  button-critical:
+  button-critical-lg:
     backgroundColor: "{colors.bg.critical-solid}"
     textColor: "{colors.fg.on-critical-solid}"
     typography: "{typography.label-lg}"
     rounded: "{rounded.radius.md}"
     height: 52px
     padding: "{spacing.space.20}"
-  button-critical-pressed:
+  button-critical-lg-pressed:
     backgroundColor: "{colors.bg.critical-solid-pressed}"
     textColor: "{colors.fg.on-critical-solid}"
-  button-critical-disabled:
+  button-critical-lg-disabled:
     backgroundColor: "{colors.bg.disabled}"
     textColor: "{colors.fg.disabled}"
-  button-medium:
+  button-primary-md:
     backgroundColor: "{colors.bg.brand-solid}"
     textColor: "{colors.fg.on-brand-solid}"
     typography: "{typography.label-md}"
     rounded: "{rounded.radius.sm}"
     height: 44px
     padding: "{spacing.space.16}"
-  button-medium-pressed:
+  button-primary-md-pressed:
     backgroundColor: "{colors.bg.brand-solid-pressed}"
     textColor: "{colors.fg.on-brand-solid}"
-  button-medium-disabled:
+  button-primary-md-disabled:
     backgroundColor: "{colors.bg.disabled}"
     textColor: "{colors.fg.disabled}"
   # 윤곽 버튼은 SEED neutralOutline 값. 테두리는 비활성일 때도 같다
-  button-outline:
+  button-outline-lg:
     backgroundColor: "{colors.bg.transparent}"
     textColor: "{colors.fg.neutral}"
     borderColor: "{colors.stroke.neutral-muted}"
@@ -320,10 +328,26 @@ components:
     rounded: "{rounded.radius.md}"
     height: 52px
     padding: "{spacing.space.20}"
-  button-outline-pressed:
+  button-outline-lg-pressed:
     backgroundColor: "{colors.bg.transparent-pressed}"
     textColor: "{colors.fg.neutral}"
-  button-outline-disabled:
+  button-outline-lg-disabled:
+    backgroundColor: "{colors.bg.transparent}"
+    textColor: "{colors.fg.disabled}"
+  # 상태 화면처럼 하단 고정 채움 버튼과 함께 쓰는 본문 버튼(docs/PATTERNS.md)
+  button-outline-md:
+    backgroundColor: "{colors.bg.transparent}"
+    textColor: "{colors.fg.neutral}"
+    borderColor: "{colors.stroke.neutral-muted}"
+    borderWidth: 1px
+    typography: "{typography.label-md}"
+    rounded: "{rounded.radius.sm}"
+    height: 44px
+    padding: "{spacing.space.16}"
+  button-outline-md-pressed:
+    backgroundColor: "{colors.bg.transparent-pressed}"
+    textColor: "{colors.fg.neutral}"
+  button-outline-md-disabled:
     backgroundColor: "{colors.bg.transparent}"
     textColor: "{colors.fg.disabled}"
   input:
@@ -414,32 +438,107 @@ components:
   avatar:
     rounded: "{rounded.radius.full}"
     size: 48px
-  spinner:
+  spinner-md:
     rounded: "{rounded.radius.full}"
     size: 40px
-  spinner-small:
+    thickness: 5px
+  spinner-sm:
     rounded: "{rounded.radius.full}"
     size: 24px
-  tabs-medium:
+    thickness: 3px
+  # tone별 색. 기본은 neutral. 버튼 안 Spinner는 tone 없이 버튼 글자색을 쓴다
+  spinner-neutral:
+    trackColor: "{colors.bg.neutral-weak}"
+    rangeColor: "{colors.palette.gray-500}"
+  spinner-brand:
+    trackColor: "{colors.palette.brand-200}"
+    rangeColor: "{colors.bg.brand-solid}"
+  spinner-static-white:
+    trackColor: "{colors.palette.static-white-alpha-300}"
+    rangeColor: "{colors.palette.static-white}"
+  tabs-md:
     textColor: "{colors.fg.neutral}"
     typography: "{typography.label-base}"
     height: 44px
     padding: "{spacing.space.10}"
-  tabs-small:
+  tabs-sm:
     textColor: "{colors.fg.neutral}"
     typography: "{typography.label-md}"
     height: 40px
     padding: "{spacing.space.10}"
-  tabs-unselected:
+  tabs-md-unselected:
     textColor: "{colors.fg.neutral-subtle}"
-  tabs-disabled:
+  tabs-md-disabled:
+    textColor: "{colors.fg.disabled}"
+  tabs-sm-unselected:
+    textColor: "{colors.fg.neutral-subtle}"
+  tabs-sm-disabled:
     textColor: "{colors.fg.disabled}"
   skeleton:
     backgroundColor: "{colors.bg.neutral-weak}"
     rounded: "{rounded.radius.sm}"
+  # Checkbox · Radio · Switch: size는 마크(상자) 크기, minHeight는 라벨을 포함한 한 줄 높이, gap은 마크와 라벨 사이
+  checkbox-md:
+    size: 20px
+    rounded: "{rounded.radius.xs}"
+    iconSize: 12px
+    minHeight: 32px
+    gap: "{spacing.space.8}"
+  checkbox-lg:
+    size: 24px
+    rounded: "{rounded.radius.xs}"
+    iconSize: 14px
+    minHeight: 36px
+    gap: "{spacing.space.8}"
+  # Ghost는 상자 없이 체크 아이콘만 둔다
+  checkbox-ghost-md:
+    iconSize: 14px
+  checkbox-ghost-lg:
+    iconSize: 18px
+  radio-md:
+    size: 20px
+    rounded: "{rounded.radius.full}"
+    dotSize: 8px
+    minHeight: 32px
+    gap: "{spacing.space.8}"
+  radio-md-disabled:
+    dotSize: 10px
+  radio-lg:
+    size: 24px
+    rounded: "{rounded.radius.full}"
+    dotSize: 10px
+    minHeight: 36px
+    gap: "{spacing.space.8}"
+  radio-lg-disabled:
+    dotSize: 12px
+  # Switch: width·height는 트랙, padding은 트랙 안 여백, minHeight는 누르는 영역을 포함한 한 줄 높이
+  switch-sm:
+    width: 26px
+    height: 16px
+    thumbSize: 12px
+    padding: 2px
+    rounded: "{rounded.radius.full}"
+    minHeight: 24px
+    gap: "{spacing.space.6}"
+  switch-md:
+    width: 38px
+    height: 24px
+    thumbSize: 20px
+    padding: 2px
+    rounded: "{rounded.radius.full}"
+    minHeight: 24px
+    gap: "{spacing.space.8}"
+  switch-lg:
+    width: 52px
+    height: 32px
+    thumbSize: 26px
+    padding: 3px
+    rounded: "{rounded.radius.full}"
+    minHeight: 32px
+    gap: "{spacing.space.10}"
 ---
 
-> 상태: 초안 v0.5 · 태스크: 1-2
+> 상태: 초안 v0.6 · 태스크: 1-2
 > 이 문서는 **보이는 값**(색 · 글자 · 간격 · 모서리 · 그림자 · 움직임 · 컴포넌트 모양)을 정하는 원본이다
 > 다루는 범위: 기본 테마의 토큰과 MVP 컴포넌트 값. 다크모드와 PC↔MO 변환은 나중에 추가한다
 > 동작은 `docs/UX.md`, 문구는 `docs/WRITING.md`, 화면 유형별 구성은 `docs/PATTERNS.md`를 따른다
@@ -452,7 +551,7 @@ components:
 
 | 영역 | 따를 기준 | 이 파일의 장 |
 | --- | --- | --- |
-| 부품 뼈대(구성 · 구조) | shadcn/ui. 없는 앱 부품(Top bar, Bottom sheet)은 당근 · 토스. 하단 고정 버튼은 Button 배치(`docs/PATTERNS.md`). | Components |
+| 부품 뼈대(구성 · 구조) | shadcn/ui. 없는 앱 부품(Top bar, Bottom sheet)은 당근 · 토스. 하단 고정 버튼은 Button 배치(`docs/PATTERNS.md`)이고, 값은 Layout의 하단 고정 영역을 따른다. | Components, Layout |
 | 색 · 글자 토큰 | 당근 SEED + 토스 TDS | Colors, Typography |
 | 색 단계 용도 · 모서리 · 그림자 쓰는 원칙 | Vercel Geist | Colors, Elevation & Depth, Shapes |
 | 간격 · 그림자 · 모서리 값 | 당근 SEED | `spacing`, Elevation & Depth, Shapes |
@@ -472,7 +571,8 @@ components:
 - 역할 6개: Brand, Neutral, Positive, Warning, Critical, Informative
 - 단계 용도: 밝은 단계는 배경, 중간 단계는 테두리, 진한 단계는 글자
 - 변형: `-solid`(채움), `-weak`(연한 배경), `-pressed`(눌림). 눌림은 표면 색만 바꾸고 글자 · 아이콘 색은 그대로다.
-- 브랜드 색 단계(`palette.brand-100` ~ `palette.brand-900`)는 `brand.primary`에서 자동 생성한다. 대표 컬러만 바꿔도 `bg.brand-solid` 등이 함께 바뀐다.
+- 브랜드 색 단계(`palette.brand-100` ~ `palette.brand-900`)는 `brand.primary`에서 자동 생성한다. 600은 대표 컬러 그대로이고, 나머지 단계는 주황 단계의 명도 흐름을 따라 계산한다. 대표 컬러만 바꿔도 `bg.brand-solid` 등이 함께 바뀐다.
+- 테마 프리셋을 추가할 때는 600(`bg.brand-solid`) 위 흰 버튼 글자가 Lc 60 이상인 대표 컬러만 넣는다. 밝은 색(노랑 · 하늘 등)이 필요하면 프리셋을 넣기 전에 팀이 따로 정한다.
 - 눌림 색 연결은 brand-solid 600 → pressed 700이다
 
 **색 대비 기준값** (APCA 방식. 흰 배경 위 Lc는 절댓값)
@@ -487,7 +587,7 @@ components:
 APCA는 W3C 공식 표준이 아니므로 법 · 인증 근거로는 쓰지 않는다
 
 - 값은 전부 SEED 색표라서 SEED 자신의 기준에 못 미치는 곳도 똑같이 남아 있다. 아래 점수가 그렇다.
-- 주황 600(`bg.brand-solid`) 위 흰 버튼 라벨(Large 18px · Medium 14px, 굵게)은 Lc 60.1로 "다른 텍스트" 기준 60을 겨우 넘는다. 주황 700 위는 Lc 71.5다.
+- 주황 600(`bg.brand-solid`) 위 흰 버튼 라벨(`lg` 18px · `md` 14px, 굵게)은 Lc 60.1로 "다른 텍스트" 기준 60을 겨우 넘는다. 주황 700 위는 Lc 71.5다.
 - 흰 배경 위 글자색 점수: `fg.neutral` 104.0, `fg.neutral-muted` 82.7(본문 75 통과), `fg.neutral-subtle` 61.8, `fg.warning` 68.1, `fg.positive` 66.4, `fg.informative` 66.2, `fg.critical` 63.3, `fg.brand`(주황 600) 54.8
 - `fg.brand`는 기준 60에도 못 미친다. 글자에 브랜드 색을 쓰려면 `fg.brand-contrast`(주황 700, 흰 배경 Lc 66.0)를 쓴다. 66.0은 기준 60은 넘지만 본문 기준 75에는 못 미쳐서 본문 글자색으로는 쓰지 않는다.
 - 연한 배경(`bg.*-weak`) 위 `fg.*` 700단계 글자는 Lc 56~63(브랜드 48.5)이라 쓰기 어렵다. `fg.*-contrast`는 critical 81.6, informative 84.5, positive 85.2, warning 89.1로 본문 기준 75를 넘는다. 브랜드는 주황 700이 Lc 59.7로 60에 조금 못 미친다. 그래서 Banner · Badge 글자는 `-contrast`를 쓴다(Badge weak의 굵기 예외는 Components의 Badge 규칙을 따른다).
@@ -500,7 +600,7 @@ APCA는 W3C 공식 표준이 아니므로 법 · 인증 근거로는 쓰지 않�
 - 위계: 화면 제목 `title-lg`, 섹션 제목 `title-md` · `title-sm`, 본문 `body-lg` · `body-md`, 목록 보조 글자 `body-sm`, Banner 내용 `emphasis-md`, 보조 `caption`, 버튼 · 탭 · 라벨 `label-*`
 - 제목과 본문의 계층을 분명히 나눈다. 한 화면에서 쓰는 글자 크기는 4단계 이내다.
 - 기기 글자 크기 설정을 따르는 규칙은 `docs/UX.md` "글자 크기와 콘텐츠 길이"와 "개인 설정 존중"을 따른다
-- 라벨 굵기: `label-lg` · `label-base` · `label-md`는 700(bold), 배지 weak에 쓰는 `label-sm`은 500(medium)이다. Large 버튼 라벨은 18px(`label-lg`), Tabs medium 라벨은 16px(`label-base`)다.
+- 라벨 굵기: `label-lg` · `label-base` · `label-md`는 700(bold), 배지 weak에 쓰는 `label-sm`은 500(medium)이다. Button `lg` 라벨은 18px(`label-lg`), Tabs `md` 라벨은 16px(`label-base`)다.
 - `body-sm`(13px 보통 굵기)에는 `fg.neutral` · `fg.neutral-muted`만 쓴다. Lc 75 미만 글자색은 16px 미만이면 굵게 써야 해서다. List item 보조 글자(`fg.neutral-subtle`)는 SEED List item을 그대로 따르는 예외다.
 - `body-sm`은 List item 보조 글자에만 쓴다. 그 밖의 16px 미만 보조 글자는 `caption`(굵게)을 쓴다.
 
@@ -512,7 +612,23 @@ APCA는 W3C 공식 표준이 아니므로 법 · 인증 근거로는 쓰지 않�
 - **누르는 영역** `space.touch-min`: 44×44px. 공간이 부족한 곳의 최소값은 `space.touch-min-sm` 24×24px다. 언제 줄여도 되는지는 `docs/UX.md` "손가락으로 쓰기 쉽게"를 따른다.
 - 안전 영역 배치는 `docs/UX.md` "가려지면 안 되는 것"을 따른다
 - 간격은 `spacing`의 `space.*`만 쓴다
-- 컴포넌트 높이: Large 버튼 · CTA 52px, 보통 버튼 44px(기본 누르는 영역에 맞춘 값), 입력창 52px
+- 컴포넌트 높이: Button `lg` · CTA 52px, Button `md` 44px(기본 누르는 영역에 맞춘 값), 입력창 52px
+
+**하단 고정 영역**
+
+하단 고정 버튼(`Button` `lg`)을 놓는 화면 아래 영역이다. 무엇을 둘지는 `docs/PATTERNS.md`를 따르고, 여기서는 값만 정한다. 여백 · 배경은 화면마다 바꾸지 않는다.
+
+| 항목 | 값 |
+| --- | --- |
+| 좌우 여백 | `space.screen-margin` 16px |
+| 위 여백 | `space.component-default` 12px |
+| 아래 여백 | `space.16` 16px + 기기 아래 안전 영역 |
+| 버튼 사이 | `space.8` 8px |
+| 배경 | `bg.layer-default`. 구분선 · 그림자는 두지 않는다 |
+| 버튼 2개 너비 | 닫기 성격의 보조 버튼 + 채움 버튼은 3:7, 그 밖은 5:5 |
+
+- 버튼 너비는 버튼이 아니라 영역이 정한다. 버튼 1개면 영역 폭을 다 채운다.
+- 본문 맨 아래에 하단 고정 영역 높이만큼 여백을 두어 마지막 내용이 가려지지 않게 한다
 
 ## Elevation & Depth
 
@@ -539,8 +655,8 @@ APCA는 W3C 공식 표준이 아니므로 법 · 인증 근거로는 쓰지 않�
 
 - 라운드는 컴포넌트마다 SEED 값을 쓴다. 단계 값 6 · 8 · 12 · 16 · 20 · 24px는 SEED 라운드 단계이고, `radius.base`(= `radius.lg`) 16px에서 나머지를 비율로 계산한다. 테마는 이 값만 바꾼다.
 - 기본 테마는 SEED 값을 기준으로 한다. 화면 작업에서 라운드가 작게 느껴지면 `radius.base`를 다시 정한다.
-- 큰 버튼 · 입력 `radius.md`(12), 보통 버튼 · Toast `radius.sm`(8), 배지 `radius.xs`(6), 카드 `radius.lg`(16), Modal `radius.xl`(20), Bottom sheet `radius.2xl`(24), 동그란 요소 `radius.full`. Banner는 화면 전체 폭이라 모서리를 두지 않는다.
-- 면이 크고 위로 뜰수록 라운드가 커진다(Vercel Geist 참고): 배지 6 < 보통 버튼 · Toast 8 < 큰 버튼 · 입력 12 < 카드 16 < Modal 20 < Bottom sheet 24
+- Button `lg` · 입력 `radius.md`(12), Button `md` · Toast `radius.sm`(8), 배지 `radius.xs`(6), 카드 `radius.lg`(16), Modal `radius.xl`(20), Bottom sheet `radius.2xl`(24), 동그란 요소 `radius.full`. Banner는 화면 전체 폭이라 모서리를 두지 않는다.
+- 면이 크고 위로 뜰수록 라운드가 커진다(Vercel Geist 참고): 배지 6 < Button `md` · Toast 8 < Button `lg` · 입력 12 < 카드 16 < Modal 20 < Bottom sheet 24
 - Skeleton은 글자 줄 `radius.sm`(8), 카드 · 썸네일 `radius.lg`(16), 아바타 `radius.full`이다
 - 라운드가 있는 상자 안에 라운드가 있는 요소를 넣을 때는 안쪽 라운드 = 바깥 라운드 − 안쪽 여백이다. 두 곡선의 중심이 같아져 모서리 틈이 고르게 보인다.
 - 계산값이 토큰에 없으면 바로 아래 단계 토큰을 쓴다. 더 둥근 쪽은 모서리 틈이 눈에 띈다. 여백이 바깥 라운드보다 크면 안쪽은 0이다. 예: 카드 16 − 여백 8 = `radius.sm`(8), 카드 16 − 여백 6 = 10 → `radius.sm`(8).
@@ -557,9 +673,9 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 | --- | --- |
 | 기본 | 버튼 `bg.brand-solid` + `fg.on-brand-solid`. 입력 테두리 `stroke.neutral-weak` 1px. |
 | 눌림 | 배경을 `-pressed` 토큰으로 바꾸고 2px 줄어든다. 투명 배경은 `bg.transparent-pressed`. |
-| 선택 | 체크박스 `bg.brand-solid` + 체크 `fg.on-brand-solid`, 테두리 없음. 스위치 트랙 `bg.brand-solid`, 손잡이 크기 1(꺼짐 0.8). |
+| 선택 | 체크박스 · 라디오 `bg.brand-solid` + 체크 · 안쪽 점 `fg.on-brand-solid`, 테두리 없음. Ghost 체크박스는 상자 없이 체크만 `fg.brand`. 스위치 트랙 `bg.brand-solid` + 손잡이 `fg.on-brand-solid`, 손잡이 크기 1(꺼짐 0.8). 연한 배경(`bg.brand-weak`)은 선택 표시에 쓰지 않는다. |
 | 비활성 | 버튼 · 체크박스는 `bg.disabled` + `fg.disabled`. 윤곽 버튼은 배경 투명 + 테두리 `stroke.neutral-muted`. 스위치는 트랙 투명도 0.38. 라벨도 비활성 색. |
-| 로딩 | 1초 안에는 모양을 그대로 두고 추가 입력만 막는다. 1초가 넘으면 버튼 배경이 `-pressed` 토큰으로 고정되고 버튼 이름 자리에 Spinner(`spinner-small`, 24px)를 보인다. 너비를 유지하고 `aria-busy`를 둔다. 비활성과는 따로 다룬다. |
+| 로딩 | 1초 안에는 모양을 그대로 두고 추가 입력만 막는다. 1초가 넘으면 버튼 배경이 `-pressed` 토큰으로 고정되고 버튼 이름 자리에 Spinner(`spinner-sm`, 24px)를 보인다. 너비를 유지하고 `aria-busy`를 둔다. 비활성과는 따로 다룬다. |
 | 포커스 | 입력은 테두리 `stroke.neutral-contrast` 2px. 버튼 · 체크박스는 `stroke.focus-ring` 2px 선 + 2px 띄움. |
 | 오류 | 입력은 `stroke.critical-solid` 2px(포커스 중에도 유지) |
 
@@ -604,7 +720,7 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 
 | 항목 | 값 |
 | --- | --- |
-| 버튼을 눌러 저장 · 제출 | 버튼 안 Spinner(`spinner-small`), 1~4초 |
+| 버튼을 눌러 저장 · 제출 | 버튼 안 Spinner(`spinner-sm`), 1~4초 |
 | 화면 · 영역 불러오기 | Spinner, 1~4초 |
 | 긴 로딩(목록 · 카드) | Skeleton, 1~10초 |
 | 로딩 표시 지연 | 1초. 1초 안에 끝나면 표시하지 않는다 |
@@ -630,7 +746,7 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 
 | 컴포넌트 | 토큰 연결 | 비고 |
 | --- | --- | --- |
-| Button | `button-*` | variant: primary / secondary / critical / outline, 크기 Large · Medium |
+| Button | `button-*` | variant: primary / secondary / critical / outline, 크기 `lg` · `md` |
 | Input | `input` · `input-disabled` | 포커스 · 오류 상태는 "상태와 피드백" 표를 따른다 |
 | Card | `card` | |
 | Badge | `badge-brand` | 다른 톤은 "컴포넌트별 사용 규칙"의 Badge를 따른다 |
@@ -638,20 +754,21 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 | Banner | `banner-informative` · `banner-critical` | |
 | Bottom sheet | `bottom-sheet` | shadcn에 없다. 당근 · 토스를 따른다. |
 | Modal | `modal` | |
-| Select, Textarea, Checkbox, Radio, Switch | 연결 없음 | "컴포넌트별 사용 규칙"에 있는 크기만 쓴다. 거기 없는 박스 · 손잡이 값은 만들기 전에 사람에게 묻는다. 선택 상태는 `bg.brand-weak` / `bg.brand-solid`. |
+| Checkbox, Radio, Switch | `checkbox-*` · `radio-*` · `switch-*` | 선택 상태는 `bg.brand-solid`. 나머지 상태는 "상태와 피드백" 표를 따른다. |
+| Select, Textarea | 연결 없음 | 크기는 "컴포넌트별 사용 규칙"을 따른다 |
 | Tabs | `tabs-*` | 쓰는 법은 "컴포넌트별 사용 규칙"의 Tabs를 따른다 |
 | List item | `list-item` · `list-item-detail` · `list-item-pressed` | 눌림은 `bg.transparent-pressed` |
 | Top bar | `top-bar` | shadcn에 없다 |
-| Avatar, Spinner, Skeleton | `avatar` · `spinner` · `spinner-small` · `skeleton` | 시간 값은 "로딩과 알림 시간" 표를 따른다 |
+| Avatar, Spinner, Skeleton | `avatar` · `spinner-*` · `skeleton` | 시간 값은 "로딩과 알림 시간" 표를 따른다 |
 
 ### 컴포넌트 값
 
 | 컴포넌트 | 값 |
 | --- | --- |
-| Button Large | 높이 52 · 라운드 12 · 좌우 20 · 라벨 18 bold |
-| Button Medium | 높이 44 · 라운드 8 · 좌우 16 · 라벨 14 bold |
-| Button outline | Large와 크기가 같다. 배경 투명 · 테두리 `stroke.neutral-muted` 1px · 글자 `fg.neutral`. 눌림 `bg.transparent-pressed`. |
-| Input Large | 높이 52 · 라운드 12 · 좌우 16 · 글자 16 · 테두리 1px, 포커스 · 오류 2px |
+| Button `lg` | 높이 52 · 라운드 12 · 좌우 20 · 라벨 18 bold |
+| Button `md` | 높이 44 · 라운드 8 · 좌우 16 · 라벨 14 bold |
+| Button outline | 크기 `lg` · `md`. 크기 값은 채움 버튼과 같다. 배경 투명 · 테두리 `stroke.neutral-muted` 1px · 글자 `fg.neutral`. 눌림 `bg.transparent-pressed`. |
+| Input | 높이 52 · 라운드 12 · 좌우 16 · 글자 16 · 테두리 1px, 포커스 · 오류 2px |
 | Toast | 라운드 8 · 여백 10 · 최소 높이 44 · 최대 폭 464 · 글자 14 |
 | Banner | 좌우 여백 16 · 위아래 여백 10 · 간격 6 · 최소 높이 40 · 제목 14 bold · 내용 14 medium, 글자 · 아이콘색 `-contrast`, 모서리 없음 |
 | Modal | 라운드 20 · 최대 폭 272 · 여백 20 · 제목 20 bold · 내용 16 |
@@ -660,7 +777,10 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 | List item | 위아래 12 · 좌우 16 · 제목 16(`body-lg`) · 보조 13(`body-sm`, `fg.neutral-subtle`) |
 | Top bar | 높이 44 |
 | Avatar | 크기 48 |
-| Spinner | 크기 40(전체 페이지 로딩용). 요소 안에서는 24 |
+| Spinner | `md` 40 · 두께 5(전체 페이지 로딩용), `sm` 24 · 두께 3(요소 안) |
+| Checkbox | 상자 `md` 20 · `lg` 24, 라운드 6, 체크 아이콘 12 · 14(Ghost 14 · 18), 줄 높이 32 · 36, 라벨 간격 8 |
+| Radio | 마크 `md` 20 · `lg` 24, 안쪽 점 8 · 10(비활성 10 · 12), 줄 높이 32 · 36, 라벨 간격 8 |
+| Switch | 트랙 `sm` 26×16 · `md` 38×24 · `lg` 52×32, 손잡이 12 · 20 · 26, 트랙 안 여백 2 · 2 · 3, 줄 높이 24 · 24 · 32, 라벨 간격 6 · 8 · 10 |
 | Skeleton | 라운드 8 · 16 · full |
 | Card | 라운드 16 · 여백 16 · 배경 `bg.layer-default` · 테두리 `stroke.neutral-weak` 1px · 그림자 없음 |
 
@@ -694,19 +814,25 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 
 **Checkbox · Radio · Switch**
 
-- Checkbox: 크기 Medium · Large. 모양은 Square(필수 선택이거나 꼭 알아야 할 때)와 Ghost(필수가 아니고 3개 이하). 상태는 선택 · 미선택 · 일부 선택(Indeterminate). 그룹은 부모를 고르면 자식이 모두 선택되고, 일부만 선택되면 부모가 일부 선택으로 표시된다.
-- Radio: 크기 Medium · Large. 단일 선택이다. 세로 배치가 기본이다. 기본 선택 여부와 라디오 대신 선택 목록을 쓰는 기준(선택지 개수)은 `docs/UX.md` "어떤 입력 방식을 쓸지"를 따른다.
-- Switch: 높이 16 · 24 · 32. 16은 터치 영역을 높이 24로 잡는다. Switch와 Checkbox 중 무엇을 쓸지는 `docs/UX.md` "어떤 입력 방식을 쓸지"를 따른다. 각 Switch는 독립적으로 동작하고, 비활성이면 마크와 라벨 모두 비활성 색이다.
+- Checkbox: 크기 `md` · `lg`. 모양은 Square(필수 선택이거나 꼭 알아야 할 때)와 Ghost(필수가 아니고 3개 이하). 상태는 선택 · 미선택 · 일부 선택(Indeterminate). 그룹은 부모를 고르면 자식이 모두 선택되고, 일부만 선택되면 부모가 일부 선택으로 표시된다.
+- Radio: 크기 `md` · `lg`. 단일 선택이다. 세로 배치가 기본이다. 기본 선택 여부와 라디오 대신 선택 목록을 쓰는 기준(선택지 개수)은 `docs/UX.md` "어떤 입력 방식을 쓸지"를 따른다.
+- Switch: 크기 `sm` · `md` · `lg`(높이 16 · 24 · 32). `sm`은 터치 영역을 높이 24로 잡는다. Switch와 Checkbox 중 무엇을 쓸지는 `docs/UX.md` "어떤 입력 방식을 쓸지"를 따른다. 각 Switch는 독립적으로 동작하고, 비활성이면 마크와 라벨 모두 비활성 색이다.
 - 세 가지 모두 라벨을 포함한 영역(목록에 넣으면 행 전체)이 터치 영역이다
 
 **Textarea · 입력 서식**
 
+- Textarea 자동 크기(`autoSize`)는 기본으로 켠다
 - Textarea 높이: 자동 크기를 켜면 최소 3줄(95px), 최대는 정하기 나름이다. 끄면 최소 2줄(70px)이고 최대 높이를 반드시 정하며 넘으면 안에서 스크롤된다.
 - 주민번호 · 전화번호처럼 형식이 있는 값의 자동 서식은 `docs/UX.md` "입력을 쉽게"를 따른다
 
+**Spinner**
+
+- tone은 neutral(기본) · brand · staticWhite다. staticWhite는 색이 있는 배경이나 이미지 위에 쓴다.
+- 버튼 안 Spinner는 tone을 두지 않고 버튼 글자색을 따른다
+
 **Tabs**
 
-- 높이 44(medium) · 40(small), 좌우 · 상하 여백 10px, 글자 `label-base` 16px(medium) · `label-md` 14px(small) 굵게. 색은 선택 `fg.neutral`, 미선택 `fg.neutral-subtle`, 비활성 `fg.disabled`.
+- 크기 `md` · `sm`. 높이 44(`md`) · 40(`sm`), 좌우 · 상하 여백 10px, 글자 `label-base` 16px(`md`) · `label-md` 14px(`sm`) 굵게. 색은 선택 `fg.neutral`, 미선택 `fg.neutral-subtle`, 비활성 `fg.disabled`.
 - 탭이 5개 이하면 칸을 꽉 채우는 Fill, 6개 이상이거나 라벨이 길면 라벨 길이에 맞추는 Hug를 쓴다. 알림 배지는 여러 탭에 동시에 달지 않고, 내용을 확인하면 사라진다.
 
 ## Do's and Don'ts
@@ -742,8 +868,9 @@ shadcn 구성을 뼈대로 하고, 모양은 당근 · 토스를 참고해 우�
 - [ ] 눌림은 `-pressed` 토큰과 150ms 줄어듦으로 표현한다
 - [ ] 비활성 요소에 눌림 · 선택 모양을 겹쳐 쓰지 않는다
 - [ ] 로딩 중인 버튼은 로딩 전과 너비가 같다
-- [ ] 채움 버튼(`button-primary` · `button-critical` · `button-medium`)은 한 화면에 하나만 둔다
-- [ ] 닫기 성격의 보조 버튼과 채움 버튼을 나란히 둘 때 너비 비율은 3:7로 한다
+- [ ] 채움 버튼(`button-primary-lg` · `button-primary-md` · `button-critical-lg`)은 한 화면에 하나만 둔다
+- [ ] 닫기 성격의 보조 버튼과 채움 버튼을 나란히 둘 때 너비 비율은 3:7, 그 밖의 두 버튼은 5:5로 한다
+- [ ] 하단 고정 영역의 여백 · 배경은 "Layout"의 하단 고정 영역 값을 쓴다
 - [ ] 한 버튼에 앞 아이콘과 뒤 아이콘을 함께 쓰지 않는다
 - [ ] Banner는 한 화면에 하나만 둔다
 - [ ] 닫을 수 있는 Banner에 경고 · 오류를 담지 않는다
