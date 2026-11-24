@@ -29,7 +29,7 @@ description: 코드 → 피그마 방향 동기화. 지금은 1단계(`DESIGN.md
 
 1. `node scripts/build-figma-variables.mjs`로 `src/styles/tokens.css`를 피그마에 넣을 코드로 바꾼다. 결과를 그대로 피그마 연결(`use_figma`)에 넣어 실행한다.
    - 같은 이름의 변수는 값 · 보이는 곳(scope) · 코드 이름만 고친다. 바뀐 것이 없으면 그대로 둔다.
-   - 묶음은 `primitive` · `theme` · `semantic` · `space` · `typography` 5개다. 이름의 `.`은 `/`로 바꾼다(`docs/CONVENTIONS.md` "디자인 토큰").
+   - 묶음 · 변수 이름은 `docs/CONVENTIONS.md` "디자인 토큰"을 따른다
    - 컴포넌트 토큰(`button-*` 등)은 넣지 않는다. 3-4에서 이 단계에 더한다.
 2. 결과의 `created` · `updated`를 사용자에게 쉬운 말로 알린다. `extraNotInCode`(피그마에만 있는 변수)는 지우지 않고 목록만 알린다.
 3. 자동 생성 토큰 프레임의 견본은 Variables에 연결돼 있어 따로 고치지 않는다. 새 토큰이 생겼으면 견본을 더할지 사용자에게 묻는다.
