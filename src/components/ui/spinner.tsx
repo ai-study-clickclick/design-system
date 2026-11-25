@@ -7,8 +7,8 @@ import { cn } from "./cn";
 const spinnerVariants = cva("inline-block shrink-0 animate-spin", {
   variants: {
     size: {
-      sm: "size-(--spinner-small-size)",
-      md: "size-(--spinner-size)",
+      sm: "size-(--spinner-sm-size)",
+      md: "size-(--spinner-md-size)",
     },
   },
   defaultVariants: { size: "md" },

@@ -48,7 +48,7 @@ export function TabsTrigger({ className, ...props }: React.ComponentProps<typeof
         variant === "line"
           ? cn(
               "-mb-px border-b-2 border-transparent px-10 text-neutral-subtle aria-selected:border-neutral-solid aria-selected:text-neutral",
-              size === "md" ? "h-(--tabs-medium-height) text-label-base" : "h-(--tabs-small-height) text-label-md",
+              size === "md" ? "h-(--tabs-md-height) text-label-base" : "h-(--tabs-sm-height) text-label-md",
             )
           : "h-(--tabs-solid-height) shrink-0 rounded-full bg-neutral-weak px-14 text-label-md text-neutral-muted active:bg-neutral-weak-pressed aria-selected:bg-neutral-solid aria-selected:text-on-neutral-solid",
         layout === "fill" && "flex-1",

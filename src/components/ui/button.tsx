@@ -25,8 +25,8 @@ const buttonVariants = cva(
         outline: "border border-neutral-weak bg-transparent text-neutral active:bg-transparent-pressed disabled:text-disabled",
       },
       size: {
-        lg: "h-(--button-primary-height) rounded-md px-20 text-label-lg",
-        md: "h-(--button-medium-height) rounded-(--button-md-rounded) px-16 text-label-md",
+        lg: "h-(--button-primary-lg-height) rounded-md px-20 text-label-lg",
+        md: "h-(--button-primary-md-height) rounded-(--button-md-rounded) px-16 text-label-md",
         sm: "h-(--button-sm-height) rounded-sm px-14 text-label-md",
       },
     },
