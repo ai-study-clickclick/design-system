@@ -25,7 +25,7 @@ repo/
 │  ├─ EVAL.md
 │  └─ components/        # 컴포넌트별 사용법 (자동 생성)
 ├─ briefs/                # 화면 요청 브리프. `owner` 값이 화면 주인 (화면 작업자)
-├─ evals/                 # 평가 시나리오와 결과
+├─ evals/                 # 평가 결과
 ├─ scripts/               # 스킬이 실행하는 프로그램(예: build-tokens.mjs, /sync가 tokens.css를 만들 때)
 │  ├─ build-figma-variables.mjs  # /sync 2단계: tokens.css → 피그마 Variables 코드
 │  └─ figma-text-styles/  # 글자 스타일 피그마 플러그인. 피그마 앱에서 사람이 실행
