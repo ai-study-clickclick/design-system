@@ -8,7 +8,6 @@
   /* Button sm: 높이 36 · 라운드 8 · 좌우 14 · 글자 14 (SEED ActionButton small, 3-2 · DESIGN.md 추가 요청) */
   --button-sm-height: 36px;
 
-  /* Checkbox · Radio: 상자 md 20 · lg 24, 줄 높이 md 32 · lg 36 (SEED Checkmark · Radiomark). Checkbox 라운드는 radius.xs */
 
   /* Tabs solid: 둥근 칩 높이 36, layout=hug만 (임시) */
   --tabs-solid-height: 36px;
@@ -16,20 +15,7 @@
   /* Select plain: 테두리 없는 작은 선택 높이 32 (임시) */
   --select-plain-height: 32px;
 
-  /* Switch: 트랙 sm 26×16 · md 38×24 · lg 52×32, 손잡이 12 · 20 · 26 (SEED Switchmark) */
-  --switch-sm-width: 26px;
-  --switch-md-width: 38px;
-  --switch-lg-width: 52px;
-  --switch-lg-thumb: 26px;
-  --switch-lg-travel: 22px;
 
-  /* Spinner tone (SEED Progress Circle). 기본 neutral */
-  --spinner-neutral-track-color: var(--bg-neutral-weak);
-  --spinner-neutral-range-color: var(--palette-gray-500);
-  --spinner-brand-track-color: var(--palette-brand-200);
-  --spinner-brand-range-color: var(--bg-brand-solid);
-  --spinner-static-white-track-color: #ffffff4d;
-  --spinner-static-white-range-color: var(--palette-static-white);
 
   /* BottomSheet: 최대 높이 = 화면 − 위 여백 48. 최소 높이는 두지 않고 내용만큼 */
   /* 아래 여백: 버튼이 없으면 내용 아래 24, 버튼이 있으면 버튼 아래 16. 둘 다 기기 안전 영역만큼 더한다 */
@@ -37,7 +23,7 @@
   --bottom-sheet-content-bottom: calc(24px + env(safe-area-inset-bottom));
   --bottom-sheet-footer-bottom: calc(16px + env(safe-area-inset-bottom));
 
-  /* Textarea: DESIGN.md 본문 값. autoSize 켬 최소 3줄 95, 끔 2줄 70 */
+  /* Textarea: DESIGN.md 본문 값(YAML 토큰 없음). autoSize 켬 최소 3줄 95, 끔 2줄 70 */
   --textarea-auto-min-height: 95px;
   --textarea-fixed-height: 70px;
 
@@ -51,12 +37,6 @@
   --calendar-day-size: 44px;
 }
 
-/* 그림자: DESIGN.md 본문 "Elevation & Depth" 표 값. YAML에 들어가면 tokens.css로 옮긴다 */
-@theme {
-  --shadow-s1: 0 1px 4px rgba(0, 0, 0, 0.08);
-  --shadow-s2: 0 2px 10px rgba(0, 0, 0, 0.1);
-  --shadow-s3: 0 4px 16px rgba(0, 0, 0, 0.12);
-}
 
 /* corner smoothing: 위 메뉴 세그먼트로 세 가지를 비교한다(site-shell.tsx)
    기본: 일반 라운드

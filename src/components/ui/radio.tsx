@@ -6,7 +6,7 @@ import { cn } from "./cn";
 
 // Radio: 여러 개 중 하나를 고른다. 세로 배치가 기본
 // RadioGroup(name · value · disabled) · RadioGroupItem(value · label · disabled) / size md · lg(3-2 비교표)
-// 동그라미 md 20(점 8) · lg 24(점 10)는 SEED 값 임시(DESIGN.md 추가 요청)
+// 동그라미 md 20(점 8, 비활성 10) · lg 24(점 10, 비활성 12). DESIGN.md radio-* 토큰
 const SizeContext = createContext<"md" | "lg">("md");
 
 export type RadioGroupProps = React.ComponentProps<typeof RadioPrimitive.Root> & { size?: "md" | "lg" };
@@ -40,7 +40,13 @@ export function RadioGroupItem({ id, label, disabled, className, ...props }: Rad
         {...props}
       >
         <RadioPrimitive.Indicator
-          className={cn("rounded-full bg-layer-default", disabled && "bg-neutral-weak-pressed", size === "md" ? "size-8" : "size-10")}
+          className={cn(
+            "rounded-full bg-layer-default",
+            disabled && "bg-neutral-weak-pressed",
+            size === "md"
+              ? disabled ? "size-(--radio-md-disabled-dot-size)" : "size-(--radio-md-dot-size)"
+              : disabled ? "size-(--radio-lg-disabled-dot-size)" : "size-(--radio-lg-dot-size)",
+          )}
         />
       </RadioPrimitive.Item>
       {label && (

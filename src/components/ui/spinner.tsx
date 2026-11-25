@@ -3,7 +3,7 @@ import { cn } from "./cn";
 
 // Spinner: 기다림을 알리는 원형 표시(DESIGN.md "로딩과 알림 시간")
 // size sm 24(요소 안) · md 40(전체 화면). tone은 버튼 밖에서만 쓰고, 버튼 안은 버튼 글자색(inherit)
-// tone 색은 임시 토큰(src/styles/temp-tokens.css, SEED Progress Circle 값)
+// tone 색은 DESIGN.md spinner-*-color 토큰(트랙 bg.*, 진행 fg.*)
 const spinnerVariants = cva("inline-block shrink-0 animate-spin", {
   variants: {
     size: {

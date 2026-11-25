@@ -5,12 +5,12 @@ import { Switch as SwitchPrimitive } from "radix-ui";
 import { cn } from "./cn";
 
 // Switch: 켜면 바로 반영되는 설정. label · checked · disabled / size sm · md · lg(16 · 24 · 32)
-// 트랙 폭과 손잡이 크기는 SEED Switchmark 값 임시(DESIGN.md 추가 요청). 켜짐 트랙 bg.brand-solid
+// 트랙 · 손잡이 · 여백은 DESIGN.md switch-* 토큰. 켜짐 이동 = 트랙 폭 − 손잡이 − 여백 2개(10 · 14 · 20). 켜짐 트랙 bg.brand-solid
 // 손잡이 크기 켜짐 1 · 꺼짐 0.8, 비활성은 투명도 0.38(DESIGN.md "상태와 피드백")
 const sizes = {
-  sm: { track: "h-16 w-(--switch-sm-width)", thumb: "size-12", on: "group-aria-checked:translate-x-10", gap: "gap-6", label: "text-body-sm" },
-  md: { track: "h-24 w-(--switch-md-width)", thumb: "size-20", on: "group-aria-checked:translate-x-14", gap: "gap-8", label: "text-body-md" },
-  lg: { track: "h-32 w-(--switch-lg-width)", thumb: "size-(--switch-lg-thumb)", on: "group-aria-checked:translate-x-(--switch-lg-travel)", gap: "gap-10", label: "text-body-lg" },
+  sm: { track: "h-(--switch-sm-height) w-(--switch-sm-width) px-(--switch-sm-padding)", thumb: "size-(--switch-sm-thumb-size)", on: "group-aria-checked:translate-x-10", gap: "gap-(--switch-sm-gap)", min: "min-h-(--switch-sm-min-height)", label: "text-body-sm" },
+  md: { track: "h-(--switch-md-height) w-(--switch-md-width) px-(--switch-md-padding)", thumb: "size-(--switch-md-thumb-size)", on: "group-aria-checked:translate-x-14", gap: "gap-(--switch-md-gap)", min: "min-h-(--switch-md-min-height)", label: "text-body-md" },
+  lg: { track: "h-(--switch-lg-height) w-(--switch-lg-width) px-(--switch-lg-padding)", thumb: "size-(--switch-lg-thumb-size)", on: "group-aria-checked:translate-x-20", gap: "gap-(--switch-lg-gap)", min: "min-h-(--switch-lg-min-height)", label: "text-body-lg" },
 };
 
 export type SwitchProps = Omit<React.ComponentProps<typeof SwitchPrimitive.Root>, "asChild"> & {
@@ -25,13 +25,13 @@ export function Switch({ id, label, size = "md", disabled, className, ...props }
   return (
     <div
       data-slot="switch"
-      className={cn("inline-flex items-center", s.gap, size === "lg" ? "min-h-32" : "min-h-24", disabled && "opacity-38", className)}
+      className={cn("inline-flex items-center", s.gap, s.min, disabled && "opacity-38", className)}
     >
       <SwitchPrimitive.Root
         id={inputId}
         disabled={disabled}
         className={cn(
-          "group flex shrink-0 items-center rounded-full bg-neutral-weak-pressed px-2 transition-colors duration-150 aria-checked:bg-brand-solid",
+          "group flex shrink-0 items-center rounded-full bg-neutral-weak-pressed transition-colors duration-150 aria-checked:bg-brand-solid",
           s.track,
         )}
         {...props}
