@@ -12,11 +12,12 @@
 | Step | 할 일 | 상태 |
 |---|---|---|
 | 2-3 | MVP 컴포넌트 19개 + Calendar(임시) 코드 · 2-4 갤러리(`/docs/components`). 값이 없는 부분은 SEED 값 임시 | 진행 중 (한나) |
-| 1-2 · 1-4 | `DESIGN.md` 쌓인 수정(크기 표기 · 상자 크기 · 하단 고정 배치 값 · 그림자 · Spinner 색 · `button-outline-md` 추가) · `WRITING.md` 엄격한 화면 | 다음 할 일 (예은) |
-| 1-5 · 4-2 | `PATTERNS.md` v0.2 `[결정 필요]` 3묶음 정리 · `/ui-review` | 1-5 완료 · 4-2 다음 할 일 (유진) |
-| 1-6 · 1-7 | `BRIEF.md` · `/brief` v0.5 · 평가 가이드 | 다음 할 일 (지수) |
-| 3-1 | `/sync` 2단계: 토큰 → 피그마 Variables | 다음 할 일 (수진) |
-| 1-6-1 | 브리프 테스트(v0.4) | 진행 중 (예린 · 전원) |
+| 1-2 | `DESIGN.md` 남은 `[결정 필요]`: 글자가 아닌 요소의 대비 기준값 · neutral solid 배경 | 다음 할 일 (예은) |
+| 1-4 | `WRITING.md` 엄격한 화면 기준 | 다음 할 일 (예은) |
+| 4-2 | `/ui-review` | 다음 할 일 (유진) |
+| 1-7 | 평가 가이드: 고정 시나리오 · 자유 테스트 | 다음 할 일 (지수) |
+| 3-2 | 코드 기준 피그마 컴포넌트(2-3 미리보기로 시작) | 다음 할 일 (수진) |
+| 1-6-1 | 브리프 재테스트(v0.5) | 다음 할 일 (전원) |
 
 ## 주의 사항
 
@@ -26,14 +27,15 @@
 - 1-2에서 `DESIGN.md` 팀 결정 6개를 확정함: 기준 화면 폭 375px · 최대 480px, 로딩 표시 지연 0.2초(이후 SEED Loading 패턴에 맞춰 1초로 변경) · 최소 유지 0.4초, 주된 CTA는 주황, Banner는 SEED Page Banner 값, Select는 입력 버튼 + Bottom sheet, SEED에 없는 크기. 값은 `DESIGN.md`가 기준.
 - 기본 테마 라운드는 SEED 값을 기준으로 한다("큰 라운드"를 SEED 값으로 해석). 화면 작업에서 작게 느껴지면 `radius.base`를 다시 정한다(`DESIGN.md` "Shapes").
 - 2-4의 토큰 화면과 사이트 틀(위 메뉴 · 왼쪽 메뉴 · 목차)은 2-2로 옮겼다. 2-4에는 컴포넌트 갤러리만 남는다(2-3 후 `feat/2-4-docs`에서 `git merge origin/main`으로 이어 가고, 겹치는 파일은 main 쪽을 남긴다).
-- 컴포넌트 크기 표기는 줄임말(`sm` · `md` · `lg`)로 정했다(`docs/CONVENTIONS.md` "코드·피그마"). `DESIGN.md` 본문 · YAML 토큰 이름은 아직 Large · Medium · `button-medium` 표기라 `DESIGN.md` 담당이 맞춘다.
+- 컴포넌트 크기 표기는 줄임말(`sm` · `md` · `lg`)로 정했다(`docs/CONVENTIONS.md` "코드·피그마"). `DESIGN.md` 본문 · YAML 토큰 이름도 v0.6에서 맞췄다(`button-medium` → `button-primary-md` 등). 옛 이름을 쓰는 코드는 새 이름으로 바꾼다.
 - 6차 미팅에서 이름 · 표기처럼 작은 결정은 그 내용을 적는 문서의 담당자가 정하기로 함(`AGENTS.md` "확정된 기준")
-- 규칙 담당 결정: 하단 고정 버튼은 새 컴포넌트가 아니라 Button 배치 패턴이다(MVP 19개 그대로). 여백 · 안전 영역 · 버튼 뒤 배경 값은 `DESIGN.md`에 아직 없다.
+- 규칙 담당 결정: 하단 고정 버튼은 새 컴포넌트가 아니라 Button 배치 패턴이다(MVP 19개 그대로). 여백 · 안전 영역 · 버튼 뒤 배경 값은 `DESIGN.md` "Layout"의 하단 고정 영역을 따른다.
 - 2-3에서 `DESIGN.md` · 3-2 비교표에 없는 값과 속성은 임시로 넣었다(`src/styles/temp-tokens.css`, 코드 주석에 "임시"): Checkbox · Radio · Switch 크기, Button `sm` · `md` 라운드 10, Spinner tone 색, 그림자, Textarea 높이, Card `emphasis`, Tabs `solid`, Select `plain`, Toast `icon`, Modal `showCloseButton`, corner smoothing, Calendar · DateInput · SegmentedControl. `DESIGN.md`(예은) · 3-2 비교표(수진)에 반영되면 임시 표시를 지운다. Calendar · DateInput · SegmentedControl은 MVP 19개 밖이라 8차 미팅에서 확정한다.
-- 7차 미팅에서 `docs/PATTERNS.md`의 `[결정 필요]` 3묶음은 규칙 담당이 정하기로 함. 새 화면 성격 5개를 확정했고, 상태 화면 버튼은 `button-outline-md`로 정했다. `DESIGN.md`에 `button-outline-md`가 아직 없어 `DESIGN.md` 담당이 추가한다.
+- 7차 미팅에서 `docs/PATTERNS.md`의 `[결정 필요]` 3묶음은 규칙 담당이 정하기로 함. 새 화면 성격 5개를 확정했고, 상태 화면 버튼은 `button-outline-md`로 정했다. `button-outline-md`는 `DESIGN.md` v0.6에 추가했다.
 - 규칙 문서 형식 통일은 `docs/CONVENTIONS.md` "MD 작성"을 따른다
 - 6차 미팅에서 화면 상태를 정상 + 조건에 맞는 묶음(기다림 · 비어 있음 · 실패 · 이용 불가)으로 정함. 정의는 `docs/UX.md` "상태", 화면 성격별 장면은 `docs/PATTERNS.md` "화면 성격별 상태 장면"이 기준이다.
 - 여러 단계 절차 규칙(`.claude/rules/`의 `session-start.md` · `git.md` · `notion.md`)은 4-x 스킬 작업 때 스킬로 옮긴다
+- 피그마 연결(`use_figma`)은 피그마 서버에서 돌아 PC 글꼴(Pretendard)을 쓰지 못한다. 글자 스타일은 피그마 앱에서 `scripts/figma-text-styles` 플러그인으로 만든다.
 - 4-x에서 `/pull` 스킬을 만들 때 스킬 안에서 `.claude/rules/sync.md`를 읽게 한다(`sync.md`는 `src/` 등을 다룰 때만 자동으로 읽혀서, 말로만 시키면 안 읽힐 수 있음). `/sync`는 2-2에서 반영했다.
 - 7차 미팅에서 같은 내용은 한 곳에만 적기로 함. 규칙 · 작업 방식은 저장소(사람용 안내는 `README.md`), Notion에는 회의록 · 테스트 결과 · 일정 · 태스크만 둔다(`.claude/rules/docs.md` "문서 연결").
 - Vercel은 무료(Hobby)로 쓰기 위해 한나 개인 계정에 프로젝트를 만들었다. 메인 주소는 `clickclick-design-system.vercel.app`이다. 참고할 점:

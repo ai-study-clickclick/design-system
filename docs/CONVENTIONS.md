@@ -26,6 +26,8 @@ repo/
 ├─ briefs/                # 화면 요청 브리프. `owner` 값이 화면 주인 (화면 작업자)
 ├─ evals/                 # 평가 시나리오와 결과
 ├─ scripts/               # 스킬이 실행하는 프로그램(예: build-tokens.mjs, /sync가 tokens.css를 만들 때)
+│  ├─ build-figma-variables.mjs  # /sync 2단계: tokens.css → 피그마 Variables 코드
+│  └─ figma-text-styles/  # 글자 스타일 피그마 플러그인. 피그마 앱에서 사람이 실행
 ├─ src/
 │  ├─ components/ui/     # 컴포넌트 코드(컴포넌트 하나 = 파일 하나, cn.ts · field.tsx · press.ts는 공통 도우미)
 │  ├─ styles/tokens.css  # DESIGN.md에서 자동 생성
@@ -73,6 +75,9 @@ repo/
 | 컴포넌트 토큰 | `<컴포넌트>-<종류>-<크기>-<상태>`. 없는 부분은 뺀다. 크기 값은 아래 "코드·피그마"의 컴포넌트 크기를 따르고, 크기가 둘 이상인 컴포넌트는 상태 토큰에도 크기를 붙인다(값이 같아도). | `button-primary-lg-pressed`, `tabs-md`, `tabs-md-unselected` |
 | 토큰 참조 | 중괄호로 다른 토큰을 가리킨다(W3C DTCG 방식) | `{palette.orange-600}` |
 | 피그마 Variables | 토큰 이름의 `.`을 `/`로 바꾼다 | `bg/brand-solid` |
+| 피그마 Variables 묶음 | `primitive`(기본 색표) · `theme`(테마가 바꾸는 값) · `semantic`(쓰임새 색) · `space` · `typography` 5개. `primitive`는 고르는 목록에서 숨긴다. | `semantic`의 `bg/brand-solid` |
+| 피그마 글자 값 | `typography/<글자 스타일>/<속성>`. 속성은 `tokens.css`와 같은 kebab-case `font-size` · `font-weight` · `line-height`다. 글꼴은 `font-family/base`다. | `typography/title-lg/font-size` |
+| 피그마 글자 스타일 | 위 글자 스타일 이름과 같다 | `title-lg` |
 | 코드에서 쓰기 | CSS 변수는 `.`을 `-`로 바꾼다. Tailwind 클래스는 쓰임새 이름 앞 그룹을 빼고 클래스 앞말로 쓴다(`bg.*` → `bg-*`, `fg.*` → `text-*`, `stroke.*` → `border-*`, `space.*` → `p-*`·`gap-*` 등, `radius.*` → `rounded-*`, 글자 스타일 → `text-*`). Tailwind 기본 색 · 간격 · 글자 크기는 쓸 수 없다(간격 0만 예외로 `p-0` · `top-0`을 쓴다). 토큰에 없는 숫자(`p-3` 등)는 오류 없이 스타일만 빠진다. 앱 화면(프로토타입) · 컴포넌트에는 대괄호 값(`p-[13px]` · `bg-[#ff0000]` 등)도 쓰지 않는다. 사이트 틀(라이브러리 사이트 · 프로토타입 화면 틀 `screen-frame.tsx`)은 PC 가이드가 없어 예외로 둔다. | `var(--bg-brand-solid)` · `bg-brand-solid` · `text-neutral` · `p-16` · `text-title-lg` |
 | 테마 프리셋 | `theme.<name>`. 대표 컬러 1개(`brand.primary`)와 라운드 기준값(`radius.base`)만 정한다. 기본 토큰은 바꾸지 않는다. | `theme.ocean` |
 | 브랜드 색 단계 | `brand.primary`에서 `palette.brand-100` ~ `palette.brand-900` 단계를 자동 생성한다(OKLCH 명도 단계). 쓰임새 이름(`bg.brand-solid` 등)은 이 단계를 가리키므로 대표 컬러만 바꿔도 함께 바뀐다. 예외: 기본 테마(`theme.default`)는 다시 계산하지 않고 `palette.orange-100` ~ `palette.orange-900`을 그대로 가리킨다. | `{palette.brand-600}` |
