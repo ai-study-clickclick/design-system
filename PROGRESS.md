@@ -32,6 +32,7 @@
 - 규칙 담당 결정: 하단 고정 버튼은 새 컴포넌트가 아니라 Button 배치 패턴이다(MVP 19개 그대로). 여백 · 안전 영역 · 버튼 뒤 배경 값은 `DESIGN.md` "Layout"의 하단 고정 영역을 따른다.
 - 7차 미팅에서 `docs/PATTERNS.md`의 `[결정 필요]` 3묶음은 규칙 담당이 정하기로 함. 새 화면 성격 5개를 확정했고, 상태 화면 버튼은 `button-outline-md`로 정했다. `button-outline-md`는 `DESIGN.md` v0.6에 추가했다.
 - 규칙 문서 형식 통일은 `docs/CONVENTIONS.md` "MD 작성"을 따른다
+- 4-2(`/ui-review`)가 머지되면 `AGENTS.md` 규칙 지도에 `docs/EVAL.md`를 더한다. 두 브랜치가 같은 파일을 고치지 않게 4-2 뒤로 미뤘다.
 - 6차 미팅에서 화면 상태를 정상 + 조건에 맞는 묶음(기다림 · 비어 있음 · 실패 · 이용 불가)으로 정함. 정의는 `docs/UX.md` "상태", 화면 성격별 장면은 `docs/PATTERNS.md` "화면 성격별 상태 장면"이 기준이다.
 - 여러 단계 절차 규칙(`.claude/rules/`의 `session-start.md` · `git.md` · `notion.md`)은 4-x 스킬 작업 때 스킬로 옮긴다
 - 피그마 연결(`use_figma`)은 피그마 서버에서 돌아 PC 글꼴(Pretendard)을 쓰지 못한다. 글자 스타일은 피그마 앱에서 `scripts/figma-text-styles` 플러그인으로 만든다.
