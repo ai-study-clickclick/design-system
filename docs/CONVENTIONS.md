@@ -22,9 +22,10 @@ repo/
 │  ├─ WRITING.md
 │  ├─ PATTERNS.md
 │  ├─ BRIEF.md
+│  ├─ EVAL.md
 │  └─ components/        # 컴포넌트별 사용법 (자동 생성)
 ├─ briefs/                # 화면 요청 브리프. `owner` 값이 화면 주인 (화면 작업자)
-├─ evals/                 # 평가 시나리오와 결과
+├─ evals/                 # 평가 결과
 ├─ scripts/               # 스킬이 실행하는 프로그램(예: build-tokens.mjs, /sync가 tokens.css를 만들 때)
 │  ├─ build-figma-variables.mjs  # /sync 2단계: tokens.css → 피그마 Variables 코드
 │  └─ figma-text-styles/  # 글자 스타일 피그마 플러그인. 피그마 앱에서 사람이 실행
@@ -131,8 +132,8 @@ repo/
 | `README.md` · `.github/pull_request_template.md` | 공통. 사람용이라 말투만 "~합니다" |
 | 스킬(`.claude/skills/*/SKILL.md`) | 공통. 머리(frontmatter)는 Claude Code 스킬 형식을 따른다 |
 | 자동 생성 문서(`docs/components/*.md`) | 공통. 스킬 템플릿에서 맞추고 파일은 직접 고치지 않는다 |
-| `docs/BRIEF.md` | 공통 |
-| 작업 결과물(`briefs/` · `evals/`) | `docs/BRIEF.md` 양식과 파일 이름 규칙만. 사용자 요청 문장은 고치지 않는다. 예외: 개인정보는 `[개인정보]`로 바꾼다(`docs/BRIEF.md` "요청 원문과 개인정보"). |
+| `docs/BRIEF.md` · `docs/EVAL.md` | 공통 |
+| 작업 결과물(`briefs/` · `evals/`) | `docs/BRIEF.md`(브리프) · `docs/EVAL.md`(평가 결과) 양식과 파일 이름 규칙만. 사용자 요청 문장은 고치지 않는다. 예외: 개인정보는 `[개인정보]`로 바꾼다(`docs/BRIEF.md` "요청 원문과 개인정보"). |
 
 ### 공통
 
