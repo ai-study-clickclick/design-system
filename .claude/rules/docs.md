@@ -20,7 +20,8 @@ paths:
 | 바뀐 것 | 함께 고칠 것 |
 |---|---|
 | `AGENTS.md` · `CLAUDE.md` · `.claude/rules/` · `.claude/settings.json` | `README.md` "사람이 알아야 할 것"(사람에게 필요한 내용이 바뀌었을 때) · `.github/pull_request_template.md` 체크리스트 · `AGENTS.md` 규칙 지도 |
-| `docs/CONVENTIONS.md` | `README.md` "사람이 알아야 할 것"(사람에게 필요한 내용이 바뀌었을 때) |
+| `docs/CONVENTIONS.md` | `README.md` "사람이 알아야 할 것"(사람에게 필요한 내용이 바뀌었을 때) · `docs/EVAL.md` "시나리오마다 기대 결과"(파일 이름 규칙이 바뀌었을 때) |
+| `docs/UX.md` · `docs/WRITING.md` · `docs/PATTERNS.md` · `docs/BRIEF.md` | `docs/EVAL.md` "시나리오마다 기대 결과"(기대 결과가 달라질 때) |
 | 파일 추가·이동 | `docs/CONVENTIONS.md` 파일 위치 · AI가 꼭 읽어야 하면 `CLAUDE.md` |
 | 스킬 추가·변경 | `AGENTS.md`의 스킬 표 · `docs/CONVENTIONS.md` 스킬 목록 |
 | 태스크 추가·삭제·순서 변경 | `AGENTS.md`의 레인 표 · `PROGRESS.md` |
