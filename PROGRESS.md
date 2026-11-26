@@ -15,7 +15,7 @@
 | 1-2 | `DESIGN.md` 남은 `[결정 필요]`: 글자가 아닌 요소의 대비 기준값 · neutral solid 배경 | 다음 할 일 (예은) |
 | 1-4 | `WRITING.md` 엄격한 화면 기준 | 다음 할 일 (예은) |
 | 4-2 | `/ui-review` | 다음 할 일 (유진) |
-| 1-7 | 평가 가이드: 고정 시나리오 · 자유 테스트 | 다음 할 일 (지수) |
+| 1-7 | 평가 가이드: 고정 시나리오 · 자유 테스트 | 리뷰 중 (지수) |
 | 3-2 | 코드 기준 피그마 컴포넌트(2-3 미리보기로 시작) | 다음 할 일 (수진) |
 | 1-6-1 | 브리프 재테스트(v0.5) | 다음 할 일 (전원) |
 
@@ -33,6 +33,7 @@
 - 2-3에서 `DESIGN.md` · 3-2 비교표에 없는 값과 속성은 임시로 넣었다(`src/styles/temp-tokens.css`, 코드 주석에 "임시"): Button `sm` · `md` 라운드 10, Textarea 높이(`DESIGN.md` 본문에만 있음), Card `emphasis`, Tabs `solid`, Select `plain`, Toast `icon`, Modal `showCloseButton`, corner smoothing, Calendar · DateInput · SegmentedControl. `DESIGN.md`(예은) · 3-2 비교표(수진)에 반영되면 임시 표시를 지운다. Calendar · DateInput · SegmentedControl은 MVP 19개 밖이라 2-3 PR에서 팀에 확인받는다.
 - 7차 미팅에서 `docs/PATTERNS.md`의 `[결정 필요]` 3묶음은 규칙 담당이 정하기로 함. 새 화면 성격 5개를 확정했고, 상태 화면 버튼은 `button-outline-md`로 정했다. `button-outline-md`는 `DESIGN.md` v0.6에 추가했다.
 - 규칙 문서 형식 통일은 `docs/CONVENTIONS.md` "MD 작성"을 따른다
+- 4-2(`/ui-review`)가 머지되면 `AGENTS.md`에 두 가지를 더한다: 규칙 지도의 `docs/EVAL.md` 줄, "역할과 작업 범위"의 "화면 1개 = `screen/` 브랜치 1개"에 평가는 평가 브랜치 하나에 모은다는 예외. 두 브랜치가 같은 파일을 고치지 않게 4-2 뒤로 미뤘다.
 - 6차 미팅에서 화면 상태를 정상 + 조건에 맞는 묶음(기다림 · 비어 있음 · 실패 · 이용 불가)으로 정함. 정의는 `docs/UX.md` "상태", 화면 성격별 장면은 `docs/PATTERNS.md` "화면 성격별 상태 장면"이 기준이다.
 - 여러 단계 절차 규칙(`.claude/rules/`의 `session-start.md` · `git.md` · `notion.md`)은 4-x 스킬 작업 때 스킬로 옮긴다
 - 피그마 연결(`use_figma`)은 피그마 서버에서 돌아 PC 글꼴(Pretendard)을 쓰지 못한다. 글자 스타일은 피그마 앱에서 `scripts/figma-text-styles` 플러그인으로 만든다.

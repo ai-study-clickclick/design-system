@@ -20,6 +20,7 @@
 | 화면 문구 · 말투 | [`docs/WRITING.md`](docs/WRITING.md) |
 | 화면 성격별 구성 · 상태 장면 | [`docs/PATTERNS.md`](docs/PATTERNS.md) |
 | 화면 요청서(브리프) | [`docs/BRIEF.md`](docs/BRIEF.md) |
+| 평가 가이드(고정 시나리오 · 자유 테스트) | [`docs/EVAL.md`](docs/EVAL.md) |
 
 궁금한 건 Claude Code에게 "○○ 규칙이 뭐야?"라고 물어도 됩니다. Claude가 위 파일을 읽고 답합니다.
 
