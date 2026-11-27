@@ -4,14 +4,14 @@ import DocPage from "../doc-page";
 export const metadata = { title: "Library · 딸깍 디자인 시스템" };
 
 // 라이브러리 첫 문서. 문서마다 썸네일 카드 하나(SEED Foundations 개요 구성)
-// 썸네일은 사이트 틀이라 기본 색표(palette)를 직접 쓴다. 칸마다 밝은 단계(100~500) 색 하나로 배경을 칠해 알록달록하게 둔다
+// 썸네일은 사이트 틀이라 기본 색표(palette)를 직접 쓴다. 칸마다 400 단계 색으로 배경을 칠해 알록달록하게 두고, Color만 회색 배경에 쨍한 색 면을 둔다
 const cards = [
-  { href: "/docs/tokens/color", title: "Color", description: "쓰임새 색과 기본 색표", bg: "bg-(--palette-yellow-200)", thumb: <ColorThumb /> },
-  { href: "/docs/tokens/typography", title: "Typography", description: "Pretendard 글자 스타일", bg: "bg-(--palette-blue-300)", thumb: <TypeThumb /> },
-  { href: "/docs/tokens/spacing", title: "Spacing", description: "여백과 간격 단계", bg: "bg-(--palette-green-300)", thumb: <SpacingThumb /> },
-  { href: "/docs/tokens/radius", title: "Radius", description: "모서리 단계와 기준값", bg: "bg-(--palette-red-300)", thumb: <RadiusThumb /> },
-  { href: "/docs/tokens/shadow", title: "Shadow", description: "떠 있는 면의 그림자", bg: "bg-(--palette-orange-300)", thumb: <ShadowThumb /> },
-  { href: "/docs/components", title: "Components", description: "MVP 컴포넌트 19개와 임시 추가", bg: "bg-(--palette-blue-200)", thumb: <ComponentsThumb /> },
+  { href: "/docs/tokens/color", title: "Color", description: "쓰임새 색과 기본 색표", bg: "bg-(--palette-gray-200)", thumb: <ColorThumb /> },
+  { href: "/docs/tokens/typography", title: "Typography", description: "Pretendard 글자 스타일", bg: "bg-(--palette-blue-400)", thumb: <TypeThumb /> },
+  { href: "/docs/tokens/spacing", title: "Spacing", description: "여백과 간격 단계", bg: "bg-(--palette-green-400)", thumb: <SpacingThumb /> },
+  { href: "/docs/tokens/radius", title: "Radius", description: "모서리 단계와 기준값", bg: "bg-(--palette-red-400)", thumb: <RadiusThumb /> },
+  { href: "/docs/tokens/shadow", title: "Shadow", description: "떠 있는 면의 그림자", bg: "bg-(--palette-orange-400)", thumb: <ShadowThumb /> },
+  { href: "/docs/components", title: "Components", description: "MVP 컴포넌트 19개와 임시 추가", bg: "bg-(--palette-blue-300)", thumb: <ComponentsThumb /> },
 ];
 
 export default function DocsPage() {
@@ -51,18 +51,18 @@ export default function DocsPage() {
 
 // 색 면 다섯 개를 한 줄로
 function ColorThumb() {
-  const chips = ["--palette-orange-500", "--palette-red-500", "--palette-blue-500", "--palette-green-500", "--palette-yellow-400"];
+  const chips = ["--palette-orange-600", "--palette-red-700", "--palette-blue-700", "--palette-green-600", "--palette-yellow-300"];
   return (
     <div className="flex items-center gap-10">
       {chips.map((c) => (
-        <span key={c} className="size-[40px] rounded-sm" style={{ background: `var(${c})` }} />
+        <span key={c} className="size-[48px] rounded-md" style={{ background: `var(${c})` }} />
       ))}
     </div>
   );
 }
 
 function TypeThumb() {
-  return <span className="text-[80px] leading-none font-bold text-(--palette-blue-900)">Aa</span>;
+  return <span className="text-[80px] leading-none font-bold text-(--palette-blue-800)">Aa</span>;
 }
 
 // 간격 단계가 커지는 막대
@@ -70,7 +70,7 @@ function SpacingThumb() {
   return (
     <div className="flex items-end gap-10">
       {[16, 28, 40, 56, 72].map((h) => (
-        <span key={h} className="w-[20px] rounded-sm bg-(--palette-green-700)" style={{ height: h }} />
+        <span key={h} className="w-[20px] rounded-sm bg-(--palette-green-800)" style={{ height: h }} />
       ))}
     </div>
   );
@@ -80,21 +80,21 @@ function SpacingThumb() {
 function RadiusThumb() {
   return (
     <span
-      className="size-[80px] translate-x-[16px] translate-y-[16px] border-t-[3px] border-l-[3px] border-(--palette-red-700) bg-(--palette-static-white)"
-      style={{ borderTopLeftRadius: 40 }}
+      className="size-[120px] translate-x-[28px] translate-y-[28px] border-t-[4px] border-l-[4px] border-(--palette-red-700) bg-(--palette-static-white)"
+      style={{ borderTopLeftRadius: 64 }}
     />
   );
 }
 
-// 겹쳐 뜬 면 두 장(그림자 s1 · s2)
+// 겹쳐 뜬 면 두 장(그림자 s2 · s3)
 function ShadowThumb() {
   return (
-    <div className="relative h-[88px] w-[136px]">
-      {["shadow-s1", "shadow-s2"].map((sh, i) => (
+    <div className="relative h-[112px] w-[184px]">
+      {["shadow-s2", "shadow-s3"].map((sh, i) => (
         <span
           key={sh}
-          className={`absolute h-[64px] w-[96px] rounded-md bg-(--palette-static-white) ${sh}`}
-          style={{ left: i * 40, top: 24 - i * 24 }}
+          className={`absolute h-[84px] w-[128px] rounded-lg bg-(--palette-static-white) ${sh}`}
+          style={{ left: i * 56, top: 28 - i * 28 }}
         />
       ))}
     </div>
