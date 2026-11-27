@@ -82,6 +82,9 @@
   --segmented-control-sm-padding: var(--space-2);
   --segmented-control-md-item-rounded: calc(var(--segmented-control-rounded) - var(--segmented-control-md-padding));
   --segmented-control-sm-item-rounded: calc(var(--segmented-control-rounded) - var(--segmented-control-sm-padding));
+  /* TopBar 아이콘: 기본 24, 선 하나짜리(꺾쇠 · X)는 면적이 작아 보여 28로 시각 보정 */
+  --top-bar-icon-size: 24px;
+  --top-bar-icon-optical-size: 28px;
   /* BottomSheet 최소 높이 */
   --bottom-sheet-min-height: 240px;
   /* 안쪽 라운드 최소값: 바깥 − 여백이 0 이하이면 4(DESIGN.md "Shapes") */

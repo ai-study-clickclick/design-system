@@ -18,7 +18,7 @@ export function TopBarDemo() {
           left={<TopBarBackButton />}
           right={
             <TopBarIconButton aria-label="설정">
-              <Settings aria-hidden className="size-24" />
+              <Settings aria-hidden />
             </TopBarIconButton>
           }
         />
@@ -30,10 +30,10 @@ export function TopBarDemo() {
           right={
             <>
               <TopBarIconButton aria-label="공유">
-                <Share aria-hidden className="size-24" />
+                <Share aria-hidden />
               </TopBarIconButton>
               <TopBarIconButton aria-label="더보기">
-                <MoreVertical aria-hidden className="size-24" />
+                <MoreVertical aria-hidden />
               </TopBarIconButton>
             </>
           }
