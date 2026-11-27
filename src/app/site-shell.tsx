@@ -189,7 +189,7 @@ function ThemeControls() {
   );
 }
 
-// 메인 컬러 고르기 메뉴. 누르면 버튼 바로 아래에 목록이 펼쳐지고, 색 원 · 이름 · 고른 표시를 보여 준다
+// 메인 컬러 고르기 메뉴. 누르면 버튼 바로 아래에 같은 폭으로 목록이 펼쳐지고, 색 원 · 이름 · 고른 표시를 보여 준다. 원(12) · 글자(label-sm)는 버튼과 목록이 같다
 // 바깥을 누르거나 Esc를 누르면 닫힌다. 위아래 화살표로 항목을 옮겨 다닐 수 있다
 function BrandMenu({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   const [open, setOpen] = useState(false);
@@ -228,10 +228,10 @@ function BrandMenu({ value, onChange }: { value: string; onChange: (v: string) =
         aria-expanded={open}
         aria-label={`메인 컬러: ${current.label}`}
         onClick={() => setOpen((v) => !v)}
-        className="flex h-32 items-center gap-6 rounded-sm border border-neutral-weak bg-layer-default pr-8 pl-10 text-label-sm text-neutral hover:bg-layer-default-pressed"
+        className="flex h-32 w-[112px] items-center gap-8 rounded-sm border border-neutral-weak bg-layer-default pr-8 pl-10 text-label-sm text-neutral hover:bg-layer-default-pressed"
       >
-        <span aria-hidden className="size-12 rounded-full" style={{ background: current.swatch }} />
-        {current.label}
+        <span aria-hidden className="size-12 shrink-0 rounded-full" style={{ background: current.swatch }} />
+        <span className="flex-1 text-left">{current.label}</span>
         <ChevronDown aria-hidden className={`size-14 text-neutral-subtle transition-transform duration-(--duration-d3) ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
@@ -239,7 +239,7 @@ function BrandMenu({ value, onChange }: { value: string; onChange: (v: string) =
           role="listbox"
           aria-label="메인 컬러"
           onKeyDown={onListKey}
-          className="absolute top-[calc(100%+6px)] right-0 z-30 w-[160px] rounded-md border border-neutral-weak bg-layer-floating p-4 shadow-s2"
+          className="absolute inset-x-0 top-[calc(100%+6px)] z-30 rounded-md border border-neutral-weak bg-layer-floating p-4 shadow-s2"
         >
           {brands.map((b) => {
             const selected = b.value === value;
@@ -253,11 +253,11 @@ function BrandMenu({ value, onChange }: { value: string; onChange: (v: string) =
                     onChange(b.value);
                     setOpen(false);
                   }}
-                  className="flex h-36 w-full items-center gap-8 rounded-sm px-8 text-left text-body-md text-neutral hover:bg-transparent-pressed focus-visible:bg-transparent-pressed focus-visible:outline-none"
+                  className="flex h-32 w-full items-center gap-8 rounded-sm px-6 text-left text-label-sm text-neutral hover:bg-transparent-pressed focus-visible:bg-transparent-pressed focus-visible:outline-none"
                 >
-                  <span aria-hidden className="size-16 shrink-0 rounded-full" style={{ background: b.swatch }} />
+                  <span aria-hidden className="size-12 shrink-0 rounded-full" style={{ background: b.swatch }} />
                   <span className="flex-1">{b.label}</span>
-                  {selected && <Check aria-hidden className="size-16 shrink-0 text-neutral" />}
+                  {selected && <Check aria-hidden className="size-14 shrink-0 text-neutral" />}
                 </button>
               </li>
             );
