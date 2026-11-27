@@ -36,7 +36,7 @@
 
 
 
-  /* BottomSheet: 최대 높이 = 화면 − 위 여백 48. 최소 높이는 두지 않고 내용만큼 */
+  /* BottomSheet: 최대 높이 = 화면 − 위 여백 48. 최소 높이는 아래 bottom-sheet-min-height(240) */
   /* 아래 여백: 버튼이 없으면 내용 아래 24, 버튼이 있으면 버튼 아래 16. 둘 다 기기 안전 영역만큼 더한다 */
   --bottom-sheet-max-height: calc(100dvh - 48px);
   --bottom-sheet-content-bottom: calc(24px + env(safe-area-inset-bottom));
@@ -46,7 +46,7 @@
   --textarea-auto-min-height: 95px;
   --textarea-fixed-height: 70px;
 
-  /* SegmentedControl: 바깥 높이 md 40 · sm 32(안쪽 칸 36 · 28, 바깥 여백 2), 라운드 바깥 10 · 칸 8 (MVP 밖 임시) */
+  /* SegmentedControl: 안쪽 칸 높이 md 36 · sm 28, 바깥 라운드 md 10 (MVP 밖 임시). 바깥 높이 = 칸 + 여백 2개(md 44 · sm 32) */
   --segmented-control-md-item-height: 36px;
   --segmented-control-sm-item-height: 28px;
   --segmented-control-rounded: 10px;
@@ -121,7 +121,7 @@
   --text-button-neutral-color: var(--fg-neutral-muted);
   /* Toast: 버튼 Button xs(32), 위아래 여백 14 */
   --toast-padding-y: var(--space-14);
-  /* BottomNavigation 미선택 아이콘: gray-500(글자는 fg.neutral-subtle), 눌림 면은 위아래 4 · 좌우 8 띄우고 라운드 radius.md */
+  /* BottomNavigation 미선택 아이콘: gray-500(글자는 fg.neutral-subtle), 눌림 면은 위아래 4 · 좌우 8 띄우고 라운드 radius.sm */
   --bottom-navigation-unselected-icon-color: var(--palette-gray-500);
   /* 큰 제목 화면: Top bar 아래 ~ 제목 위 40(DESIGN.md "Layout" 큰 제목 화면, YAML 토큰 없음) */
   --space-nav-to-large-title: var(--space-40);
