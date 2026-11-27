@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { createContext, useContext, useEffect, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { Check, ChevronDown, Menu, X } from "lucide-react";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { libraryGroups, prototypeGroups, sectionOf, sections, type NavGroup } from "./site-nav";
 
@@ -137,15 +137,16 @@ function Lnb({ groups, pathname }: { groups: NavGroup[]; pathname: string }) {
 }
 
 // 임시 미리보기: 메인 컬러 · 다크모드(src/styles/temp-theme.css). 고른 값은 이 브라우저에만 기억한다
+// 견본 원 색은 각 메인 컬러의 대표 단계(600)다. 사이트 틀이라 색 값을 직접 쓴다
 const brands = [
-  { value: "orange", label: "Orange" },
-  { value: "blue", label: "Blue" },
-  { value: "green", label: "Green" },
-  { value: "red", label: "Red" },
-  { value: "yellow", label: "Yellow" },
-  { value: "purple", label: "Purple" },
-  { value: "pink", label: "Pink" },
-  { value: "sky", label: "Sky" },
+  { value: "orange", label: "Orange", swatch: "var(--palette-orange-600)" },
+  { value: "blue", label: "Blue", swatch: "var(--palette-blue-700)" },
+  { value: "green", label: "Green", swatch: "var(--palette-green-600)" },
+  { value: "red", label: "Red", swatch: "var(--palette-red-700)" },
+  { value: "yellow", label: "Yellow", swatch: "var(--palette-yellow-300)" },
+  { value: "purple", label: "Purple", swatch: "#8a5cf6" },
+  { value: "pink", label: "Pink", swatch: "#f5468c" },
+  { value: "sky", label: "Sky", swatch: "#12a5e3" },
 ];
 const modes = [
   { value: "light", label: "Light" },
@@ -182,23 +183,87 @@ function ThemeControls() {
 
   return (
     <div className="ml-auto hidden items-center gap-8 sm:flex">
-      <label className="relative flex items-center">
-        <span className="sr-only">메인 컬러</span>
-        <span aria-hidden className="pointer-events-none absolute left-10 size-12 rounded-full bg-brand-solid" />
-        <select
-          value={brand}
-          onChange={(e) => setBrand(e.target.value)}
-          className="h-32 appearance-none rounded-sm border border-neutral-weak bg-layer-default pr-28 pl-28 text-label-sm text-neutral"
-        >
-          {brands.map((b) => (
-            <option key={b.value} value={b.value}>
-              {b.label}
-            </option>
-          ))}
-        </select>
-        <ChevronDown aria-hidden className="pointer-events-none absolute right-8 size-14 text-neutral-subtle" />
-      </label>
+      <BrandMenu value={brand} onChange={setBrand} />
       <SegmentedControl size="sm" aria-label="화면 모드" options={modes} value={mode} onValueChange={setMode} />
+    </div>
+  );
+}
+
+// 메인 컬러 고르기 메뉴. 누르면 버튼 바로 아래에 목록이 펼쳐지고, 색 원 · 이름 · 고른 표시를 보여 준다
+// 바깥을 누르거나 Esc를 누르면 닫힌다. 위아래 화살표로 항목을 옮겨 다닐 수 있다
+function BrandMenu({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const [open, setOpen] = useState(false);
+  const wrap = useRef<HTMLDivElement>(null);
+  const current = brands.find((b) => b.value === value) ?? brands[0];
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: PointerEvent) => {
+      if (!wrap.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("pointerdown", onDown);
+    window.addEventListener("keydown", onKey);
+    // 열리면 고른 항목에 포커스
+    wrap.current?.querySelector<HTMLButtonElement>('[aria-selected="true"]')?.focus();
+    return () => {
+      window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const onListKey = (e: React.KeyboardEvent<HTMLUListElement>) => {
+    if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+    e.preventDefault();
+    const items = [...e.currentTarget.querySelectorAll<HTMLButtonElement>("button")];
+    const i = items.indexOf(document.activeElement as HTMLButtonElement);
+    items[(i + (e.key === "ArrowDown" ? 1 : items.length - 1)) % items.length]?.focus();
+  };
+
+  return (
+    <div ref={wrap} className="relative">
+      <button
+        type="button"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-label={`메인 컬러: ${current.label}`}
+        onClick={() => setOpen((v) => !v)}
+        className="flex h-32 items-center gap-6 rounded-sm border border-neutral-weak bg-layer-default pr-8 pl-10 text-label-sm text-neutral hover:bg-layer-default-pressed"
+      >
+        <span aria-hidden className="size-12 rounded-full" style={{ background: current.swatch }} />
+        {current.label}
+        <ChevronDown aria-hidden className={`size-14 text-neutral-subtle transition-transform duration-(--duration-d3) ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <ul
+          role="listbox"
+          aria-label="메인 컬러"
+          onKeyDown={onListKey}
+          className="absolute top-[calc(100%+6px)] right-0 z-30 w-[160px] rounded-md border border-neutral-weak bg-layer-floating p-4 shadow-s2"
+        >
+          {brands.map((b) => {
+            const selected = b.value === value;
+            return (
+              <li key={b.value}>
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected={selected}
+                  onClick={() => {
+                    onChange(b.value);
+                    setOpen(false);
+                  }}
+                  className="flex h-36 w-full items-center gap-8 rounded-sm px-8 text-left text-body-md text-neutral hover:bg-transparent-pressed focus-visible:bg-transparent-pressed focus-visible:outline-none"
+                >
+                  <span aria-hidden className="size-16 shrink-0 rounded-full" style={{ background: b.swatch }} />
+                  <span className="flex-1">{b.label}</span>
+                  {selected && <Check aria-hidden className="size-16 shrink-0 text-neutral" />}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }

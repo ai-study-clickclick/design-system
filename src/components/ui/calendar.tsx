@@ -38,7 +38,7 @@ export function Calendar({ className, classNames, showOutsideDays = true, ...pro
         day: "flex h-(--calendar-day-size) flex-1 items-center justify-center p-0 text-body-lg",
         day_button:
           "flex size-40 items-center justify-center rounded-full active:bg-transparent-pressed disabled:pointer-events-none",
-        today: "text-brand-contrast",
+        today: "text-brand-contrast *:font-(--typography-label-base-font-weight)",
         selected: "*:bg-brand-solid *:text-on-brand-solid *:text-label-base",
         // 기간 띠는 날짜 원(40)과 같은 높이로, 첫날은 원 가운데부터 오른쪽만 · 마지막 날은 왼쪽만 칠한다
         range_start: cn(band, "ds-range-start before:right-0 before:left-1/2"),

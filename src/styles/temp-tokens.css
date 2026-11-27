@@ -58,11 +58,13 @@
 
 /* 상태 색 기준(한나 요청, DESIGN.md "상태와 피드백" 반영 전)
    비활성: 상자 gray-200 → 300(글자 fg.disabled는 tokens.css gray-600 그대로). 버튼 · 입력 · 체크박스 · 라디오 등 bg.disabled를 쓰는 곳이 모두 함께 바뀐다
-   미선택 · 꺼짐: 체크박스 · 라디오 테두리, Ghost 체크, 목록 선택 체크(꺼짐)가 같은 색(gray-600)을 쓴다 */
+   비활성 글자 · 아이콘은 두 단계: 글자와 함께 있는 요소 fg.disabled(gray-600) · 아이콘 · 탭처럼 혼자 있는 요소 fg.disabled-subtle(gray-500)
+   미선택 · 꺼짐: 체크박스 · 라디오 테두리, Ghost 체크, 목록 선택 체크(꺼짐)가 같은 색(gray-500)을 쓴다 */
 :root {
   --bg-disabled: var(--palette-gray-300);
-  --stroke-unselected: var(--palette-gray-600);
-  --fg-unselected: var(--palette-gray-600);
+  --fg-disabled-subtle: var(--palette-gray-500);
+  --stroke-unselected: var(--palette-gray-500);
+  --fg-unselected: var(--palette-gray-500);
   /* 라디오 비활성 안쪽 점: 비활성 상자보다 한 단계 진하게(상자 gray-300 · 점 gray-400) */
   --radio-disabled-dot-color: var(--palette-gray-400);
   /* Calendar 지난 날 · 다른 달 날짜 */
@@ -85,8 +87,8 @@
   --badge-weak-positive-background-color: var(--palette-green-200);
   --badge-weak-warning-background-color: var(--palette-yellow-200);
   --badge-weak-critical-background-color: var(--palette-red-200);
-  --tabs-md-disabled-text-color: var(--palette-gray-500);
-  --tabs-sm-disabled-text-color: var(--palette-gray-500);
+  --tabs-md-disabled-text-color: var(--fg-disabled-subtle);
+  --tabs-sm-disabled-text-color: var(--fg-disabled-subtle);
   /* ListItem 제목: 굵기 Medium(500) */
   --list-item-typography-font-weight: 500;
   /* Toast 본문: 한 단계 굵게(emphasis 500) */
@@ -131,7 +133,7 @@
   --chip-outline-selected-color: var(--palette-brand-600);
   --chip-outline-selected-ring-width: 0.5px;
   /* IconButton ghost 비활성 아이콘: fg.disabled보다 한 단계 연하게 */
-  --icon-button-ghost-disabled-color: var(--palette-gray-500);
+  --icon-button-ghost-disabled-color: var(--fg-disabled-subtle);
   /* TextButton neutral 굵기: 700 → 600(brand는 700 그대로) */
   --text-button-neutral-font-weight: 600;
   /* Checkbox ghost: 체크와 글자 사이 4(square는 8). 상자 자리는 md 20 · lg 24
@@ -151,6 +153,7 @@
 @theme inline {
   --border-color-unselected: var(--stroke-unselected);
   --text-color-unselected: var(--fg-unselected);
+  --text-color-disabled-subtle: var(--fg-disabled-subtle);
   --background-color-static-white-weak: var(--bg-static-white-weak);
   --background-color-static-white-weak-pressed: var(--bg-static-white-weak-pressed);
   --spacing-nav-to-large-title: var(--space-nav-to-large-title);
