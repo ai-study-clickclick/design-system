@@ -8,6 +8,8 @@ import { cn } from "./cn";
 // Checkbox: 여러 개를 고르거나 하나를 켜고 끈다
 // label · checked(indeterminate 포함) · disabled · invalid / size md · lg / variant square · ghost(3-2 비교표)
 // 상자 md 20 · lg 24, 줄 높이 md 32 · lg 36, 라운드 radius.xs. DESIGN.md checkbox-* 토큰
+// 미선택 테두리 · Ghost 꺼짐 체크는 stroke.unselected · fg.unselected(임시, temp-tokens.css)
+// 묶음(전체 동의 + 하위 항목)은 부모 square, 자식 ghost로 둔다
 // 라벨까지 누르는 영역이다(DESIGN.md "Checkbox · Radio · Switch")
 export type CheckboxProps = Omit<React.ComponentProps<typeof CheckboxPrimitive.Root>, "asChild"> & {
   label?: React.ReactNode;
@@ -47,12 +49,12 @@ export function Checkbox({
           square
             ? cn(
                 "border bg-layer-default text-on-brand-solid",
-                invalid ? "border-critical-solid" : "border-neutral-weak",
+                invalid ? "border-critical-solid" : "border-unselected",
                 "aria-checked:border-0 aria-checked:bg-brand-solid",
                 checked === "indeterminate" && "border-0 bg-brand-solid",
                 "disabled:border-0 disabled:bg-disabled disabled:text-disabled",
               )
-            : cn("text-neutral-subtle aria-checked:text-brand disabled:text-disabled", checked === "indeterminate" && "text-brand"),
+            : cn("text-unselected aria-checked:text-brand disabled:text-disabled", checked === "indeterminate" && "text-brand"),
         )}
         {...props}
       >

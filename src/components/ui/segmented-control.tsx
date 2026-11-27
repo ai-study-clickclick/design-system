@@ -6,7 +6,7 @@ import { cn } from "./cn";
 // SegmentedControl: 2~3개 중 하나를 골라 보기 · 값을 바로 바꾼다(예: 국내 / 해외, 1개월 / 3개월 / 6개월)
 // MVP 19개 밖 임시 추가. 값은 SEED SegmentedControl 참고 임시(src/styles/temp-tokens.css)
 // size md: 높이 40, 놓인 자리 폭을 칸 수만큼 똑같이 나눈다 · sm: 높이 32, 글자만큼
-// 바깥 bg.neutral-weak, 고른 칸 bg.layer-default + 그림자 s1
+// 바깥 bg.neutral-weak(여백 4, 임시), 고른 칸 bg.layer-default + 그림자 s1
 export type SegmentedControlOption = { value: string; label: React.ReactNode; disabled?: boolean };
 
 export type SegmentedControlProps = {
@@ -38,7 +38,7 @@ export function SegmentedControl({
       // 이미 고른 칸을 다시 눌러도 선택이 풀리지 않게 한다
       onValueChange={(v) => v && onValueChange?.(v)}
       className={cn(
-        "rounded-(--segmented-control-rounded) bg-neutral-weak p-2",
+        "rounded-(--segmented-control-rounded) bg-neutral-weak p-(--segmented-control-padding)",
         size === "md" ? "flex w-full" : "inline-flex w-fit",
         className,
       )}

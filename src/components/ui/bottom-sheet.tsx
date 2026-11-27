@@ -8,7 +8,8 @@ import { cn } from "./cn";
 // 뼈대는 shadcn Drawer(vaul), 모양은 당근 · 토스 참고. 라운드 24 · 여백 16 · 그림자 s2
 // open · title · description · footer(하단 버튼) · showHandle · showCloseButton(3-2 비교표)
 // 핸들과 닫기는 함께 쓰지 않는다. showCloseButton을 켜면 핸들은 숨긴다
-// 높이: 최소 높이 없이 내용만큼, 최대는 화면 − 48. 넘치면 내용만 스크롤하고 제목 · 버튼은 고정(임시 기준)
+// 높이: 최소 240, 최대 화면 − 48. 그 사이는 내용만큼. 넘치면 내용만 스크롤하고 제목 · 버튼은 고정(임시 기준)
+// 버튼 2개는 비율 없이 5:5로 나눈다(3:7은 화면 하단 고정 버튼에만, DESIGN.md "Layout")
 // 아래 여백: 버튼이 없으면 내용 아래 24, 있으면 내용과 버튼 사이 16 · 버튼 아래 16(+ 안전 영역)
 export type BottomSheetProps = {
   open?: boolean;
@@ -45,7 +46,7 @@ export function BottomSheet({
         <Drawer.Content
           data-slot="bottom-sheet"
           className={cn(
-            "fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-(--bottom-sheet-max-height) w-full max-w-(--space-screen-max) flex-col rounded-t-2xl bg-layer-floating text-neutral shadow-s2 outline-none",
+            "fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-(--bottom-sheet-max-height) min-h-(--bottom-sheet-min-height) w-full max-w-(--space-screen-max) flex-col rounded-t-2xl bg-layer-floating text-neutral shadow-s2 outline-none",
             className,
           )}
         >
@@ -66,7 +67,7 @@ export function BottomSheet({
             )}
           </div>
           <div className={cn("min-h-0 flex-1 overflow-y-auto px-16 pt-16", footer ? "pb-16" : "pb-(--bottom-sheet-content-bottom)")}>{children}</div>
-          {footer && <div className="flex gap-8 px-16 pb-(--bottom-sheet-footer-bottom)">{footer}</div>}
+          {footer && <div className="flex gap-8 px-16 pb-(--bottom-sheet-footer-bottom) *:flex-1!">{footer}</div>}
         </Drawer.Content>
       </Drawer.Portal>
     </Drawer.Root>

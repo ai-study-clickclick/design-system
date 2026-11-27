@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckCircle2, AlertCircle } from "lucide-react";
+import { useState } from "react";
 import { Banner } from "@/components/ui/banner";
 import { BottomSheet, BottomSheetClose } from "@/components/ui/bottom-sheet";
 import { Button } from "@/components/ui/button";
@@ -68,18 +69,26 @@ function SortOptions() {
   );
 }
 
+// 고르는 목록: 고른 계좌에 체크, 나머지는 꺼진 체크. 고르면 바로 닫힌다
+function AccountSheet() {
+  const [value, setValue] = useState("국민은행 1234");
+  return (
+    <BottomSheet trigger={<Button size="md" variant="secondary">핸들 · 버튼 없음(고르면 바로 닫힘)</Button>} title="계좌 고르기">
+      <div className="-mx-16">
+        {["국민은행 1234", "신한은행 5678", "토스뱅크 9012"].map((a) => (
+          <BottomSheetClose key={a} asChild>
+            <ListItem title={a} selected={value === a} onClick={() => setValue(a)} />
+          </BottomSheetClose>
+        ))}
+      </div>
+    </BottomSheet>
+  );
+}
+
 export function BottomSheetDemo() {
   return (
     <Board>
-      <BottomSheet trigger={<Button size="md" variant="secondary">핸들 · 버튼 없음(고르면 바로 닫힘)</Button>} title="계좌 고르기">
-        <div className="-mx-16">
-          {["국민은행 1234", "신한은행 5678", "토스뱅크 9012"].map((a) => (
-            <BottomSheetClose key={a} asChild>
-              <ListItem title={a} onClick={() => {}} />
-            </BottomSheetClose>
-          ))}
-        </div>
-      </BottomSheet>
+      <AccountSheet />
       <BottomSheet
         trigger={<Button size="md" variant="secondary">핸들 · 버튼 1개</Button>}
         title="정렬"
@@ -95,18 +104,16 @@ export function BottomSheetDemo() {
         <p className="text-body-md text-neutral-muted">한 달에 30번까지 수수료 없이 보낼 수 있어요. 그 뒤로는 한 번에 500원이에요.</p>
       </BottomSheet>
       <BottomSheet
-        trigger={<Button size="md" variant="secondary">닫기 · 버튼 2개(3:7)</Button>}
+        trigger={<Button size="md" variant="secondary">닫기 · 버튼 2개(5:5)</Button>}
         title="이체 시간 바꾸기"
         showCloseButton
         footer={
           <>
             <BottomSheetClose asChild>
-              <Button variant="secondary" className="flex-3">
-                닫기
-              </Button>
+              <Button variant="secondary">닫기</Button>
             </BottomSheetClose>
             <BottomSheetClose asChild>
-              <Button className="flex-7">바꾸기</Button>
+              <Button>바꾸기</Button>
             </BottomSheetClose>
           </>
         }

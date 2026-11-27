@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Button } from "./button";
 
 // Toast: 일시 알림. 한 번에 하나, 기본 4초, 손을 대면 멈춘다(docs/UX.md "일시 알림")
 // message · action(최대 1개) · duration · icon. variant 없음(3-2 비교표). icon은 임시 추가
 // 라운드 12 · 여백 좌우 16 · 위아래 10 · 최소 높이 44 · 최대 폭 464 · 글자 14 · bg.neutral-solid
 // 라운드 · 좌우 여백은 DESIGN.md(8 · 10)보다 키운 임시 값
-// 글자는 왼쪽, 버튼은 오른쪽 끝에 둔다. 글자가 길면 여러 줄로 내려간다
+// 글자는 왼쪽(굵기 500, 임시), 버튼은 오른쪽 끝에 둔다. 글자가 길면 여러 줄로 내려간다
+// 버튼은 Button sm staticWhiteWeak(어두운 면 위 흰 막, 임시)
 const DURATION = 4000;
 // 사라지는 시간: DESIGN.md "나타나고 사라지는 값" Toast d2. 움직임 값은 temp-tokens.css
 const EXIT_MS = 100;
@@ -90,21 +92,21 @@ function ToastView({ item, closing }: { item: ToastItem; closing: boolean }) {
       onPointerLeave={start}
       onTouchStart={stop}
       onTouchEnd={start}
-      className="pointer-events-auto flex min-h-(--toast-min-height) w-full max-w-(--toast-max-width) items-center gap-8 rounded-md bg-neutral-solid py-10 pr-10 pl-16 text-body-md text-on-neutral-solid"
+      className="pointer-events-auto flex min-h-(--toast-min-height) w-full max-w-(--toast-max-width) items-center gap-8 rounded-md bg-neutral-solid py-10 pr-10 pl-16 text-body-md font-(--toast-typography-font-weight) text-on-neutral-solid"
     >
       {item.icon && <span className="flex size-20 shrink-0 items-center justify-center *:size-20">{item.icon}</span>}
       <p className="min-w-0 flex-1">{item.message}</p>
       {item.action && (
-        <button
-          type="button"
+        <Button
+          size="sm"
+          variant="staticWhiteWeak"
           onClick={() => {
             item.action?.onClick();
             dismiss(item.id);
           }}
-          className="flex min-h-touch-min-sm shrink-0 items-center rounded-xs px-6 text-label-md text-on-neutral-solid active:bg-neutral-solid-pressed"
         >
           {item.action.label}
-        </button>
+        </Button>
       )}
     </div>
   );

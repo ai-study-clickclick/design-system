@@ -170,7 +170,7 @@ export function CheckboxDemo() {
         </Example>
       </Part>
       <Part title="실제 화면">
-        <Phone label="약관 동의(부모 · 자식 묶음)">
+        <Phone label="약관 동의(부모 square · 자식 ghost)">
           <Checkbox
             size="lg"
             label="전체 동의"
@@ -181,6 +181,7 @@ export function CheckboxDemo() {
             {items.map((label, i) => (
               <Checkbox
                 key={label}
+                variant="ghost"
                 label={label}
                 checked={checked[i]}
                 onCheckedChange={(v) => setChecked(checked.map((c, j) => (j === i ? v === true : c)))}

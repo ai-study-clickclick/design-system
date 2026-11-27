@@ -7,8 +7,8 @@ import { cn } from "./cn";
 import { usePressScale } from "./press";
 import { Spinner } from "./spinner";
 
-// Button: variant primary · primaryWeak · neutral · secondary · critical · outline, size sm(36, 임시) · md(44) · lg(52)
-// primaryWeak(연한 대표 컬러) · neutral(진한 회색)은 3-2 비교표 · DESIGN.md에 없는 임시 추가
+// Button: variant primary · primaryWeak · neutral · secondary · critical · outline · staticWhiteWeak, size sm(36, 임시) · md(44) · lg(52)
+// primaryWeak(연한 대표 컬러) · neutral(진한 회색) · staticWhiteWeak(어두운 면 위 흰 막)은 3-2 비교표 · DESIGN.md에 없는 임시 추가
 // 폭은 Button이 아니라 놓는 자리가 정한다(fullWidth 없음, 3-2 비교표 결정 3)
 // 채움 버튼은 한 화면에 하나(DESIGN.md "컴포넌트별 사용 규칙")
 const buttonVariants = cva(
@@ -21,6 +21,8 @@ const buttonVariants = cva(
         neutral: "bg-neutral-solid text-on-neutral-solid active:bg-neutral-solid-pressed disabled:bg-disabled disabled:text-disabled",
         secondary: "bg-neutral-weak text-neutral active:bg-neutral-weak-pressed disabled:bg-disabled disabled:text-disabled",
         critical: "bg-critical-solid text-on-critical-solid active:bg-critical-solid-pressed disabled:bg-disabled disabled:text-disabled",
+        // 어두운 면(Toast 등) 위에 놓는 흰 막 버튼(임시)
+        staticWhiteWeak: "bg-static-white-weak text-static-white active:bg-static-white-weak-pressed disabled:bg-disabled disabled:text-disabled",
         // outline 테두리는 stroke.neutral-weak(DESIGN.md는 neutral-muted, 너무 흐려 한 단계 진하게 바꿈, 임시)
         outline: "border border-neutral-weak bg-transparent text-neutral active:bg-transparent-pressed disabled:text-disabled",
       },
@@ -42,6 +44,7 @@ const loadingBackground = {
   secondary: "bg-neutral-weak-pressed",
   critical: "bg-critical-solid-pressed",
   outline: "bg-transparent-pressed",
+  staticWhiteWeak: "bg-static-white-weak-pressed",
 } as const;
 
 const LOADING_DELAY = 1000;

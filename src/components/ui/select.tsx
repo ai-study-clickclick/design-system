@@ -1,14 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Check, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { BottomSheet } from "./bottom-sheet";
 import { cn } from "./cn";
-import { Field, fieldBoxClass, useFieldIds, type FieldProps } from "./field";
+import { Field, fieldBoxClass, fieldIconClass, useFieldIds, type FieldProps } from "./field";
+import { ListItem } from "./list-item";
 
 // Select: 입력 버튼(고른 값만 보임)을 누르면 BottomSheet로 선택 목록이 열린다. 드롭다운은 쓰지 않는다
 // label · placeholder · errorMessage · invalid · disabled(3-2 비교표)
 // variant box(입력칸, 기본) · plain(테두리 없는 작은 글자, 정렬 · 필터 등). plain은 3-2 · DESIGN.md에 없는 임시 추가
+// plain 글자는 fg.neutral-muted(box 값보다 한 단계 연하게), 화살표는 box와 같은 fieldIconClass
+// 시트 안 선택 목록은 ListItem selected(오른쪽 끝 체크: 꺼짐 · 켜짐)
 export type SelectOption = { value: string; label: React.ReactNode; disabled?: boolean };
 
 export type SelectProps = FieldProps & {
@@ -77,14 +80,14 @@ export function Select({
             ? cn(fieldBoxClass({ invalid, disabled }), "h-(--input-height) text-left focus-visible:outline-none")
             : cn(
                 "inline-flex h-(--select-plain-height) w-fit items-center gap-2 rounded-sm px-4 text-label-md active:bg-transparent-pressed disabled:text-disabled",
-                invalid ? "text-critical" : "text-neutral",
+                invalid ? "text-critical" : "text-neutral-muted",
               )
         }
       >
         <span className={cn("min-w-0 truncate", variant === "box" && "flex-1", !selected && variant === "box" && "text-placeholder")}>
           {selected ? selected.label : placeholder}
         </span>
-        <ChevronDown aria-hidden className={cn("shrink-0", variant === "box" ? "size-24 text-neutral-subtle" : "size-20")} />
+        <ChevronDown aria-hidden className={cn(fieldIconClass, disabled && "text-disabled")} />
       </button>
       <BottomSheet open={open} onOpenChange={setOpen} title={sheetTitle ?? label ?? placeholder}>
         <ul role="listbox" aria-label={typeof label === "string" ? label : undefined} className="-mx-16">
@@ -92,18 +95,7 @@ export function Select({
             const isSelected = o.value === current;
             return (
               <li key={o.value} role="option" aria-selected={isSelected} aria-disabled={o.disabled || undefined}>
-                <button
-                  type="button"
-                  disabled={o.disabled}
-                  onClick={() => choose(o.value)}
-                  className={cn(
-                    "flex min-h-touch-min w-full items-center gap-8 px-16 py-12 text-left text-body-lg active:bg-transparent-pressed disabled:text-disabled",
-                    isSelected && "text-label-base",
-                  )}
-                >
-                  <span className="min-w-0 flex-1">{o.label}</span>
-                  {isSelected && <Check aria-hidden className="size-20 shrink-0 text-brand-contrast" />}
-                </button>
+                <ListItem title={o.label} selected={isSelected} disabled={o.disabled} onClick={() => choose(o.value)} />
               </li>
             );
           })}

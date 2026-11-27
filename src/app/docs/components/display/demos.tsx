@@ -1,22 +1,38 @@
 "use client";
 
 import { ArrowLeftRight, Bell, ChevronRight, CreditCard, PiggyBank, Wallet } from "lucide-react";
+import { useState } from "react";
 import { Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardHeading, CardTitle } from "@/components/ui/card";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardHeading, CardImageSlot, CardTitle } from "@/components/ui/card";
 import { ListItem } from "@/components/ui/list-item";
 import { Board, Example, Grid, Part, Phone } from "../gallery";
 
-// 견본 이미지 대신 쓰는 회색 면(실제 이미지 자리)
-// 안쪽 라운드 = 카드 16 − 여백 16 = 0(DESIGN.md "Shapes")
+// 견본 이미지 대신 쓰는 회색 면(실제 이미지 자리). 라운드는 CardImageSlot이 정한다
 function ImagePlaceholder({ label }: { label: string }) {
   return (
-    <div className="flex aspect-video w-full items-center justify-center bg-neutral-weak text-label-sm text-neutral-subtle">
+    <CardImageSlot className="flex aspect-video items-center justify-center bg-neutral-weak text-label-sm text-neutral-subtle">
       {label}
-    </div>
+    </CardImageSlot>
   );
 }
+
+// 견본용 가짜 로고(실제 회사 로고 아님). 이미지 안의 색이라 토큰이 아닌 그림 색을 쓴다
+function fakeLogo(bg: string, fg: string, shape: "circle" | "bars" | "diamond") {
+  const mark =
+    shape === "circle"
+      ? `<circle cx="24" cy="24" r="10" fill="${fg}"/><circle cx="24" cy="24" r="4" fill="${bg}"/>`
+      : shape === "bars"
+        ? `<rect x="14" y="14" width="6" height="20" rx="3" fill="${fg}"/><rect x="24" y="20" width="6" height="14" rx="3" fill="${fg}"/>`
+        : `<rect x="16" y="16" width="16" height="16" rx="4" transform="rotate(45 24 24)" fill="${fg}"/>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" fill="${bg}"/>${mark}</svg>`)}`;
+}
+const logos = {
+  coffee: fakeLogo("#1fb877", "#ffffff", "circle"),
+  person: fakeLogo("#7c5cff", "#ffe066", "diamond"),
+  saving: fakeLogo("#ff8a3d", "#ffffff", "bars"),
+};
 
 export function CardDemo() {
   return (
@@ -59,7 +75,6 @@ export function CardDemo() {
               </Button>
             </CardAction>
           </CardHeader>
-          <CardContent className="text-title-md">3,520,000원</CardContent>
         </Card>
       </Phone>
       <Phone label="이미지 + 꽉 찬 버튼">
@@ -83,7 +98,7 @@ export function CardDemo() {
               <CardTitle>신용점수 조회</CardTitle>
               <CardDescription>조회해도 점수가 떨어지지 않아요</CardDescription>
             </CardHeading>
-            <ChevronRight aria-hidden className="size-24 shrink-0 text-neutral-subtle" />
+            <ChevronRight aria-hidden className="size-(--chevron-size) shrink-0 text-neutral-subtle" />
           </CardHeader>
         </Card>
       </Phone>
@@ -104,6 +119,17 @@ export function CardDemo() {
   );
 }
 
+function SelectableRows() {
+  const [value, setValue] = useState("국민은행 1234");
+  return (
+    <div className="w-[343px] rounded-md border border-neutral-weak">
+      {["국민은행 1234", "신한은행 5678"].map((a) => (
+        <ListItem key={a} title={a} selected={value === a} onClick={() => setValue(a)} />
+      ))}
+    </div>
+  );
+}
+
 export function ListItemDemo() {
   return (
     <Board column>
@@ -113,6 +139,9 @@ export function ListItemDemo() {
             <ListItem title="계좌 관리" />
           </div>
         </Example>
+        <Example label="title + selected(고르는 목록 · 꺼짐 · 켜짐)" grow>
+          <SelectableRows />
+        </Example>
         <Example label="title + description + withArrow(이동)" grow>
           <div className="w-[343px] rounded-md border border-neutral-weak">
             <ListItem title="이체 한도" description="1회 500만 원 · 1일 1,000만 원" withArrow onClick={() => {}} />
@@ -120,12 +149,12 @@ export function ListItemDemo() {
         </Example>
         <Example label="prefix 아이콘 + suffix 값" grow>
           <div className="w-[343px] rounded-md border border-neutral-weak">
-            <ListItem title="포인트" prefix={<PiggyBank aria-hidden className="size-24" />} suffix={<span className="text-label-md">12,300P</span>} />
+            <ListItem title="포인트" prefix={<PiggyBank aria-hidden className="size-24" />} suffix={<span className="text-label-base">12,300P</span>} />
           </div>
         </Example>
         <Example label="prefix Avatar + suffix Badge" grow>
           <div className="w-[343px] rounded-md border border-neutral-weak">
-            <ListItem title="김딸깍" description="오늘 오후 2:30" prefix={<Avatar fallback="김" />} suffix={<Badge tone="positive">완료</Badge>} />
+            <ListItem title="김딸깍" description="오늘 오후 2:30" prefix={<Avatar src={logos.person} fallback="김" />} suffix={<Badge tone="positive">완료</Badge>} />
           </div>
         </Example>
         <Example label="disabled" grow>
@@ -138,9 +167,9 @@ export function ListItemDemo() {
         <Phone label="거래 내역" bare>
           <div className="py-8">
             <p className="px-16 pt-8 pb-4 text-label-md text-neutral-subtle">11월 20일</p>
-            <ListItem title="스타벅스" description="오전 8:42 · 체크카드" prefix={<Avatar fallback="스" />} suffix={<span className="text-label-md">-5,600원</span>} onClick={() => {}} />
-            <ListItem title="김딸깍" description="오전 11:05 · 이체" prefix={<Avatar fallback="김" />} suffix={<span className="text-label-md text-informative">+30,000원</span>} onClick={() => {}} />
-            <ListItem title="딸깍 적금" description="오후 1:00 · 자동이체" prefix={<Avatar fallback="적" />} suffix={<span className="text-label-md">-200,000원</span>} onClick={() => {}} />
+            <ListItem title="스타벅스" description="오전 8:42 · 체크카드" prefix={<Avatar src={logos.coffee} fallback="스" />} suffix={<span className="text-label-md">-5,600원</span>} onClick={() => {}} />
+            <ListItem title="김딸깍" description="오전 11:05 · 이체" prefix={<Avatar src={logos.person} fallback="김" />} suffix={<span className="text-label-md text-informative">+30,000원</span>} onClick={() => {}} />
+            <ListItem title="딸깍 적금" description="오후 1:00 · 자동이체" prefix={<Avatar src={logos.saving} fallback="적" />} suffix={<span className="text-label-md">-200,000원</span>} onClick={() => {}} />
           </div>
         </Phone>
         <Phone label="메뉴 목록" bare>

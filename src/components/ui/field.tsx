@@ -67,6 +67,9 @@ export function Field({
   );
 }
 
+// 입력칸 오른쪽 아이콘(Select 화살표 · DateInput 달력): 크기 · 색을 하나로 맞춘다(임시 field-icon 토큰)
+export const fieldIconClass = "size-(--field-icon-size) shrink-0 text-(--field-icon-color)";
+
 // 입력칸 테두리: 기본 1px stroke.neutral-weak, 포커스 2px stroke.neutral-contrast, 오류 2px stroke.critical-solid(포커스 중에도)
 // 2px는 1px 테두리 + 안쪽 1px 링으로 만들어 글자 자리가 움직이지 않게 한다
 export function fieldBoxClass({ invalid, disabled }: { invalid?: boolean; disabled?: boolean }) {

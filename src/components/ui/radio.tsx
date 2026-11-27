@@ -33,7 +33,7 @@ export function RadioGroupItem({ id, label, disabled, className, ...props }: Rad
         id={inputId}
         disabled={disabled}
         className={cn(
-          "flex shrink-0 items-center justify-center rounded-full border border-neutral-weak bg-layer-default",
+          "flex shrink-0 items-center justify-center rounded-full border border-unselected bg-layer-default",
           "aria-checked:border-0 aria-checked:bg-brand-solid disabled:border-0 disabled:bg-disabled",
           size === "md" ? "size-20" : "size-24",
         )}
@@ -42,7 +42,7 @@ export function RadioGroupItem({ id, label, disabled, className, ...props }: Rad
         <RadioPrimitive.Indicator
           className={cn(
             "rounded-full bg-layer-default",
-            disabled && "bg-neutral-weak-pressed",
+            disabled && "bg-(--radio-disabled-dot-color)",
             size === "md"
               ? disabled ? "size-(--radio-md-disabled-dot-size)" : "size-(--radio-md-dot-size)"
               : disabled ? "size-(--radio-lg-disabled-dot-size)" : "size-(--radio-lg-dot-size)",

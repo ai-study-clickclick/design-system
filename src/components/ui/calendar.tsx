@@ -11,6 +11,9 @@ import { cn } from "./cn";
 // 폭은 놓인 자리를 꽉 채우고 7칸을 똑같이 나눈다. 칸 높이 44, 날짜 원 40
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
+// 날짜 칸(44)과 날짜 원(40)의 차이만큼 위아래를 비운 띠
+const band = "relative isolate before:absolute before:inset-y-2 before:-z-10 before:bg-brand-weak";
+
 export function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
   const d = getDefaultClassNames();
   return (
@@ -37,11 +40,13 @@ export function Calendar({ className, classNames, showOutsideDays = true, ...pro
           "flex size-40 items-center justify-center rounded-full active:bg-transparent-pressed disabled:pointer-events-none",
         today: "text-brand-contrast",
         selected: "*:bg-brand-solid *:text-on-brand-solid *:text-label-base",
-        range_start: "rounded-l-full bg-brand-weak",
-        range_middle: "bg-brand-weak *:bg-transparent! *:text-brand-contrast! *:text-body-lg! *:font-medium!",
-        range_end: "rounded-r-full bg-brand-weak",
-        outside: "text-disabled",
-        disabled: "text-disabled",
+        // 기간 띠는 날짜 원(40)과 같은 높이로, 첫날은 원 가운데부터 오른쪽만 · 마지막 날은 왼쪽만 칠한다
+        range_start: cn(band, "ds-range-start before:right-0 before:left-1/2"),
+        range_middle: cn(band, "before:inset-x-0 *:bg-transparent! *:text-brand-contrast! *:text-body-lg! *:font-medium!"),
+        // 하루만 고른 기간(첫날 = 마지막 날)은 띠 없이 원만 둔다
+        range_end: cn(band, "before:right-1/2 before:left-0 [&.ds-range-start]:before:hidden"),
+        outside: "text-(--calendar-disabled-text-color)",
+        disabled: "text-(--calendar-disabled-text-color)",
         hidden: "invisible",
         ...classNames,
       }}

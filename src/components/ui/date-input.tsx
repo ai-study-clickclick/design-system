@@ -7,7 +7,7 @@ import { BottomSheet, BottomSheetClose } from "./bottom-sheet";
 import { Button } from "./button";
 import { Calendar } from "./calendar";
 import { cn } from "./cn";
-import { Field, fieldBoxClass, useFieldIds, type FieldProps } from "./field";
+import { Field, fieldBoxClass, fieldIconClass, useFieldIds, type FieldProps } from "./field";
 
 // DateInput: 날짜 입력. Input 모양이고 누르면 BottomSheet로 Calendar가 열린다(Select와 같은 방식)
 // MVP 19개 밖 임시 추가(Calendar와 함께 8차 미팅에서 확정)
@@ -70,7 +70,7 @@ export function DateInput({
         <span className={cn("min-w-0 flex-1 truncate", !current && "text-placeholder")}>
           {current ? format(current, "yyyy.MM.dd") : placeholder}
         </span>
-        <CalendarDays aria-hidden className="size-20 shrink-0 text-neutral-subtle" />
+        <CalendarDays aria-hidden className={cn(fieldIconClass, disabled && "text-disabled")} />
       </button>
       <BottomSheet
         open={open}

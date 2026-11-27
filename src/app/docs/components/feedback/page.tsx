@@ -5,7 +5,7 @@ export const metadata = { title: "Feedback · 딸깍 디자인 시스템" };
 
 const sections = [
   { id: "modal", title: "Modal", description: "확인 요청 전용. 바깥을 눌러도 닫히지 않고 버튼은 2개까지다. 되돌릴 수 없는 행동은 critical 버튼.", Demo: D.ModalDemo },
-  { id: "bottom-sheet", title: "BottomSheet", description: "아래에서 올라오는 시트. 핸들과 닫기는 함께 쓰지 않는다. 높이는 내용만큼, 최대는 화면 − 48이고 넘치면 내용만 스크롤한다. 아래 여백은 버튼이 없으면 24, 있으면 버튼 아래 16(+ 안전 영역). 버튼 2개는 닫기 + 채움 3:7.", Demo: D.BottomSheetDemo },
+  { id: "bottom-sheet", title: "BottomSheet", description: "아래에서 올라오는 시트. 핸들과 닫기는 함께 쓰지 않는다. 높이는 최소 240, 최대 화면 − 48이고 그 사이는 내용만큼, 넘치면 내용만 스크롤한다. 아래 여백은 버튼이 없으면 24, 있으면 버튼 아래 16(+ 안전 영역). 버튼 2개는 5:5(3:7은 쓰지 않음).", Demo: D.BottomSheetDemo },
   { id: "toast", title: "Toast", description: "일시 알림. 한 번에 하나, 4초 뒤 사라진다. 글자는 왼쪽, 버튼은 오른쪽 끝, 버튼은 1개까지.", Demo: D.ToastDemo },
   { id: "banner", title: "Banner", description: "화면 전체의 상태를 알리는 지속 안내. 화면 맨 위 전체 폭, 경고 · 오류는 닫을 수 없다.", Demo: D.BannerDemo },
   { id: "spinner", title: "Spinner", description: "기다림 표시. 1초가 넘을 때만 보이고, 한 번 보이면 0.4초는 유지한다.", Demo: D.SpinnerDemo },

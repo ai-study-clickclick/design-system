@@ -1,12 +1,14 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
+import { Check, ChevronRight } from "lucide-react";
 import { Slot } from "radix-ui";
 import { cn } from "./cn";
 
 // ListItem: 글이 주인 항목(알림 · 내역 · 설정 등)의 한 줄
 // title · description · prefix · suffix · withArrow · disabled(3-2 비교표)
-// 위아래 12 · 좌우 16 · 제목 16(body-lg) · 보조 13(body-sm, fg.neutral-subtle) · 눌림 bg.transparent-pressed
+// 위아래 12 · 좌우 16 · 제목 16(body-lg, 굵기 500 임시) · 보조 13(body-sm, fg.neutral-subtle) · 눌림 bg.transparent-pressed
+// 고르는 목록(BottomSheet 선택 등)은 selected를 주면 오른쪽 끝에 체크를 둔다. 꺼짐 fg.unselected · 켜짐 fg.brand(Ghost 체크박스와 같은 모양)
+// 오른쪽 값과 화살표 사이는 6(목록 간격의 반), 화살표 20
 export type ListItemProps = Omit<React.HTMLAttributes<HTMLElement>, "title" | "prefix"> & {
   title: React.ReactNode;
   description?: React.ReactNode;
@@ -16,6 +18,8 @@ export type ListItemProps = Omit<React.HTMLAttributes<HTMLElement>, "title" | "p
   suffix?: React.ReactNode;
   /** 다른 화면으로 이동하는 줄이면 오른쪽 화살표 */
   withArrow?: boolean;
+  /** 고르는 목록이면 true · false. 오른쪽 끝에 체크(꺼짐 · 켜짐)를 보인다 */
+  selected?: boolean;
   disabled?: boolean;
   /** 누를 수 있는 줄. 링크면 asChild로 a/Link를 감싼다 */
   asChild?: boolean;
@@ -28,6 +32,7 @@ export function ListItem({
   prefix,
   suffix,
   withArrow,
+  selected,
   disabled,
   asChild,
   onClick,
@@ -41,11 +46,18 @@ export function ListItem({
     <>
       {prefix && <span className="flex shrink-0 items-center">{prefix}</span>}
       <span className="flex min-w-0 flex-1 flex-col gap-2">
-        <span className={cn("text-body-lg", disabled ? "text-disabled" : "text-neutral")}>{title}</span>
+        <span className={cn("text-body-lg font-(--list-item-typography-font-weight)", disabled ? "text-disabled" : "text-neutral")}>{title}</span>
         {description && <span className={cn("text-body-sm", disabled ? "text-disabled" : "text-neutral-subtle")}>{description}</span>}
       </span>
-      {suffix && <span className="flex shrink-0 items-center gap-8">{suffix}</span>}
-      {withArrow && <ChevronRight aria-hidden className={cn("size-24 shrink-0", disabled ? "text-disabled" : "text-neutral-subtle")} />}
+      {(suffix || withArrow || selected !== undefined) && (
+        <span className="flex shrink-0 items-center gap-(--list-item-suffix-gap)">
+          {suffix && <span className="flex items-center gap-8">{suffix}</span>}
+          {withArrow && <ChevronRight aria-hidden className={cn("size-(--chevron-size) shrink-0", disabled ? "text-disabled" : "text-neutral-subtle")} />}
+          {selected !== undefined && (
+            <Check aria-hidden strokeWidth={3} className={cn("size-(--checkbox-ghost-lg-icon-size) shrink-0", disabled ? "text-disabled" : selected ? "text-brand" : "text-unselected")} />
+          )}
+        </span>
+      )}
     </>
   );
   return (
