@@ -7,7 +7,7 @@ import { cn } from "./cn";
 import { usePressScale } from "./press";
 import { Spinner } from "./spinner";
 
-// Button: variant primary · primaryWeak · neutral · secondary · critical · outline · staticWhiteWeak, size sm(36, 임시) · md(44) · lg(52)
+// Button: variant primary · primaryWeak · neutral · secondary · critical · outline · staticWhiteWeak, size xs(32, 임시) · sm(36, 임시) · md(44) · lg(52)
 // primaryWeak(연한 대표 컬러) · neutral(진한 회색) · staticWhiteWeak(어두운 면 위 흰 막)은 3-2 비교표 · DESIGN.md에 없는 임시 추가
 // 폭은 Button이 아니라 놓는 자리가 정한다(fullWidth 없음, 3-2 비교표 결정 3)
 // 채움 버튼은 한 화면에 하나(DESIGN.md "컴포넌트별 사용 규칙")
@@ -30,6 +30,7 @@ const buttonVariants = cva(
         lg: "h-(--button-primary-lg-height) rounded-md px-20 text-label-lg",
         md: "h-(--button-primary-md-height) rounded-(--button-md-rounded) px-16 text-label-md",
         sm: "h-(--button-sm-height) rounded-sm px-14 text-label-md",
+        xs: "h-(--button-xs-height) rounded-xs px-12 text-label-md",
       },
     },
     defaultVariants: { variant: "primary", size: "lg" },

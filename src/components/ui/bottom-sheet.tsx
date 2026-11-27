@@ -5,7 +5,8 @@ import { X } from "lucide-react";
 import { cn } from "./cn";
 
 // BottomSheet: 아래에서 올라오는 시트. 선택 목록 · 옵션 목록에 쓴다(DESIGN.md "피드백 종류별 컴포넌트")
-// 뼈대는 shadcn Drawer(vaul), 모양은 당근 · 토스 참고. 라운드 24 · 여백 16 · 그림자 s2
+// 뼈대는 shadcn Drawer(vaul), 모양은 당근 · 토스 참고. 라운드 24 · 좌우 여백 20(임시) · 그림자 s2
+// 시트 안 목록은 -mx-(--bottom-sheet-padding)로 좌우 끝까지 펼치고, ListItem 좌우 여백도 20으로 맞춘다
 // open · title · description · footer(하단 버튼) · showHandle · showCloseButton(3-2 비교표)
 // 핸들과 닫기는 함께 쓰지 않는다. showCloseButton을 켜면 핸들은 숨긴다
 // 높이: 최소 240, 최대 화면 − 48. 그 사이는 내용만큼. 넘치면 내용만 스크롤하고 제목 · 버튼은 고정(임시 기준)
@@ -51,7 +52,7 @@ export function BottomSheet({
           )}
         >
           {showHandle && !showCloseButton && <div aria-hidden className="mx-auto mt-8 h-4 w-36 shrink-0 rounded-full bg-neutral-weak-pressed" />}
-          <div className={cn("flex items-start gap-8 px-16", showHandle && !showCloseButton ? "pt-12" : "pt-20")}>
+          <div className={cn("flex items-start gap-8 px-(--bottom-sheet-padding)", showHandle && !showCloseButton ? "pt-12" : "pt-20")}>
             <div className="min-w-0 flex-1">
               <Drawer.Title className="text-title-md">{title}</Drawer.Title>
               {description ? (
@@ -66,8 +67,8 @@ export function BottomSheet({
               </Drawer.Close>
             )}
           </div>
-          <div className={cn("min-h-0 flex-1 overflow-y-auto px-16 pt-16", footer ? "pb-16" : "pb-(--bottom-sheet-content-bottom)")}>{children}</div>
-          {footer && <div className="flex gap-8 px-16 pb-(--bottom-sheet-footer-bottom) *:flex-1!">{footer}</div>}
+          <div className={cn("min-h-0 flex-1 overflow-y-auto px-(--bottom-sheet-padding) pt-16", footer ? "pb-16" : "pb-(--bottom-sheet-content-bottom)")}>{children}</div>
+          {footer && <div className="flex gap-8 px-(--bottom-sheet-padding) pb-(--bottom-sheet-footer-bottom) *:flex-1!">{footer}</div>}
         </Drawer.Content>
       </Drawer.Portal>
     </Drawer.Root>

@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardHeading, CardImageSlot, CardTitle } from "@/components/ui/card";
 import { ListItem } from "@/components/ui/list-item";
-import { Board, Example, Grid, Part, Phone } from "../gallery";
+import { Board, Example, Grid, Part, Phone, fakeLogos } from "../gallery";
 
 // 견본 이미지 대신 쓰는 회색 면(실제 이미지 자리). 라운드는 CardImageSlot이 정한다
 function ImagePlaceholder({ label }: { label: string }) {
@@ -20,21 +20,6 @@ function ImagePlaceholder({ label }: { label: string }) {
   );
 }
 
-// 견본용 가짜 로고(실제 회사 로고 아님). 이미지 안의 색이라 토큰이 아닌 그림 색을 쓴다
-function fakeLogo(bg: string, fg: string, shape: "circle" | "bars" | "diamond") {
-  const mark =
-    shape === "circle"
-      ? `<circle cx="24" cy="24" r="10" fill="${fg}"/><circle cx="24" cy="24" r="4" fill="${bg}"/>`
-      : shape === "bars"
-        ? `<rect x="14" y="14" width="6" height="20" rx="3" fill="${fg}"/><rect x="24" y="20" width="6" height="14" rx="3" fill="${fg}"/>`
-        : `<rect x="16" y="16" width="16" height="16" rx="4" transform="rotate(45 24 24)" fill="${fg}"/>`;
-  return `data:image/svg+xml;utf8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" fill="${bg}"/>${mark}</svg>`)}`;
-}
-const logos = {
-  coffee: fakeLogo("#1fb877", "#ffffff", "circle"),
-  person: fakeLogo("#7c5cff", "#ffe066", "diamond"),
-  saving: fakeLogo("#ff8a3d", "#ffffff", "bars"),
-};
 
 export function CardDemo() {
   return (
@@ -42,7 +27,7 @@ export function CardDemo() {
       <Phone label="기본 · 제목 + 부제">
         <Card>
           <CardHeading>
-            <CardTitle>이번 달 소비</CardTitle>
+            <CardTitle className="text-label-base">이번 달 소비</CardTitle>
             <CardDescription>11월 1일 ~ 11월 20일</CardDescription>
           </CardHeading>
           <CardContent className="text-title-lg">1,240,000원</CardContent>
@@ -143,7 +128,7 @@ export function ListItemDemo() {
         </Example>
         <Example label="prefix Avatar + suffix Badge" grow>
           <div className="w-[343px] rounded-md border border-neutral-weak">
-            <ListItem title="김딸깍" description="오늘 오후 2:30" prefix={<Avatar size="sm" src={logos.person} fallback="김" />} suffix={<Badge tone="positive">완료</Badge>} />
+            <ListItem title="김딸깍" description="오늘 오후 2:30" prefix={<Avatar size="sm" src={fakeLogos.person} fallback="김" />} suffix={<Badge tone="positive">완료</Badge>} />
           </div>
         </Example>
         <Example label="disabled" grow>
@@ -156,9 +141,9 @@ export function ListItemDemo() {
         <Phone label="거래 내역" bare>
           <div className="py-8">
             <p className="px-16 pt-8 pb-4 text-label-md text-neutral-subtle">11월 20일</p>
-            <ListItem size="md" title="스타벅스" description="오전 8:42 · 체크카드" prefix={<Avatar size="sm" src={logos.coffee} fallback="스" />} suffix={<span className="text-label-base">-5,600원</span>} onClick={() => {}} />
-            <ListItem size="md" title="김딸깍" description="오전 11:05 · 이체" prefix={<Avatar size="sm" src={logos.person} fallback="김" />} suffix={<span className="text-label-base text-informative">+30,000원</span>} onClick={() => {}} />
-            <ListItem size="md" title="딸깍 적금" description="오후 1:00 · 자동이체" prefix={<Avatar size="sm" src={logos.saving} fallback="적" />} suffix={<span className="text-label-base">-200,000원</span>} onClick={() => {}} />
+            <ListItem size="md" title="스타벅스" description="오전 8:42 · 체크카드" prefix={<Avatar size="sm" src={fakeLogos.coffee} fallback="스" />} suffix={<span className="text-label-base">-5,600원</span>} onClick={() => {}} />
+            <ListItem size="md" title="김딸깍" description="오전 11:05 · 이체" prefix={<Avatar size="sm" src={fakeLogos.person} fallback="김" />} suffix={<span className="text-label-base text-informative">+30,000원</span>} onClick={() => {}} />
+            <ListItem size="md" title="딸깍 적금" description="오후 1:00 · 자동이체" prefix={<Avatar size="sm" src={fakeLogos.saving} fallback="적" />} suffix={<span className="text-label-base">-200,000원</span>} onClick={() => {}} />
           </div>
         </Phone>
         <Phone label="메뉴 목록" bare>
@@ -232,27 +217,23 @@ export function DividerDemo() {
           <ListItem size="md" title="스타벅스" description="오늘 오전 8:42" suffix={<span className="text-label-base">-5,600원</span>} />
           <ListItem size="md" title="김딸깍" description="어제 오전 11:05" suffix={<span className="text-label-base text-informative">+30,000원</span>} />
         </div>
-        <Divider variant="thick" />
-        <div className="py-8">
-          <p className="px-16 pt-8 pb-4 text-title-sm">혜택</p>
-          <ListItem title="첫 송금 1,000원" withArrow onClick={() => {}} />
-          <ListItem title="친구 초대 이벤트" withArrow onClick={() => {}} />
-        </div>
-        <Divider variant="thick" />
-        <ListItem title="고객센터" withArrow onClick={() => {}} />
       </Phone>
-      <Phone label='orientation="vertical" · 글자 사이'>
-        <div className="flex h-16 items-center gap-8 text-body-sm text-neutral-subtle">
+      <Phone label='orientation="vertical" · 글자 사이 세로 줄'>
+        <div className="flex items-center gap-8 text-body-sm text-neutral-subtle">
           <span>국민은행</span>
           <Divider orientation="vertical" />
           <span>1234-56-789012</span>
           <Divider orientation="vertical" />
           <span>입출금</span>
         </div>
-        <div className="flex h-16 items-center gap-8 text-body-sm text-neutral-subtle">
+      </Phone>
+      <Phone label='variant="dot" · 글자 사이 점(bullet)'>
+        <div className="flex items-center gap-6 text-body-sm text-neutral-subtle">
           <span>오늘 오전 8:42</span>
-          <Divider orientation="vertical" />
+          <Divider variant="dot" />
           <span>체크카드</span>
+          <Divider variant="dot" />
+          <span>카페</span>
         </div>
       </Phone>
     </Grid>

@@ -8,7 +8,7 @@ import { Button } from "./button";
 // 라운드 12 · 여백 좌우 16 · 위아래 10 · 최소 높이 44 · 최대 폭 464 · 글자 14 · bg.neutral-solid
 // 라운드 · 좌우 여백은 DESIGN.md(8 · 10)보다 키운 임시 값
 // 글자는 왼쪽(굵기 500, 임시), 버튼은 오른쪽 끝에 둔다. 글자가 길면 여러 줄로 내려간다
-// 버튼은 Button sm staticWhiteWeak(어두운 면 위 흰 막, 임시)를 높이 32로 줄여 쓴다. 위아래 여백 14(임시)
+// 버튼은 Button xs(32) staticWhiteWeak(어두운 면 위 흰 막, 임시). 위아래 여백 14(임시)
 const DURATION = 4000;
 // 사라지는 시간: DESIGN.md "나타나고 사라지는 값" Toast d2. 움직임 값은 temp-tokens.css
 const EXIT_MS = 100;
@@ -98,9 +98,8 @@ function ToastView({ item, closing }: { item: ToastItem; closing: boolean }) {
       <p className="min-w-0 flex-1">{item.message}</p>
       {item.action && (
         <Button
-          size="sm"
+          size="xs"
           variant="staticWhiteWeak"
-          className="h-(--toast-action-height) px-12"
           onClick={() => {
             item.action?.onClick();
             dismiss(item.id);

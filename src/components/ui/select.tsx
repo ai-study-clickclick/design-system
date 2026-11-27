@@ -90,7 +90,7 @@ export function Select({
         <ChevronDown aria-hidden className={cn(fieldIconClass, disabled && "text-disabled")} />
       </button>
       <BottomSheet open={open} onOpenChange={setOpen} title={sheetTitle ?? label ?? placeholder}>
-        <ul role="listbox" aria-label={typeof label === "string" ? label : undefined} className="-mx-16">
+        <ul role="listbox" aria-label={typeof label === "string" ? label : undefined} className="-mx-(--bottom-sheet-padding)">
           {options.map((o) => {
             const isSelected = o.value === current;
             return (

@@ -73,7 +73,7 @@ export function ListItem({
       onClick={disabled ? undefined : onClick}
       {...(Comp === "button" ? { type: "button" as const, disabled } : {})}
       className={cn(
-        "flex w-full items-center gap-12 px-16 py-12 text-left",
+        "flex w-full items-center gap-12 px-(--list-item-padding-x) py-12 text-left",
         pressable && "active:bg-transparent-pressed",
         className,
       )}

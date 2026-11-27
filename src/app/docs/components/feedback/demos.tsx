@@ -74,7 +74,7 @@ function AccountSheet() {
   const [value, setValue] = useState("국민은행 1234");
   return (
     <BottomSheet trigger={<Button size="md" variant="secondary">핸들 · 버튼 없음(고르면 바로 닫힘)</Button>} title="계좌 고르기">
-      <div className="-mx-16">
+      <div className="-mx-(--bottom-sheet-padding)">
         {["국민은행 1234", "신한은행 5678", "토스뱅크 9012"].map((a) => (
           <BottomSheetClose key={a} asChild>
             <ListItem title={a} selected={value === a} onClick={() => setValue(a)} />
@@ -125,7 +125,7 @@ export function BottomSheetDemo() {
         title="은행 고르기"
         showCloseButton
       >
-        <div className="-mx-16">
+        <div className="-mx-(--bottom-sheet-padding)">
           {banks.map((b) => (
             <BottomSheetClose key={b} asChild>
               <ListItem title={b} onClick={() => {}} />

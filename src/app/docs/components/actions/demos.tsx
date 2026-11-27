@@ -4,23 +4,25 @@ import { useState } from "react";
 import { Bell, Heart, Plus, Search, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { IconButton } from "@/components/ui/icon-button";
+import { Avatar } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { ListItem } from "@/components/ui/list-item";
 import { TextButton } from "@/components/ui/text-button";
-import { Board, Example, Part, Phone } from "../gallery";
+import { Board, Example, Part, Phone, fakeLogos } from "../gallery";
 
 const variants = ["primary", "primaryWeak", "neutral", "secondary", "critical", "outline"] as const;
 const sizeTitle = {
   lg: "size=lg · 높이 52 · 라운드 12 · 글자 18 · 하단 고정",
   md: "size=md · 높이 44 · 라운드 10(임시) · 글자 14 · 본문 · 상태 화면",
   sm: "size=sm · 높이 36 · 라운드 8 · 글자 14(임시) · 카드 · 목록 안",
+  xs: "size=xs · 높이 32 · 라운드 6 · 글자 14(임시) · Toast · 좁은 자리",
 };
 const labels = { primary: "송금하기", primaryWeak: "혜택 보기", neutral: "계좌 연결", secondary: "취소", critical: "해지하기", outline: "다시 시도" };
 
 export function ButtonSizes() {
   return (
     <Board column>
-      {(["lg", "md", "sm"] as const).map((size) => (
+      {(["lg", "md", "sm", "xs"] as const).map((size) => (
         <Part key={size} title={sizeTitle[size]}>
           {variants.map((variant) => (
             <Example key={variant} label={`variant=${variant}`}>
@@ -164,18 +166,21 @@ export function TextButtonDemo() {
       </Part>
       <Part title="실제 화면">
         <Phone label="목록 구역 제목 오른쪽 · 전체 보기(이동)" bare>
-          <div className="flex items-center justify-between px-16 pt-16 pb-4">
+          <div className="flex items-center justify-between px-16 pt-16 pb-8">
             <p className="text-title-sm">최근 거래</p>
             <TextButton withArrow>전체 보기</TextButton>
           </div>
-          <ListItem size="md" title="스타벅스" description="오늘 오전 8:42" suffix={<span className="text-label-base">-5,600원</span>} />
-          <ListItem size="md" title="김딸깍" description="어제 오전 11:05" suffix={<span className="text-label-base text-informative">+30,000원</span>} />
-          <ListItem size="md" title="딸깍 적금" description="11월 20일" suffix={<span className="text-label-base">-200,000원</span>} />
+          <ListItem size="md" title="스타벅스" description="오늘 오전 8:42" prefix={<Avatar size="sm" src={fakeLogos.coffee} fallback="스" />} suffix={<span className="text-label-base">-5,600원</span>} />
+          <ListItem size="md" title="김딸깍" description="어제 오전 11:05" prefix={<Avatar size="sm" src={fakeLogos.person} fallback="김" />} suffix={<span className="text-label-base text-informative">+30,000원</span>} />
+          <ListItem size="md" title="딸깍 적금" description="11월 20일" prefix={<Avatar size="sm" src={fakeLogos.saving} fallback="적" />} suffix={<span className="text-label-base">-200,000원</span>} />
         </Phone>
-        <Phone label="입력칸 아래 · 다시 받기(brand)">
-          <Input label="인증번호" placeholder="6자리" inputMode="numeric" description="3:00 안에 넣어 주세요" />
-          <div className="-mt-8">
-            <TextButton tone="brand">인증번호 다시 받기</TextButton>
+        <Phone label="입력칸 아래 · 안내 문구와 양끝 정렬 · 다시 받기(brand)">
+          <div className="flex flex-col gap-8">
+            <Input label="인증번호" placeholder="6자리" inputMode="numeric" />
+            <div className="flex items-center justify-between">
+              <p className="text-body-sm text-neutral-subtle">3:00 안에 넣어 주세요</p>
+              <TextButton tone="brand">인증번호 다시 받기</TextButton>
+            </div>
           </div>
         </Phone>
       </Part>

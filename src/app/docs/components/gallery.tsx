@@ -58,3 +58,20 @@ export function Part({ title, children, column }: { title?: string; children: Re
     </section>
   );
 }
+
+// 견본용 가짜 로고(실제 회사 로고 아님). 이미지 안의 색이라 토큰이 아닌 그림 색을 쓴다
+function fakeLogo(bg: string, fg: string, shape: "circle" | "bars" | "diamond") {
+  const mark =
+    shape === "circle"
+      ? `<circle cx="24" cy="24" r="10" fill="${fg}"/><circle cx="24" cy="24" r="4" fill="${bg}"/>`
+      : shape === "bars"
+        ? `<rect x="14" y="14" width="6" height="20" rx="3" fill="${fg}"/><rect x="24" y="20" width="6" height="14" rx="3" fill="${fg}"/>`
+        : `<rect x="16" y="16" width="16" height="16" rx="4" transform="rotate(45 24 24)" fill="${fg}"/>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" fill="${bg}"/>${mark}</svg>`)}`;
+}
+export const fakeLogos = {
+  coffee: fakeLogo("#1fb877", "#ffffff", "circle"),
+  person: fakeLogo("#7c5cff", "#ffe066", "diamond"),
+  saving: fakeLogo("#ff8a3d", "#ffffff", "bars"),
+};
+

@@ -7,10 +7,16 @@
   --button-md-rounded: 10px;
   /* Button sm: 높이 36 · 라운드 8 · 좌우 14 · 글자 14 (SEED ActionButton small, 3-2 · DESIGN.md 추가 요청) */
   --button-sm-height: 36px;
+  /* Button xs: 높이 32 · 라운드 6(작은 크기는 라운드도 작게) · 좌우 12 · 글자 14. Toast 버튼 등 */
+  --button-xs-height: 32px;
 
 
   /* MVP 19개 밖 임시 추가 컴포넌트(Divider · Accordion · Stepper · IconButton · TextButton · Chip · BottomNavigation) */
   --divider-thick-height: var(--space-8);
+  /* Divider 세로 줄: 굵기 2 · 높이 12, 점(bullet) 3 */
+  --divider-vertical-width: 2px;
+  --divider-vertical-height: 12px;
+  --divider-dot-size: 3px;
   --stepper-height: var(--space-4);
   /* IconButton: 보이는 크기 sm 32 · md 40, 누르는 영역은 44까지 넓힌다((44 − 크기) ÷ 2) */
   --icon-button-sm-size: 32px;
@@ -22,7 +28,7 @@
   --chip-height: 36px;
   --bottom-navigation-height: 56px;
   --bottom-navigation-icon-size: 24px;
-  --bottom-navigation-selected-icon-stroke: 2.5;
+  --bottom-navigation-selected-icon-stroke: 2.25;
   --bottom-navigation-bottom: env(safe-area-inset-bottom);
 
   /* Select plain: 테두리 없는 작은 선택 높이 32 (임시) */
@@ -95,11 +101,12 @@
   --chevron-size: 20px;
   /* ListItem 오른쪽 값과 이동 화살표 사이: 목록 간격 12의 반 */
   --list-item-suffix-gap: var(--space-6);
-  /* SegmentedControl 바깥 여백: md 4 · sm 2. 칸 라운드 = 바깥 라운드 − 여백(같은 중심, DESIGN.md "Shapes") */
+  /* SegmentedControl 바깥 라운드: md 10 · sm 8(작은 크기는 라운드도 작게). 여백 md 4 · sm 2. 칸 라운드 = 바깥 라운드 − 여백(같은 중심, DESIGN.md "Shapes") */
+  --segmented-control-sm-rounded: 8px;
   --segmented-control-md-padding: var(--space-4);
   --segmented-control-sm-padding: var(--space-2);
   --segmented-control-md-item-rounded: calc(var(--segmented-control-rounded) - var(--segmented-control-md-padding));
-  --segmented-control-sm-item-rounded: calc(var(--segmented-control-rounded) - var(--segmented-control-sm-padding));
+  --segmented-control-sm-item-rounded: calc(var(--segmented-control-sm-rounded) - var(--segmented-control-sm-padding));
   /* TopBar 아이콘: 기본 24, 선 하나짜리(꺾쇠 · X)는 면적이 작아 보여 26으로 시각 보정. 선 굵기는 크기와 상관없이 2px(icon-fixed-stroke) */
   --top-bar-icon-size: 24px;
   --top-bar-icon-optical-size: 26px;
@@ -112,21 +119,20 @@
   --bg-button-weak-pressed: var(--palette-gray-400);
   /* TextButton neutral: fg.neutral-subtle → fg.neutral-muted(한 단계 진하게) */
   --text-button-neutral-color: var(--fg-neutral-muted);
-  /* Toast: 버튼 높이 32, 위아래 여백 14 */
-  --toast-action-height: 32px;
+  /* Toast: 버튼 Button xs(32), 위아래 여백 14 */
   --toast-padding-y: var(--space-14);
   /* BottomNavigation 미선택 아이콘: gray-500(글자는 fg.neutral-subtle), 눌림 면은 위아래 4 · 좌우 8 띄우고 라운드 radius.md */
   --bottom-navigation-unselected-icon-color: var(--palette-gray-500);
-  /* 큰 제목 화면: Top bar 아래 ~ 제목 위 32(DESIGN.md "Layout" 큰 제목 화면, YAML 토큰 없음) */
-  --space-nav-to-large-title: var(--space-32);
+  /* 큰 제목 화면: Top bar 아래 ~ 제목 위 40(DESIGN.md "Layout" 큰 제목 화면, YAML 토큰 없음) */
+  --space-nav-to-large-title: var(--space-40);
+  /* BottomSheet 안쪽 좌우 여백 16 → 20. 시트 안 ListItem도 같은 여백으로 맞춘다 */
+  --bottom-sheet-padding: var(--space-20);
+  /* Chip outline 켜짐: 테두리 2(1 + 안쪽 링 1) · 줄과 글자 brand-600 */
+  --chip-outline-selected-color: var(--palette-brand-600);
   /* BottomSheet 최소 높이 */
   --bottom-sheet-min-height: 240px;
-  /* 안쪽 라운드 최소값: 바깥 − 여백이 0 이하이면 4(DESIGN.md "Shapes") */
-  --card-image-rounded: var(--radius-2xs);
-}
-
-@theme static {
-  --radius-2xs: 4px;
+  /* 카드 안 이미지: 바깥 − 여백이 0 이하라 최소값 radius.sm 8(DESIGN.md "Shapes") */
+  --card-image-rounded: var(--radius-sm);
 }
 
 @theme inline {
@@ -156,7 +162,6 @@
 
 html:root {
   --corner-comp: 1.45;
-  --radius-2xs: calc(4px * var(--corner-comp));
   --radius-xs: calc(6px * var(--corner-comp));
   --radius-sm: calc(8px * var(--corner-comp));
   --radius-md: calc(12px * var(--corner-comp));
@@ -165,6 +170,12 @@ html:root {
   --radius-2xl: calc(24px * var(--corner-comp));
   --button-md-rounded: calc(10px * var(--corner-comp));
   --segmented-control-rounded: calc(10px * var(--corner-comp));
+  --segmented-control-sm-rounded: calc(8px * var(--corner-comp));
+}
+
+/* Bottom sheet 안 ListItem은 시트 좌우 여백(20)에 맞춘다 */
+[data-slot="bottom-sheet"] {
+  --list-item-padding-x: var(--bottom-sheet-padding);
 }
 
 /* 아이콘을 키워도 선 굵기는 그대로(2px) 두는 클래스. 크기를 보정한 아이콘(TopBar 뒤로가기 · 닫기)에 쓴다 */

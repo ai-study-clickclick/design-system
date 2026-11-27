@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { ToggleGroup } from "radix-ui";
 import { useActiveIndicator } from "./active-indicator";
 import { cn } from "./cn";
@@ -32,18 +33,23 @@ export function SegmentedControl({
   ...props
 }: SegmentedControlProps) {
   const { ref, rect } = useActiveIndicator<HTMLDivElement>("[data-state=on]");
+  // 고른 칸을 다시 눌러도 선택이 풀리지 않게 값을 직접 쥔다
+  const [inner, setInner] = useState(defaultValue ?? options[0]?.value);
+  const current = value ?? inner;
   return (
     <ToggleGroup.Root
       ref={ref}
       type="single"
       data-slot="segmented-control"
-      value={value}
-      defaultValue={defaultValue ?? options[0]?.value}
-      // 이미 고른 칸을 다시 눌러도 선택이 풀리지 않게 한다
-      onValueChange={(v) => v && onValueChange?.(v)}
+      value={current}
+      onValueChange={(v) => {
+        if (!v) return;
+        setInner(v);
+        onValueChange?.(v);
+      }}
       className={cn(
-        "relative isolate rounded-(--segmented-control-rounded) bg-neutral-weak",
-        size === "md" ? "p-(--segmented-control-md-padding)" : "p-(--segmented-control-sm-padding)",
+        "relative isolate bg-neutral-weak",
+        size === "md" ? "rounded-(--segmented-control-rounded) p-(--segmented-control-md-padding)" : "rounded-(--segmented-control-sm-rounded) p-(--segmented-control-sm-padding)",
         size === "md" ? "flex w-full" : "inline-flex w-fit",
         className,
       )}
