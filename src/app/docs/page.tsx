@@ -4,14 +4,14 @@ import DocPage from "../doc-page";
 export const metadata = { title: "Library · 딸깍 디자인 시스템" };
 
 // 라이브러리 첫 문서. 문서마다 썸네일 카드 하나(SEED Foundations 개요 구성)
-// 썸네일은 사이트 틀이라 기본 색표(palette)를 직접 쓴다. 칸마다 400 단계 색으로 배경을 칠해 알록달록하게 두고, Color만 회색 배경에 쨍한 색 면을 둔다
+// 썸네일은 사이트 틀이라 기본 색표(palette)를 직접 쓴다. 배경은 연한 200 단계, 안의 견본은 쨍한 600~700 단계로 둔다. Color만 회색 배경
 const cards = [
   { href: "/docs/tokens/color", title: "Color", description: "쓰임새 색과 기본 색표", bg: "bg-(--palette-gray-200)", thumb: <ColorThumb /> },
-  { href: "/docs/tokens/typography", title: "Typography", description: "Pretendard 글자 스타일", bg: "bg-(--palette-blue-400)", thumb: <TypeThumb /> },
-  { href: "/docs/tokens/spacing", title: "Spacing", description: "여백과 간격 단계", bg: "bg-(--palette-green-400)", thumb: <SpacingThumb /> },
-  { href: "/docs/tokens/radius", title: "Radius", description: "모서리 단계와 기준값", bg: "bg-(--palette-red-400)", thumb: <RadiusThumb /> },
-  { href: "/docs/tokens/shadow", title: "Shadow", description: "떠 있는 면의 그림자", bg: "bg-(--palette-orange-400)", thumb: <ShadowThumb /> },
-  { href: "/docs/components", title: "Components", description: "MVP 컴포넌트 19개와 임시 추가", bg: "bg-(--palette-blue-300)", thumb: <ComponentsThumb /> },
+  { href: "/docs/tokens/typography", title: "Typography", description: "Pretendard 글자 스타일", bg: "bg-(--palette-blue-200)", thumb: <TypeThumb /> },
+  { href: "/docs/tokens/spacing", title: "Spacing", description: "여백과 간격 단계", bg: "bg-(--palette-green-200)", thumb: <SpacingThumb /> },
+  { href: "/docs/tokens/radius", title: "Radius", description: "모서리 단계와 기준값", bg: "bg-(--palette-red-200)", thumb: <RadiusThumb /> },
+  { href: "/docs/tokens/shadow", title: "Shadow", description: "떠 있는 면의 그림자", bg: "bg-(--palette-orange-200)", thumb: <ShadowThumb /> },
+  { href: "/docs/components", title: "Components", description: "MVP 컴포넌트 19개와 임시 추가", bg: "bg-(--palette-blue-200)", thumb: <ComponentsThumb /> },
 ];
 
 export default function DocsPage() {
@@ -62,7 +62,7 @@ function ColorThumb() {
 }
 
 function TypeThumb() {
-  return <span className="text-[80px] leading-none font-bold text-(--palette-blue-800)">Aa</span>;
+  return <span className="text-[80px] leading-none font-bold text-(--palette-blue-700)">Aa</span>;
 }
 
 // 간격 단계가 커지는 막대
@@ -70,17 +70,17 @@ function SpacingThumb() {
   return (
     <div className="flex items-end gap-10">
       {[16, 28, 40, 56, 72].map((h) => (
-        <span key={h} className="w-[20px] rounded-sm bg-(--palette-green-800)" style={{ height: h }} />
+        <span key={h} className="w-[20px] rounded-sm bg-(--palette-green-600)" style={{ height: h }} />
       ))}
     </div>
   );
 }
 
-// Radius 문서의 Corner zoom처럼 모서리 하나를 크게
+// Radius 문서의 Corner zoom처럼 모서리 하나를 크게. 썸네일 오른쪽 아래에 붙인다
 function RadiusThumb() {
   return (
     <span
-      className="size-[120px] translate-x-[28px] translate-y-[28px] border-t-[4px] border-l-[4px] border-(--palette-red-700) bg-(--palette-static-white)"
+      className="absolute right-0 bottom-0 size-[120px] bg-(--palette-red-700)"
       style={{ borderTopLeftRadius: 64 }}
     />
   );
@@ -107,15 +107,15 @@ function ComponentsThumb() {
     <div className="flex w-[180px] flex-col gap-8 rounded-lg bg-(--palette-static-white) p-12 shadow-s2">
       <div className="flex items-center justify-between">
         <span className="h-[8px] w-[64px] rounded-full bg-(--palette-gray-400)" />
-        <span className="flex h-[16px] w-[26px] items-center justify-end rounded-full bg-(--palette-orange-500) px-2">
+        <span className="flex h-[16px] w-[26px] items-center justify-end rounded-full bg-(--palette-orange-600) px-2">
           <span className="size-[12px] rounded-full bg-(--palette-static-white)" />
         </span>
       </div>
       <div className="flex items-center gap-6">
-        <span className="flex size-[14px] items-center justify-center rounded-xs bg-(--palette-blue-500) text-[10px] leading-none text-(--palette-static-white)">✓</span>
+        <span className="flex size-[14px] items-center justify-center rounded-xs bg-(--palette-blue-700) text-[10px] leading-none text-(--palette-static-white)">✓</span>
         <span className="h-[8px] w-[80px] rounded-full bg-(--palette-gray-300)" />
       </div>
-      <span className="mt-2 h-[24px] rounded-sm bg-(--palette-orange-500)" />
+      <span className="mt-2 h-[24px] rounded-sm bg-(--palette-orange-600)" />
     </div>
   );
 }
