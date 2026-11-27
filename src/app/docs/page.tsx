@@ -76,11 +76,11 @@ function SpacingThumb() {
   );
 }
 
-// Radius 문서의 Corner zoom처럼 모서리 하나를 크게. 모서리는 썸네일 가운데, 면은 오른쪽 아래 끝까지
+// Radius 문서의 Corner zoom처럼 모서리 하나를 크게. 모서리는 썸네일 가운데보다 왼쪽 위, 면은 오른쪽 아래 끝까지
 function RadiusThumb() {
   return (
     <span
-      className="absolute top-1/2 left-1/2 right-0 bottom-0 border-t-[4px] border-l-[4px] border-(--palette-red-700) bg-(--palette-red-400)"
+      className="absolute top-1/3 left-1/3 right-0 bottom-0 border-t-[4px] border-l-[4px] border-(--palette-red-700) bg-(--palette-red-400)"
       style={{ borderTopLeftRadius: 64 }}
     />
   );
