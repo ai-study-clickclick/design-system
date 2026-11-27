@@ -163,6 +163,24 @@ html.theme-dark [data-slot="toast"] {
   --bg-neutral-solid: var(--palette-gray-400);
   --fg-on-neutral-solid: var(--palette-gray-1000);
 }
+/* 다크: 입력 오류 줄은 덜 쨍하게(빨강 700을 어두운 바탕에 75% 섞음) */
+html.theme-dark {
+  --stroke-critical-solid: color-mix(in srgb, var(--palette-red-700) 75%, var(--palette-gray-00));
+}
+/* 다크: 체크박스 · 라디오 꺼짐 상자는 바탕과 같게 투명 */
+html.theme-dark :is([data-slot="checkbox"], [data-slot="radio"]) {
+  --bg-layer-default: transparent;
+}
+/* 다크: Divider thick은 바탕보다 살짝 밝게 */
+html.theme-dark [data-slot="divider"] {
+  --bg-layer-basement: var(--palette-gray-200);
+}
+/* 다크: SegmentedControl 고른 칸은 흰 면 + 어두운 글자 */
+html.theme-dark [data-slot="segmented-control"] {
+  --bg-layer-default: var(--palette-gray-1000);
+  --fg-neutral: var(--palette-gray-00);
+}
+
 /* 다크에서 떠 있는 면(Bottom sheet · Modal)은 그림자 대신 한 단계 밝은 면으로 구분한다 */
 html.theme-dark [data-slot="bottom-sheet"],
 html.theme-dark [data-slot="modal"] {

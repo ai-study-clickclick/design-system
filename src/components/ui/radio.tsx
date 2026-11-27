@@ -47,7 +47,8 @@ export function RadioGroupItem({ id, label, disabled: itemDisabled, className, .
       >
         <RadioPrimitive.Indicator
           className={cn(
-            "rounded-full bg-layer-default",
+            // 안쪽 점은 fg.on-brand-solid(DESIGN.md "상태와 피드백"). 다크에서도 흰 점
+            "rounded-full bg-(--fg-on-brand-solid)",
             disabled && "bg-(--radio-disabled-dot-color)",
             size === "md"
               ? disabled ? "size-(--radio-md-disabled-dot-size)" : "size-(--radio-md-dot-size)"
