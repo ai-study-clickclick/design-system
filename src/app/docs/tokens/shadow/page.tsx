@@ -1,8 +1,14 @@
 import DocPage, { Section } from "../../../doc-page";
 import { readTokens } from "../read-tokens";
-import { TokenRow, TokenTable } from "../token-table";
 
 export const metadata = { title: "Shadow · 딸깍 디자인 시스템" };
+
+// 단계별 쓰는 곳. DESIGN.md "Elevation" 기준
+const usage: Record<string, string> = {
+  "shadow.s1": "스위치 손잡이 · 고른 칸처럼 작은 요소",
+  "shadow.s2": "Bottom sheet · 메뉴",
+  "shadow.s3": "Modal(확인 요청)",
+};
 
 export default function ShadowPage() {
   const { shadows } = readTokens();
@@ -21,16 +27,21 @@ export default function ShadowPage() {
             아직 DESIGN.md에 그림자 값이 없어요. 값이 들어가면 /sync로 여기에 나와요
           </p>
         ) : (
-          <TokenTable>
+          <ul className="grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-3">
             {shadows.map((t) => (
-              <TokenRow
-                key={t.name}
-                name={t.name}
-                value={t.resolved}
-                preview={<span aria-hidden className="size-40 shrink-0 rounded-sm bg-layer-floating" style={{ boxShadow: `var(${t.cssVar})` }} />}
-              />
+              <li key={t.name} className="rounded-md border border-neutral-weak p-16">
+                {/* 그림자가 잘 보이게 연한 회색 바닥 위에 흰 면을 띄운다 */}
+                <div className="flex h-[120px] items-center justify-center rounded-sm bg-neutral-muted">
+                  <span aria-hidden className="h-[64px] w-[112px] rounded-md bg-layer-floating" style={{ boxShadow: `var(${t.cssVar})` }} />
+                </div>
+                <div className="mt-12 flex items-baseline justify-between gap-8">
+                  <p className="text-label-md">{t.name}</p>
+                </div>
+                <p className="mt-2 text-body-sm text-neutral-muted">{t.resolved}</p>
+                <p className="mt-2 text-label-sm text-neutral-muted">{usage[t.name]}</p>
+              </li>
             ))}
-          </TokenTable>
+          </ul>
         )}
       </Section>
     </DocPage>

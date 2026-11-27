@@ -67,7 +67,7 @@ export function DateInput({
         }}
         className={cn(fieldBoxClass({ invalid, disabled }), "h-(--input-height) text-left focus-visible:outline-none")}
       >
-        <span className={cn("min-w-0 flex-1 truncate", !current && "text-placeholder")}>
+        <span className={cn("min-w-0 flex-1 truncate", !current && "text-placeholder font-(--input-placeholder-font-weight)")}>
           {current ? format(current, "yyyy.MM.dd") : placeholder}
         </span>
         <CalendarDays aria-hidden className={cn(fieldIconClass, disabled && "text-disabled")} />

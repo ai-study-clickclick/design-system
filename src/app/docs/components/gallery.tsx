@@ -23,12 +23,23 @@ export function Board({ title, children, column }: { title?: string; children: R
   );
 }
 
-/** 실제 화면 폭(375)으로 보는 견본. bare는 면이 판과 같은 색이라 경계선을 둔다(TopBar · 목록 등) */
-export function Phone({ label, children, bare }: { label: string; children: React.ReactNode; bare?: boolean }) {
+/** 실제 화면 폭(375)으로 보는 견본. bare는 면이 판과 같은 색이라 경계선을 둔다(TopBar · 목록 등)
+ * screen은 기준 화면 크기(375 × 812) 그대로 보여 준다(하단 고정 버튼이 있는 화면 등) */
+export function Phone({ label, children, bare, screen }: { label: string; children: React.ReactNode; bare?: boolean; screen?: boolean }) {
   return (
     <figure className="flex w-[375px] max-w-full flex-col gap-12">
       <figcaption className={caption}>{label}</figcaption>
-      <div className={bare ? "overflow-hidden rounded-md border border-neutral-weak" : "flex flex-col gap-16"}>{children}</div>
+      <div
+        className={
+          screen
+            ? "flex h-[812px] flex-col overflow-hidden rounded-md border border-neutral-weak"
+            : bare
+              ? "overflow-hidden rounded-md border border-neutral-weak"
+              : "flex flex-col gap-16"
+        }
+      >
+        {children}
+      </div>
     </figure>
   );
 }

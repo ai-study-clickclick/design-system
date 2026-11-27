@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Bell, Heart, Plus, Search, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { IconButton } from "@/components/ui/icon-button";
+import { Input } from "@/components/ui/input";
+import { ListItem } from "@/components/ui/list-item";
 import { TextButton } from "@/components/ui/text-button";
 import { Board, Example, Part, Phone } from "../gallery";
 
@@ -161,10 +163,19 @@ export function TextButtonDemo() {
         </Example>
       </Part>
       <Part title="실제 화면">
-        <Phone label="구역 제목 + 전체 보기">
-          <div className="flex items-center justify-between">
+        <Phone label="목록 구역 제목 오른쪽 · 전체 보기(이동)" bare>
+          <div className="flex items-center justify-between px-16 pt-16 pb-4">
             <p className="text-title-sm">최근 거래</p>
             <TextButton withArrow>전체 보기</TextButton>
+          </div>
+          <ListItem size="md" title="스타벅스" description="오늘 오전 8:42" suffix={<span className="text-label-base">-5,600원</span>} />
+          <ListItem size="md" title="김딸깍" description="어제 오전 11:05" suffix={<span className="text-label-base text-informative">+30,000원</span>} />
+          <ListItem size="md" title="딸깍 적금" description="11월 20일" suffix={<span className="text-label-base">-200,000원</span>} />
+        </Phone>
+        <Phone label="입력칸 아래 · 다시 받기(brand)">
+          <Input label="인증번호" placeholder="6자리" inputMode="numeric" description="3:00 안에 넣어 주세요" />
+          <div className="-mt-8">
+            <TextButton tone="brand">인증번호 다시 받기</TextButton>
           </div>
         </Phone>
       </Part>

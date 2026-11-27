@@ -8,13 +8,17 @@ import { cn } from "./cn";
 // RadioGroup(name · value · disabled) · RadioGroupItem(value · label · disabled) / size md · lg(3-2 비교표)
 // 동그라미 md 20(점 8, 비활성 10) · lg 24(점 10, 비활성 12). DESIGN.md radio-* 토큰
 const SizeContext = createContext<"md" | "lg">("md");
+// 묶음 전체 비활성도 라벨 · 점에 반영되게 묶음의 disabled를 함께 넘긴다
+const DisabledContext = createContext<boolean | undefined>(undefined);
 
 export type RadioGroupProps = React.ComponentProps<typeof RadioPrimitive.Root> & { size?: "md" | "lg" };
 
 export function RadioGroup({ size = "md", className, ...props }: RadioGroupProps) {
   return (
     <SizeContext.Provider value={size}>
-      <RadioPrimitive.Root data-slot="radio-group" className={cn("flex flex-col", className)} {...props} />
+      <DisabledContext.Provider value={props.disabled}>
+        <RadioPrimitive.Root data-slot="radio-group" className={cn("flex flex-col", className)} {...props} />
+      </DisabledContext.Provider>
     </SizeContext.Provider>
   );
 }
@@ -23,8 +27,10 @@ export type RadioGroupItemProps = Omit<React.ComponentProps<typeof RadioPrimitiv
   label?: React.ReactNode;
 };
 
-export function RadioGroupItem({ id, label, disabled, className, ...props }: RadioGroupItemProps) {
+export function RadioGroupItem({ id, label, disabled: itemDisabled, className, ...props }: RadioGroupItemProps) {
   const size = useContext(SizeContext);
+  const groupDisabled = useContext(DisabledContext);
+  const disabled = itemDisabled || groupDisabled;
   const auto = useId();
   const inputId = id ?? auto;
   return (
@@ -34,7 +40,7 @@ export function RadioGroupItem({ id, label, disabled, className, ...props }: Rad
         disabled={disabled}
         className={cn(
           "flex shrink-0 items-center justify-center rounded-full border border-unselected bg-layer-default",
-          "aria-checked:border-0 aria-checked:bg-brand-solid disabled:border-0 disabled:bg-disabled",
+          "aria-checked:border-0 aria-checked:bg-brand-solid disabled:border-0 disabled:bg-disabled disabled:aria-checked:bg-disabled",
           size === "md" ? "size-20" : "size-24",
         )}
         {...props}

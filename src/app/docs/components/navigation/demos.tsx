@@ -4,6 +4,7 @@ import { Gift, Home, LayoutGrid, MoreVertical, Settings, Share, Wallet } from "l
 import { useState } from "react";
 import { BottomNavigation } from "@/components/ui/bottom-navigation";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Stepper } from "@/components/ui/stepper";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -56,7 +57,7 @@ export function TopBarDemo() {
 export function TabsDemo() {
   return (
     <Board column>
-      <Part title='variant="line" · 아래 줄(기본)' column>
+      <Part title='아래 줄 · 고르면 줄이 미끄러져 이동' column>
         <Example label="size=md · layout=fill · 5개 이하" grow>
           <Tabs defaultValue="all" className="w-[343px]">
             <TabsList>
@@ -131,13 +132,16 @@ export function StepperDemo() {
   const [step, setStep] = useState(1);
   return (
     <Grid>
-      <Phone label="TopBar 바로 아래 · 단계가 바뀌면 늘어남" bare>
+      <Phone label="실제 화면(375 × 812) · TopBar 바로 아래 · 다음을 누르면 늘어남" screen>
         <TopBar title="계좌 개설" left={<TopBarBackButton onClick={() => setStep((v) => Math.max(1, v - 1))} />} />
         <Stepper value={step} total={4} />
-        <div className="flex flex-col gap-16 p-16">
-          <p className="text-title-md">{["이름을 알려 주세요", "주민등록번호를 넣어 주세요", "본인 인증을 해 주세요", "비밀번호를 정해 주세요"][step - 1]}</p>
-          <Button size="md" onClick={() => setStep((v) => Math.min(4, v + 1))}>
-            다음
+        <div className="flex flex-1 flex-col gap-24 px-16 pt-nav-to-title">
+          <p className="text-title-lg">{["이름을 알려 주세요", "주민등록번호를 넣어 주세요", "본인 인증을 해 주세요", "비밀번호를 정해 주세요"][step - 1]}</p>
+          <Input aria-label="입력" placeholder={["이름", "생년월일 6자리", "휴대폰 번호", "비밀번호 6자리"][step - 1]} />
+        </div>
+        <div className="px-16 pb-screen-bottom">
+          <Button className="w-full" onClick={() => setStep((v) => (v === 4 ? 1 : v + 1))}>
+            {step === 4 ? "처음부터" : "다음"}
           </Button>
         </div>
       </Phone>

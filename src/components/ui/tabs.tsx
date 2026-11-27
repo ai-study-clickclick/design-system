@@ -2,6 +2,7 @@
 
 import { createContext, useContext } from "react";
 import { Tabs as TabsPrimitive } from "radix-ui";
+import { useActiveIndicator } from "./active-indicator";
 import { cn } from "./cn";
 
 // Tabs: 같은 화면 안에서 내용을 나눠 보여 준다
@@ -21,18 +22,33 @@ export function Tabs({ size = "md", layout = "fill", className, ...props }: Tabs
   );
 }
 
-export function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.List>) {
-  const { layout } = useContext(TabsStyleContext);
+// 선택 줄은 목록에 하나만 두고, 고르면 새 탭 아래로 미끄러져 간다(d4, 동작 줄이기면 바로 바뀜)
+export function TabsList({ className, children, ...props }: React.ComponentProps<typeof TabsPrimitive.List>) {
+  const { size, layout } = useContext(TabsStyleContext);
+  const { ref, rect } = useActiveIndicator<HTMLDivElement>("[data-state=active]");
   return (
     <TabsPrimitive.List
+      ref={ref}
       data-slot="tabs-list"
       className={cn(
-        "flex border-b border-neutral-weak",
+        "relative flex border-b border-neutral-weak",
         layout === "hug" && "overflow-x-auto px-6",
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+      {rect && (
+        <span
+          aria-hidden
+          className={cn(
+            "absolute -bottom-px bg-neutral-solid motion-safe:transition-[left,width] motion-safe:duration-(--duration-d4) motion-safe:ease-(--timing-function-enter)",
+            size === "md" ? "h-(--tabs-md-indicator-width)" : "h-(--tabs-sm-indicator-width)",
+          )}
+          style={{ left: rect.left, width: rect.width }}
+        />
+      )}
+    </TabsPrimitive.List>
   );
 }
 
@@ -43,10 +59,10 @@ export function TabsTrigger({ className, ...props }: React.ComponentProps<typeof
       data-slot="tabs-trigger"
       className={cn(
         "relative flex items-center justify-center whitespace-nowrap disabled:text-disabled",
-        "-mb-px border-b-(length:--tabs-md-indicator-width) border-transparent px-10 font-(--tabs-unselected-font-weight) aria-selected:border-neutral-solid aria-selected:text-neutral",
+        "px-10 font-(--tabs-unselected-font-weight) transition-colors duration-(--duration-d4) aria-selected:text-neutral",
         size === "md"
           ? "h-(--tabs-md-height) text-label-base aria-selected:font-(--tabs-md-typography-font-weight) text-(--tabs-md-unselected-text-color) disabled:text-(--tabs-md-disabled-text-color)"
-          : "h-(--tabs-sm-height) border-b-(length:--tabs-sm-indicator-width) text-label-md aria-selected:font-(--tabs-sm-typography-font-weight) text-(--tabs-sm-unselected-text-color) disabled:text-(--tabs-sm-disabled-text-color)",
+          : "h-(--tabs-sm-height) text-label-md aria-selected:font-(--tabs-sm-typography-font-weight) text-(--tabs-sm-unselected-text-color) disabled:text-(--tabs-sm-disabled-text-color)",
         layout === "fill" && "flex-1",
         className,
       )}

@@ -84,7 +84,7 @@ export function Select({
               )
         }
       >
-        <span className={cn("min-w-0 truncate", variant === "box" && "flex-1", !selected && variant === "box" && "text-placeholder")}>
+        <span className={cn("min-w-0 truncate", variant === "box" && "flex-1", !selected && variant === "box" && "text-placeholder font-(--input-placeholder-font-weight)")}>
           {selected ? selected.label : placeholder}
         </span>
         <ChevronDown aria-hidden className={cn(fieldIconClass, disabled && "text-disabled")} />

@@ -51,17 +51,16 @@
 
 
 /* 상태 색 기준(한나 요청, DESIGN.md "상태와 피드백" 반영 전)
-   비활성: 상자 gray-200 → 300, 글자 gray-600 → 700. 버튼 · 입력 · 체크박스 · 라디오 등 bg.disabled · fg.disabled를 쓰는 곳이 모두 함께 바뀐다
+   비활성: 상자 gray-200 → 300(글자 fg.disabled는 tokens.css gray-600 그대로). 버튼 · 입력 · 체크박스 · 라디오 등 bg.disabled를 쓰는 곳이 모두 함께 바뀐다
    미선택 · 꺼짐: 체크박스 · 라디오 테두리, Ghost 체크, 목록 선택 체크(꺼짐)가 같은 색(gray-600)을 쓴다 */
 :root {
   --bg-disabled: var(--palette-gray-300);
-  --fg-disabled: var(--palette-gray-700);
   --stroke-unselected: var(--palette-gray-600);
   --fg-unselected: var(--palette-gray-600);
   /* 라디오 비활성 안쪽 점: 비활성 상자보다 한 단계 진하게(상자 gray-300 · 점 gray-400) */
   --radio-disabled-dot-color: var(--palette-gray-400);
-  /* Calendar 지난 날 · 다른 달 날짜: 비활성 글자가 진해져 따로 둔다(옛 비활성 글자 gray-600) */
-  --calendar-disabled-text-color: var(--palette-gray-600);
+  /* Calendar 지난 날 · 다른 달 날짜 */
+  --calendar-disabled-text-color: var(--fg-disabled);
   /* Tabs 미선택: 굵기 600(색은 tokens.css fg.neutral-subtle 그대로), 비활성은 gray-500으로 미선택보다 연하게 */
   --tabs-unselected-font-weight: 600;
   /* Tabs line 선택 줄 굵기: md 2 · sm 3 */
@@ -95,9 +94,23 @@
   --segmented-control-sm-padding: var(--space-2);
   --segmented-control-md-item-rounded: calc(var(--segmented-control-rounded) - var(--segmented-control-md-padding));
   --segmented-control-sm-item-rounded: calc(var(--segmented-control-rounded) - var(--segmented-control-sm-padding));
-  /* TopBar 아이콘: 기본 24, 선 하나짜리(꺾쇠 · X)는 면적이 작아 보여 28로 시각 보정 */
+  /* TopBar 아이콘: 기본 24, 선 하나짜리(꺾쇠 · X)는 면적이 작아 보여 26으로 시각 보정. 선 굵기는 크기와 상관없이 2px(icon-fixed-stroke) */
   --top-bar-icon-size: 24px;
-  --top-bar-icon-optical-size: 28px;
+  --top-bar-icon-optical-size: 26px;
+  /* 입력칸 라벨: 굵기 700 → 600 */
+  --field-label-font-weight: 600;
+  /* 입력칸 placeholder: 굵기 한 단계(500) */
+  --input-placeholder-font-weight: 500;
+  /* 회색 연한 버튼(Button secondary · IconButton weak): gray-200 → 300, 눌림 300 → 400 */
+  --bg-button-weak: var(--palette-gray-300);
+  --bg-button-weak-pressed: var(--palette-gray-400);
+  /* TextButton neutral: fg.neutral-subtle → fg.neutral-muted(한 단계 진하게) */
+  --text-button-neutral-color: var(--fg-neutral-muted);
+  /* Toast: 버튼 높이 32, 위아래 여백 14 */
+  --toast-action-height: 32px;
+  --toast-padding-y: var(--space-14);
+  /* BottomNavigation 미선택 아이콘: gray-500(글자는 fg.neutral-subtle), 눌림 면은 위아래 4 · 좌우 8 띄우고 라운드 radius.md */
+  --bottom-navigation-unselected-icon-color: var(--palette-gray-500);
   /* BottomSheet 최소 높이 */
   --bottom-sheet-min-height: 240px;
   /* 안쪽 라운드 최소값: 바깥 − 여백이 0 이하이면 4(DESIGN.md "Shapes") */
@@ -113,6 +126,8 @@
   --text-color-unselected: var(--fg-unselected);
   --background-color-static-white-weak: var(--bg-static-white-weak);
   --background-color-static-white-weak-pressed: var(--bg-static-white-weak-pressed);
+  --background-color-button-weak: var(--bg-button-weak);
+  --background-color-button-weak-pressed: var(--bg-button-weak-pressed);
 }
 
 /* corner smoothing: 8차 미팅 결정으로 보정 버전(Adjusted)을 늘 적용한다
@@ -141,6 +156,11 @@ html:root {
   --radius-2xl: calc(24px * var(--corner-comp));
   --button-md-rounded: calc(10px * var(--corner-comp));
   --segmented-control-rounded: calc(10px * var(--corner-comp));
+}
+
+/* 아이콘을 키워도 선 굵기는 그대로(2px) 두는 클래스. 크기를 보정한 아이콘(TopBar 뒤로가기 · 닫기)에 쓴다 */
+.icon-fixed-stroke * {
+  vector-effect: non-scaling-stroke;
 }
 
 /* 움직임: DESIGN.md 본문 "움직임 값" · "나타나고 사라지는 값" 표 값. YAML에 들어가면 tokens.css로 옮긴다 */

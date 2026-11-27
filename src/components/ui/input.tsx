@@ -45,7 +45,7 @@ export function Input({
           disabled={disabled}
           aria-invalid={invalid || undefined}
           aria-describedby={description || (invalid && errorMessage) ? messageId : undefined}
-          className="h-full min-w-0 flex-1 bg-transparent outline-none placeholder:text-placeholder focus-visible:outline-none disabled:cursor-not-allowed"
+          className="h-full min-w-0 flex-1 bg-transparent outline-none placeholder:text-placeholder placeholder:font-(--input-placeholder-font-weight) focus-visible:outline-none disabled:cursor-not-allowed"
           {...props}
         />
         {suffix && <span className="flex shrink-0 items-center text-neutral-subtle">{suffix}</span>}

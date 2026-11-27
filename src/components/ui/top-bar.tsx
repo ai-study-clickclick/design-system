@@ -7,7 +7,7 @@ import { IconButton, type IconButtonProps } from "./icon-button";
 // TopBar: 화면 맨 위 제목 줄. 높이 44, 당근 AppBar 참고
 // title · left(뒤로 · 닫기) · right(아이콘 버튼) · tone default · transparent(3-2 비교표)
 // 뒤로가기와 닫기 중 무엇을 쓸지는 docs/UX.md "뒤로가기와 닫기는 다르다"
-// 아이콘은 top-bar-icon-size(24). 뒤로가기 · 닫기는 선 하나짜리라 작아 보여 top-bar-icon-optical-size(28)로 보정한다(임시)
+// 아이콘은 top-bar-icon-size(24). 뒤로가기 · 닫기는 선 하나짜리라 작아 보여 top-bar-icon-optical-size(26)로 보정한다(임시). 선 굵기는 다른 아이콘과 같은 2px(icon-fixed-stroke)
 export type TopBarProps = Omit<React.ComponentProps<"header">, "title"> & {
   title?: React.ReactNode;
   left?: React.ReactNode;
@@ -44,7 +44,7 @@ export function TopBarIconButton({ className, ...props }: IconButtonProps) {
 export function TopBarBackButton({ label = "뒤로가기", ...props }: Omit<IconButtonProps, "aria-label"> & { label?: string }) {
   return (
     <TopBarIconButton aria-label={label} {...props} className={cn("[&_svg]:size-(--top-bar-icon-optical-size)", props.className)}>
-      <ChevronLeft aria-hidden />
+      <ChevronLeft aria-hidden className="icon-fixed-stroke" />
     </TopBarIconButton>
   );
 }
@@ -52,7 +52,7 @@ export function TopBarBackButton({ label = "뒤로가기", ...props }: Omit<Icon
 export function TopBarCloseButton({ label = "닫기", ...props }: Omit<IconButtonProps, "aria-label"> & { label?: string }) {
   return (
     <TopBarIconButton aria-label={label} {...props} className={cn("[&_svg]:size-(--top-bar-icon-optical-size)", props.className)}>
-      <X aria-hidden />
+      <X aria-hidden className="icon-fixed-stroke" />
     </TopBarIconButton>
   );
 }

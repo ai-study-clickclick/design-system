@@ -19,7 +19,7 @@ const buttonVariants = cva(
         primary: "bg-brand-solid text-on-brand-solid active:bg-brand-solid-pressed disabled:bg-disabled disabled:text-disabled",
         primaryWeak: "bg-brand-weak text-brand-contrast active:bg-brand-weak-pressed disabled:bg-disabled disabled:text-disabled",
         neutral: "bg-neutral-solid text-on-neutral-solid active:bg-neutral-solid-pressed disabled:bg-disabled disabled:text-disabled",
-        secondary: "bg-neutral-weak text-neutral active:bg-neutral-weak-pressed disabled:bg-disabled disabled:text-disabled",
+        secondary: "bg-button-weak text-neutral active:bg-button-weak-pressed disabled:bg-disabled disabled:text-disabled",
         critical: "bg-critical-solid text-on-critical-solid active:bg-critical-solid-pressed disabled:bg-disabled disabled:text-disabled",
         // 어두운 면(Toast 등) 위에 놓는 흰 막 버튼(임시)
         staticWhiteWeak: "bg-static-white-weak text-static-white active:bg-static-white-weak-pressed disabled:bg-disabled disabled:text-disabled",
@@ -41,7 +41,7 @@ const loadingBackground = {
   primary: "bg-brand-solid-pressed",
   primaryWeak: "bg-brand-weak-pressed",
   neutral: "bg-neutral-solid-pressed",
-  secondary: "bg-neutral-weak-pressed",
+  secondary: "bg-button-weak-pressed",
   critical: "bg-critical-solid-pressed",
   outline: "bg-transparent-pressed",
   staticWhiteWeak: "bg-static-white-weak-pressed",

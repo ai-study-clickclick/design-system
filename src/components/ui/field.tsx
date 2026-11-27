@@ -44,7 +44,7 @@ export function Field({
   return (
     <div data-slot="field" className={cn("flex flex-col gap-8", className)}>
       {label && (
-        <label htmlFor={inputId} className={cn("text-label-md", disabled ? "text-disabled" : "text-neutral")}>
+        <label htmlFor={inputId} className={cn("text-label-md font-(--field-label-font-weight)", disabled ? "text-disabled" : "text-neutral")}>
           {label}
         </label>
       )}

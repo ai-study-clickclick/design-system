@@ -6,6 +6,7 @@ import type { DateRange } from "react-day-picker";
 import { Search } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Divider } from "@/components/ui/divider";
 import { Chip, ChipGroup, ChipGroupItem } from "@/components/ui/chip";
 import { DateInput } from "@/components/ui/date-input";
 import { Input } from "@/components/ui/input";
@@ -42,8 +43,8 @@ export function InputStates() {
       <Phone label="suffix · 단위">
         <Input label="보낼 금액" placeholder="0" suffix="원" inputMode="numeric" />
       </Phone>
-      <Phone label="prefix · 아이콘">
-        <Input label="검색" placeholder="은행 · 증권사 이름" prefix={<Search className="size-20" aria-hidden />} />
+      <Phone label="prefix · 아이콘 · 검색(라벨 없음)">
+        <Input aria-label="검색" placeholder="은행 · 증권사 이름" prefix={<Search className="size-20" aria-hidden />} />
       </Phone>
     </Grid>
   );
@@ -152,8 +153,11 @@ export function CheckboxDemo() {
         <Example label="size=lg">
           <Checkbox label="전체 동의" size="lg" defaultChecked />
         </Example>
-        <Example label="disabled">
+        <Example label="disabled · 꺼짐">
           <Checkbox label="동의해요" disabled />
+        </Example>
+        <Example label="disabled · 켜짐">
+          <Checkbox label="동의해요" disabled defaultChecked />
         </Example>
         <Example label="invalid">
           <Checkbox label="필수 약관 동의" invalid />
@@ -169,6 +173,12 @@ export function CheckboxDemo() {
         <Example label="size=lg · 켜짐">
           <Checkbox variant="ghost" size="lg" label="자동 이체 알림" defaultChecked />
         </Example>
+        <Example label="disabled · 꺼짐">
+          <Checkbox variant="ghost" label="자동 이체 알림" disabled />
+        </Example>
+        <Example label="disabled · 켜짐">
+          <Checkbox variant="ghost" label="자동 이체 알림" disabled defaultChecked />
+        </Example>
       </Part>
       <Part title="실제 화면">
         <Phone label="약관 동의(부모 square · 자식 ghost)">
@@ -178,7 +188,9 @@ export function CheckboxDemo() {
             checked={all ? true : some ? "indeterminate" : false}
             onCheckedChange={() => setChecked(items.map(() => !all))}
           />
-          <div className="flex flex-col border-t border-neutral-weak pt-8">
+          {/* 부모 줄(36)이 자식 줄(32)보다 높고 구분선이 있어 아래가 넓어 보인다. 구분선 위아래를 4로 줄여 시각 보정 */}
+          <Divider className="-my-12" />
+          <div className="flex flex-col">
             {items.map((label, i) => (
               <Checkbox
                 key={label}
@@ -211,7 +223,7 @@ export function RadioDemo() {
             <RadioGroupItem value="b" label="꺼짐" />
           </RadioGroup>
         </Example>
-        <Example label="disabled">
+        <Example label="disabled · 켜짐 · 꺼짐">
           <RadioGroup defaultValue="a" disabled>
             <RadioGroupItem value="a" label="켜짐" />
             <RadioGroupItem value="b" label="꺼짐" />
@@ -249,8 +261,11 @@ export function SwitchDemo() {
         <Example label="꺼짐">
           <Switch label="알림" />
         </Example>
-        <Example label="disabled">
+        <Example label="disabled · 켜짐">
           <Switch label="알림" disabled defaultChecked />
+        </Example>
+        <Example label="disabled · 꺼짐">
+          <Switch label="알림" disabled />
         </Example>
       </Part>
       <Part title="실제 화면">
@@ -285,7 +300,7 @@ export function ChipDemo() {
   const [amount, setAmount] = useState(0);
   return (
     <Board column>
-      <Part title='ChipGroup type="single" · 하나만 고르기(기간 필터)'>
+      <Part title='ChipGroup type="single" · variant="solid" · 탭처럼 하나만 고르기(기간 필터)'>
         <Example label='layout="wrap"'>
           <ChipGroup type="single" defaultValue="1m" aria-label="조회 기간">
             {[
@@ -301,7 +316,7 @@ export function ChipDemo() {
           </ChipGroup>
         </Example>
       </Part>
-      <Part title='ChipGroup type="multiple" · 여러 개 고르기(카테고리)' column>
+      <Part title='ChipGroup type="multiple" · variant="outline" · 여러 개 고르기(카테고리)' column>
         <Example label='layout="scroll" · 가로로 넘김' grow>
           <div className="w-[343px]">
             <ChipGroup type="multiple" layout="scroll" defaultValue={["food"]} aria-label="카테고리">

@@ -56,7 +56,7 @@ export function Textarea({
           aria-invalid={invalid || undefined}
           aria-describedby={description || (invalid && errorMessage) ? messageId : undefined}
           className={cn(
-            "w-full flex-1 resize-none bg-transparent outline-none placeholder:text-placeholder focus-visible:outline-none disabled:cursor-not-allowed",
+            "w-full flex-1 resize-none bg-transparent outline-none placeholder:text-placeholder placeholder:font-(--input-placeholder-font-weight) focus-visible:outline-none disabled:cursor-not-allowed",
             autoSize ? "field-sizing-content" : "overflow-y-auto",
           )}
           {...props}

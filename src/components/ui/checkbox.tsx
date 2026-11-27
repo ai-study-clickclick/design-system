@@ -52,7 +52,7 @@ export function Checkbox({
                 invalid ? "border-critical-solid" : "border-unselected",
                 "aria-checked:border-0 aria-checked:bg-brand-solid",
                 checked === "indeterminate" && "border-0 bg-brand-solid",
-                "disabled:border-0 disabled:bg-disabled disabled:text-disabled",
+                "disabled:border-0 disabled:bg-disabled disabled:text-disabled disabled:aria-checked:bg-disabled",
               )
             : cn("text-unselected aria-checked:text-brand disabled:text-disabled", checked === "indeterminate" && "text-brand"),
         )}
