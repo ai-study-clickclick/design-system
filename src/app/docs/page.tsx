@@ -49,30 +49,20 @@ export default function DocsPage() {
   );
 }
 
-// 색 칩 다섯 장을 부채처럼 펼친다
+// 색 면 다섯 개를 한 줄로
 function ColorThumb() {
-  const chips = ["--palette-orange-500", "--palette-red-500", "--palette-blue-500", "--palette-green-500", "--palette-yellow-300"];
+  const chips = ["--palette-orange-500", "--palette-red-500", "--palette-blue-500", "--palette-green-500", "--palette-yellow-400"];
   return (
-    <div className="relative h-[96px] w-[160px]">
-      {chips.map((c, i) => (
-        <span
-          key={c}
-          className="absolute bottom-0 left-1/2 h-[88px] w-[48px] origin-bottom rounded-md border-2 border-(--palette-static-white) shadow-s2"
-          style={{ background: `var(${c})`, transform: `translateX(-50%) rotate(${(i - 2) * 16}deg)` }}
-        />
+    <div className="flex items-center gap-10">
+      {chips.map((c) => (
+        <span key={c} className="size-[40px] rounded-sm" style={{ background: `var(${c})` }} />
       ))}
     </div>
   );
 }
 
 function TypeThumb() {
-  return (
-    <div className="flex items-baseline gap-12 text-(--palette-blue-900)">
-      <span className="text-[64px] leading-none font-bold">Aa</span>
-      <span className="text-[44px] leading-none font-medium">가</span>
-      <span className="text-[28px] leading-none font-normal opacity-60">가</span>
-    </div>
-  );
+  return <span className="text-[80px] leading-none font-bold text-(--palette-blue-900)">Aa</span>;
 }
 
 // 간격 단계가 커지는 막대
@@ -86,26 +76,25 @@ function SpacingThumb() {
   );
 }
 
-// 같은 크기 면에 라운드가 커지는 모서리 세 개
+// Radius 문서의 Corner zoom처럼 모서리 하나를 크게
 function RadiusThumb() {
   return (
-    <div className="flex items-center gap-10">
-      {["rounded-xs", "rounded-lg", "rounded-2xl", "rounded-full"].map((r) => (
-        <span key={r} className={`size-[52px] border-[3px] border-(--palette-red-700) bg-(--palette-static-white) ${r}`} />
-      ))}
-    </div>
+    <span
+      className="size-[80px] translate-x-[16px] translate-y-[16px] border-t-[3px] border-l-[3px] border-(--palette-red-700) bg-(--palette-static-white)"
+      style={{ borderTopLeftRadius: 40 }}
+    />
   );
 }
 
-// 겹쳐 뜬 면 세 장(그림자 s1 · s2 · s3)
+// 겹쳐 뜬 면 두 장(그림자 s1 · s2)
 function ShadowThumb() {
   return (
-    <div className="relative h-[96px] w-[150px]">
-      {["shadow-s1", "shadow-s2", "shadow-s3"].map((sh, i) => (
+    <div className="relative h-[88px] w-[136px]">
+      {["shadow-s1", "shadow-s2"].map((sh, i) => (
         <span
           key={sh}
           className={`absolute h-[64px] w-[96px] rounded-md bg-(--palette-static-white) ${sh}`}
-          style={{ left: i * 26, top: 24 - i * 12 }}
+          style={{ left: i * 40, top: 24 - i * 24 }}
         />
       ))}
     </div>
