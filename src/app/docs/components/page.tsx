@@ -3,12 +3,12 @@ import DocPage, { Section } from "../../doc-page";
 
 export const metadata = { title: "Components · 딸깍 디자인 시스템" };
 
-// 컴포넌트 묶음. MVP 19개 + 임시 추가(Calendar · DateInput). 이름 · 속성은 3-2 비교표, 값은 DESIGN.md를 따른다
+// 컴포넌트 묶음. MVP 19개 + 임시 추가(MVP 밖, (임시) 표시). 이름 · 속성은 3-2 비교표, 값은 DESIGN.md를 따른다
 const groups = [
-  { href: "/docs/components/actions", title: "Actions", description: "누르면 실행하는 부품", items: ["Button"] },
-  { href: "/docs/components/inputs", title: "Inputs", description: "값을 넣거나 고르는 부품", items: ["Input", "DateInput(임시)", "Textarea", "Select", "Checkbox", "Radio", "Switch", "Calendar(임시)"] },
-  { href: "/docs/components/display", title: "Display", description: "내용을 담아 보여 주는 부품", items: ["Card", "ListItem", "Badge", "Avatar"] },
-  { href: "/docs/components/navigation", title: "Navigation", description: "위치를 알려 주고 오가게 하는 부품", items: ["TopBar", "Tabs", "SegmentedControl(임시)"] },
+  { href: "/docs/components/actions", title: "Actions", description: "누르면 실행하는 부품", items: ["Button", "IconButton(임시)", "TextButton(임시)"] },
+  { href: "/docs/components/inputs", title: "Inputs", description: "값을 넣거나 고르는 부품", items: ["Input", "DateInput(임시)", "Textarea", "Select", "Checkbox", "Radio", "Switch", "Chip(임시)", "Calendar(임시)"] },
+  { href: "/docs/components/display", title: "Display", description: "내용을 담아 보여 주는 부품", items: ["Card", "ListItem", "Divider(임시)", "Accordion(임시)", "Badge", "Avatar"] },
+  { href: "/docs/components/navigation", title: "Navigation", description: "위치를 알려 주고 오가게 하는 부품", items: ["TopBar", "Tabs", "SegmentedControl(임시)", "Stepper(임시)", "BottomNavigation(임시)"] },
   { href: "/docs/components/feedback", title: "Feedback", description: "상태와 결과를 알려 주는 부품", items: ["Modal", "BottomSheet", "Toast", "Banner", "Spinner", "Skeleton"] },
 ];
 

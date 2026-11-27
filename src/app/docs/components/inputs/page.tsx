@@ -11,6 +11,7 @@ const sections = [
   { id: "checkbox", title: "Checkbox", description: "여러 개를 고르거나 하나를 켜고 끈다. 라벨까지 누르는 영역이다.", Demo: D.CheckboxDemo },
   { id: "radio", title: "Radio", description: "여러 개 중 하나를 고른다. 세로 배치가 기본이다.", Demo: D.RadioDemo },
   { id: "switch", title: "Switch", description: "켜면 바로 반영되는 설정. 저장 버튼을 두지 않는다.", Demo: D.SwitchDemo },
+  { id: "chip", title: "Chip", description: "누르면 켜지고 꺼지는 둥근 칩. 필터처럼 고르면 ChipGroup, 금액 빠른 입력처럼 바로 실행하면 Chip 단독. MVP 밖 임시 추가다.", Demo: D.ChipDemo },
   { id: "calendar", title: "Calendar", description: "날짜 고르기. MVP 밖 임시 추가로, 값은 SEED를 참고했다.", Demo: D.CalendarDemo },
 ];
 

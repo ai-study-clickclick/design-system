@@ -2,6 +2,7 @@
 
 import { ChevronLeft, X } from "lucide-react";
 import { cn } from "./cn";
+import { IconButton, type IconButtonProps } from "./icon-button";
 
 // TopBar: 화면 맨 위 제목 줄. 높이 44, 당근 AppBar 참고
 // title · left(뒤로 · 닫기) · right(아이콘 버튼) · tone default · transparent(3-2 비교표)
@@ -35,18 +36,12 @@ export function TopBar({ title, left, right, tone = "default", className, ...pro
   );
 }
 
-/** TopBar 안 아이콘 버튼. 누르는 영역 44, 안의 아이콘은 top-bar-icon-size(24) */
-export function TopBarIconButton({ className, ...props }: React.ComponentProps<"button">) {
-  return (
-    <button
-      type="button"
-      className={cn("flex size-touch-min items-center justify-center rounded-full active:bg-transparent-pressed [&_svg]:size-(--top-bar-icon-size)", className)}
-      {...props}
-    />
-  );
+/** TopBar 안 아이콘 버튼. IconButton md(보이는 크기 40 · 누르는 영역 44), 안의 아이콘은 top-bar-icon-size(24) */
+export function TopBarIconButton({ className, ...props }: IconButtonProps) {
+  return <IconButton size="md" variant="ghost" className={cn("[&_svg]:size-(--top-bar-icon-size)", className)} {...props} />;
 }
 
-export function TopBarBackButton({ label = "뒤로가기", ...props }: React.ComponentProps<"button"> & { label?: string }) {
+export function TopBarBackButton({ label = "뒤로가기", ...props }: Omit<IconButtonProps, "aria-label"> & { label?: string }) {
   return (
     <TopBarIconButton aria-label={label} {...props} className={cn("[&_svg]:size-(--top-bar-icon-optical-size)", props.className)}>
       <ChevronLeft aria-hidden />
@@ -54,7 +49,7 @@ export function TopBarBackButton({ label = "뒤로가기", ...props }: React.Com
   );
 }
 
-export function TopBarCloseButton({ label = "닫기", ...props }: React.ComponentProps<"button"> & { label?: string }) {
+export function TopBarCloseButton({ label = "닫기", ...props }: Omit<IconButtonProps, "aria-label"> & { label?: string }) {
   return (
     <TopBarIconButton aria-label={label} {...props} className={cn("[&_svg]:size-(--top-bar-icon-optical-size)", props.className)}>
       <X aria-hidden />

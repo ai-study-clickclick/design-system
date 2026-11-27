@@ -6,6 +6,7 @@ import type { DateRange } from "react-day-picker";
 import { Search } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Chip, ChipGroup, ChipGroupItem } from "@/components/ui/chip";
 import { DateInput } from "@/components/ui/date-input";
 import { Input } from "@/components/ui/input";
 import { ListItem } from "@/components/ui/list-item";
@@ -277,5 +278,60 @@ export function CalendarDemo() {
         <Calendar mode="range" selected={range} onSelect={setRange} />
       </Phone>
     </Grid>
+  );
+}
+
+export function ChipDemo() {
+  const [amount, setAmount] = useState(0);
+  return (
+    <Board column>
+      <Part title='ChipGroup type="single" · 하나만 고르기(기간 필터)'>
+        <Example label='layout="wrap"'>
+          <ChipGroup type="single" defaultValue="1m" aria-label="조회 기간">
+            {[
+              ["1w", "1주일"],
+              ["1m", "1개월"],
+              ["3m", "3개월"],
+              ["6m", "6개월"],
+            ].map(([v, l]) => (
+              <ChipGroupItem key={v} value={v}>
+                {l}
+              </ChipGroupItem>
+            ))}
+          </ChipGroup>
+        </Example>
+      </Part>
+      <Part title='ChipGroup type="multiple" · 여러 개 고르기(카테고리)' column>
+        <Example label='layout="scroll" · 가로로 넘김' grow>
+          <div className="w-[343px]">
+            <ChipGroup type="multiple" layout="scroll" defaultValue={["food"]} aria-label="카테고리">
+              {["식비", "카페", "교통", "쇼핑", "문화", "의료", "통신"].map((l, i) => (
+                <ChipGroupItem key={l} value={i === 0 ? "food" : l}>
+                  {l}
+                </ChipGroupItem>
+              ))}
+            </ChipGroup>
+          </div>
+        </Example>
+        <Example label="disabled">
+          <ChipGroup type="single" defaultValue="a" aria-label="예시" disabled>
+            <ChipGroupItem value="a">켜짐</ChipGroupItem>
+            <ChipGroupItem value="b">꺼짐</ChipGroupItem>
+          </ChipGroup>
+        </Example>
+      </Part>
+      <Part title="실제 화면">
+        <Phone label="Chip 단독 · 누르면 바로 실행(금액 빠른 입력)">
+          <Input label="보낼 금액" value={amount ? amount.toLocaleString() : ""} placeholder="0" suffix="원" readOnly />
+          <div className="flex gap-8">
+            {[10000, 50000, 100000].map((n) => (
+              <Chip key={n} onClick={() => setAmount((v) => v + n)}>
+                +{n / 10000}만
+              </Chip>
+            ))}
+          </div>
+        </Phone>
+      </Part>
+    </Board>
   );
 }

@@ -1,7 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { Bell, Heart, Plus, Search, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { IconButton } from "@/components/ui/icon-button";
+import { TextButton } from "@/components/ui/text-button";
 import { Board, Example, Part, Phone } from "../gallery";
 
 const variants = ["primary", "primaryWeak", "neutral", "secondary", "critical", "outline"] as const;
@@ -98,6 +101,73 @@ export function ButtonLayouts() {
           </Button>
         </div>
       </Phone>
+    </Board>
+  );
+}
+
+export function IconButtonDemo() {
+  return (
+    <Board column>
+      <Part title='variant="ghost" · 배경 없음'>
+        <Example label="size=md · 40(아이콘 24)">
+          <IconButton aria-label="검색"><Search aria-hidden /></IconButton>
+          <IconButton aria-label="알림"><Bell aria-hidden /></IconButton>
+          <IconButton aria-label="설정"><Settings aria-hidden /></IconButton>
+        </Example>
+        <Example label="size=sm · 32(아이콘 20)">
+          <IconButton size="sm" aria-label="검색"><Search aria-hidden /></IconButton>
+          <IconButton size="sm" aria-label="알림"><Bell aria-hidden /></IconButton>
+          <IconButton size="sm" aria-label="설정"><Settings aria-hidden /></IconButton>
+        </Example>
+        <Example label="disabled">
+          <IconButton aria-label="관심" disabled><Heart aria-hidden /></IconButton>
+        </Example>
+      </Part>
+      <Part title='variant="weak" · 연한 회색 면'>
+        <Example label="size=md">
+          <IconButton variant="weak" aria-label="추가"><Plus aria-hidden /></IconButton>
+        </Example>
+        <Example label="size=sm">
+          <IconButton variant="weak" size="sm" aria-label="추가"><Plus aria-hidden /></IconButton>
+        </Example>
+        <Example label="disabled">
+          <IconButton variant="weak" aria-label="추가" disabled><Plus aria-hidden /></IconButton>
+        </Example>
+      </Part>
+    </Board>
+  );
+}
+
+export function TextButtonDemo() {
+  return (
+    <Board column>
+      <Part title='tone="neutral" · 기본'>
+        <Example label="size=md">
+          <TextButton>다시 보내기</TextButton>
+        </Example>
+        <Example label="size=md · withArrow(이동)">
+          <TextButton withArrow>전체 보기</TextButton>
+        </Example>
+        <Example label="size=sm · withArrow">
+          <TextButton size="sm" withArrow>전체 보기</TextButton>
+        </Example>
+      </Part>
+      <Part title='tone="brand" · 강조'>
+        <Example label="size=md">
+          <TextButton tone="brand">인증번호 다시 받기</TextButton>
+        </Example>
+        <Example label="disabled">
+          <TextButton tone="brand" disabled>인증번호 다시 받기</TextButton>
+        </Example>
+      </Part>
+      <Part title="실제 화면">
+        <Phone label="구역 제목 + 전체 보기">
+          <div className="flex items-center justify-between">
+            <p className="text-title-sm">최근 거래</p>
+            <TextButton withArrow>전체 보기</TextButton>
+          </div>
+        </Phone>
+      </Part>
     </Board>
   );
 }

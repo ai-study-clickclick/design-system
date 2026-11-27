@@ -1,6 +1,10 @@
 "use client";
 
-import { MoreVertical, Settings, Share } from "lucide-react";
+import { Gift, Home, LayoutGrid, MoreVertical, Settings, Share, Wallet } from "lucide-react";
+import { useState } from "react";
+import { BottomNavigation } from "@/components/ui/bottom-navigation";
+import { Button } from "@/components/ui/button";
+import { Stepper } from "@/components/ui/stepper";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TopBar, TopBarBackButton, TopBarCloseButton, TopBarIconButton } from "@/components/ui/top-bar";
@@ -83,24 +87,6 @@ export function TabsDemo() {
           </Tabs>
         </Example>
       </Part>
-      <Part title='variant="solid" · 둥근 칩(임시)' column>
-        <Example label="layout=hug · 필터처럼 고르기" grow>
-          <Tabs defaultValue="1m" variant="solid" layout="hug" className="w-[343px]">
-            <TabsList>
-              {[
-                ["1w", "1주일"],
-                ["1m", "1개월"],
-                ["3m", "3개월"],
-                ["6m", "6개월"],
-              ].map(([v, l]) => (
-                <TabsTrigger key={v} value={v}>
-                  {l}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </Tabs>
-        </Example>
-      </Part>
     </Board>
   );
 }
@@ -138,5 +124,45 @@ export function SegmentedControlDemo() {
         </Example>
       </Part>
     </Board>
+  );
+}
+
+export function StepperDemo() {
+  const [step, setStep] = useState(1);
+  return (
+    <Grid>
+      <Phone label="TopBar 바로 아래 · 단계가 바뀌면 늘어남" bare>
+        <TopBar title="계좌 개설" left={<TopBarBackButton onClick={() => setStep((v) => Math.max(1, v - 1))} />} />
+        <Stepper value={step} total={4} />
+        <div className="flex flex-col gap-16 p-16">
+          <p className="text-title-md">{["이름을 알려 주세요", "주민등록번호를 넣어 주세요", "본인 인증을 해 주세요", "비밀번호를 정해 주세요"][step - 1]}</p>
+          <Button size="md" onClick={() => setStep((v) => Math.min(4, v + 1))}>
+            다음
+          </Button>
+        </div>
+      </Phone>
+    </Grid>
+  );
+}
+
+const navItems = [
+  { value: "home", label: "홈", icon: <Home aria-hidden /> },
+  { value: "asset", label: "자산", icon: <Wallet aria-hidden /> },
+  { value: "benefit", label: "혜택", icon: <Gift aria-hidden /> },
+  { value: "all", label: "전체", icon: <LayoutGrid aria-hidden /> },
+];
+
+export function BottomNavigationDemo() {
+  const [four, setFour] = useState("home");
+  const [three, setThree] = useState("home");
+  return (
+    <Grid>
+      <Phone label="항목 4개" bare>
+        <BottomNavigation items={navItems} value={four} onValueChange={setFour} />
+      </Phone>
+      <Phone label="항목 3개" bare>
+        <BottomNavigation items={navItems.filter((i) => i.value !== "asset")} value={three} onValueChange={setThree} />
+      </Phone>
+    </Grid>
   );
 }

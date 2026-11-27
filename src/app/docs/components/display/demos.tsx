@@ -2,7 +2,9 @@
 
 import { ArrowLeftRight, Bell, ChevronRight, CreditCard, PiggyBank, Wallet } from "lucide-react";
 import { useState } from "react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Avatar } from "@/components/ui/avatar";
+import { Divider } from "@/components/ui/divider";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardHeading, CardImageSlot, CardTitle } from "@/components/ui/card";
@@ -201,5 +203,65 @@ export function AvatarDemo() {
         <Avatar />
       </Example>
     </Board>
+  );
+}
+
+export function DividerDemo() {
+  return (
+    <Grid>
+      <Phone label='variant="line" · 목록 · 묶음 사이' bare>
+        <ListItem title="계좌 관리" withArrow onClick={() => {}} />
+        <Divider className="mx-16 w-auto" />
+        <ListItem title="카드 관리" withArrow onClick={() => {}} />
+      </Phone>
+      <Phone label='variant="thick" · 화면 안 큰 구역 사이' bare>
+        <div className="p-16">
+          <p className="text-title-sm">내 자산</p>
+          <p className="mt-4 text-title-lg">4,760,000원</p>
+        </div>
+        <Divider variant="thick" />
+        <ListItem title="최근 거래" withArrow onClick={() => {}} />
+      </Phone>
+      <Phone label='orientation="vertical" · 글자 사이'>
+        <div className="flex h-16 items-center gap-8 text-body-sm text-neutral-subtle">
+          <span>국민은행</span>
+          <Divider orientation="vertical" />
+          <span>1234-56-789012</span>
+        </div>
+      </Phone>
+    </Grid>
+  );
+}
+
+const faqs = [
+  ["수수료가 있나요?", "한 달에 30번까지 무료예요. 그 뒤로는 한 번에 500원이에요."],
+  ["이체 한도는 어떻게 바꾸나요?", "전체 > 보안 > 이체 한도에서 바꿀 수 있어요. 한도를 올리려면 본인 인증이 필요해요."],
+  ["해지하면 이자는 어떻게 되나요?", "만기 전에 해지하면 약속한 금리보다 낮은 중도해지 금리로 계산해요."],
+];
+
+export function AccordionDemo() {
+  return (
+    <Grid>
+      <Phone label='type="single" · 하나만 펼침(자주 묻는 질문)'>
+        <Accordion type="single" collapsible defaultValue="0">
+          {faqs.map(([q, a], i) => (
+            <AccordionItem key={q} value={String(i)}>
+              <AccordionTrigger>{q}</AccordionTrigger>
+              <AccordionContent>{a}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </Phone>
+      <Phone label='type="multiple" · 여러 개 펼침(유의 사항)'>
+        <Accordion type="multiple">
+          {faqs.map(([q, a], i) => (
+            <AccordionItem key={q} value={String(i)}>
+              <AccordionTrigger>{q}</AccordionTrigger>
+              <AccordionContent>{a}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </Phone>
+    </Grid>
   );
 }
