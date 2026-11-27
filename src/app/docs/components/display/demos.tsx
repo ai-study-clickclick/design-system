@@ -210,12 +210,16 @@ export function AvatarDemo() {
 }
 
 export function DividerDemo() {
+  const menus = ["계좌 관리", "카드 관리", "자동이체", "이체 한도", "알림 설정"];
   return (
     <Grid>
-      <Phone label='variant="line" · 목록 · 묶음 사이' bare>
-        <ListItem title="계좌 관리" withArrow onClick={() => {}} />
-        <Divider className="mx-16 w-auto" />
-        <ListItem title="카드 관리" withArrow onClick={() => {}} />
+      <Phone label='variant="line" · 목록 줄 사이(좌우 여백 16 안쪽)' bare>
+        {menus.map((m, i) => (
+          <div key={m}>
+            {i > 0 && <Divider className="mx-16 w-auto" />}
+            <ListItem title={m} withArrow onClick={() => {}} />
+          </div>
+        ))}
       </Phone>
       <Phone label='variant="thick" · 화면 안 큰 구역 사이' bare>
         <div className="p-16">
@@ -223,13 +227,32 @@ export function DividerDemo() {
           <p className="mt-4 text-title-lg">4,760,000원</p>
         </div>
         <Divider variant="thick" />
-        <ListItem title="최근 거래" withArrow onClick={() => {}} />
+        <div className="py-8">
+          <p className="px-16 pt-8 pb-4 text-title-sm">최근 거래</p>
+          <ListItem size="md" title="스타벅스" description="오늘 오전 8:42" suffix={<span className="text-label-base">-5,600원</span>} />
+          <ListItem size="md" title="김딸깍" description="어제 오전 11:05" suffix={<span className="text-label-base text-informative">+30,000원</span>} />
+        </div>
+        <Divider variant="thick" />
+        <div className="py-8">
+          <p className="px-16 pt-8 pb-4 text-title-sm">혜택</p>
+          <ListItem title="첫 송금 1,000원" withArrow onClick={() => {}} />
+          <ListItem title="친구 초대 이벤트" withArrow onClick={() => {}} />
+        </div>
+        <Divider variant="thick" />
+        <ListItem title="고객센터" withArrow onClick={() => {}} />
       </Phone>
       <Phone label='orientation="vertical" · 글자 사이'>
         <div className="flex h-16 items-center gap-8 text-body-sm text-neutral-subtle">
           <span>국민은행</span>
           <Divider orientation="vertical" />
           <span>1234-56-789012</span>
+          <Divider orientation="vertical" />
+          <span>입출금</span>
+        </div>
+        <div className="flex h-16 items-center gap-8 text-body-sm text-neutral-subtle">
+          <span>오늘 오전 8:42</span>
+          <Divider orientation="vertical" />
+          <span>체크카드</span>
         </div>
       </Phone>
     </Grid>
