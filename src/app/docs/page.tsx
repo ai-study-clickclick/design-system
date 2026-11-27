@@ -55,7 +55,7 @@ function ColorThumb() {
   return (
     <div className="flex items-center gap-10">
       {chips.map((c) => (
-        <span key={c} className="size-[48px] rounded-md" style={{ background: `var(${c})` }} />
+        <span key={c} className="size-[40px] rounded-md" style={{ background: `var(${c})` }} />
       ))}
     </div>
   );
