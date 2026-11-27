@@ -30,13 +30,13 @@ const badgeVariants = cva(
       { variant: "solid", tone: "positive", className: "bg-positive-solid text-on-positive-solid" },
       { variant: "solid", tone: "warning", className: "bg-warning-solid text-on-warning-solid" },
       { variant: "solid", tone: "critical", className: "bg-critical-solid text-on-critical-solid" },
-      // weak = bg.<톤>-weak + fg.<톤>-contrast. neutral만 fg.neutral-muted
-      { variant: "weak", tone: "neutral", className: "bg-neutral-weak text-neutral-muted" },
-      { variant: "weak", tone: "brand", className: "bg-brand-weak text-brand-contrast" },
-      { variant: "weak", tone: "informative", className: "bg-informative-weak text-informative-contrast" },
-      { variant: "weak", tone: "positive", className: "bg-positive-weak text-positive-contrast" },
-      { variant: "weak", tone: "warning", className: "bg-warning-weak text-warning-contrast" },
-      { variant: "weak", tone: "critical", className: "bg-critical-weak text-critical-contrast" },
+      // weak = 배경 <톤> 200(neutral gray-300, 임시 badge-weak-* 토큰) + fg.<톤>-contrast. neutral만 fg.neutral-muted
+      { variant: "weak", tone: "neutral", className: "bg-(--badge-weak-neutral-background-color) text-neutral-muted" },
+      { variant: "weak", tone: "brand", className: "bg-(--badge-weak-brand-background-color) text-brand-contrast" },
+      { variant: "weak", tone: "informative", className: "bg-(--badge-weak-informative-background-color) text-informative-contrast" },
+      { variant: "weak", tone: "positive", className: "bg-(--badge-weak-positive-background-color) text-positive-contrast" },
+      { variant: "weak", tone: "warning", className: "bg-(--badge-weak-warning-background-color) text-warning-contrast" },
+      { variant: "weak", tone: "critical", className: "bg-(--badge-weak-critical-background-color) text-critical-contrast" },
       // outline = stroke.<톤>-weak + fg.<톤>. brand 글자는 fg.brand-contrast, neutral은 stroke.neutral-muted + fg.neutral-muted
       { variant: "outline", tone: "neutral", className: "border-neutral-muted text-neutral-muted" },
       { variant: "outline", tone: "brand", className: "border-brand-weak text-brand-contrast" },

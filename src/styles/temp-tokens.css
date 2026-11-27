@@ -31,7 +31,6 @@
   --segmented-control-md-item-height: 36px;
   --segmented-control-sm-item-height: 28px;
   --segmented-control-rounded: 10px;
-  --segmented-control-item-rounded: 8px;
 
   /* Calendar (SEED 값 참고, MVP 밖 추가 컴포넌트) */
   --calendar-day-size: 44px;
@@ -50,10 +49,18 @@
   --radio-disabled-dot-color: var(--palette-gray-400);
   /* Calendar 지난 날 · 다른 달 날짜: 비활성 글자가 진해져 따로 둔다(옛 비활성 글자 gray-600) */
   --calendar-disabled-text-color: var(--palette-gray-600);
-  /* Tabs 미선택: 굵기 600 · gray-600, 비활성은 gray-500으로 미선택보다 연하게 */
-  --tabs-md-unselected-text-color: var(--palette-gray-600);
-  --tabs-sm-unselected-text-color: var(--palette-gray-600);
+  /* Tabs 미선택: 굵기 600(색은 tokens.css fg.neutral-subtle 그대로), 비활성은 gray-500으로 미선택보다 연하게 */
   --tabs-unselected-font-weight: 600;
+  /* Tabs line 선택 줄 굵기: md 2 · sm 3 */
+  --tabs-md-indicator-width: 2px;
+  --tabs-sm-indicator-width: 3px;
+  /* Badge weak 배경: 톤마다 한 단계 진하게(100 → 200, neutral 200 → 300) */
+  --badge-weak-neutral-background-color: var(--palette-gray-300);
+  --badge-weak-brand-background-color: var(--palette-brand-200);
+  --badge-weak-informative-background-color: var(--palette-blue-200);
+  --badge-weak-positive-background-color: var(--palette-green-200);
+  --badge-weak-warning-background-color: var(--palette-yellow-200);
+  --badge-weak-critical-background-color: var(--palette-red-200);
   --tabs-md-disabled-text-color: var(--palette-gray-500);
   --tabs-sm-disabled-text-color: var(--palette-gray-500);
   /* ListItem 제목: 굵기 Medium(500) */
@@ -70,8 +77,11 @@
   --chevron-size: 20px;
   /* ListItem 오른쪽 값과 이동 화살표 사이: 목록 간격 12의 반 */
   --list-item-suffix-gap: var(--space-6);
-  /* SegmentedControl 바깥 여백 2 → 4 */
-  --segmented-control-padding: var(--space-4);
+  /* SegmentedControl 바깥 여백: md 4 · sm 2. 칸 라운드 = 바깥 라운드 − 여백(같은 중심, DESIGN.md "Shapes") */
+  --segmented-control-md-padding: var(--space-4);
+  --segmented-control-sm-padding: var(--space-2);
+  --segmented-control-md-item-rounded: calc(var(--segmented-control-rounded) - var(--segmented-control-md-padding));
+  --segmented-control-sm-item-rounded: calc(var(--segmented-control-rounded) - var(--segmented-control-sm-padding));
   /* BottomSheet 최소 높이 */
   --bottom-sheet-min-height: 240px;
   /* 안쪽 라운드 최소값: 바깥 − 여백이 0 이하이면 4(DESIGN.md "Shapes") */
@@ -115,7 +125,6 @@ html:root {
   --radius-2xl: calc(24px * var(--corner-comp));
   --button-md-rounded: calc(10px * var(--corner-comp));
   --segmented-control-rounded: calc(10px * var(--corner-comp));
-  --segmented-control-item-rounded: calc(8px * var(--corner-comp));
 }
 
 /* 움직임: DESIGN.md 본문 "움직임 값" · "나타나고 사라지는 값" 표 값. YAML에 들어가면 tokens.css로 옮긴다 */

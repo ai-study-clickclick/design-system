@@ -102,19 +102,6 @@ export function CardDemo() {
           </CardHeader>
         </Card>
       </Phone>
-      <Phone label='variant="emphasis" · 강조(임시)'>
-        <Card variant="emphasis">
-          <CardHeading>
-            <CardTitle>모은 돈 120만 원 돌파</CardTitle>
-            <CardDescription>목표까지 80만 원 남았어요</CardDescription>
-          </CardHeading>
-          <CardFooter>
-            <Button size="sm" variant="secondary">
-              목표 보기
-            </Button>
-          </CardFooter>
-        </Card>
-      </Phone>
     </Grid>
   );
 }
@@ -167,9 +154,9 @@ export function ListItemDemo() {
         <Phone label="거래 내역" bare>
           <div className="py-8">
             <p className="px-16 pt-8 pb-4 text-label-md text-neutral-subtle">11월 20일</p>
-            <ListItem title="스타벅스" description="오전 8:42 · 체크카드" prefix={<Avatar src={logos.coffee} fallback="스" />} suffix={<span className="text-label-md">-5,600원</span>} onClick={() => {}} />
-            <ListItem title="김딸깍" description="오전 11:05 · 이체" prefix={<Avatar src={logos.person} fallback="김" />} suffix={<span className="text-label-md text-informative">+30,000원</span>} onClick={() => {}} />
-            <ListItem title="딸깍 적금" description="오후 1:00 · 자동이체" prefix={<Avatar src={logos.saving} fallback="적" />} suffix={<span className="text-label-md">-200,000원</span>} onClick={() => {}} />
+            <ListItem size="md" title="스타벅스" description="오전 8:42 · 체크카드" prefix={<Avatar src={logos.coffee} fallback="스" />} suffix={<span className="text-label-base">-5,600원</span>} onClick={() => {}} />
+            <ListItem size="md" title="김딸깍" description="오전 11:05 · 이체" prefix={<Avatar src={logos.person} fallback="김" />} suffix={<span className="text-label-base text-informative">+30,000원</span>} onClick={() => {}} />
+            <ListItem size="md" title="딸깍 적금" description="오후 1:00 · 자동이체" prefix={<Avatar src={logos.saving} fallback="적" />} suffix={<span className="text-label-base">-200,000원</span>} onClick={() => {}} />
           </div>
         </Phone>
         <Phone label="메뉴 목록" bare>

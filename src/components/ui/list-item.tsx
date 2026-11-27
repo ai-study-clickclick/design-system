@@ -18,6 +18,8 @@ export type ListItemProps = Omit<React.HTMLAttributes<HTMLElement>, "title" | "p
   suffix?: React.ReactNode;
   /** 다른 화면으로 이동하는 줄이면 오른쪽 화살표 */
   withArrow?: boolean;
+  /** 제목 크기. lg 16(기본) · md 14(거래 내역처럼 오른쪽 값이 주인공인 줄, 임시) */
+  size?: "md" | "lg";
   /** 고르는 목록이면 true · false. 오른쪽 끝에 체크(꺼짐 · 켜짐)를 보인다 */
   selected?: boolean;
   disabled?: boolean;
@@ -33,6 +35,7 @@ export function ListItem({
   suffix,
   withArrow,
   selected,
+  size = "lg",
   disabled,
   asChild,
   onClick,
@@ -46,7 +49,7 @@ export function ListItem({
     <>
       {prefix && <span className="flex shrink-0 items-center">{prefix}</span>}
       <span className="flex min-w-0 flex-1 flex-col gap-2">
-        <span className={cn("text-body-lg font-(--list-item-typography-font-weight)", disabled ? "text-disabled" : "text-neutral")}>{title}</span>
+        <span className={cn(size === "lg" ? "text-body-lg font-(--list-item-typography-font-weight)" : "text-emphasis-md", disabled ? "text-disabled" : "text-neutral")}>{title}</span>
         {description && <span className={cn("text-body-sm", disabled ? "text-disabled" : "text-neutral-subtle")}>{description}</span>}
       </span>
       {(suffix || withArrow || selected !== undefined) && (

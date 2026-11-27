@@ -2,17 +2,14 @@ import { cn } from "./cn";
 
 // Card: 사진이 주인 항목이나 묶음을 담는 면. shadcn 구조 그대로
 // 라운드 16 · 여백 16 · bg.layer-default · stroke.neutral-weak 1px · 그림자 없음
-// variant default · emphasis(대표 컬러 면). emphasis는 3-2 비교표 · DESIGN.md에 없는 임시 추가
-export type CardProps = React.ComponentProps<"div"> & { variant?: "default" | "emphasis" };
+export type CardProps = React.ComponentProps<"div">;
 
-export function Card({ variant = "default", className, ...props }: CardProps) {
+export function Card({ className, ...props }: CardProps) {
   return (
     <div
       data-slot="card"
-      data-emphasis={variant === "emphasis" || undefined}
       className={cn(
-        "group/card flex flex-col gap-16 rounded-lg p-16",
-        variant === "default" ? "border border-neutral-weak bg-layer-default text-neutral" : "bg-brand-solid text-on-brand-solid",
+        "flex flex-col gap-16 rounded-lg border border-neutral-weak bg-layer-default p-16 text-neutral",
         className,
       )}
       {...props}
@@ -36,7 +33,7 @@ export function CardTitle({ className, ...props }: React.ComponentProps<"h3">) {
 }
 
 export function CardDescription({ className, ...props }: React.ComponentProps<"p">) {
-  return <p data-slot="card-description" className={cn("text-body-md text-neutral-subtle group-data-emphasis/card:text-on-brand-solid", className)} {...props} />;
+  return <p data-slot="card-description" className={cn("text-body-md text-neutral-subtle", className)} {...props} />;
 }
 
 /** 제목 오른쪽 보조 행동(아이콘 버튼 등) */
