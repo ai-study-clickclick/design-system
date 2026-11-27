@@ -10,7 +10,7 @@ import { cn } from "./cn";
 // open · title · description · footer(하단 버튼) · showHandle · showCloseButton(3-2 비교표)
 // 핸들과 닫기는 함께 쓰지 않는다. showCloseButton을 켜면 핸들은 숨긴다
 // 높이: 최소 240, 최대 화면 − 48. 그 사이는 내용만큼. 넘치면 내용만 스크롤하고 제목 · 버튼은 고정(임시 기준)
-// 버튼 2개는 비율 없이 5:5로 나눈다(3:7은 화면 하단 고정 버튼에만, DESIGN.md "Layout")
+// 버튼 2개는 비율 없이 5:5로 나눈다(3:7은 화면 하단 고정 버튼에만. 임시 기준, DESIGN.md 반영 전)
 // 아래 여백: 버튼이 없으면 내용 아래 24, 있으면 내용과 버튼 사이 16 · 버튼 아래 16(+ 안전 영역)
 export type BottomSheetProps = {
   open?: boolean;

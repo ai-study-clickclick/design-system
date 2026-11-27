@@ -103,7 +103,7 @@
   --chevron-size: 20px;
   /* ListItem 오른쪽 값과 이동 화살표 사이: 목록 간격 12의 반 */
   --list-item-suffix-gap: var(--space-6);
-  /* SegmentedControl 바깥 라운드: md 10 · sm 8(작은 크기는 라운드도 작게). 여백 md 4 · sm 2. 칸 라운드 = 바깥 라운드 − 여백(같은 중심, DESIGN.md "Shapes") */
+  /* SegmentedControl 바깥 라운드: md 10 · sm 8(작은 크기는 라운드도 작게). 여백 md 4 · sm 2. 칸 라운드 = 바깥 라운드 − 여백(같은 중심, DESIGN.md "Shapes" 안쪽 라운드) */
   --segmented-control-sm-rounded: 8px;
   --segmented-control-md-padding: var(--space-4);
   --segmented-control-sm-padding: var(--space-2);
@@ -125,7 +125,7 @@
   --toast-padding-y: var(--space-14);
   /* BottomNavigation 미선택 아이콘: gray-500(글자는 fg.neutral-subtle), 눌림 면은 위아래 4 · 좌우 8 띄우고 라운드 radius.sm */
   --bottom-navigation-unselected-icon-color: var(--palette-gray-500);
-  /* 큰 제목 화면: Top bar 아래 ~ 제목 위 40(DESIGN.md "Layout" 큰 제목 화면, YAML 토큰 없음) */
+  /* 큰 제목 화면: Top bar 아래 ~ 제목 위 40(임시 기준, DESIGN.md 반영 전) */
   --space-nav-to-large-title: var(--space-40);
   /* BottomSheet 안쪽 좌우 여백 16 → 20. 시트 안 ListItem도 같은 여백으로 맞춘다 */
   --bottom-sheet-padding: var(--space-20);
@@ -146,7 +146,7 @@
   --switch-disabled-thumb-color: var(--palette-gray-100);
   /* BottomSheet 최소 높이 */
   --bottom-sheet-min-height: 240px;
-  /* 카드 안 이미지: 바깥 − 여백이 0 이하라 최소값 radius.sm 8(DESIGN.md "Shapes") */
+  /* 카드 안 이미지: 바깥 − 여백이 0 이하라 최소값 radius.sm 8(임시 기준, DESIGN.md "Shapes"는 0) */
   --card-image-rounded: var(--radius-sm);
 }
 

@@ -135,7 +135,7 @@ export function StepperDemo() {
       <Phone label="실제 화면(375 × 812) · TopBar 바로 아래 · 다음을 누르면 늘어남" screen>
         <TopBar title="계좌 개설" left={<TopBarBackButton onClick={() => setStep((v) => Math.max(1, v - 1))} />} />
         <Stepper value={step} total={4} />
-        {/* 큰 제목 화면: 제목은 의미 단위로 2줄, 위 32 · 아래 24(DESIGN.md "Layout") */}
+        {/* 큰 제목 화면(임시 기준, DESIGN.md 반영 전): 제목은 의미 단위로 2줄, 위 40 · 아래 24 */}
         <div className="flex flex-1 flex-col gap-24 px-16 pt-nav-to-large-title">
           <p className="text-title-lg whitespace-pre-line">
             {["계좌를 만들려면\n이름을 알려 주세요", "본인 확인을 위해\n생년월일을 알려 주세요", "마지막으로\n휴대폰 번호를 알려 주세요", "앱에서 쓸\n비밀번호를 정해 주세요"][step - 1]}

@@ -41,7 +41,7 @@ export function CardAction({ className, ...props }: React.ComponentProps<"div">)
   return <div data-slot="card-action" className={cn("shrink-0", className)} {...props} />;
 }
 
-/** 카드 안 이미지. 안쪽 라운드 = 카드 라운드 − 여백(16 − 16 = 0)이 0 이하라 최소값 4(DESIGN.md "Shapes") */
+/** 카드 안 이미지. 안쪽 라운드 = 카드 라운드 − 여백(16 − 16 = 0)이 0 이하라 최소값 radius.sm 8(임시 기준, DESIGN.md "Shapes"는 0) */
 export function CardImage({ className, alt = "", ...props }: React.ComponentProps<"img">) {
   // eslint-disable-next-line @next/next/no-img-element
   return <img data-slot="card-image" alt={alt} className={cn("w-full rounded-(--card-image-rounded) object-cover", className)} {...props} />;
