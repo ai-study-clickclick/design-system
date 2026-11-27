@@ -1,0 +1,88 @@
+"use client";
+
+import { useState } from "react";
+import { ToggleGroup } from "radix-ui";
+import { useActiveIndicator } from "./active-indicator";
+import { cn } from "./cn";
+
+// SegmentedControl: 2~3개 중 하나를 골라 보기 · 값을 바로 바꾼다(예: 국내 / 해외, 1개월 / 3개월 / 6개월)
+// MVP 19개 밖 임시 추가. 값은 SEED SegmentedControl 참고 임시(src/styles/temp-tokens.css)
+// size md: 높이 40, 놓인 자리 폭을 칸 수만큼 똑같이 나눈다 · sm: 높이 32, 글자만큼
+// 바깥 bg.neutral-weak(여백 md 4 · sm 2, 임시), 고른 칸 bg.layer-default + 그림자 s1. 칸 라운드 = 바깥 − 여백
+// 고른 칸의 흰 면은 하나로 두고, 고르면 새 칸으로 미끄러져 간다(d4, 동작 줄이기면 바로 바뀜)
+export type SegmentedControlOption = { value: string; label: React.ReactNode; disabled?: boolean };
+
+export type SegmentedControlProps = {
+  options: SegmentedControlOption[];
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  size?: "md" | "sm";
+  /** 화면 읽기 프로그램용 이름 */
+  "aria-label"?: string;
+  className?: string;
+};
+
+export function SegmentedControl({
+  options,
+  value,
+  defaultValue,
+  onValueChange,
+  size = "md",
+  className,
+  ...props
+}: SegmentedControlProps) {
+  const { ref, rect } = useActiveIndicator<HTMLDivElement>("[data-state=on]");
+  // 고른 칸을 다시 눌러도 선택이 풀리지 않게 값을 직접 쥔다
+  const [inner, setInner] = useState(defaultValue ?? options[0]?.value);
+  const current = value ?? inner;
+  return (
+    <ToggleGroup.Root
+      ref={ref}
+      type="single"
+      data-slot="segmented-control"
+      value={current}
+      onValueChange={(v) => {
+        if (!v) return;
+        setInner(v);
+        onValueChange?.(v);
+      }}
+      className={cn(
+        "relative isolate bg-neutral-weak",
+        size === "md" ? "rounded-(--segmented-control-rounded) p-(--segmented-control-md-padding)" : "rounded-(--segmented-control-sm-rounded) p-(--segmented-control-sm-padding)",
+        size === "md" ? "flex w-full" : "inline-flex w-fit",
+        className,
+      )}
+      {...props}
+    >
+      {rect && (
+        <span
+          aria-hidden
+          className={cn(
+            "absolute -z-10 bg-layer-default shadow-s1 motion-safe:transition-[left,width] motion-safe:duration-(--duration-d4) motion-safe:ease-(--timing-function-enter)",
+            size === "md"
+              ? "inset-y-(--segmented-control-md-padding) rounded-(--segmented-control-md-item-rounded)"
+              : "inset-y-(--segmented-control-sm-padding) rounded-(--segmented-control-sm-item-rounded)",
+          )}
+          style={{ left: rect.left, width: rect.width }}
+        />
+      )}
+      {options.map((o) => (
+        <ToggleGroup.Item
+          key={o.value}
+          value={o.value}
+          disabled={o.disabled}
+          className={cn(
+            "flex items-center justify-center whitespace-nowrap text-neutral-subtle transition-colors duration-(--duration-d4)",
+            "aria-checked:text-neutral disabled:text-disabled",
+            size === "md"
+              ? "h-(--segmented-control-md-item-height) flex-1 rounded-(--segmented-control-md-item-rounded) px-12 text-label-md"
+              : "h-(--segmented-control-sm-item-height) rounded-(--segmented-control-sm-item-rounded) px-12 text-label-sm",
+          )}
+        >
+          {o.label}
+        </ToggleGroup.Item>
+      ))}
+    </ToggleGroup.Root>
+  );
+}

@@ -4,11 +4,11 @@ import { readTokens } from "../read-tokens";
 export const metadata = { title: "Typography · 딸깍 디자인 시스템" };
 
 const groups = [
-  { key: "title", title: "Title", description: "화면 제목과 큰 묶음의 제목에 써요" },
-  { key: "body", title: "Body", description: "본문과 설명 글에 써요" },
-  { key: "emphasis", title: "Emphasis", description: "본문 크기에서 조금 힘을 줄 때 써요" },
-  { key: "label", title: "Label", description: "버튼 · 탭 · 배지처럼 누르거나 고르는 요소의 글자예요" },
-  { key: "caption", title: "Caption", description: "작은 보조 글자예요" },
+  { key: "title", title: "Title", description: "화면 제목과 큰 묶음의 제목에 쓴다" },
+  { key: "body", title: "Body", description: "본문과 설명 글에 쓴다" },
+  { key: "emphasis", title: "Emphasis", description: "본문 크기에서 조금 힘을 줄 때 쓴다" },
+  { key: "label", title: "Label", description: "버튼 · 탭 · 배지처럼 누르거나 고르는 요소의 글자" },
+  { key: "caption", title: "Caption", description: "작은 보조 글자" },
 ];
 
 // 견본 글자는 각 스타일 크기 그대로 보여 준다. 글자 크기 4단계 규칙은 견본에는 적용하지 않는다
@@ -20,10 +20,10 @@ export default function TypographyPage() {
       href="/docs/tokens/typography"
       category="Tokens"
       title="Typography"
-      description="글꼴은 Pretendard 하나만 써요. 글자 스타일 하나가 크기 · 굵기 · 줄 높이를 함께 정해요"
+      description="글꼴은 Pretendard 하나만 쓴다. 글자 스타일 하나가 크기 · 굵기 · 줄 높이를 함께 정한다."
       toc={[{ id: "usage", title: "Usage" }, ...groups.map((g) => ({ id: g.key, title: g.title }))]}
     >
-      <Section id="usage" title="Usage" description="클래스 text-<이름> 하나로 크기 · 굵기 · 줄 높이가 함께 들어가요. 예: text-title-lg">
+      <Section id="usage" title="Usage" description="클래스 text-<이름> 하나로 크기 · 굵기 · 줄 높이가 함께 들어간다. 예: text-title-lg">
         <p className="rounded-md bg-neutral-muted p-20 text-body-md">글꼴: Pretendard · 대체 글꼴: 시스템 기본 글꼴</p>
       </Section>
       {groups.map((g) => {

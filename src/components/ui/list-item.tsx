@@ -1,0 +1,85 @@
+"use client";
+
+import { Check, ChevronRight } from "lucide-react";
+import { Slot } from "radix-ui";
+import { cn } from "./cn";
+
+// ListItem: 글이 주인 항목(알림 · 내역 · 설정 등)의 한 줄
+// title · description · prefix · suffix · withArrow · disabled(3-2 비교표)
+// 위아래 12 · 좌우 16 · 제목 16(body-lg, 굵기 500 임시) · 보조 13(body-sm, fg.neutral-subtle) · 눌림 bg.transparent-pressed
+// 고르는 목록(BottomSheet 선택 등)은 selected를 주면 오른쪽 끝에 체크를 둔다. 꺼짐 fg.unselected · 켜짐 fg.brand(Ghost 체크박스와 같은 모양)
+// 오른쪽 값과 화살표 사이는 6(목록 간격의 반), 화살표 20. 앞 요소 Avatar는 size="sm"(40)을 쓴다
+export type ListItemProps = Omit<React.HTMLAttributes<HTMLElement>, "title" | "prefix"> & {
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  /** 왼쪽(Avatar · 아이콘 · 썸네일) */
+  prefix?: React.ReactNode;
+  /** 오른쪽(Badge · Switch · 값 등) */
+  suffix?: React.ReactNode;
+  /** 다른 화면으로 이동하는 줄이면 오른쪽 화살표 */
+  withArrow?: boolean;
+  /** 제목 크기. lg 16(기본) · md 14(거래 내역처럼 오른쪽 값이 주인공인 줄, 임시) */
+  size?: "md" | "lg";
+  /** 고르는 목록이면 true · false. 오른쪽 끝에 체크(꺼짐 · 켜짐)를 보인다 */
+  selected?: boolean;
+  disabled?: boolean;
+  /** 누를 수 있는 줄. 링크면 asChild로 a/Link를 감싼다 */
+  asChild?: boolean;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+};
+
+export function ListItem({
+  title,
+  description,
+  prefix,
+  suffix,
+  withArrow,
+  selected,
+  size = "lg",
+  disabled,
+  asChild,
+  onClick,
+  className,
+  children,
+  ...props
+}: ListItemProps) {
+  const pressable = !disabled && (asChild || onClick || withArrow);
+  const Comp = asChild ? Slot.Root : onClick ? "button" : "div";
+  const content = (
+    <>
+      {/* 앞 요소(Avatar · 아이콘)와 제목 사이는 목록 간격 12보다 조금 좁은 10(임시) */}
+      <span className="flex min-w-0 flex-1 items-center gap-(--list-item-prefix-gap)">
+        {prefix && <span className="flex shrink-0 items-center">{prefix}</span>}
+        <span className="flex min-w-0 flex-1 flex-col gap-2">
+          <span className={cn(size === "lg" ? "text-body-lg font-(--list-item-typography-font-weight)" : "text-emphasis-md", disabled ? "text-disabled" : "text-neutral")}>{title}</span>
+          {description && <span className={cn("text-body-sm", disabled ? "text-disabled" : "text-neutral-subtle")}>{description}</span>}
+        </span>
+      </span>
+      {(suffix || withArrow || selected !== undefined) && (
+        <span className="flex shrink-0 items-center gap-(--list-item-suffix-gap)">
+          {suffix && <span className="flex items-center gap-8">{suffix}</span>}
+          {withArrow && <ChevronRight aria-hidden className={cn("size-(--chevron-size) shrink-0", disabled ? "text-disabled" : "text-neutral-subtle")} />}
+          {selected !== undefined && (
+            <Check aria-hidden strokeWidth={3} className={cn("size-(--checkbox-ghost-lg-icon-size) shrink-0", disabled ? "text-disabled" : selected ? "text-brand" : "text-unselected")} />
+          )}
+        </span>
+      )}
+    </>
+  );
+  return (
+    <Comp
+      data-slot="list-item"
+      aria-disabled={disabled || undefined}
+      onClick={disabled ? undefined : onClick}
+      {...(Comp === "button" ? { type: "button" as const, disabled } : {})}
+      className={cn(
+        "flex w-full items-center gap-12 px-(--list-item-padding-x) py-12 text-left",
+        pressable && "active:bg-transparent-pressed",
+        className,
+      )}
+      {...props}
+    >
+      {asChild ? children : content}
+    </Comp>
+  );
+}

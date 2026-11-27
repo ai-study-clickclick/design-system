@@ -12,6 +12,7 @@ export default function DocPage({
   title,
   description,
   toc,
+  wide,
   children,
 }: {
   href: string;
@@ -19,13 +20,15 @@ export default function DocPage({
   title: string;
   description: string;
   toc: TocItem[];
+  /** 컴포넌트 갤러리처럼 견본이 넓은 문서는 본문 최대 폭과 오른쪽 목차를 두지 않는다 */
+  wide?: boolean;
   children: React.ReactNode;
 }) {
   const { prev, next } = neighbors(href);
 
   return (
     <div className="flex gap-40">
-      <article className="min-w-0 max-w-[760px] flex-1 py-40">
+      <article className={`min-w-0 flex-1 py-40 ${wide ? "" : "max-w-[760px]"}`}>
         <p className="text-label-md text-neutral-muted">{category}</p>
         <h1 className="mt-8 text-title-lg">{title}</h1>
         <p className="mt-8 text-body-md text-neutral-muted">{description}</p>
@@ -53,7 +56,7 @@ export default function DocPage({
         )}
       </article>
 
-      {toc.length > 0 && (
+      {!wide && toc.length > 0 && (
         <aside className="sticky top-56 hidden h-fit w-[180px] shrink-0 py-40 xl:block">
           <TocNav toc={toc} />
         </aside>

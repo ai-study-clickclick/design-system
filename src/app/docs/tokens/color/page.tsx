@@ -6,27 +6,27 @@ export const metadata = { title: "Color · 딸깍 디자인 시스템" };
 
 // 역할(쓰임새 이름의 두 번째 단어)별 설명. 우리 기준(DESIGN.md)에 맞춰 새로 쓴 문장이다
 const roles: { key: string; title: string; description: string }[] = [
-  { key: "brand", title: "Brand", description: "브랜드 색이에요. 주된 행동(CTA)과 강조에 써요" },
-  { key: "neutral", title: "Neutral", description: "기본 글자 · 면 · 테두리에 쓰는 무채색이에요" },
-  { key: "critical", title: "Critical", description: "오류 · 삭제처럼 되돌리기 어렵거나 위험한 상태예요" },
-  { key: "positive", title: "Positive", description: "완료 · 성공 상태예요" },
-  { key: "warning", title: "Warning", description: "주의가 필요한 상태예요" },
-  { key: "informative", title: "Informative", description: "안내 · 정보를 알릴 때 써요" },
-  { key: "layer", title: "Layer", description: "화면의 면 층이에요. 바탕(basement) · 기본(default) · 떠 있는 면(floating)" },
-  { key: "on", title: "On color", description: "진한 배경(solid) 위에 올리는 글자 · 아이콘이에요" },
-  { key: "disabled", title: "Disabled", description: "쓸 수 없는 상태예요" },
-  { key: "placeholder", title: "Placeholder", description: "입력창 안의 예시 글자예요" },
-  { key: "overlay", title: "Overlay", description: "Modal · Bottom sheet 뒤를 덮는 배경이에요" },
-  { key: "transparent", title: "Transparent", description: "투명 배경과 그 눌림 · 선택 상태예요" },
-  { key: "focus", title: "Focus", description: "키보드로 고른 요소를 감싸는 테두리예요" },
+  { key: "brand", title: "Brand", description: "브랜드 색. 주된 행동(CTA)과 강조에 쓴다" },
+  { key: "neutral", title: "Neutral", description: "기본 글자 · 면 · 테두리에 쓰는 무채색" },
+  { key: "critical", title: "Critical", description: "오류 · 삭제처럼 되돌리기 어렵거나 위험한 상태" },
+  { key: "positive", title: "Positive", description: "완료 · 성공 상태" },
+  { key: "warning", title: "Warning", description: "주의가 필요한 상태" },
+  { key: "informative", title: "Informative", description: "안내 · 정보를 알릴 때 쓴다" },
+  { key: "layer", title: "Layer", description: "화면의 면 층. 바탕(basement) · 기본(default) · 떠 있는 면(floating)" },
+  { key: "on", title: "On color", description: "진한 배경(solid) 위에 올리는 글자 · 아이콘" },
+  { key: "disabled", title: "Disabled", description: "쓸 수 없는 상태" },
+  { key: "placeholder", title: "Placeholder", description: "입력창 안의 예시 글자" },
+  { key: "overlay", title: "Overlay", description: "Modal · Bottom sheet 뒤를 덮는 배경" },
+  { key: "transparent", title: "Transparent", description: "투명 배경과 그 눌림 · 선택 상태" },
+  { key: "focus", title: "Focus", description: "키보드로 고른 요소를 감싸는 테두리" },
 ];
 
 const roleOf = (t: Token) => t.name.split(".")[1].split("-")[0];
 
 const properties = [
-  { key: "bg", id: "bg", title: "Background", description: "bg.* · 화면 전체나 UI 요소의 면에 써요", kind: "fill" as const },
-  { key: "fg", id: "fg", title: "Foreground", description: "fg.* · 글자와 아이콘처럼 면 위에 올라가는 요소에 써요", kind: "text" as const },
-  { key: "stroke", id: "stroke", title: "Stroke", description: "stroke.* · 요소의 윤곽선과 구분선에 써요", kind: "stroke" as const },
+  { key: "bg", id: "bg", title: "Background", description: "bg.* · 화면 전체나 UI 요소의 면에 쓴다", kind: "fill" as const },
+  { key: "fg", id: "fg", title: "Foreground", description: "fg.* · 글자와 아이콘처럼 면 위에 올라가는 요소에 쓴다", kind: "text" as const },
+  { key: "stroke", id: "stroke", title: "Stroke", description: "stroke.* · 요소의 윤곽선과 구분선에 쓴다", kind: "stroke" as const },
 ];
 
 const paletteNames: Record<string, string> = {
@@ -56,27 +56,27 @@ export default function ColorPage() {
       href="/docs/tokens/color"
       category="Tokens"
       title="Color"
-      description="화면의 계층 · 상태 · 브랜드를 색으로 나타내요. 화면과 컴포넌트에는 쓰임새 색만 써요"
+      description="화면의 계층 · 상태 · 브랜드를 색으로 나타낸다. 화면과 컴포넌트에는 쓰임새 색만 쓴다."
       toc={toc}
     >
-      <Section id="structure" title="Structure" description="색은 두 단으로 나뉘어요. 쓰임새 색이 기본 색표의 색을 가리켜요">
+      <Section id="structure" title="Structure" description="색은 두 단으로 나뉜다. 쓰임새 색이 기본 색표의 색을 가리킨다.">
         <div className="grid gap-16 sm:grid-cols-2">
           <div className="rounded-md bg-neutral-muted p-20">
             <p className="text-caption text-neutral-subtle">1단</p>
             <p className="mt-4 text-label-md">기본 색표 palette.*</p>
-            <p className="mt-8 text-body-md text-neutral-muted">실제 색 값이에요. 화면에 바로 쓰지 않아요</p>
+            <p className="mt-8 text-body-md text-neutral-muted">실제 색 값이다. 화면에 바로 쓰지 않는다.</p>
             <p className="mt-12 text-body-md">palette.orange-600 = #ff6600</p>
           </div>
           <div className="rounded-md bg-brand-weak p-20">
             <p className="text-caption text-brand-contrast">2단</p>
             <p className="mt-4 text-label-md">쓰임새 색 bg · fg · stroke</p>
-            <p className="mt-8 text-body-md text-neutral">어디에 쓰는지를 이름으로 나타내요. 화면에는 이것만 써요</p>
+            <p className="mt-8 text-body-md text-neutral">어디에 쓰는지를 이름으로 나타낸다. 화면에는 이것만 쓴다.</p>
             <p className="mt-12 text-body-md">bg.brand-solid → palette.brand-600</p>
           </div>
         </div>
       </Section>
 
-      <Section id="naming" title="Naming" description="쓰임새 색 이름은 네 부분으로 읽어요">
+      <Section id="naming" title="Naming" description="쓰임새 색 이름은 네 부분으로 읽는다">
         <div className="rounded-md bg-neutral-muted px-24 py-32 text-center">
           <p className="text-title-lg">
             <span>bg</span>.<span className="text-brand-contrast">brand</span>-<span className="text-informative">solid</span>-
@@ -94,7 +94,7 @@ export default function ColorPage() {
       <Section
         id="roles"
         title="Semantic"
-        description="클래스로 쓸 때는 앞의 속성을 클래스 앞말로 바꿔요. bg.brand-solid → bg-brand-solid, fg.neutral → text-neutral, stroke.neutral-weak → border-neutral-weak"
+        description="클래스로 쓸 때는 앞의 속성을 클래스 앞말로 바꾼다. bg.brand-solid → bg-brand-solid, fg.neutral → text-neutral, stroke.neutral-weak → border-neutral-weak"
       >
         {properties.map((p) => {
           const tokens = semantic[p.key as keyof typeof semantic];
@@ -126,7 +126,7 @@ export default function ColorPage() {
         })}
       </Section>
 
-      <Section id="palette" title="Palette" description="쓰임새 색이 가리키는 실제 색이에요. 쓰임새 색으로 나타낼 수 없는 예외에만 써요">
+      <Section id="palette" title="Palette" description="쓰임새 색이 가리키는 실제 색이다. 쓰임새 색으로 나타낼 수 없는 예외에만 쓴다.">
         <div className="space-y-24">
           {paletteGroups.map(([group, tokens]) => (
             <div key={group}>

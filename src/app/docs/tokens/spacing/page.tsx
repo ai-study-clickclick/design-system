@@ -28,13 +28,13 @@ export default function SpacingPage() {
       href="/docs/tokens/spacing"
       category="Tokens"
       title="Spacing"
-      description="여백과 간격은 이 토큰만 써요. 이름의 숫자가 곧 px 값이에요"
+      description="여백과 간격은 이 토큰만 쓴다. 이름의 숫자가 곧 px 값이다."
       toc={[
         { id: "scale", title: "Scale" },
         { id: "named", title: "Semantic" },
       ]}
     >
-      <Section id="scale" title="Scale" description="클래스: p-16 · gap-8 · mt-24처럼 space 뒤 이름을 써요">
+      <Section id="scale" title="Scale" description="클래스: p-16 · gap-8 · mt-24처럼 space 뒤 이름을 쓴다">
         <TokenTable>
           {scale.map((t) => (
             <TokenRow
@@ -46,7 +46,7 @@ export default function SpacingPage() {
           ))}
         </TokenTable>
       </Section>
-      <Section id="named" title="Semantic" description="화면 단위로 정한 값이에요. 클래스: px-screen-margin · max-w-screen-max">
+      <Section id="named" title="Semantic" description="화면 단위로 정한 값. 클래스: px-screen-margin · max-w-screen-max">
         <TokenTable>
           {named.map((t) => (
             <TokenRow key={t.name} name={t.name} description={usage[t.name]} value={t.resolved} />

@@ -30,8 +30,10 @@ repo/
 │  ├─ build-figma-variables.mjs  # /sync 2단계: tokens.css → 피그마 Variables 코드
 │  └─ figma-text-styles/  # 글자 스타일 피그마 플러그인. 피그마 앱에서 사람이 실행
 ├─ src/
-│  ├─ components/ui/     # 컴포넌트 코드
+│  ├─ components/ui/     # 컴포넌트 코드(컴포넌트 하나 = 파일 하나, cn.ts · field.tsx · press.ts는 공통 도우미)
 │  ├─ styles/tokens.css  # DESIGN.md에서 자동 생성
+│  ├─ styles/temp-tokens.css  # DESIGN.md에 아직 없는 값의 임시 토큰(SEED 값). DESIGN.md에 들어가면 지운다
+│  ├─ styles/temp-theme.css  # 메인 컬러 · 다크모드 임시 미리보기(사이트 위 메뉴에서 고름). 정식으로 정하면 DESIGN.md로 옮기고 지운다
 │  └─ app/
 │     ├─ layout.tsx · globals.css · page.tsx  # 사이트 공통 틀 · 공통 스타일 · 첫 화면 (시스템 관리자)
 │     ├─ site-shell.tsx · site-nav.ts · doc-page.tsx · toc-nav.tsx  # 사이트 틀(위 메뉴 · 왼쪽 메뉴 · 문서 · 목차) (시스템 관리자)
@@ -93,7 +95,7 @@ repo/
 | 컴포넌트 파일 | kebab-case | `button.tsx` |
 | 피그마 컴포넌트 | 코드와 같은 이름. Variant 속성명·값도 코드 props와 같게 | `Button` → `variant=primary, size=md` |
 | 컴포넌트 속성 | 속성 이름 · 값이 두 단어 이상이면 camelCase. 코드 props와 피그마 Variant에 같게 쓴다. | `errorMessage` · `autoSize` · `tone=staticWhite` |
-| 컴포넌트 크기 | 줄임말 `xs` · `sm` · `md` · `lg` · `xl`. 코드 `size` 속성 · 피그마 Variant · 컴포넌트 토큰 이름에 같은 값을 쓴다. 크기가 두 가지 이상이면 기본 크기도 이름에 적고, 하나뿐이면 적지 않는다. 토큰 이름 순서는 위 "디자인 토큰"의 컴포넌트 토큰을 따른다. 문서에 풀어 쓴 크기는 Large · 큰은 `lg`, Medium · 보통은 `md`, Small · 작은은 `sm`으로 읽는다. | `Button` `size=lg` · `button-primary-lg` · `tabs-sm` |
+| 컴포넌트 크기 | 줄임말 `xs` · `sm` · `md` · `lg` · `xl`. 코드 `size` 속성 · 피그마 Variant · 컴포넌트 토큰 이름에 같은 값을 쓴다. 크기가 두 가지 이상이면 기본 크기도 이름에 적고, 하나뿐이면 적지 않는다. 토큰 이름 순서는 위 "디자인 토큰"의 컴포넌트 토큰을 따른다. | `Button` `size=lg` · `button-primary-lg` · `tabs-sm` |
 | 브리프·평가 파일 | `YYMMDD-topic.md` | `261014-login.md` |
 | 여러 단계 흐름의 브리프 | `YYMMDD-topic-<단계 번호>-<단계 이름>.md`. 프로토타입 폴더도 같은 이름이다. 앞부분(`YYMMDD-topic`)이 같으면 같은 흐름이다. | `261112-return-1-select.md` |
 | 프로토타입 화면 | 폴더 `src/app/prototypes/YYMMDD-topic/`, 주소 `/prototypes/YYMMDD-topic`. 브리프와 같은 이름이다. 화면은 `ScreenFrame`(`prototypes/screen-frame.tsx`)으로 감싼다. | `/prototypes/261014-login` |

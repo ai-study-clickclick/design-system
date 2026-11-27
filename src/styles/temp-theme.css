@@ -1,0 +1,188 @@
+/* 임시 미리보기: 메인 컬러 바꾸기 · 다크모드. MVP 밖(다크모드는 나중에, AGENTS.md "확정된 기준")이라 느낌만 보는 용도다 */
+/* 사이트 위 메뉴의 Light / Dark · 메인 컬러 고르기(site-shell.tsx)가 html에 data-brand · theme-dark를 붙인다 */
+/* 정식으로 정하면 DESIGN.md 테마 프리셋 · 다크 값으로 옮기고 이 파일은 지운다 */
+
+/* ── 메인 컬러 프리셋 ──
+   쓰임새 색(bg.brand-solid 등)이 palette.brand-*를 가리키므로 brand 단계만 바꾸면 사이트 · 컴포넌트 전체가 바뀐다
+   파랑 · 초록 · 빨강 · 노랑은 기본 색표 단계를 그대로 쓰고, 보라 · 핑크 · 하늘은 기본 색표에 없어 임시 단계를 둔다 */
+html[data-brand="blue"] {
+  --palette-brand-100: var(--palette-blue-100);
+  --palette-brand-200: var(--palette-blue-200);
+  --palette-brand-300: var(--palette-blue-300);
+  --palette-brand-400: var(--palette-blue-400);
+  --palette-brand-500: var(--palette-blue-500);
+  --palette-brand-600: var(--palette-blue-700);
+  --palette-brand-700: var(--palette-blue-800);
+  --palette-brand-800: var(--palette-blue-900);
+  --palette-brand-900: var(--palette-blue-1000);
+}
+html[data-brand="green"] {
+  --palette-brand-100: var(--palette-green-100);
+  --palette-brand-200: var(--palette-green-200);
+  --palette-brand-300: var(--palette-green-300);
+  --palette-brand-400: var(--palette-green-400);
+  --palette-brand-500: var(--palette-green-500);
+  --palette-brand-600: var(--palette-green-600);
+  --palette-brand-700: var(--palette-green-700);
+  --palette-brand-800: var(--palette-green-800);
+  --palette-brand-900: var(--palette-green-900);
+}
+html[data-brand="red"] {
+  --palette-brand-100: var(--palette-red-100);
+  --palette-brand-200: var(--palette-red-200);
+  --palette-brand-300: var(--palette-red-300);
+  --palette-brand-400: var(--palette-red-400);
+  --palette-brand-500: var(--palette-red-500);
+  --palette-brand-600: var(--palette-red-700);
+  --palette-brand-700: var(--palette-red-800);
+  --palette-brand-800: var(--palette-red-900);
+  --palette-brand-900: var(--palette-red-1000);
+}
+/* 노랑은 흰 글자가 안 보여 채움 위 글자를 검정으로 바꾼다 */
+html[data-brand="yellow"] {
+  --palette-brand-100: var(--palette-yellow-100);
+  --palette-brand-200: var(--palette-yellow-200);
+  --palette-brand-300: var(--palette-yellow-200);
+  --palette-brand-400: var(--palette-yellow-300);
+  --palette-brand-500: var(--palette-yellow-300);
+  --palette-brand-600: var(--palette-yellow-300);
+  --palette-brand-700: var(--palette-yellow-400);
+  --palette-brand-800: var(--palette-yellow-700);
+  --palette-brand-900: var(--palette-yellow-800);
+  --fg-on-brand-solid: var(--palette-static-black-alpha-900);
+  --fg-brand: var(--palette-yellow-700);
+  --fg-brand-contrast: var(--palette-yellow-800);
+}
+html[data-brand="purple"] {
+  --palette-brand-100: #f5f0ff;
+  --palette-brand-200: #ece2ff;
+  --palette-brand-300: #dccbff;
+  --palette-brand-400: #c3a6ff;
+  --palette-brand-500: #a57dff;
+  --palette-brand-600: #8a5cf6;
+  --palette-brand-700: #7442e0;
+  --palette-brand-800: #5b30b5;
+  --palette-brand-900: #43237f;
+}
+html[data-brand="pink"] {
+  --palette-brand-100: #fff0f6;
+  --palette-brand-200: #ffe2ee;
+  --palette-brand-300: #ffc8dd;
+  --palette-brand-400: #ffa3c6;
+  --palette-brand-500: #ff78aa;
+  --palette-brand-600: #f5468c;
+  --palette-brand-700: #db2a73;
+  --palette-brand-800: #b01c5b;
+  --palette-brand-900: #7f1542;
+}
+html[data-brand="sky"] {
+  --palette-brand-100: #eefaff;
+  --palette-brand-200: #dcf4fe;
+  --palette-brand-300: #bbe8fc;
+  --palette-brand-400: #8bd7f8;
+  --palette-brand-500: #4fc1f2;
+  --palette-brand-600: #12a5e3;
+  --palette-brand-700: #0a88c1;
+  --palette-brand-800: #0b6b98;
+  --palette-brand-900: #0c4f6f;
+}
+
+/* ── 다크모드(느낌 보기용) ──
+   회색 단계를 거꾸로 바꿔(밝은 단계 = 어두운 색) 회색을 쓰는 쓰임새 색이 함께 뒤집히게 한다
+   연한 색 면(-weak)은 진한 색(600)을 어두운 바탕에 섞어 만들고, 진한 글자(-contrast)는 밝은 단계로 바꾼다
+   검정 반투명(눌림 · 구분선)은 흰 반투명으로 바꾼다 */
+html.theme-dark {
+  color-scheme: dark;
+  --palette-gray-00: #121316;
+  --palette-gray-100: #1a1c20;
+  --palette-gray-200: #222429;
+  --palette-gray-300: #2c2f35;
+  --palette-gray-400: #3a3e45;
+  --palette-gray-500: #4b5059;
+  --palette-gray-600: #6c727d;
+  --palette-gray-700: #8f959f;
+  --palette-gray-800: #b5bac2;
+  --palette-gray-900: #dcdfe4;
+  --palette-gray-1000: #f3f4f6;
+
+  --bg-layer-default: var(--palette-gray-00);
+  --bg-layer-floating: var(--palette-gray-200);
+  --bg-layer-floating-pressed: var(--palette-gray-300);
+  --bg-layer-basement: #0b0c0e;
+  --bg-neutral-subtle: var(--palette-gray-00);
+
+  --bg-brand-weak: color-mix(in srgb, var(--palette-brand-600) 18%, var(--palette-gray-00));
+  --bg-brand-weak-pressed: color-mix(in srgb, var(--palette-brand-600) 26%, var(--palette-gray-00));
+  --bg-brand-track: color-mix(in srgb, var(--palette-brand-600) 30%, var(--palette-gray-00));
+  --bg-critical-weak: color-mix(in srgb, var(--palette-red-700) 18%, var(--palette-gray-00));
+  --bg-critical-weak-pressed: color-mix(in srgb, var(--palette-red-700) 26%, var(--palette-gray-00));
+  --bg-informative-weak: color-mix(in srgb, var(--palette-blue-700) 18%, var(--palette-gray-00));
+  --bg-informative-weak-pressed: color-mix(in srgb, var(--palette-blue-700) 26%, var(--palette-gray-00));
+  --bg-positive-weak: color-mix(in srgb, var(--palette-green-700) 18%, var(--palette-gray-00));
+  --bg-positive-weak-pressed: color-mix(in srgb, var(--palette-green-700) 26%, var(--palette-gray-00));
+  --bg-warning-weak: color-mix(in srgb, var(--palette-yellow-500) 18%, var(--palette-gray-00));
+  --bg-warning-weak-pressed: color-mix(in srgb, var(--palette-yellow-500) 26%, var(--palette-gray-00));
+
+  --fg-brand-contrast: var(--palette-brand-400);
+  --fg-critical-contrast: var(--palette-red-400);
+  --fg-informative-contrast: var(--palette-blue-400);
+  --fg-positive-contrast: var(--palette-green-400);
+  --fg-warning-contrast: var(--palette-yellow-300);
+  --fg-informative: var(--palette-blue-500);
+  --fg-critical: var(--palette-red-500);
+  --fg-positive: var(--palette-green-500);
+  --fg-warning: var(--palette-yellow-400);
+
+  --stroke-brand-weak: color-mix(in srgb, var(--palette-brand-600) 45%, var(--palette-gray-00));
+  --stroke-critical-weak: color-mix(in srgb, var(--palette-red-700) 45%, var(--palette-gray-00));
+  --stroke-informative-weak: color-mix(in srgb, var(--palette-blue-700) 45%, var(--palette-gray-00));
+  --stroke-positive-weak: color-mix(in srgb, var(--palette-green-700) 45%, var(--palette-gray-00));
+  --stroke-warning-weak: color-mix(in srgb, var(--palette-yellow-500) 45%, var(--palette-gray-00));
+  --stroke-neutral-muted: #ffffff1f;
+  --stroke-neutral-subtle: #ffffff14;
+
+  --bg-neutral-weak-alpha: #ffffff14;
+  --bg-neutral-weak-alpha-pressed: #ffffff1f;
+  --bg-transparent-pressed: #ffffff12;
+  --bg-transparent-selected: #ffffff1a;
+  --bg-transparent-selected-pressed: #ffffff24;
+
+  /* 임시 토큰 중 밝은 단계를 직접 가리키던 것 */
+  --badge-weak-brand-background-color: color-mix(in srgb, var(--palette-brand-600) 26%, var(--palette-gray-00));
+  --badge-weak-informative-background-color: color-mix(in srgb, var(--palette-blue-700) 26%, var(--palette-gray-00));
+  --badge-weak-positive-background-color: color-mix(in srgb, var(--palette-green-700) 26%, var(--palette-gray-00));
+  --badge-weak-warning-background-color: color-mix(in srgb, var(--palette-yellow-500) 26%, var(--palette-gray-00));
+  --badge-weak-critical-background-color: color-mix(in srgb, var(--palette-red-700) 26%, var(--palette-gray-00));
+  --switch-disabled-on-track-color: color-mix(in srgb, var(--palette-brand-600) 35%, var(--palette-gray-00));
+  --switch-disabled-thumb-color: var(--palette-gray-500);
+  --bg-static-white-weak: #ffffff24;
+}
+
+/* 다크에서도 Toast는 진한 회색 면 + 흰 글자로 둔다(밝게 뒤집히면 흰 막 버튼이 안 보인다) */
+html.theme-dark [data-slot="toast"] {
+  --bg-neutral-solid: var(--palette-gray-400);
+  --fg-on-neutral-solid: var(--palette-gray-1000);
+}
+/* 다크: 입력 오류 줄은 덜 쨍하게(빨강 700을 어두운 바탕에 75% 섞음) */
+html.theme-dark {
+  --stroke-critical-solid: color-mix(in srgb, var(--palette-red-700) 75%, var(--palette-gray-00));
+}
+/* 다크: 체크박스 · 라디오 꺼짐 상자는 바탕과 같게 투명 */
+html.theme-dark :is([data-slot="checkbox"], [data-slot="radio"]) {
+  --bg-layer-default: transparent;
+}
+/* 다크: Divider thick은 바탕보다 살짝 밝게 */
+html.theme-dark [data-slot="divider"] {
+  --bg-layer-basement: var(--palette-gray-200);
+}
+/* 다크: SegmentedControl 고른 칸은 흰 면 + 어두운 글자 */
+html.theme-dark [data-slot="segmented-control"] {
+  --bg-layer-default: var(--palette-gray-1000);
+  --fg-neutral: var(--palette-gray-00);
+}
+
+/* 다크에서 떠 있는 면(Bottom sheet · Modal)은 그림자 대신 한 단계 밝은 면으로 구분한다 */
+html.theme-dark [data-slot="bottom-sheet"],
+html.theme-dark [data-slot="modal"] {
+  --bg-layer-floating: var(--palette-gray-200);
+}
