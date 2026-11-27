@@ -143,7 +143,7 @@ export function ListItemDemo() {
         </Example>
         <Example label="prefix Avatar + suffix Badge" grow>
           <div className="w-[343px] rounded-md border border-neutral-weak">
-            <ListItem title="김딸깍" description="오늘 오후 2:30" prefix={<Avatar src={logos.person} fallback="김" />} suffix={<Badge tone="positive">완료</Badge>} />
+            <ListItem title="김딸깍" description="오늘 오후 2:30" prefix={<Avatar size="sm" src={logos.person} fallback="김" />} suffix={<Badge tone="positive">완료</Badge>} />
           </div>
         </Example>
         <Example label="disabled" grow>
@@ -156,9 +156,9 @@ export function ListItemDemo() {
         <Phone label="거래 내역" bare>
           <div className="py-8">
             <p className="px-16 pt-8 pb-4 text-label-md text-neutral-subtle">11월 20일</p>
-            <ListItem size="md" title="스타벅스" description="오전 8:42 · 체크카드" prefix={<Avatar src={logos.coffee} fallback="스" />} suffix={<span className="text-label-base">-5,600원</span>} onClick={() => {}} />
-            <ListItem size="md" title="김딸깍" description="오전 11:05 · 이체" prefix={<Avatar src={logos.person} fallback="김" />} suffix={<span className="text-label-base text-informative">+30,000원</span>} onClick={() => {}} />
-            <ListItem size="md" title="딸깍 적금" description="오후 1:00 · 자동이체" prefix={<Avatar src={logos.saving} fallback="적" />} suffix={<span className="text-label-base">-200,000원</span>} onClick={() => {}} />
+            <ListItem size="md" title="스타벅스" description="오전 8:42 · 체크카드" prefix={<Avatar size="sm" src={logos.coffee} fallback="스" />} suffix={<span className="text-label-base">-5,600원</span>} onClick={() => {}} />
+            <ListItem size="md" title="김딸깍" description="오전 11:05 · 이체" prefix={<Avatar size="sm" src={logos.person} fallback="김" />} suffix={<span className="text-label-base text-informative">+30,000원</span>} onClick={() => {}} />
+            <ListItem size="md" title="딸깍 적금" description="오후 1:00 · 자동이체" prefix={<Avatar size="sm" src={logos.saving} fallback="적" />} suffix={<span className="text-label-base">-200,000원</span>} onClick={() => {}} />
           </div>
         </Phone>
         <Phone label="메뉴 목록" bare>
@@ -201,6 +201,9 @@ export function AvatarDemo() {
       </Example>
       <Example label="사진 없음 · 기본 아이콘">
         <Avatar />
+      </Example>
+      <Example label="size=sm · 40(목록 줄 앞, 임시)">
+        <Avatar size="sm" fallback="김" />
       </Example>
     </Board>
   );

@@ -37,8 +37,8 @@ const badgeVariants = cva(
       { variant: "weak", tone: "positive", className: "bg-(--badge-weak-positive-background-color) text-positive-contrast" },
       { variant: "weak", tone: "warning", className: "bg-(--badge-weak-warning-background-color) text-warning-contrast" },
       { variant: "weak", tone: "critical", className: "bg-(--badge-weak-critical-background-color) text-critical-contrast" },
-      // outline = stroke.<톤>-weak + fg.<톤>. brand 글자는 fg.brand-contrast, neutral은 stroke.neutral-muted + fg.neutral-muted
-      { variant: "outline", tone: "neutral", className: "border-neutral-muted text-neutral-muted" },
+      // outline = stroke.<톤>-weak + fg.<톤>. brand 글자는 fg.brand-contrast, neutral은 테두리 stroke.neutral-weak(한 단계 진하게, 임시) + fg.neutral-muted
+      { variant: "outline", tone: "neutral", className: "border-(--badge-outline-neutral-border-color) text-neutral-muted" },
       { variant: "outline", tone: "brand", className: "border-brand-weak text-brand-contrast" },
       { variant: "outline", tone: "informative", className: "border-informative-weak text-informative" },
       { variant: "outline", tone: "positive", className: "border-positive-weak text-positive" },

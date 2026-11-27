@@ -9,7 +9,7 @@ const sections = [
   { id: "badge", title: "Badge", description: "상태 · 분류를 짧게 보여 준다. 눌러지지 않는다. 한 대상에 1~2개까지.", Demo: D.BadgeDemo },
   { id: "divider", title: "Divider", description: "내용 사이를 나누는 줄. 목록 · 묶음 사이는 line, 화면 안 큰 구역 사이는 thick. MVP 밖 임시 추가다.", Demo: D.DividerDemo },
   { id: "accordion", title: "Accordion", description: "눌러서 펼치고 접는 묶음. 자주 묻는 질문 · 약관 · 유의 사항처럼 긴 글을 정리한다. MVP 밖 임시 추가다.", Demo: D.AccordionDemo },
-  { id: "avatar", title: "Avatar", description: "사람 · 가게를 나타내는 동그란 사진. 크기 48 하나다.", Demo: D.AvatarDemo },
+  { id: "avatar", title: "Avatar", description: "사람 · 가게를 나타내는 동그란 사진. 기본 48, 목록 줄 앞은 sm 40(임시).", Demo: D.AvatarDemo },
 ];
 
 export default function DisplayPage() {

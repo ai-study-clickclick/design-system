@@ -8,7 +8,7 @@ import { cn } from "./cn";
 // title · description · prefix · suffix · withArrow · disabled(3-2 비교표)
 // 위아래 12 · 좌우 16 · 제목 16(body-lg, 굵기 500 임시) · 보조 13(body-sm, fg.neutral-subtle) · 눌림 bg.transparent-pressed
 // 고르는 목록(BottomSheet 선택 등)은 selected를 주면 오른쪽 끝에 체크를 둔다. 꺼짐 fg.unselected · 켜짐 fg.brand(Ghost 체크박스와 같은 모양)
-// 오른쪽 값과 화살표 사이는 6(목록 간격의 반), 화살표 20
+// 오른쪽 값과 화살표 사이는 6(목록 간격의 반), 화살표 20. 앞 요소 Avatar는 size="sm"(40)을 쓴다
 export type ListItemProps = Omit<React.HTMLAttributes<HTMLElement>, "title" | "prefix"> & {
   title: React.ReactNode;
   description?: React.ReactNode;
@@ -47,10 +47,13 @@ export function ListItem({
   const Comp = asChild ? Slot.Root : onClick ? "button" : "div";
   const content = (
     <>
-      {prefix && <span className="flex shrink-0 items-center">{prefix}</span>}
-      <span className="flex min-w-0 flex-1 flex-col gap-2">
-        <span className={cn(size === "lg" ? "text-body-lg font-(--list-item-typography-font-weight)" : "text-emphasis-md", disabled ? "text-disabled" : "text-neutral")}>{title}</span>
-        {description && <span className={cn("text-body-sm", disabled ? "text-disabled" : "text-neutral-subtle")}>{description}</span>}
+      {/* 앞 요소(Avatar · 아이콘)와 제목 사이는 목록 간격 12보다 조금 좁은 10(임시) */}
+      <span className="flex min-w-0 flex-1 items-center gap-(--list-item-prefix-gap)">
+        {prefix && <span className="flex shrink-0 items-center">{prefix}</span>}
+        <span className="flex min-w-0 flex-1 flex-col gap-2">
+          <span className={cn(size === "lg" ? "text-body-lg font-(--list-item-typography-font-weight)" : "text-emphasis-md", disabled ? "text-disabled" : "text-neutral")}>{title}</span>
+          {description && <span className={cn("text-body-sm", disabled ? "text-disabled" : "text-neutral-subtle")}>{description}</span>}
+        </span>
       </span>
       {(suffix || withArrow || selected !== undefined) && (
         <span className="flex shrink-0 items-center gap-(--list-item-suffix-gap)">

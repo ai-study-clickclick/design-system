@@ -66,6 +66,12 @@
   /* Tabs line 선택 줄 굵기: md 2 · sm 3 */
   --tabs-md-indicator-width: 2px;
   --tabs-sm-indicator-width: 3px;
+  /* Avatar sm: 목록 줄 앞 40 */
+  --avatar-sm-size: 40px;
+  /* ListItem 앞 요소와 제목 사이 10 */
+  --list-item-prefix-gap: var(--space-10);
+  /* Badge outline neutral 테두리: stroke.neutral-muted → stroke.neutral-weak */
+  --badge-outline-neutral-border-color: var(--stroke-neutral-weak);
   /* Badge weak 배경: 톤마다 한 단계 진하게(100 → 200, neutral 200 → 300) */
   --badge-weak-neutral-background-color: var(--palette-gray-300);
   --badge-weak-brand-background-color: var(--palette-brand-200);
