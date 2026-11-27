@@ -36,7 +36,7 @@ export function Checkbox({
   return (
     <div
       data-slot="checkbox"
-      className={cn("inline-flex items-center", square ? "gap-8" : "gap-(--checkbox-ghost-gap)", size === "md" ? "min-h-32" : "min-h-36", className)}
+      className={cn("inline-flex items-center", square ? (size === "md" ? "gap-(--checkbox-md-gap)" : "gap-(--checkbox-lg-gap)") : "gap-(--checkbox-ghost-gap)", size === "md" ? "min-h-(--checkbox-md-min-height)" : "min-h-(--checkbox-lg-min-height)", className)}
     >
       <CheckboxPrimitive.Root
         id={inputId}
@@ -45,7 +45,7 @@ export function Checkbox({
         aria-invalid={invalid || undefined}
         className={cn(
           "peer flex shrink-0 items-center justify-center rounded-xs",
-          square ? (size === "md" ? "size-20" : "size-24") : size === "md" ? "size-(--checkbox-ghost-md-box-size)" : "size-24",
+          square ? (size === "md" ? "size-(--checkbox-md-size)" : "size-(--checkbox-lg-size)") : size === "md" ? "size-(--checkbox-ghost-md-box-size)" : "size-(--checkbox-lg-size)",
           square
             ? cn(
                 "border bg-layer-default text-on-brand-solid",
@@ -61,15 +61,15 @@ export function Checkbox({
         {square ? (
           <CheckboxPrimitive.Indicator className="flex items-center justify-center">
             {checked === "indeterminate" ? (
-              <Minus aria-hidden strokeWidth={3} className={size === "md" ? "size-12" : "size-14"} />
+              <Minus aria-hidden strokeWidth={3} className={size === "md" ? "size-(--checkbox-md-icon-size)" : "size-(--checkbox-lg-icon-size)"} />
             ) : (
-              <Check aria-hidden strokeWidth={3} className={size === "md" ? "size-12" : "size-14"} />
+              <Check aria-hidden strokeWidth={3} className={size === "md" ? "size-(--checkbox-md-icon-size)" : "size-(--checkbox-lg-icon-size)"} />
             )}
           </CheckboxPrimitive.Indicator>
         ) : checked === "indeterminate" ? (
-          <Minus aria-hidden strokeWidth={3} className={size === "md" ? "size-14" : "size-18"} />
+          <Minus aria-hidden strokeWidth={3} className={size === "md" ? "size-(--checkbox-ghost-md-icon-size)" : "size-(--checkbox-ghost-lg-icon-size)"} />
         ) : (
-          <Check aria-hidden strokeWidth={3} className={size === "md" ? "size-14" : "size-18"} />
+          <Check aria-hidden strokeWidth={3} className={size === "md" ? "size-(--checkbox-ghost-md-icon-size)" : "size-(--checkbox-ghost-lg-icon-size)"} />
         )}
       </CheckboxPrimitive.Root>
       {label && (

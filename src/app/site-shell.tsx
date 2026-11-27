@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
+import { SegmentedControl } from "@/components/ui/segmented-control";
 import { libraryGroups, prototypeGroups, sectionOf, sections, type NavGroup } from "./site-nav";
 
 // 사이트 전체 틀: 위 메뉴 + 왼쪽 메뉴(LNB) + 본문. 어느 페이지로 가도 같은 틀 안에서 본문만 바뀐다
@@ -71,6 +72,7 @@ export default function SiteShell({ screens, children }: { screens: string[]; ch
               );
             })}
           </nav>
+          <ThemeControls />
         </div>
       </header>
 
@@ -131,5 +133,72 @@ function Lnb({ groups, pathname }: { groups: NavGroup[]; pathname: string }) {
         </div>
       ))}
     </nav>
+  );
+}
+
+// 임시 미리보기: 메인 컬러 · 다크모드(src/styles/temp-theme.css). 고른 값은 이 브라우저에만 기억한다
+const brands = [
+  { value: "orange", label: "Orange" },
+  { value: "blue", label: "Blue" },
+  { value: "green", label: "Green" },
+  { value: "red", label: "Red" },
+  { value: "yellow", label: "Yellow" },
+  { value: "purple", label: "Purple" },
+  { value: "pink", label: "Pink" },
+  { value: "sky", label: "Sky" },
+];
+const modes = [
+  { value: "light", label: "Light" },
+  { value: "dark", label: "Dark" },
+];
+
+function readSaved(key: string, fallback: string) {
+  try {
+    return localStorage.getItem(key) ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function ThemeControls() {
+  const [mode, setMode] = useState("light");
+  const [brand, setBrand] = useState("orange");
+
+  useEffect(() => {
+    setMode(readSaved("ds-mode", "light"));
+    setBrand(readSaved("ds-brand", "orange"));
+  }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle("theme-dark", mode === "dark");
+    if (brand === "orange") root.removeAttribute("data-brand");
+    else root.setAttribute("data-brand", brand);
+    try {
+      localStorage.setItem("ds-mode", mode);
+      localStorage.setItem("ds-brand", brand);
+    } catch {}
+  }, [mode, brand]);
+
+  return (
+    <div className="ml-auto hidden items-center gap-8 sm:flex">
+      <label className="relative flex items-center">
+        <span className="sr-only">메인 컬러</span>
+        <span aria-hidden className="pointer-events-none absolute left-10 size-12 rounded-full bg-brand-solid" />
+        <select
+          value={brand}
+          onChange={(e) => setBrand(e.target.value)}
+          className="h-32 appearance-none rounded-sm border border-neutral-weak bg-layer-default pr-28 pl-28 text-label-sm text-neutral"
+        >
+          {brands.map((b) => (
+            <option key={b.value} value={b.value}>
+              {b.label}
+            </option>
+          ))}
+        </select>
+        <ChevronDown aria-hidden className="pointer-events-none absolute right-8 size-14 text-neutral-subtle" />
+      </label>
+      <SegmentedControl size="sm" aria-label="화면 모드" options={modes} value={mode} onValueChange={setMode} />
+    </div>
   );
 }

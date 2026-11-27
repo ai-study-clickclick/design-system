@@ -12,12 +12,12 @@ export default function PrototypesPage() {
       href="/prototypes"
       category="Prototypes"
       title="All screens"
-      description="화면 하나가 폴더 하나예요. 최근에 만든 화면이 위에 있어요"
+      description="화면 하나가 폴더 하나다. 최근에 만든 화면이 위에 있다."
       toc={[]}
     >
       {screens.length === 0 ? (
         <p className="rounded-md bg-neutral-muted p-20 text-body-md text-neutral-muted">
-          아직 만든 화면이 없어요. 화면을 만들면 여기와 왼쪽 메뉴에 나와요
+          아직 만든 화면이 없다. 화면을 만들면 여기와 왼쪽 메뉴에 나온다.
         </p>
       ) : (
         <ul className="divide-y divide-neutral-weak border-y border-neutral-weak">

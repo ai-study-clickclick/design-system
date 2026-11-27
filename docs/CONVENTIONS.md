@@ -33,6 +33,7 @@ repo/
 │  ├─ components/ui/     # 컴포넌트 코드(컴포넌트 하나 = 파일 하나, cn.ts · field.tsx · press.ts는 공통 도우미)
 │  ├─ styles/tokens.css  # DESIGN.md에서 자동 생성
 │  ├─ styles/temp-tokens.css  # DESIGN.md에 아직 없는 값의 임시 토큰(SEED 값). DESIGN.md에 들어가면 지운다
+│  ├─ styles/temp-theme.css  # 메인 컬러 · 다크모드 임시 미리보기(사이트 위 메뉴에서 고름). 정식으로 정하면 DESIGN.md로 옮기고 지운다
 │  └─ app/
 │     ├─ layout.tsx · globals.css · page.tsx  # 사이트 공통 틀 · 공통 스타일 · 첫 화면 (시스템 관리자)
 │     ├─ site-shell.tsx · site-nav.ts · doc-page.tsx · toc-nav.tsx  # 사이트 틀(위 메뉴 · 왼쪽 메뉴 · 문서 · 목차) (시스템 관리자)

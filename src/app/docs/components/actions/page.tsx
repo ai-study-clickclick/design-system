@@ -19,13 +19,13 @@ export default function ActionsPage() {
         { id: "text-button", title: "TextButton" },
       ]}
     >
-      <Section id="button-size" title="Button · 크기" description="variant 6가지 × size 3가지. 큰 버튼은 하단 고정, 보통 버튼은 본문, 작은 버튼은 카드 · 목록 안에 쓴다. primaryWeak · neutral · sm은 임시다.">
+      <Section id="button-size" title="Button · 크기" description="variant 6가지 × size 4가지. 큰 버튼은 하단 고정, 보통 버튼은 본문, 작은 버튼은 카드 · 목록 안, xs는 Toast처럼 좁은 자리에 쓴다. primaryWeak · neutral · sm · xs는 임시이고, staticWhiteWeak(어두운 면 위 흰 막)은 Toast 안에서만 쓴다.">
         <ButtonSizes />
       </Section>
       <Section id="button-state" title="Button · 상태" description="처리가 1초를 넘으면 배경이 눌림 색으로 고정되고 글자 자리에 Spinner가 돈다. 1초 안에 끝나면 모양은 그대로다.">
         <ButtonStates />
       </Section>
-      <Section id="button-layout" title="Button · 배치" description="폭은 버튼이 아니라 놓는 자리가 정한다. 두 개를 나란히 두면 닫기 + 채움은 3:7, 그 밖은 5:5.">
+      <Section id="button-layout" title="Button · 배치" description="폭은 버튼이 아니라 놓는 자리가 정한다. 화면 하단 고정 영역에 두 개를 나란히 두면 닫기 + 채움은 3:7, 그 밖은 5:5. Bottom sheet 안은 늘 5:5.">
         <ButtonLayouts />
       </Section>
       <Section id="icon-button" title="IconButton" description="아이콘만 있는 버튼. 보이는 크기가 작아도 누르는 영역은 44다. aria-label을 꼭 준다. MVP 밖 임시 추가다.">

@@ -20,7 +20,7 @@ export default function DocsPage() {
       href="/docs"
       category="Library"
       title="딸깍 디자인 시스템"
-      description="기본 테마(주황) 기준의 토큰과 컴포넌트예요. 값은 DESIGN.md에서 자동으로 만들어요"
+      description="기본 테마(주황) 기준의 토큰과 컴포넌트다. 값은 DESIGN.md에서 자동으로 만든다."
       toc={[]}
     >
       <ul className="grid gap-20 sm:grid-cols-2 xl:grid-cols-3">

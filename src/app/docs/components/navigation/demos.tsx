@@ -104,7 +104,7 @@ export function SegmentedControlDemo() {
   ];
   return (
     <Board column>
-      <Part title="size=md · 높이 40 · 놓인 자리 폭을 똑같이 나눔" column>
+      <Part title="size=md · 높이 44 · 놓인 자리 폭을 똑같이 나눔" column>
         <Example label="2개" grow>
           <div className="w-[343px]">
             <SegmentedControl aria-label="송금 종류" options={two} />

@@ -31,7 +31,7 @@ export function Switch({ id, label, size = "md", disabled, className, ...props }
         id={inputId}
         disabled={disabled}
         className={cn(
-          "group flex shrink-0 items-center rounded-full bg-neutral-weak-pressed transition-colors duration-150 aria-checked:bg-brand-solid",
+          "group flex shrink-0 items-center rounded-full bg-neutral-weak-pressed transition-colors duration-(--duration-d3) aria-checked:bg-brand-solid",
           "disabled:bg-(--switch-disabled-off-track-color) disabled:aria-checked:bg-(--switch-disabled-on-track-color)",
           s.track,
         )}
@@ -39,7 +39,7 @@ export function Switch({ id, label, size = "md", disabled, className, ...props }
       >
         <SwitchPrimitive.Thumb
           className={cn(
-            "block scale-80 rounded-full bg-layer-default shadow-s1 transition-transform duration-150 group-aria-checked:scale-100 group-disabled:bg-(--switch-disabled-thumb-color) group-disabled:shadow-none",
+            "block scale-80 rounded-full bg-layer-default shadow-s1 transition-transform duration-(--duration-d3) group-aria-checked:scale-100 group-disabled:bg-(--switch-disabled-thumb-color) group-disabled:shadow-none",
             s.thumb,
             s.on,
           )}

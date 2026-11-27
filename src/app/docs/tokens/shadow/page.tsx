@@ -18,7 +18,7 @@ export default function ShadowPage() {
       href="/docs/tokens/shadow"
       category="Tokens"
       title="Shadow"
-      description="면은 색과 테두리로 먼저 나누고, 그림자는 떠 있는 면(Bottom sheet · Modal)에만 써요"
+      description="면은 색과 테두리로 먼저 나누고, 그림자는 떠 있는 면(Bottom sheet · Modal)과 손잡이처럼 작은 요소에만 쓴다"
       toc={[
         { id: "tokens", title: "Scale" },
         { id: "usage", title: "실제 화면" },
@@ -27,7 +27,7 @@ export default function ShadowPage() {
       <Section id="tokens" title="Scale" description="클래스: shadow-<이름>. 예: shadow-s2">
         {shadows.length === 0 ? (
           <p className="rounded-md bg-neutral-muted p-20 text-body-md text-neutral-muted">
-            아직 DESIGN.md에 그림자 값이 없어요. 값이 들어가면 /sync로 여기에 나와요
+            아직 DESIGN.md에 그림자 값이 없다. 값이 들어가면 /sync로 여기에 나온다.
           </p>
         ) : (
           <ul className="grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-3">
@@ -48,7 +48,7 @@ export default function ShadowPage() {
         )}
       </Section>
 
-      <Section id="usage" title="실제 화면" description="화면 위로 더 높이 뜰수록 그림자가 진해져요. 평소 면(카드)에는 그림자 없이 테두리를 써요">
+      <Section id="usage" title="실제 화면" description="화면 위로 더 높이 뜰수록 그림자가 진해진다. 평소 면(카드)에는 그림자 없이 테두리를 쓴다.">
         <ul className="grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-3">
           <UsageCard name="shadow.s1" title="화면 안 작은 요소" note="스위치 손잡이 · SegmentedControl 고른 칸">
             <div className="flex w-full flex-col gap-16 rounded-md bg-layer-default p-16">

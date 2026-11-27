@@ -34,14 +34,14 @@ export function RadioGroupItem({ id, label, disabled: itemDisabled, className, .
   const auto = useId();
   const inputId = id ?? auto;
   return (
-    <div data-slot="radio" className={cn("flex items-center gap-8", size === "md" ? "min-h-32" : "min-h-36", className)}>
+    <div data-slot="radio" className={cn("flex items-center", size === "md" ? "min-h-(--radio-md-min-height) gap-(--radio-md-gap)" : "min-h-(--radio-lg-min-height) gap-(--radio-lg-gap)", className)}>
       <RadioPrimitive.Item
         id={inputId}
         disabled={disabled}
         className={cn(
           "flex shrink-0 items-center justify-center rounded-full border border-unselected bg-layer-default",
           "aria-checked:border-0 aria-checked:bg-brand-solid disabled:border-0 disabled:bg-disabled disabled:aria-checked:bg-disabled",
-          size === "md" ? "size-20" : "size-24",
+          size === "md" ? "size-(--radio-md-size)" : "size-(--radio-lg-size)",
         )}
         {...props}
       >
