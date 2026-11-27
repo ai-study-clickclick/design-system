@@ -24,7 +24,7 @@ export function IconButton({ size = "md", variant = "ghost", className, type = "
         size === "sm"
           ? "size-(--icon-button-sm-size) before:-inset-(--icon-button-sm-hit-inset) [&_svg]:size-(--icon-button-sm-icon-size)"
           : "size-(--icon-button-md-size) before:-inset-(--icon-button-md-hit-inset) [&_svg]:size-(--icon-button-md-icon-size)",
-        variant === "ghost" ? "active:bg-transparent-pressed" : "bg-button-weak active:bg-button-weak-pressed disabled:bg-disabled",
+        variant === "ghost" ? "active:bg-transparent-pressed disabled:text-(--icon-button-ghost-disabled-color)" : "bg-button-weak active:bg-button-weak-pressed disabled:bg-disabled",
         className,
       )}
       {...(props.disabled ? {} : press)}

@@ -5,7 +5,7 @@ import { addDays } from "date-fns";
 import type { DateRange } from "react-day-picker";
 import { Search } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox, CheckboxGroup } from "@/components/ui/checkbox";
 import { Divider } from "@/components/ui/divider";
 import { Chip, ChipGroup, ChipGroupItem } from "@/components/ui/chip";
 import { DateInput } from "@/components/ui/date-input";
@@ -190,7 +190,7 @@ export function CheckboxDemo() {
           />
           {/* 부모 줄(36)이 자식 줄(32)보다 높고 구분선이 있어 아래가 넓어 보인다. 구분선 위아래를 4로 줄여 시각 보정 */}
           <Divider className="-my-12" />
-          <div className="flex flex-col">
+          <CheckboxGroup>
             {items.map((label, i) => (
               <Checkbox
                 key={label}
@@ -200,7 +200,7 @@ export function CheckboxDemo() {
                 onCheckedChange={(v) => setChecked(checked.map((c, j) => (j === i ? v === true : c)))}
               />
             ))}
-          </div>
+          </CheckboxGroup>
         </Phone>
       </Part>
     </Board>

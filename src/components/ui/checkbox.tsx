@@ -36,7 +36,7 @@ export function Checkbox({
   return (
     <div
       data-slot="checkbox"
-      className={cn("inline-flex items-center gap-8", size === "md" ? "min-h-32" : "min-h-36", className)}
+      className={cn("inline-flex items-center", square ? "gap-8" : "gap-(--checkbox-ghost-gap)", size === "md" ? "min-h-32" : "min-h-36", className)}
     >
       <CheckboxPrimitive.Root
         id={inputId}
@@ -45,7 +45,7 @@ export function Checkbox({
         aria-invalid={invalid || undefined}
         className={cn(
           "peer flex shrink-0 items-center justify-center rounded-xs",
-          size === "md" ? "size-20" : "size-24",
+          square ? (size === "md" ? "size-20" : "size-24") : size === "md" ? "size-(--checkbox-ghost-md-box-size)" : "size-24",
           square
             ? cn(
                 "border bg-layer-default text-on-brand-solid",
@@ -86,4 +86,9 @@ export function Checkbox({
       )}
     </div>
   );
+}
+
+/** 부모 square(전체 동의) 아래 자식 ghost 묶음. 자식의 체크 가운데 · 글자 시작을 부모(lg)에 맞춘다 */
+export function CheckboxGroup({ className, ...props }: React.ComponentProps<"div">) {
+  return <div data-slot="checkbox-group" className={cn("flex flex-col", className)} {...props} />;
 }

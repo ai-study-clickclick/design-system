@@ -7,7 +7,7 @@ import { cn } from "./cn";
 // Chip: 누르면 켜지고 꺼지는 둥근 칩(기간 · 카테고리 필터 등). MVP 19개 밖 임시 추가
 // 높이 36 · 좌우 14 · 글자 14(label-md)
 // variant solid(탭처럼 하나만 고를 때, 단독 칩): 꺼짐 bg.neutral-weak + fg.neutral-muted · 켜짐 bg.neutral-solid + fg.on-neutral-solid
-// variant outline(여러 개 고를 때): 꺼짐 bg.layer-default + stroke.neutral-weak · 켜짐 brand-600 줄 2(1 + 안쪽 링 1) + 글자(임시)
+// variant outline(여러 개 고를 때): 꺼짐 bg.layer-default + stroke.neutral-weak · 켜짐 brand-600 줄 1.5(1 + 안쪽 링 0.5) + 글자(임시)
 // ChipGroup: type single(하나만, 다시 눌러도 안 풀림, 기본 solid) · multiple(여러 개, 기본 outline). layout wrap(줄바꿈) · scroll(가로 스크롤)
 // 금액 빠른 입력(+1만 원)처럼 켜고 끄지 않고 바로 실행하면 Chip을 단독으로 쓴다(누르면 onClick)
 type ChipVariant = "solid" | "outline";
@@ -19,7 +19,7 @@ const chipVariants: Record<ChipVariant, string> = {
   ),
   outline: cn(
     "border border-neutral-weak bg-layer-default text-neutral-muted active:bg-layer-default-pressed disabled:border-neutral-muted",
-    "data-[state=on]:border-(--chip-outline-selected-color) data-[state=on]:text-(--chip-outline-selected-color) data-[state=on]:ring-1 data-[state=on]:ring-(color:--chip-outline-selected-color) data-[state=on]:ring-inset",
+    "data-[state=on]:border-(--chip-outline-selected-color) data-[state=on]:text-(--chip-outline-selected-color) data-[state=on]:ring-(length:--chip-outline-selected-ring-width) data-[state=on]:ring-(color:--chip-outline-selected-color) data-[state=on]:ring-inset",
   ),
 };
 const chipClass = (variant: ChipVariant) => cn(chipBase, chipVariants[variant]);

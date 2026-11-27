@@ -7,7 +7,7 @@
   --button-md-rounded: 10px;
   /* Button sm: 높이 36 · 라운드 8 · 좌우 14 · 글자 14 (SEED ActionButton small, 3-2 · DESIGN.md 추가 요청) */
   --button-sm-height: 36px;
-  /* Button xs: 높이 32 · 라운드 6(작은 크기는 라운드도 작게) · 좌우 12 · 글자 14. Toast 버튼 등 */
+  /* Button xs: 높이 32 · 라운드 8(sm과 같음, 더 크게는 두지 않음) · 좌우 12 · 글자 14. Toast 버튼 등 */
   --button-xs-height: 32px;
 
 
@@ -127,8 +127,21 @@
   --space-nav-to-large-title: var(--space-40);
   /* BottomSheet 안쪽 좌우 여백 16 → 20. 시트 안 ListItem도 같은 여백으로 맞춘다 */
   --bottom-sheet-padding: var(--space-20);
-  /* Chip outline 켜짐: 테두리 2(1 + 안쪽 링 1) · 줄과 글자 brand-600 */
+  /* Chip outline 켜짐: 테두리 1.5(1 + 안쪽 링 0.5) · 줄과 글자 brand-600 */
   --chip-outline-selected-color: var(--palette-brand-600);
+  --chip-outline-selected-ring-width: 0.5px;
+  /* IconButton ghost 비활성 아이콘: fg.disabled보다 한 단계 연하게 */
+  --icon-button-ghost-disabled-color: var(--palette-gray-500);
+  /* TextButton neutral 굵기: 700 → 600(brand는 700 그대로) */
+  --text-button-neutral-font-weight: 600;
+  /* Checkbox ghost: 체크와 글자 사이 4(square는 8). 상자 자리는 md 20 · lg 24
+     CheckboxGroup(부모 square 아래 자식 묶음) 안에서는 자식 ghost의 상자 자리 · 간격을 부모 lg(24 · 8)에 맞춰 체크 가운데와 글자 시작을 맞춘다 */
+  --checkbox-ghost-gap: var(--space-4);
+  --checkbox-ghost-md-box-size: var(--checkbox-md-size);
+  /* Switch 비활성: 투명도 대신 색으로. 꺼짐 트랙 gray-400 · 켜짐 트랙 brand-300 · 손잡이 gray-100(그림자 없음) */
+  --switch-disabled-off-track-color: var(--palette-gray-400);
+  --switch-disabled-on-track-color: var(--palette-brand-300);
+  --switch-disabled-thumb-color: var(--palette-gray-100);
   /* BottomSheet 최소 높이 */
   --bottom-sheet-min-height: 240px;
   /* 카드 안 이미지: 바깥 − 여백이 0 이하라 최소값 radius.sm 8(DESIGN.md "Shapes") */
@@ -171,6 +184,12 @@ html:root {
   --button-md-rounded: calc(10px * var(--corner-comp));
   --segmented-control-rounded: calc(10px * var(--corner-comp));
   --segmented-control-sm-rounded: calc(8px * var(--corner-comp));
+}
+
+/* 부모 square 아래 자식 묶음: 자식 ghost를 부모(lg)의 상자 자리 · 간격에 맞춘다 */
+[data-slot="checkbox-group"] {
+  --checkbox-ghost-md-box-size: var(--checkbox-lg-size);
+  --checkbox-ghost-gap: var(--checkbox-lg-gap);
 }
 
 /* Bottom sheet 안 ListItem은 시트 좌우 여백(20)에 맞춘다 */

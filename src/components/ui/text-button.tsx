@@ -23,7 +23,7 @@ export function TextButton({ size = "md", tone = "neutral", withArrow, asChild, 
       className={cn(
         "-mx-4 inline-flex min-h-touch-min-sm items-center gap-2 rounded-xs px-4 active:bg-transparent-pressed disabled:pointer-events-none disabled:text-disabled",
         size === "sm" ? "text-label-sm" : "text-label-md",
-        tone === "neutral" ? "text-(--text-button-neutral-color)" : "text-brand-contrast",
+        tone === "neutral" ? "font-(--text-button-neutral-font-weight) text-(--text-button-neutral-color)" : "text-brand-contrast",
         className,
       )}
       {...props}

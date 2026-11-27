@@ -30,7 +30,7 @@ const buttonVariants = cva(
         lg: "h-(--button-primary-lg-height) rounded-md px-20 text-label-lg",
         md: "h-(--button-primary-md-height) rounded-(--button-md-rounded) px-16 text-label-md",
         sm: "h-(--button-sm-height) rounded-sm px-14 text-label-md",
-        xs: "h-(--button-xs-height) rounded-xs px-12 text-label-md",
+        xs: "h-(--button-xs-height) rounded-sm px-12 text-label-md",
       },
     },
     defaultVariants: { variant: "primary", size: "lg" },
